@@ -19,6 +19,7 @@
       @content
 
 
+
 @mixin margins
   @for $i from 1 through 100
     $margin: $i * 4px
@@ -60,16 +61,29 @@
 
 
 @mixin fontSize
-  @for $i from 6 through 50
+  @for $i from 6 through 100
     .fs-#{$i}
       font-size: $i + px
 
 
 
 @mixin lineHeight
-  @for $i from 6 through 50
+  @for $i from 6 through 100
     .lh-#{$i}
       line-height: $i + px
 
 
+
+@mixin letterSpacing
+  @for $i from 1 through 100
+    $letterSpacing: $i / 100
+    .ls-#{$i}
+      letter-spacing: $letterSpacing + px
+
+
+
+@mixin fontWeight
+  @for $i from 1 through 1000
+    .fw-#{$i}
+      font-weight: $i
 
