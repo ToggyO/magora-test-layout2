@@ -14,7 +14,7 @@ const Banner = () => {
             <div className="banner-search-block">
               <form action="" className="search-block-form wrapper d-f">
                 <input className=" search-block-input sh-inputLarge input-lg ml-35 w-45" type="text" placeholder="Describe your idea"/>
-                <button className=" btn green md fs-18 ls-27 lh-18 fw-500 ml-20 sh-btn-lg mr-35 w-15">Create project</button>
+                <button className="btn green md fs-18 ls-27 lh-18 fw-500 ml-20 sh-btn-lg mr-35 w-15">Create project</button>
               </form>
             </div>
           </div>
