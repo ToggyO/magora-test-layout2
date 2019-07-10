@@ -1,121 +1,57 @@
 @import '../bin/variables'
 
-.btn-green-sm
-  height: 52px
-  width: 168px
-  padding: 0
-  border-radius: 26px
+$className: btn
+
+.#{$className}
+  border: none
+  text-align: center
+  cursor: pointer
+
+
+//Colors
+.#{$className}.green
   background-color: $greenFont
-  border: none
-  font-size: 18px
-  font-weight: normal
   color: $primaryColor
-  letter-spacing: 0.27px
-  line-height: 18px
-  text-align: center
-  cursor: pointer
 
-.btn-green-sm-wide
-  height: 52px
-  width: 275.54px
-  padding: 0
-  border-radius: 26px
-  background-color: #33D98E
-  border: none
-  font-size: 18px
-  font-weight: normal
-  color: $primaryColor
-  letter-spacing: 0.27px
-  line-height: 18px
-  text-align: center
-  cursor: pointer
 
-.btn-green-lg
-  height: 64.35px
-  width: 267.65px
-  padding: 0
-  border-radius: 37.2px
-  background-color: #33D98E
-  border: none
-  font-size: 18px
-  font-weight: normal
-  color: $primaryColor
-  letter-spacing: 0.27px
-  line-height: 18px
-  text-align: center
-  cursor: pointer
+.#{$className}.transparent
+  background: none
+  border: 2px solid $lightBlueFont
+  color: $lightBlueFont
 
-.btn-green-lg-wide
-  height: 62px
-  width: 330px
-  padding: 0
-  border-radius: 37px
-  background-color: #33D98E
-  border: none
-  font-size: 18px
-  font-weight: normal
-  color: $primaryColor
-  letter-spacing: 0.27px
-  line-height: 18px
-  text-align: center
-  cursor: pointer
 
-.btn-trPar-sm-wide
-  height: 52px
-  width: 280px
-  padding: 0
-  border-radius: 26px
-  background-color: $lightBlueFont
-  border: none
-  font-size: 16px
-  font-weight: normal
-  color: $primaryColor
-  letter-spacing: 0.24px
-  line-height: 22px
-  text-align: center
-  cursor: pointer
-
-.btn-trPar-lg
-  height: 64px
-  width: 284px
-  padding: 0
-  border-radius: 32px
-  background-color: $lightBlueFont
-  border: none
-  font-size: 16px
-  font-weight: normal
-  color: $primaryColor
-  letter-spacing: 0.24px
-  line-height: 22px
-  text-align: center
-  cursor: pointer
-
-.btn-blue-sm-wide
-  height: 52px
-  width: 253px
-  padding: 0
-  border-radius: 26px
+.#{$className}.blue
   background-color: $seaWaveFont
-  border: none
-  font-size: 16px
-  font-weight: normal
   color: $primaryColor
-  letter-spacing: 0.24px
-  line-height: 22px
-  text-align: center
-  cursor: pointer
 
-.btn-white-sm-wide
-  height: 52px
-  width: 253px
-  padding: 0
-  border-radius: 26px
+
+.#{$className}.white
   background-color: $primaryColor
-  border: none
-  font-size: 16px
-  font-weight: normal
   color: $greenFont
-  letter-spacing: 0.24px
-  line-height: 22px
-  text-align: center
-  cursor: pointer
+
+
+//Shapes
+.#{$className}.#{$className}.sm
+  padding: 18px 29px
+  border-radius: 26px
+
+
+.#{$className}.#{$className}.sm-wide
+  padding: 15px 83px
+  border-radius: 26px
+
+
+.#{$className}.#{$className}.md
+  padding: 23.18px 74.33px
+  border-radius: 37.2px
+
+
+.#{$className}.#{$className}.lg
+  padding: 17px 82.80px
+  border-radius: 26px
+
+
+.#{$className}.#{$className}.xl
+  padding: 22px 106.5px
+  border-radius: 31px
+

@@ -37,7 +37,8 @@
 
     .mb-#{$i}
       margin-bottom: $margin
-
+    .mx-auto
+      margin: 0 auto
 
 
 @mixin padding
@@ -87,3 +88,9 @@
     .fw-#{$i}
       font-weight: $i
 
+
+
+@mixin width
+  @for $i from 1 through 100
+    .w-#{$i}
+      width: $i + vw
