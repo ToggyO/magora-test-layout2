@@ -6,17 +6,32 @@
   background-color: $primaryColor
   height: 85px
   position: relative
+  +r(sm)
+    height: 60px
 
   &-container
 
     &-content
 
       &-logo
+        background: url('../../../img/logo-green.svg')
         height: 49px
+        width: 160px
+        background-repeat: no-repeat
+        background-size: cover
         +r(lg)
-          height: 30px
+          background: url('../../../img/logo-min.png')
+          background-size: cover
+          background-repeat: no-repeat
+          width: 49px
         +r(sm)
-          height: 22px
+          height: 35px
+          width: 35px
+        //height: 49px
+        //+r(lg)
+        //  height: 30px
+        //+r(sm)
+        //  height: 22px
 
       &-nav
 
@@ -24,6 +39,8 @@
           fill: $darkGreyFont
           +r(lg)
             margin-right: 20px
+          +r(sm)
+            margin-right: 12px
 
         &-search::after
           content: 'Find'

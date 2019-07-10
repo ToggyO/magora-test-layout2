@@ -1,6 +1,29 @@
+@import '../../../../Styles/bin/variables'
+@import '../../../../Styles/bin/mixins'
+@import "../../../../../node_modules/rfs/sass"
+
+
 .header-changeGroup
   img
     width: 44px
     height: 44px
     border-radius: 50%
     border: 2px solid #FFFFFF
+
+  &-create
+    +r(xl)
+      margin-right: 35px
+    +r(lg)
+      margin-right: 20px
+    +r(sm)
+      font-size: 14px
+      padding: 10px 15px !important
+      margin-right: 12px
+      height: 60%
+      align-self: center
+    +r(xs)
+      padding: 10px 11px !important
+      font-size: 12px
+    +r(xxs)
+      padding: 8px 6px !important
+      font-size: 10px

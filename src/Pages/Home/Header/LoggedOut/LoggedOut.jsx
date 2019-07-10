@@ -1,6 +1,6 @@
 import React from 'react';
 import './LoggedOut.sass'
-import avatar from '../../../../img/avatar.jpg';
+// import avatar from '../../../../img/avatar.jpg';
 
 const LoggedOut = (props) => {
 
