@@ -1,3 +1,8 @@
+@import '../../../Styles/bin/variables'
+@import '../../../Styles/bin/mixins'
+@import "../../../../node_modules/rfs/sass"
+
+
 .banner
   background-image: url('../../../img/banner/banner.png')
   -webkit-background-size: cover
@@ -5,13 +10,51 @@
   height: 582px
 
   &-container
+    +r(lg)
+      padding: 0 30px
 
     &-content
       width: 100%
+      box-sizing: border-box
+      +r(lg)
+        padding: 0
 
       .banner-headlines
-      
+
         h1
           text-align: left
+          +r(lg)
+            text-align: center
+            margin: 0
+
+        #pitch
+          +rfs(75)
+
+        #improve
+          +rfs(40)
+          +r(lg)
+            margin-bottom: 25px
 
       .banner-search-block
+
+        .search-block-form
+          +r(lg)
+            flex-direction: column
+            align-items: center
+            margin: 0 auto
+            max-width: 500px
+
+          .search-block-input
+            +r(lg)
+              margin: 0 auto 40px auto
+              width: 100%
+
+          button
+            //width: 20%
+
+            +r(lg)
+              margin: 0 auto
+              padding: 23.18px 40px
+              min-width: 100%
+              +rfs(18)
+

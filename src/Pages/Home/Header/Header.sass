@@ -1,26 +1,31 @@
 @import '../../../Styles/bin/variables'
-//@import '../../../img/Shape.svg'
+@import '../../../Styles/bin/mixins'
+@import "../../../../node_modules/rfs/sass"
 
 .header
   background-color: $primaryColor
   height: 85px
   position: relative
-  z-index: 2
 
   &-container
 
     &-content
 
-
-      img
+      &-logo
         height: 49px
+        +r(lg)
+          height: 30px
+        +r(sm)
+          height: 22px
 
-      .header-nav
+      &-nav
 
-        .header-search
+        &-search
           fill: $darkGreyFont
+          +r(lg)
+            margin-right: 20px
 
-        .header-search::after
+        &-search::after
           content: 'Find'
           display: inline-block
           font-size: 16px
@@ -28,3 +33,10 @@
           margin-left: 8px
           line-height: 22px
           letter-spacing: 0.24px
+          +r(lg)
+            display: none
+
+        &-works
+          +rfs(16)
+          +r(lg)
+            display: none
