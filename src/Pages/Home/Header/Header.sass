@@ -9,51 +9,47 @@
   +r(sm)
     height: 60px
 
-  &-container
+  &__logo
+    background: url('../../../img/logo-green.svg')
+    height: 49px
+    width: 160px
+    background-repeat: no-repeat
+    background-size: cover
+    +r(lg)
+      background: url('../../../img/logo-min.png')
+      background-size: cover
+      background-repeat: no-repeat
+      width: 49px
+    +r(sm)
+      height: 35px
+      width: 35px
+    //height: 49px
+    //+r(lg)
+    //  height: 30px
+    //+r(sm)
+    //  height: 22px
 
-    &-content
+  &__nav
 
-      &-logo
-        background: url('../../../img/logo-green.svg')
-        height: 49px
-        width: 160px
-        background-repeat: no-repeat
-        background-size: cover
-        +r(lg)
-          background: url('../../../img/logo-min.png')
-          background-size: cover
-          background-repeat: no-repeat
-          width: 49px
-        +r(sm)
-          height: 35px
-          width: 35px
-        //height: 49px
-        //+r(lg)
-        //  height: 30px
-        //+r(sm)
-        //  height: 22px
+    &-search
+      fill: $darkGreyFont
+      +r(lg)
+        margin-right: 20px
+      +r(sm)
+        margin-right: 12px
 
-      &-nav
+    &-search::after
+      content: 'Find'
+      display: inline-block
+      font-size: 16px
+      color: #3B393A
+      margin-left: 8px
+      line-height: 22px
+      letter-spacing: 0.24px
+      +r(lg)
+        display: none
 
-        &-search
-          fill: $darkGreyFont
-          +r(lg)
-            margin-right: 20px
-          +r(sm)
-            margin-right: 12px
-
-        &-search::after
-          content: 'Find'
-          display: inline-block
-          font-size: 16px
-          color: #3B393A
-          margin-left: 8px
-          line-height: 22px
-          letter-spacing: 0.24px
-          +r(lg)
-            display: none
-
-        &-works
-          +rfs(16)
-          +r(lg)
-            display: none
+    &-works
+      +rfs(16)
+      +r(lg)
+        display: none
