@@ -2,6 +2,9 @@ import React from 'react';
 import Header from './Header/Header';
 import Banner from './Banner/Banner';
 import Possibilities from './Possibilities/Possibilities';
+import Lamp from './Lamp/Lamp';
+import Community from './Community/Community';
+
 
 const Home = () => {
   return (
@@ -9,6 +12,8 @@ const Home = () => {
       <Header />
       <Banner />
       <Possibilities />
+      <Lamp />
+      <Community />
     </div>
   );
 }

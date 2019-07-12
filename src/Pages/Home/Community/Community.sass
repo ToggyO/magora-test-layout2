@@ -1,0 +1,48 @@
+@import '../../../Styles/bin/variables'
+@import '../../../Styles/bin/mixins'
+@import "../../../../node_modules/rfs/sass"
+
+
+//Adaptation
+.com-adapt
+  +r(xl)
+    padding: 65px 60px 0 60px
+  +r(lg)
+
+  +r(sm)
+    padding: 40px 80px
+  +r(xs)
+      padding: 40px 60px
+  +r(xxs)
+    padding: 30px 35px
+
+  &__headlines
+    +r(sm)
+     padding-left: 0
+     padding-bottom: 15px
+
+    h2
+      +r(lg)
+        text-align: center
+      +r(sm)
+        font-size: 28px
+      +r(xxs)
+        font-size: 22px
+
+    h3
+      +r(lg)
+        text-align: center
+      +r(sm)
+        font-size: 16px
+      +r(xxs)
+        font-size: 10px
+
+  &__projectCards
+    +r(lg)
+      flex-direction: column
+      align-items: center
+
+    .prCrd-wrapper
+      margin: 0 auto
+
+  &__btn

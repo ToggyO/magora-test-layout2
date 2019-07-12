@@ -1,0 +1,149 @@
+@import '../../../../Styles/bin/variables'
+@import '../../../../Styles/bin/mixins'
+@import "../../../../../node_modules/rfs/sass"
+
+
+.projectCard
+  width: 33%
+
+  &-container
+    position: relative
+    border: 1px solid $cardBorderGrey
+
+  &-iconBlock
+    position: absolute
+    top: 5px
+    left: 5px
+
+
+    .iconBlock-icon
+      position: relative
+      opacity: 1
+
+    .iconBlock-status
+      background-color: rgba(0,0,0,0.6)
+      margin-left: -20px
+
+      img
+        opacity: 0.9
+
+  &-image
+    width: 100%
+
+  &-avatar
+    margin-top: -70px
+    img
+      border: 1px solid $skyFont
+
+
+  &-info
+    //border: none
+
+    &__headline
+
+    &__location
+
+    &__owner
+      background: none
+
+    &__description
+
+    &__join
+      background: none
+
+  &-btn
+
+    button
+      width: 100%
+
+  &-supporters
+    border-top: 1px solid $cardBorderGrey
+    padding: 15px 68px 15px 68px
+
+    span
+      width: 100%
+
+
+//Adaptation
+.pCard-adapt
+  +r(xxl)
+    padding: 20px 30px
+  +r(xl)
+    padding: 20px 20px
+  +r(lg)
+    width: 60%
+  +r(sm)
+    width: 80%
+  +r(xs)
+    width: 100%
+
+  &__container
+
+  &__iconBlock
+    +r(lg)
+      width: 100%
+
+    img
+      +r(lg)
+        width: 60px
+      +r(xs)
+        width: 45px
+      +r(xxs)
+        width: 35px
+
+    div
+      img
+        +r(lg)
+          width: 130px
+        +r(xs)
+          width: 110px
+        +r(xxs)
+          width: 85px
+
+  &__avatar
+    +r(xl)
+      margin-top: -50px
+    +r(lg)
+      margin-top: -80px
+    +r(xs)
+      margin-top: -70px
+    +r(xxs)
+      margin-top: -55px
+
+    img
+      +r(xl)
+       width: 70px
+      +r(lg)
+        width: 105px
+      +r(xs)
+        width: 90px
+      +r(xxs)
+        width: 70px
+
+
+
+  &__info
+
+    .info-headline
+      +r(xl)
+        font-size: 20px
+      +r(lg)
+        font-size: 24px
+      +r(xs)
+        font-size: 20px
+      +r(xxs)
+        font-size: 16px
+
+
+    .info-location
+
+    .info-owner
+
+    .info-description
+
+    .info-join
+
+  &__btn
+    +r(xl)
+      padding: 0 14px
+
