@@ -9,7 +9,7 @@ const Card = (props) => {
     <div className="card mb-16">
       <div className="card-container d-f fd-c">
         <img className="card-container__image mb-9" src={props.url} alt=""/>
-        <h3 className="h3-seaWave fs-30 lh-41 ls-5 fw-700">{props.label}</h3>
+        <h3 className="card-container__headline h3-seaWave fs-30 lh-41 ls-5 fw-700">{props.label}</h3>
       </div>
     </div>
   );

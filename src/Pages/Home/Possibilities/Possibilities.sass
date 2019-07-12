@@ -19,13 +19,14 @@
       img
         max-width: 100%
 
-
   &-block2
     +r(lg)
       flex-direction: column
 
     &__container
       width: 100%
+      +r(xxl)
+      margin-left: 100px
 
     &__image
       width: 80%
@@ -33,90 +34,70 @@
       img
         max-width: 100%
 
-.block1
 
-  &-find
-
-
-  &-community
-    margin-top: -20px
-
-  &-btn
-    fill: $primaryColor
-    max-width: 70%
-
-  &-btn::after
-    content: 'Find'
-    display: inline-block
-    font-size: 18px
-    color: $primaryColor
-    margin: auto 0 auto 16px
-    line-height: 18px
-    letter-spacing: 0.27px
-    font-weight: 500
-
-.block2
-  &-council-1
-
-  &-council-2
-    margin-top: -25px
-
-  &-text
-
-  &-btn
-    width: 100%
-
-    button
-      max-width: 80%
-
-
+//Adaptation
 .block-adapt
   +r(lg)
     align-items: center
+    padding: 0 100px
+    margin-top: 70px
+  +r(sm)
+    padding: 0 80px
+  +r(xs)
+    padding: 0 60px
+  +r(xs)
+    padding: 0 35px
+
 
   &__container
     +r(lg)
-    align-items: center
-    margin-top: 36px
+      align-items: center
+      margin-top: 36px
+      margin-left: 0
 
   &__image
     +r(xxl)
       width: 60%
     +r(xl)
       width: 55%
+    +r(lg)
+      width: 100%
+      justify-content: center
 
-  &__find
+  &__headline
     +r(xxl)
       font-size: 35px
     +r(xl)
       font-size: 25px
+    +r(sm)
+      font-size: 20px
 
   &__community
+    +r(xl)
+      font-size: 20px
+      line-height: 40px
+
+  &__text
     +r(xxl)
       font-size: 20px
     +r(xl)
       font-size: 18px
-      line-height: 40px
-
-  &__council-1
-    +r(xxl)
-      font-size: 35px
-    +r(xl)
-      font-size: 25px
-
-  &__council-2
-    +r(xxl)
-      font-size: 35px
-    +r(xl)
-      font-size: 25px
-      line-height: 50px
-
-  &__text
-    +r(xxl)
-      font-size: 18px
-    //+r(xl)
-    //  font-size: 16px
+    +r(lg)
+      font-size: 16px
 
   &__btn
     +r(xl)
       margin-top: 20px
+    +r(lg)
+      display: flex
+      justify-content: center
+
+    button
+      //+r(sm)
+      //  font-size: 14px
+
+
+.headlines-pos
+  +r(lg)
+    width: 100%
+    text-align: center
