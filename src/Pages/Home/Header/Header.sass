@@ -10,33 +10,40 @@
     height: 60px
 
   &__logo
-    background: url('../../../img/logo-green.svg')
-    height: 49px
-    width: 160px
-    background-repeat: no-repeat
-    background-size: cover
-    +r(lg)
-      background: url('../../../img/logo-min.png')
-      background-size: cover
+    width: 20%
+
+    div
+      background: url('../../../img/logo-green.svg')
+      height: 49px
+      width: 160px
       background-repeat: no-repeat
-      width: 49px
-    +r(sm)
-      height: 35px
-      width: 35px
-    //height: 49px
-    //+r(lg)
-    //  height: 30px
-    //+r(sm)
-    //  height: 22px
+      background-size: cover
+      +r(lg)
+        background: url('../../../img/logo-min.png')
+        background-size: cover
+        background-repeat: no-repeat
+        width: 49px
+      +r(sm)
+        height: 35px
+        width: 35px
 
   &__nav
+    width: 100%
+
+    &-list
+      width: 50%
+      +r(lgx)
+        width: 60%
+      +r(lg)
+        width: 45%
+
+    &-listContainer
+      width: 100%
+      box-sizing: border-box
 
     &-search
       fill: $darkGreyFont
-      +r(lg)
-        margin-right: 20px
-      +r(sm)
-        margin-right: 12px
+
 
     &-search::after
       content: 'Find'
@@ -53,3 +60,39 @@
       +rfs(16)
       +r(lg)
         display: none
+
+    &-create
+      +r(xl)
+        padding: 18px 16px !important
+      +r(lgx)
+
+      +r(lg)
+
+      +r(sm)
+        font-size: 14px
+        padding: 10px 15px !important
+        margin-left: 12px
+      +r(xs)
+        padding: 10px 11px !important
+        font-size: 12px
+      +r(xxs)
+        padding: 8px 6px !important
+        font-size: 10px
+
+.nav-adapt
+    +r(xl)
+    margin-left: 25px
+    +r(lgx)
+      margin-left: 20px
+    +r(lg)
+      margin-left: 15px
+      font-size: 15px
+    +r(sm)
+
+    +r(xs)
+
+    +r(xxs)
+
+.nav-adapt:first-child
+  +r(xl)
+    margin-left: 0

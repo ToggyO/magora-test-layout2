@@ -2,13 +2,20 @@
 @import "../../../node_modules/rfs/sass"
 
 .card
-  height: 295px
-  width: 330px
+  display: flex
+  flex-direction: column
+  margin-left: 68px
+  width: 20%
+  padding: 38px 50px 26px 50px
   background-color: #FFFFFF
   -webkit-box-shadow: $cardShadow
   -moz-box-shadow: $cardShadow
   box-shadow: $cardShadow
   color: $seaWaveFont
+
+.card:nth-child(1), .card:nth-child(4)
+  margin-left: 0
+
 
 .input-lg
   height: 64px
@@ -22,6 +29,5 @@
   font-size: 16px
   line-height: 22px
   letter-spacing: 0.05px
-  padding-left: 42px
   +r(lg)
     +rfs(20)

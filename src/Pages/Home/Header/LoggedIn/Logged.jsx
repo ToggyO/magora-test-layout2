@@ -5,7 +5,9 @@ import avatar from '../../../../img/avatar.jpg';
 const LoggedIn = () => {
   return (
     <div className="header-changeGroup d-f">
-      <img className="sh-avatar" src={avatar} alt="user"/>
+      <div className="header-changeGroup__items">
+        <img className="changeGroup__btn sh-avatar" src={avatar} alt="user"/>
+      </div>
     </div>
   );
 }

@@ -1,12 +1,14 @@
 import React from 'react';
 import Header from './Header/Header';
 import Banner from './Banner/Banner';
+import Possibilities from './Possibilities/Possibilities';
 
 const Home = () => {
   return (
     <div className="app-main">
       <Header />
       <Banner />
+      <Possibilities />
     </div>
   );
 }

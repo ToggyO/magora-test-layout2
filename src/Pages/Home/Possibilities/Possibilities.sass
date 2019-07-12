@@ -1,0 +1,122 @@
+@import '../../../Styles/bin/variables'
+@import '../../../Styles/bin/mixins'
+@import "../../../../node_modules/rfs/sass"
+
+.pos
+  &-container
+    &-content
+
+  &-block1
+    +r(lg)
+      flex-direction: column-reverse
+
+    &__container
+      width: 100%
+
+    &__image
+      width: 80%
+
+      img
+        max-width: 100%
+
+
+  &-block2
+    +r(lg)
+      flex-direction: column
+
+    &__container
+      width: 100%
+
+    &__image
+      width: 80%
+
+      img
+        max-width: 100%
+
+.block1
+
+  &-find
+
+
+  &-community
+    margin-top: -20px
+
+  &-btn
+    fill: $primaryColor
+    max-width: 70%
+
+  &-btn::after
+    content: 'Find'
+    display: inline-block
+    font-size: 18px
+    color: $primaryColor
+    margin: auto 0 auto 16px
+    line-height: 18px
+    letter-spacing: 0.27px
+    font-weight: 500
+
+.block2
+  &-council-1
+
+  &-council-2
+    margin-top: -25px
+
+  &-text
+
+  &-btn
+    width: 100%
+
+    button
+      max-width: 80%
+
+
+.block-adapt
+  +r(lg)
+    align-items: center
+
+  &__container
+    +r(lg)
+    align-items: center
+    margin-top: 36px
+
+  &__image
+    +r(xxl)
+      width: 60%
+    +r(xl)
+      width: 55%
+
+  &__find
+    +r(xxl)
+      font-size: 35px
+    +r(xl)
+      font-size: 25px
+
+  &__community
+    +r(xxl)
+      font-size: 20px
+    +r(xl)
+      font-size: 18px
+      line-height: 40px
+
+  &__council-1
+    +r(xxl)
+      font-size: 35px
+    +r(xl)
+      font-size: 25px
+
+  &__council-2
+    +r(xxl)
+      font-size: 35px
+    +r(xl)
+      font-size: 25px
+      line-height: 50px
+
+  &__text
+    +r(xxl)
+      font-size: 18px
+    //+r(xl)
+    //  font-size: 16px
+
+  &__btn
+    +r(xl)
+      margin-top: 20px
