@@ -1,0 +1,62 @@
+@import '../../../../Styles/bin/variables'
+@import '../../../../Styles/bin/mixins'
+@import "../../../../../node_modules/rfs/sass"
+
+
+.form
+
+  &-password
+    display: flex
+    flex-direction: column
+
+    label
+      font-size: 12px
+      line-height: 16px
+      letter-spacing: 0.04px
+      font-weight: 500
+      font-family: "Nunito", sans-serif
+      color: #313131
+      align-self: flex-start
+
+    &__block
+      display: flex
+      justify-content: space-between
+      margin-bottom: 30px
+      +r(sm)
+        flex-direction: column
+
+  &-license
+    padding-top: 30px
+    color: #99B0BE
+    font-size: 12px
+    line-height: 20px
+    letter-spacing: 0.04px
+    font-weight: 500
+    +r(sm)
+      padding-top: 0
+
+    a
+      color: #34A4EB
+      text-decoration: none
+      font-weight: 700
+
+  &-button__create
+    padding: 20px 128px 10px 128px
+
+    button
+
+  &-button__login
+    padding: 10px 128px 0 128px
+
+
+    button
+
+
+.fBtn-adapt
+  +r(lg)
+    padding: 20px 0 10px 0
+
+  button
+    width: 100%
+    +r(lg)
+      max-width: 250px
