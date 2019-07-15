@@ -17,7 +17,9 @@
   +r(xs)
     height: 440px
   +r(xxs)
-    height: 390px
+    background: url('../../../img/footer/subscribe.jpg')
+    background-size: cover
+    height: 200px
 
 
   &-container
@@ -33,6 +35,8 @@
         width: 100%
       +r(xs)
         margin-top: 50px
+      +r(xxs)
+        margin-top: 15px
 
   &-block
     +r(lg)
@@ -55,10 +59,13 @@
           font-size: 24px
         +r(xxs)
           font-size: 20px
+          line-height: 30px
 
 
     &__text
       margin-bottom: 48px
+      +r(xxs)
+        margin-bottom: 20px
 
       p
         +r(xl)
@@ -73,7 +80,9 @@
         +r(xs)
           font-size: 16px
         +r(xxs)
-          font-size: 12px
+          display: none
+          //font-size: 12px
+          //line-height: 20px
 
 
     &__btn
@@ -83,7 +92,8 @@
 
       button
         +r(xxs)
-         padding: 14px 70px !important
+          width: 100%
+          padding: 14px 35px !important
 
   &-items
     width: 100%

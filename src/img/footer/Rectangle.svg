@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1440px" height="54px" viewBox="0 0 1440 54" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 53.2 (72643) - https://sketchapp.com -->
+    <title>8308003A-15D1-4E6C-B6A6-86AA6B86AAEC@1,5x</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <linearGradient x1="-10.2413435%" y1="49.6150539%" x2="79.6708805%" y2="50%" id="linearGradient-1">
+            <stop stop-color="#0FCE77" stop-opacity="0.42" offset="0%"></stop>
+            <stop stop-color="#35DEC8" offset="20.7273132%"></stop>
+            <stop stop-color="#1B9BEC" offset="100%"></stop>
+        </linearGradient>
+        <rect id="path-2" x="-3" y="431" width="1445" height="54"></rect>
+    </defs>
+    <g id="Profile-/-drafts" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="02-Drafts-Copy" transform="translate(0.000000, -431.000000)">
+            <g id="Rectangle">
+                <use fill="#FFFFFF" xlink:href="#path-2"></use>
+                <use fill="url(#linearGradient-1)" xlink:href="#path-2"></use>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -19,7 +19,7 @@ const Block2 = () => {
            Tribus brings people, businesses and councils together to improve local communities. We’re here to help your ideas become a reality.
          </p>
          <div className="block2-btn block-adapt__btn mt-10">
-           <button className=" btn btn green sh-btn-sm xl fs-18 lh-18 ls-27 fw-500 d-f jc-c">
+           <button className="btn btn green sh-btn-sm xl fs-18 lh-18 ls-27 fw-500 d-f jc-c">
              Register now!
            </button>
          </div>

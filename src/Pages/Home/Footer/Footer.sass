@@ -1,0 +1,101 @@
+@import '../../../Styles/bin/variables'
+@import '../../../Styles/bin/mixins'
+@import "../../../../node_modules/rfs/sass"
+
+
+
+
+.footer
+  &-line
+    background: url('../../../img/footer/subscribe.jpg')
+    background-size: cover
+    //background-position-x: 80%
+
+    &-container
+    &-content
+      padding-right: 13%
+      padding-left: 13%
+      +r(lg)
+        padding: 20px 40px 40px
+
+  &-container
+    &-content
+
+  &-contacts
+    +r(lg)
+      padding: 100px 80px
+    +r(sm)
+      flex-direction: column
+      align-items: center
+      padding: 40px 80px 100px 80px
+
+
+    &__item
+      width: 33%
+      +r(sm)
+        margin-top: 25px
+        width: 50%
+      +r(xxl)
+        width: 100%
+
+      button
+
+      img
+        height: 49px
+        +r(xxs)
+          height: 38px
+
+
+.line-container
+  +r(lg)
+    flex-direction: column
+    justify-content: center
+
+  &__headline
+    width: 75%
+    +r(xxl)
+      font-size: 40px
+    +r(lg)
+      width: 100%
+      display: flex
+      justify-content: center
+    +r(sm)
+      font-size: 30px
+    +r(xs)
+      font-size: 24px
+    +r(xxs)
+      font-size: 18px
+
+
+  &__btn
+    width: 25%
+    +r(lg)
+      width: 100%
+      justify-content: center
+      margin-top: 20px
+
+    button
+      width: 100%
+      max-width: 250px
+      max-height: 52px
+
+
+.btnHref
+  display: flex
+  justify-content: flex-start
+  cursor: pointer
+
+  a
+    text-decoration: none
+    color: $blackFont
+    font-size: 16px
+    line-height: 24px
+    letter-spacing: 0.03px
+    font-weight: 500
+    margin-bottom: 20px
+
+
+
+
+
+

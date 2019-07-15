@@ -4,6 +4,7 @@ import Banner from './Banner/Banner';
 import Possibilities from './Possibilities/Possibilities';
 import Lamp from './Lamp/Lamp';
 import Community from './Community/Community';
+import Footer from './Footer/Footer';
 
 
 const Home = () => {
@@ -14,6 +15,7 @@ const Home = () => {
       <Possibilities />
       <Lamp />
       <Community />
+      <Footer />
     </div>
   );
 }

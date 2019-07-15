@@ -9,8 +9,15 @@
   +r(sm)
     height: 60px
 
+  &-container
+    &-content
+      +r(xxs)
+        padding: 0 10px
+
   &__logo
     width: 15%
+    +r(xxs)
+      width: 10%
 
     div
       background: url('../../../img/logo-green.svg')
@@ -26,6 +33,9 @@
       +r(sm)
         height: 35px
         width: 35px
+      +r(xxs)
+        height: 25px
+        width: 25px
 
   &__nav
     width: 100%
@@ -93,7 +103,13 @@
       font-size: 12px
     +r(xxs)
       font-size: 10px
+      margin-left: 0
 
 .nav-adapt:first-child
   +r(xl)
     margin-left: 0
+
+
+.test
+  +r(xxs)
+    height: 12px
