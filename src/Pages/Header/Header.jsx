@@ -2,8 +2,8 @@ import React from 'react';
 import './Header.sass'
 import LoggedIn from './LoggedIn/Logged';
 import LoggedOut from './LoggedOut/LoggedOut';
-// import logo from '../../../img/logo-green.svg';
-import { ReactComponent as Shape } from '../../../img/Shape.svg';
+import { NavLink } from 'react-router-dom';
+import { ReactComponent as Shape } from '../../img/Shape.svg';
 
 class Header extends React.Component {
 
@@ -13,23 +13,20 @@ class Header extends React.Component {
 
   SwitchPanel = () => {
     this.setState({
-        ...this.state.loggedIn,
-        loggedIn: !(this.state.loggedIn)
+        loggedIn: !this.state.loggedIn
       }
     );
   };
 
   render() {
-
-
-
     return (
       <header className="header wrapper sh-header">
         <div className="header-container wrapper-container ">
           <div className="header-container-content wrapper-container-content d-f pl-7 pr-6">
-            {/*<img src={logo} alt="logo" className="header-container-content-logo als-c"/>*/}
             <div className="header__logo als-c">
-              <div></div>
+              <NavLink to='/'>
+                <div></div>
+              </NavLink>
             </div>
             <div className="header__nav d-f ai-c jc-fe">
               <div className="header__nav-list">

@@ -1,8 +1,8 @@
 import React from 'react';
 import './Possibilities.sass'
-import Block1 from './Block1/Block1';
-import Block2 from './Block2/Block2';
-import Block3 from './Block3/Block3';
+import PosSearch from './pos-search/pos-search';
+import PosReg from './Block2/pos-reg';
+import PosTools from './pos-tools/pos-tools';
 
 
 class Possibilities extends React.Component {
@@ -12,9 +12,9 @@ class Possibilities extends React.Component {
      <div className="pos wrapper">
        <div className="pos-container wrapper-container">
          <div className="pos-container-content wrapper-container-content">
-           <Block1 />
-           <Block2 />
-           <Block3 />
+           <PosSearch />
+           <PosReg />
+           <PosTools />
          </div>
        </div>
      </div>

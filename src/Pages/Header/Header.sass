@@ -1,6 +1,6 @@
-@import '../../../Styles/bin/variables'
-@import '../../../Styles/bin/mixins'
-@import "../../../../node_modules/rfs/sass"
+@import '../../Styles/bin/variables'
+@import '../../Styles/bin/mixins'
+@import "../../../node_modules/rfs/sass"
 
 .header
   background-color: $primaryColor
@@ -19,23 +19,24 @@
     +r(xxs)
       width: 10%
 
-    div
-      background: url('../../../img/logo-green.svg')
-      height: 49px
-      width: 160px
-      background-repeat: no-repeat
-      background-size: cover
-      +r(lg)
-        background: url('../../../img/logo-min.png')
-        background-size: cover
+    a
+      div
+        background: url('../../img/logo-green.svg')
+        height: 49px
+        width: 160px
         background-repeat: no-repeat
-        width: 49px
-      +r(sm)
-        height: 35px
-        width: 35px
-      +r(xxs)
-        height: 25px
-        width: 25px
+        background-size: cover
+        +r(lg)
+          background: url('../../img/logo-min.png')
+          background-size: cover
+          background-repeat: no-repeat
+          width: 49px
+        +r(sm)
+          height: 35px
+          width: 35px
+        +r(xxs)
+          height: 25px
+          width: 25px
 
   &__nav
     width: 100%

@@ -2,7 +2,7 @@ import React from 'react';
 import './Footer.sass'
 // import ProjectCard from './ProjectCard/ProjectCard';
 
-import logo from '../../../img/footer/logo-green.svg';
+import logo from '../../img/footer/logo-green.svg';
 
 
 class Footer extends React.Component {

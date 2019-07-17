@@ -1,5 +1,5 @@
 import React from 'react';
-import './Block3.sass'
+import './pos-tools.sass'
 import Card from './Card/Card';
 
 const path = 'img/possibilities/cards';
@@ -31,13 +31,13 @@ const cards = [
   },
 ]
 
-const Block3 = () => {
+const PosTools = () => {
   return (
-   <div className="pos-block3 pl-36 pr-36 pt-32 pb-35">
-     <h2 className="pos-block3__label h2-black fs-36 lh-41 ls-6 fw-700 t-align-l">
+   <div className="pos-tools pl-36 pr-36 pt-32 pb-35">
+     <h2 className="pos-tools__label h2-black fs-36 lh-41 ls-6 fw-700 t-align-l">
        The tools you need to get things done!
      </h2>
-     <div className="pos-block3__cards d-f fw-w jc-c">
+     <div className="pos-tools__cards d-f fw-w jc-c">
        {cards.map( (card, i) =>
            {
            return <Card key={i} url={card.url} label={card.label}/>
@@ -50,4 +50,4 @@ const Block3 = () => {
 };
 
 
-export default Block3;
+export default PosTools;
