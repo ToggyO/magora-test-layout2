@@ -5,6 +5,7 @@ import LoggedOut from './LoggedOut/LoggedOut';
 import { NavLink } from 'react-router-dom';
 import { ReactComponent as Shape } from '../../img/Shape.svg';
 
+
 class Header extends React.Component {
 
   state = {
@@ -55,7 +56,7 @@ class Header extends React.Component {
       </header>
     );
   }
+}
 
-};
 
 export default Header;

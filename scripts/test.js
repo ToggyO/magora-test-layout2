@@ -31,7 +31,7 @@ function isInGitRepository() {
 
 function isInMercurialRepository() {
   try {
-    execSync('hg --cwd . root', { stdio: 'ignore' });
+    execSync('hg --cwd . reducers.js', { stdio: 'ignore' });
     return true;
   } catch (e) {
     return false;

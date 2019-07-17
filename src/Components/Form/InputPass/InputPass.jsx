@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './InputPass.module.sass';
-import eye from '../../../../../img/main/hide-password.svg'
+import eye from '../../../img/main/hide-password.svg'
 
 
 const InputPass = () => {
