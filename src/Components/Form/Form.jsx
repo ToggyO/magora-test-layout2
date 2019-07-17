@@ -3,20 +3,35 @@ import './Form.sass';
 import TextInput from './TextInput/TextInput';
 import EmailInput from "./EmailInput/EmailInput";
 import InputPass from "./InputPass/InputPass";
+import {connect} from "react-redux";
+import { signInForm, regForm } from "../../Store/Actions/actionForm";
 
 
 class Form extends React.Component {
 
-  state = {
+  onChangeForm = () => {
 
+    // e.preventDefault;
+
+    if (!this.props.regState.isReg) {
+      this.props.onSignInForm();
+
+    } else {
+      this.props.onRegForm();
+
+    }
+    debugger;
   };
 
-
   render() {
+
+    const { isReg } = this.props.regState;
+
     return (
       <div className="main-form">
         <div className="main-form__headline">
-          <h2 className='h2-black fs-24 lh-30 ls-3 fw-700 mb-10'>Join the Tribus community</h2>
+          <h2 className='h2-black fs-24 lh-30 ls-3 fw-700 mb-10'>
+            { isReg ? 'Join the Tribus community' : 'Sign in to share ideas and support others' }</h2>
         </div>
         <form action="" className='form'>
 
@@ -49,8 +64,8 @@ class Form extends React.Component {
               Create
             </button>
           </div>
-          <div className='fBtn-adapt form-button__login'>
-            <button className='btn transparent sm-wide fs-16 lh-17 ls-24 fw-600'>
+          <div className='fBtn-adapt form-button__login' onClick={ this.onChangeForm }>
+            <button type='button' className='btn transparent sm-wide fs-16 lh-17 ls-24 fw-600'>
               Log in
             </button>
           </div>
@@ -61,5 +76,17 @@ class Form extends React.Component {
   };
 };
 
+let mapStateToProps = ({ regState }) => ( { regState,} );
 
-export default Form;
+let mapDispatchToProps = (dispatch) => {
+  return {
+    onSignInForm: () => {
+      dispatch( signInForm() );
+    },
+    onRegForm: () => {
+      dispatch( regForm() );
+    }
+  }
+};
+
+export default connect( mapStateToProps, mapDispatchToProps )(Form)
