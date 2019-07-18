@@ -4,9 +4,13 @@ export const MODAL_ACTIONS = {
 };
 
 
-export const modalOpen = () => {
+export const modalOpen = (modalKey, options) => {
   return {
-    type: MODAL_ACTIONS.OPEN_MODAL
+    type: MODAL_ACTIONS.OPEN_MODAL,
+    payload: {
+      modalKey: modalKey,
+      options: options
+    },
   };
 };
 

@@ -1,35 +1,43 @@
 import React from 'react';
 import './pos-tools.sass'
 import Card from './Card/Card';
+import {modalOpen} from "../../../../Store/Actions/actionModal";
+import {connect} from "react-redux";
 
 const path = 'img/possibilities/cards';
 
 const cards = [
   {
     url: `${path}/Group14.svg`,
-    label: 'Engagement'
+    label: 'Engagement',
+    name: 'engagement'
   },
   {
     url: `${path}/Group15.svg`,
-    label: 'Crowdfunding'
+    label: 'Crowdfunding',
+    name: 'crowdfunding'
   },
   {
     url: `${path}/Grants.svg`,
-    label: 'Grants'
+    label: 'Grants',
+    name: 'grants'
   },
   {
     url: `${path}/Group16.svg`,
-    label: 'Volunteering'
+    label: 'Volunteering',
+    name: 'volunteering'
   },
   {
     url: `${path}/Group17.svg`,
-    label: 'Petitioning'
+    label: 'Petitioning',
+    name: 'petitioning'
   },
   {
     url: `${path}/Group18.svg`,
-    label: 'Event management'
+    label: 'Event management',
+    name: 'event_management'
   },
-]
+];
 
 const PosTools = () => {
   return (
@@ -40,7 +48,7 @@ const PosTools = () => {
      <div className="pos-tools__cards d-f fw-w jc-c">
        {cards.map( (card, i) =>
            {
-           return <Card key={i} url={card.url} label={card.label}/>
+           return <Card key={i} card={card}/>
            }
          )
        }
@@ -49,5 +57,12 @@ const PosTools = () => {
    );
 };
 
+let mapDispatchToProps = (dispatch) => {
+  return {
+    openModal: (i) => {
+      dispatch( modalOpen(i) );
+    }
+  }
+};
 
-export default PosTools;
+export default connect( null, mapDispatchToProps )(PosTools);

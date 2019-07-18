@@ -1,0 +1,49 @@
+@import '../../../Styles/bin/variables'
+@import '../../../Styles/bin/mixins'
+@import "../../../../node_modules/rfs/sass"
+
+.cardModal
+  display: flex
+  flex-direction: column
+  margin: 64px auto
+  //margin-bottom: 68px
+  //margin-left: 68px
+  padding: 45px 45px
+  background-color: #FFFFFF
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5)
+  color: $seaWaveFont
+  cursor: pointer
+  border-radius: 8px
+
+  +r(xxxl)
+    width: 40%
+  +r(lg)
+    width: 80%
+    margin-bottom: 0
+  +r(sm)
+    width: 100%
+  +r(xs)
+    margin-top: 35px
+
+  &-container
+
+    &__image
+
+    &__headline
+      +r(xxs)
+        font-size: 20px
+
+    &__text
+      padding: 20px 30px 40px 30px
+
+    &__btn
+      width: 100%
+      padding-top: 40px
+
+      button
+        width: 100%
+        max-width: 258px
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.18)
+
+
+

@@ -5,7 +5,11 @@ export const FORM_ACTIONS = {
 
 export const signInForm = () => {
   return {
-    type: FORM_ACTIONS.SIGN_IN_FORM
+    type: FORM_ACTIONS.SIGN_IN_FORM,
+    // payload: {
+    //   formKey: formKey,
+    //   options: options
+    // },
   };
 };
 

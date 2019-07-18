@@ -1,17 +1,18 @@
 import React from 'react';
 import s from './Modal.module.sass';
-import Form from '../Form/Form';
+import FormSignIn from '../FormSignIn/FormSignIn';
+import CardModal from "./CardModal/CardModal";
+import FormSignUp from "../Registration/Main/FormSignUp/FormSignUp";
 import {connect} from "react-redux";
 import { modalClose } from "../../Store/Actions/actionModal";
-
 
 
 class Modal extends React.Component {
 
   componentDidUpdate(prevProps) {
-    if (this.props.modalState.isOpen !== prevProps.modalState.isOpen) {
+    if (this.props.modalState.modalKey !== prevProps.modalState.modalKey) {
 
-      if (this.props.modalState.isOpen) {
+      if (this.props.modalState.modalKey) {
         document.body.style.overflow = 'hidden';
         document.body.style.paddingRight = '17px'
       } else {
@@ -31,17 +32,31 @@ class Modal extends React.Component {
     }
   };
 
+  onRenderModalContent = () => {
+    let { modalKey, options } = this.props.modalState;
+    switch (modalKey) {
+      case 'signInModal':
+        return <FormSignIn />;
+      case 'signUnModal':
+        return <FormSignUp />;
+      case 'pos-card':
+        return <CardModal card={options} />;
+      default:
+        return null;
+    }
+  };
+
   render() {
 
-    const { isOpen } = this.props.modalState;
+    const { modalKey } = this.props.modalState;
 
-    if (!isOpen) return null;
+    if (!modalKey) return null;
 
     return (
       <div className={`${s.overlay} wrapper`} onClick={ this.onClickEnvironmentModalClose } id="modal-overlay">
-        <div className={s.modalWindow}>
+        <div className={`${s.modalWindow} d-f jc-c`}>
           <div className={`${s.modalContainer}`}>
-            <Form />
+            {this.onRenderModalContent()}
           </div>
         </div>
       </div>

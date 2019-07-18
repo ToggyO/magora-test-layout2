@@ -3,12 +3,12 @@ import s from './InputPass.module.sass';
 import eye from '../../../img/main/hide-password.svg'
 
 
-const InputPass = () => {
+const InputPass = (props) => {
 
   return (
-    <div className={s.inputPass}>
-      <input type='password' placeholder="Enter password" name='password' />
-      <button>
+    <div className={s.inputPass} style={props.style}>
+      <input type='password' placeholder={props.placeholder} name={props.name} />
+      <button type='button'>
         <img src={ eye }
              alt=""/>
       </button>

@@ -5,13 +5,12 @@ import { modalOpen } from "../../../Store/Actions/actionModal";
 import { connect } from 'react-redux';
 
 const LoggedOut = (props) => {
-
   return (
     <div className="header-changeGroup d-f jc-fe">
       <div className="header-changeGroup__items d-f">
         <button
           className="header-changeGroup__signIn changeGroup-item__btn btn blue sm fs-18 lh-18 ls-27 fw-600 sh-btn-sm ml-12"
-          onClick={ props.openModal }
+          onClick={ () => props.openModal('signInModal') }
         >
           Sign In
         </button>
@@ -29,8 +28,8 @@ const LoggedOut = (props) => {
 
 let mapDispatchToProps = (dispatch) => {
   return {
-    openModal: () => {
-      dispatch( modalOpen() );
+    openModal: (modalKey) => {
+      dispatch( modalOpen(modalKey) );
     }
   }
 };

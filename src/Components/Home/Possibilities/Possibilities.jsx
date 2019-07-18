@@ -1,7 +1,7 @@
 import React from 'react';
 import './Possibilities.sass'
 import PosSearch from './pos-search/pos-search';
-import PosReg from './Block2/pos-reg';
+import PosReg from './pos-reg/pos-reg';
 import PosTools from './pos-tools/pos-tools';
 
 
