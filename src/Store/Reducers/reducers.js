@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import modalReducer from './modalReducer';
-import formReducer from './formReducer';
+import formSignUpReducer from './formSignUpReducer';
 
 //при устройстве валидации я доработаю стейт формы
 
@@ -8,6 +8,6 @@ import formReducer from './formReducer';
 
 export const reducers = combineReducers({
   modalState: modalReducer,
-  formState: formReducer
+  formState: formSignUpReducer
 });
 

@@ -1,0 +1,37 @@
+@import '../../../../../Styles/bin/variables'
+@import '../../../../../Styles/bin/mixins'
+@import "../../../../../../node_modules/rfs/sass"
+
+.card
+  display: flex
+  flex-direction: column
+  margin: 64px auto
+  //margin-bottom: 68px
+  //margin-left: 68px
+  width: 29%
+  padding: 38px 31px 26px 31px
+  background-color: #FFFFFF
+  -webkit-box-shadow: $cardShadow
+  -moz-box-shadow: $cardShadow
+  box-shadow: $cardShadow
+  color: $seaWaveFont
+  cursor: pointer
+
+  +r(xxxl)
+    width: 40%
+  +r(lg)
+    width: 80%
+    margin-bottom: 0
+  +r(sm)
+    width: 100%
+  +r(xs)
+    margin-top: 35px
+
+  &-container
+
+
+    &__headline
+      +r(xxs)
+        font-size: 20px
+
+

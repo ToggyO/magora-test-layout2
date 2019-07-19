@@ -4,8 +4,8 @@ import './App.sass';
 import Header from './Components/Header/Header';
 import Footer from './Components/Footer/Footer';
 import Modal from './Components/Modal/Modal';
-import Home from './Components/Home/Home';
-import Registration from './Components/Registration/Registration';
+import Home from './Pages/Home/Home';
+import Registration from './Pages/Registration/Registration';
 
 
 function App() {

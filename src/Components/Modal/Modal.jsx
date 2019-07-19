@@ -1,10 +1,11 @@
 import React from 'react';
 import s from './Modal.module.sass';
-import FormSignIn from '../FormSignIn/FormSignIn';
+import FormSignIn from '../Form/FormSignIn/FormSignIn';
 import CardModal from "./CardModal/CardModal";
-import FormSignUp from "../Registration/Main/FormSignUp/FormSignUp";
-import {connect} from "react-redux";
+import FormSignUp from "../Form/FormSignUp/FormSignUp";
+import { connect } from "react-redux";
 import { modalClose } from "../../Store/Actions/actionModal";
+import { bindActionCreators } from "redux";
 
 
 class Modal extends React.Component {
@@ -27,7 +28,7 @@ class Modal extends React.Component {
     const _id = e.target.id;
     if (_id ) {
       if ( _id  === "modal-overlay" ) {
-        this.props.onModalClose();
+        this.props.modalClose();
       }
     }
   };
@@ -68,9 +69,7 @@ let mapStateToProps = ({ modalState }) => ( {modalState,} );
 
 let mapDispatchToProps = (dispatch) => {
   return {
-    onModalClose: () => {
-      dispatch( modalClose() );
-    }
+    modalClose: bindActionCreators(modalClose, dispatch)
   }
 };
 

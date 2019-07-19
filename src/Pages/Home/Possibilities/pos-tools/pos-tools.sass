@@ -1,0 +1,26 @@
+@import '../../../../Styles/bin/variables'
+@import '../../../../Styles/bin/mixins'
+@import "../../../../../node_modules/rfs/sass"
+
+
+.pos-tools
+  +r(lg)
+    padding: 0 70px
+  +r(xxs)
+    padding: 0 30px
+
+  &__label
+    +r(xxl)
+      font-size: 35px
+    +r(xl)
+      font-size: 25px
+    +r(lg)
+      margin-top: 64px
+      text-align: center
+      margin-bottom: -30px
+    +r(sm)
+      font-size: 20px
+
+  &__cards
+    +r(lg)
+      flex-direction: column

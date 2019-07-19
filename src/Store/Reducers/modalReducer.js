@@ -12,8 +12,7 @@ const modalReducer = (state = initialState, action) => {
     case MODAL_ACTIONS.OPEN_MODAL:
       return {
         ...state,
-        modalKey: action.payload.modalKey,
-        options: action.payload.options,
+        ...action.payload
       };
     case MODAL_ACTIONS.CLOSE_MODAL:
       return {

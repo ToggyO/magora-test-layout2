@@ -1,0 +1,31 @@
+@import '../../../../Styles/bin/variables'
+@import '../../../../Styles/bin/mixins'
+@import "../../../../../node_modules/rfs/sass"
+
+
+.search
+  &-find
+    width: 100%
+
+  &-community
+    width: 100%
+
+  &-btn
+    fill: $primaryColor
+    width: 100%
+
+    button
+      +r(lg)
+        width: 75%
+      +r(sm)
+        width: 100%
+
+    button::after
+      content: 'Find'
+      display: inline-block
+      font-size: 18px
+      color: $primaryColor
+      margin: auto 0 auto 16px
+      line-height: 18px
+      letter-spacing: 0.27px
+      font-weight: 500

@@ -1,0 +1,27 @@
+@import '../../../Styles/bin/variables'
+@import '../../../Styles/bin/mixins'
+@import "../../../../node_modules/rfs/sass"
+
+
+.main
+  position: relative
+  background: url('../../../img/main/sign-up.png')
+  background-size: cover
+  height: 939px
+  +r(lg)
+    background: none
+    height: 100%
+
+  &-container
+    +r(xxl)
+      padding: 100px 324px 120px 324px
+    +r(xl)
+      padding: 100px 284px 120px 284px
+    +r(lgx)
+      padding: 100px 244px 120px 244px
+    +r(lg)
+      padding: 30px 40px 40px 40px
+    +r(sm)
+      padding: 0
+
+

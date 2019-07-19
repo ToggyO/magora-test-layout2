@@ -1,0 +1,100 @@
+@import '../../../Styles/bin/variables'
+@import '../../../Styles/bin/mixins'
+@import "../../../../node_modules/rfs/sass"
+
+
+.lamp
+  margin-top: -70px
+  background: url('../../../img/lamp/Lamp.png')
+  background-repeat: no-repeat
+  background-size: cover
+  height: 530px
+  +r(xxl)
+    background-position-x: 25%
+  +r(lg)
+    background-position-x: -630px
+    margin-top: 80px
+  +r(xs)
+    height: 440px
+  +r(xxs)
+    background: url('../../../img/footer/subscribe.jpg')
+    background-size: cover
+    height: 200px
+
+
+  &-container
+    +r(lg)
+      padding: 0 70px
+    +r(xs)
+      padding: 0 35px
+
+    &-content
+      width: 60%
+      margin-top: 100px
+      +r(lg)
+        width: 100%
+      +r(xs)
+        margin-top: 50px
+      +r(xxs)
+        margin-top: 15px
+
+  &-block
+    +r(lg)
+      width: 100%
+
+    &__headline
+      margin-bottom: 20px
+
+      h2
+        +r(xl)
+          font-size: 34px
+        +r(lgx)
+          font-size: 30px
+        +r(lg)
+          text-align: center
+          font-size: 40px
+        +r(sm)
+          font-size: 28px
+        +r(xs)
+          font-size: 24px
+        +r(xxs)
+          font-size: 20px
+          line-height: 30px
+
+
+    &__text
+      margin-bottom: 48px
+      +r(xxs)
+        margin-bottom: 20px
+
+      p
+        +r(xl)
+          font-size: 20px
+        +r(lgx)
+          font-size: 17px
+        +r(lg)
+          text-align: center
+          font-size: 24px
+        +r(sm)
+          font-size: 18px
+        +r(xs)
+          font-size: 16px
+        +r(xxs)
+          display: none
+          //font-size: 12px
+          //line-height: 20px
+
+
+    &__btn
+      +r(lg)
+        display: flex
+        justify-content: center
+
+      button
+        +r(xxs)
+          width: 100%
+          padding: 14px 35px !important
+
+  &-items
+    width: 100%
+    text-align: left
