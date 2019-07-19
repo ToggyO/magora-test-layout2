@@ -6,13 +6,14 @@ import FormError from '../FormError/FormError';
 
 const TextInput = (props) => {
 
-  const { placeholder, name, value, onChange, onBlur, error, visited } = props;
+  const { label, type, placeholder, name, value, onChange, onBlur, error, visited } = props;
 
   return (
     <div className={s.inputBlock}>
+      <label htmlFor="">{label}</label>
       <input
         className={ error && visited ? 'error' : null }
-        type="text"
+        type={type}
         placeholder={placeholder}
         name={name}
         value={value}

@@ -19,11 +19,14 @@ class InputPass extends React.Component {
   };
   render() {
 
-    const { style, placeholder, name, value, onChange, onBlur, error, visited } = this.props;
+    const { style, label, placeholder, name, value, onChange, onBlur, error, visited } = this.props;
     const { isPwShown } = this.state;
 
     return (
       <div className={s.inputPass} style={style}>
+        <label htmlFor="form-password__block">
+          {label}
+        </label>
         <div className={`${s.container} ${ error && visited ? 'error' : null }`}>
           <input
             type={isPwShown ? 'text' : 'password'}
