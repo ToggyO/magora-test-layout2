@@ -8,29 +8,156 @@ import { bindActionCreators } from "redux";
 
 
 class FormSignIn extends React.Component {
+
+  state = {
+    values: {
+      firstName: '',
+      lastName: '',
+      password: '',
+    },
+    formErrors: {
+      firstName: '',
+      lastName: '',
+      password: '',
+    },
+    visited: {
+      firstName: false,
+      lastName: false,
+      password: false,
+    },
+    passwordValid: false,
+    formValid: false,
+  };
+
+  componentDidMount() {
+    this.initialValidation();
+  };
+
+  initialValidation = () => {
+    let initValid = this.state.values;
+    let keys = Object.keys(initValid);
+
+    keys.forEach( (fieldName, i) => {
+      let value = initValid[fieldName];
+      this.validateField( fieldName, value );
+    });
+  };
+
+  handleChange = (e) => {
+    const {target: {name, value}} = e;
+    this.setState({
+      values: {
+        ...this.state.values,
+        [name]: value
+      },
+    }, () => { this.initialValidation( name, value ) } );
+
+  };
+
+  onSubmitHandler = (e) => {
+    e.preventDefault();
+    console.log(this.state);
+  };
+
+  validateField(fieldName, value) {
+    let fieldValidationErrors = this.state.formErrors;
+    let passwordValid = this.state.passwordValid;
+
+
+    switch(fieldName) {
+      case 'firstName':
+        const firstNameValid = value.length <= 20 && value.length >= 2;
+        fieldValidationErrors.firstName = firstNameValid ? '' : 'between 2 and 20 symbols';
+        break;
+      case 'lastName':
+        const lastNameValid = value.length <= 20 && value.length >= 2;
+        fieldValidationErrors.lastName = lastNameValid ? '' : 'between 2 and 20 symbols';
+        break;
+      case 'password':
+        passwordValid = value.length >= 6;
+        fieldValidationErrors.password = passwordValid ? '' : 'min 6' +
+          ' symbols';
+        break;
+      default:
+        break;
+    }
+
+    let formValid = true;
+    let keys = Object.keys(fieldValidationErrors);
+    keys.forEach((fieldName, i) => {
+      if (fieldValidationErrors[fieldName]) {
+        formValid = false;
+      }
+    });
+
+    this.setState({
+      formErrors: fieldValidationErrors,
+      formValid: formValid
+    });
+  }
+
+  handleBlur = (e) => {
+    const { target: {name} } = e;
+
+    this.setState({
+      visited: {
+        ...this.state.visited,
+        [name]: true,
+      },
+    });
+  };
+
   render() {
 
-    // const { isReg } = this.props.formState;
-    // const { modalKey } = this.props.modalState;
-    // debugger;
+    const formErrors = this.state.formErrors;
+    const visited = this.state.visited;
+
     return (
-      <div className="main-form" style={{maxWidth: '500px', minWidth: '460px'}}>
+      <div className="main-form">
         <div className="main-form__headline">
           <h2 className='h2-black fs-24 lh-30 ls-3 fw-700 mb-10'>
-            Sign in to share ideas and support others
+            Join the Tribus community
           </h2>
         </div>
         <form action="" className='form'>
 
-          <TextInput placeholder={'First name'}/>
-          <TextInput placeholder={'Last name'}/>
+          <TextInput
+            placeholder={'First name'}
+            name={'firstName'}
+            state={this.state.values.firstName}
+            onChange={this.handleChange}
+            onBlur={this.handleBlur}
+            error={formErrors.firstName}
+            visited={visited.firstName}
+          />
+
+          <TextInput
+            placeholder={'Last name'}
+            name={'lastName'} state={this.state.values.lastName}
+            onChange={this.handleChange}
+            onBlur={this.handleBlur}
+            error={formErrors.lastName}
+            visited={visited.lastName}
+          />
 
           <div className='form-password'>
-            <label htmlFor="">
+            <label htmlFor="form-password__block">
               Password:
             </label>
-            <div className='form-password__block'>
-              <InputPass placeholder={'Enter password'} name={'password'} style={ { width: '100%' } }/>
+            <div className='form-password__block' id="form-password__block">
+
+              <InputPass
+                style={{ width: '100%'}}
+                placeholder={'Enter password'}
+                name={'password'}
+                label={'Password:'}
+                state={this.state.values.password}
+                onChange={this.handleChange}
+                onBlur={this.handleBlur}
+                error={formErrors.password}
+                visited={visited.password}
+              />
+
             </div>
             <a href="./#" style={ { width: '100%' } }>
               Forgot Password
@@ -46,13 +173,15 @@ class FormSignIn extends React.Component {
 
           <div className='fBtn-adapt form-button__create'>
             <button
-              type='button'
+              type='submit'
               className='btn green sm-wide fs-16 lh-22 ls-24 fw-700'
+              onClick={ this.onSubmitHandler }
+              disabled={!this.state.formValid}
             >
               Log in
             </button>
           </div>
-          {/*onClick={ modalKey ? this.onSwitchForm : () => this.props.openModal('signInModal')}*/}
+
           <div className='fBtn-adapt form-button__login' >
             <button
               type='button'

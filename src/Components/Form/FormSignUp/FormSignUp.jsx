@@ -6,6 +6,7 @@ import { bindActionCreators } from "redux";
 import TextInput from '../TextInput/TextInput';
 import EmailInput from "../EmailInput/EmailInput";
 import InputPass from "../InputPass/InputPass";
+import FormError from "../FormError/FormError";
 
 import { modalOpen } from "../../../Store/Actions/actionModal";
 
@@ -41,9 +42,7 @@ class FormSignUp extends React.Component {
   };
 
   componentDidMount() {
-
     this.initialValidation();
-
   };
 
   initialValidation = () => {
@@ -64,6 +63,7 @@ class FormSignUp extends React.Component {
         [name]: value
       },
     }, () => { this.initialValidation( name, value ) } );
+    // debugger;
   };
 
   // this.validateField(name, value)
@@ -134,6 +134,10 @@ class FormSignUp extends React.Component {
   };
 
   render() {
+
+    const formErrors = this.state.formErrors;
+    const visited = this.state.visited;
+
     return (
       <div className="main-form">
         <div className="main-form__headline">
@@ -143,47 +147,61 @@ class FormSignUp extends React.Component {
         </div>
         <form action="" className='form'>
 
-          <TextInput
-            placeholder={'First name'}
-            name={'firstName'}
-            state={this.state.values.firstName}
-            onChange={this.handleChange}
-            onBlur={this.handleBlur}
-          />
-          <TextInput
-            placeholder={'Last name'}
-            name={'lastName'} state={this.state.values.lastName}
-            onChange={this.handleChange}
-            onBlur={this.handleBlur}
-          />
+            <TextInput
+              placeholder={'First name'}
+              name={'firstName'}
+              state={this.state.values.firstName}
+              onChange={this.handleChange}
+              onBlur={this.handleBlur}
+              error={formErrors.firstName}
+              visited={visited.firstName}
+            />
 
-          <EmailInput
-            placeholder={'Email'}
-            name={'email'}
-            state={this.state.values.email}
-            onChange={this.handleChange}
-            onBlur={this.handleBlur}
-          />
+            <TextInput
+              placeholder={'Last name'}
+              name={'lastName'} state={this.state.values.lastName}
+              onChange={this.handleChange}
+              onBlur={this.handleBlur}
+              error={formErrors.lastName}
+              visited={visited.lastName}
+            />
+
+            <EmailInput
+              placeholder={'Email'}
+              name={'email'}
+              state={this.state.values.email}
+              onChange={this.handleChange}
+              onBlur={this.handleBlur}
+              error={formErrors.email}
+              visited={visited.email}
+            />
 
           <div className='form-password'>
             <label htmlFor="form-password__block">
               Password:
             </label>
             <div className='form-password__block' id="form-password__block">
-              <InputPass
-                placeholder={'Enter password'}
-                name={'password'}
-                state={this.state.values.password}
-                onChange={this.handleChange}
-                onBlur={this.handleBlur}
-              />
-              <InputPass
-                placeholder={'Confirm password'}
-                name={'passwordConfirm'}
-                state={this.state.values.passwordConfirm}
-                onChange={this.handleChange}
-                onBlur={this.handleBlur}
-              />
+
+                <InputPass
+                  placeholder={'Enter password'}
+                  name={'password'}
+                  state={this.state.values.password}
+                  onChange={this.handleChange}
+                  onBlur={this.handleBlur}
+                  error={formErrors.password}
+                  visited={visited.password}
+                />
+
+                <InputPass
+                  placeholder={'Confirm password'}
+                  name={'passwordConfirm'}
+                  state={this.state.values.passwordConfirm}
+                  onChange={this.handleChange}
+                  onBlur={this.handleBlur}
+                  error={formErrors.passwordConfirm}
+                  visited={visited.passwordConfirm}
+                />
+
             </div>
           </div>
 

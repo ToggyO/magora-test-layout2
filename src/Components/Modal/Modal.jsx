@@ -26,10 +26,8 @@ class Modal extends React.Component {
 
   onClickEnvironmentModalClose = (e) => {
     const _id = e.target.id;
-    if (_id ) {
-      if ( _id  === "modal-overlay" ) {
-        this.props.modalClose();
-      }
+    if (_id && _id  === "modal-overlay" ) {
+      this.props.modalClose();
     }
   };
 
