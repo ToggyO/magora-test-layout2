@@ -1,5 +1,5 @@
 import React from 'react';
-import './FormSignIn.sass';
+import '../FormStyle.sass';
 import TextInput from '../TextInput/TextInput';
 import InputPass from "../InputPass/InputPass";
 import { connect } from "react-redux";

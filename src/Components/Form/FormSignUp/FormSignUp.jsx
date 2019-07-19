@@ -1,5 +1,5 @@
 import React from 'react';
-import './FormSignUp.sass';
+import '../FormStyle.sass';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
