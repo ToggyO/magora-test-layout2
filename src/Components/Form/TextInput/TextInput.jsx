@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './TextInput.module.sass';
 import '../FormComponentsStyle.sass';
-import InputWrapper from "../InputWrapper/InputWrapper";
+import FormError from '../FormError/FormError';
 
 
 const TextInput = (props) => {
@@ -10,17 +10,20 @@ const TextInput = (props) => {
 
   return (
     <div className={s.inputBlock}>
-      <InputWrapper label={label} error={error} visited={visited}>
-        <input
-          className={ error && visited ? 'error' : null }
-          type={type}
-          placeholder={placeholder}
-          name={name}
-          value={value}
-          onChange={onChange}
-          onBlur={onBlur}
-        />
-      </InputWrapper>
+      <label htmlFor="">{label}</label>
+      <input
+        className={ error && visited ? 'error' : null }
+        type={type}
+        placeholder={placeholder}
+        name={name}
+        value={value}
+        onChange={onChange}
+        onBlur={onBlur}
+      />
+      <FormError
+        error={error}
+        visited={visited}
+      />
     </div>
   )
 };

@@ -124,8 +124,6 @@ class FormSignIn extends React.Component {
           <TextInput
             placeholder={'First name'}
             name={'firstName'}
-            label={''}
-            type={'text'}
             state={this.state.values.firstName}
             onChange={this.handleChange}
             onBlur={this.handleBlur}
@@ -135,10 +133,7 @@ class FormSignIn extends React.Component {
 
           <TextInput
             placeholder={'Last name'}
-            name={'lastName'}
-            label={''}
-            type={'text'}
-            state={this.state.values.lastName}
+            name={'lastName'} state={this.state.values.lastName}
             onChange={this.handleChange}
             onBlur={this.handleBlur}
             error={formErrors.lastName}
