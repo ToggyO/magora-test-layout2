@@ -182,7 +182,6 @@ class FormSignUp extends React.Component {
             />
 
           <div className='form-password'>
-
             <div className='form-password__block' id="form-password__block">
 
                 <InputPass
