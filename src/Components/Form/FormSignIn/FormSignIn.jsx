@@ -1,13 +1,56 @@
 import React from 'react';
 import '../FormStyle.sass';
+
 import TextInput from '../TextInput/TextInput';
 import InputPass from "../InputPass/InputPass";
+import { initialValidation,handleChange,onSubmitHandler,validateField,handleBlur} from '../../../Libs/FormValidation';
+
 import { connect } from "react-redux";
 import { modalOpen } from "../../../Store/Actions/actionModal";
 import { bindActionCreators } from "redux";
+// eslint-disable-next-line no-unused-vars
+
 
 
 class FormSignIn extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.initialValidation = initialValidation.bind(this);
+    this.handleChange = handleChange.bind(this);
+    this.onSubmitHandler = onSubmitHandler.bind(this);
+    this.validateField = validateField.bind(this);
+    this.handleBlur = handleBlur.bind(this);
+
+  };
+
+  // arrState = [
+  //   [
+  //     'values', [
+  //       [ 'firstName', '' ],
+  //       [ 'lastName', '' ],
+  //       [ 'password', '' ],
+  //     ]
+  //   ],
+  //   [
+  //     'formErrors', [
+  //       [ 'firstName', '' ],
+  //       [ 'lastName', '' ],
+  //       [ 'password', '' ],
+  //     ]
+  //   ],
+  //   [
+  //     'visited', [
+  //       [ 'firstName', 'false' ],
+  //       [ 'lastName', 'false' ],
+  //       [ 'password', 'false' ],
+  //     ]
+  //   ],
+  //   [ 'passwordValid', 'false' ],
+  //   [ 'formValid', 'false' ],
+  // ];
+
+  // state = new Map(this.arrState);
 
   state = {
     values: {
@@ -31,80 +74,6 @@ class FormSignIn extends React.Component {
 
   componentDidMount() {
     this.initialValidation();
-  };
-
-  initialValidation = () => {
-    let initValid = this.state.values;
-    let keys = Object.keys(initValid);
-
-    keys.forEach( (fieldName, i) => {
-      let value = initValid[fieldName];
-      this.validateField( fieldName, value );
-    });
-  };
-
-  handleChange = (e) => {
-    const {target: {name, value}} = e;
-    this.setState({
-      values: {
-        ...this.state.values,
-        [name]: value
-      },
-    }, () => { this.initialValidation( name, value ) } );
-
-  };
-
-  onSubmitHandler = (e) => {
-    e.preventDefault();
-    console.log(this.state);
-  };
-
-  validateField(fieldName, value) {
-    let fieldValidationErrors = this.state.formErrors;
-    let passwordValid = this.state.passwordValid;
-
-
-    switch(fieldName) {
-      case 'firstName':
-        const firstNameValid = value.length <= 20 && value.length >= 2;
-        fieldValidationErrors.firstName = firstNameValid ? '' : 'between 2 and 20 symbols';
-        break;
-      case 'lastName':
-        const lastNameValid = value.length <= 20 && value.length >= 2;
-        fieldValidationErrors.lastName = lastNameValid ? '' : 'between 2 and 20 symbols';
-        break;
-      case 'password':
-        passwordValid = value.length >= 6;
-        fieldValidationErrors.password = passwordValid ? '' : 'min 6' +
-          ' symbols';
-        break;
-      default:
-        break;
-    }
-
-    let formValid = true;
-    let keys = Object.keys(fieldValidationErrors);
-    keys.forEach((fieldName, i) => {
-      if (fieldValidationErrors[fieldName]) {
-        formValid = false;
-      }
-    });
-
-    this.setState({
-      formErrors: fieldValidationErrors,
-      formValid: formValid
-    });
-  }
-
-  handleBlur = (e) => {
-    const { target: {name} } = e;
-
-    this.setState({
-      visited: {
-        ...this.state.visited,
-        [name]: true,
-      },
-    });
   };
 
   render() {
@@ -202,7 +171,8 @@ let mapDispatchToProps = (dispatch) => {
     modalOpen: bindActionCreators(modalOpen, dispatch)
   }
 };
-//
+
+//the same as line 144-148
 // let mapDispatchToProps = (dispatch) => {
 //   return {
 //     // modalOpen: function () { dispatch(modalOpen.apply(this, arguments)); }
