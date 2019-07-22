@@ -3,77 +3,26 @@ import '../FormStyle.sass';
 
 import TextInput from '../TextInput/TextInput';
 import InputPass from "../InputPass/InputPass";
-import { initialValidation,handleChange,onSubmitHandler,validateField,handleBlur} from '../../../Libs/FormValidation';
+import formInitialize from '../../../Libs/FormValidation';
 
 import { connect } from "react-redux";
 import { modalOpen } from "../../../Store/Actions/actionModal";
 import { bindActionCreators } from "redux";
-// eslint-disable-next-line no-unused-vars
-
 
 
 class FormSignIn extends React.Component {
   constructor(props) {
     super(props);
 
-    this.initialValidation = initialValidation.bind(this);
-    this.handleChange = handleChange.bind(this);
-    this.onSubmitHandler = onSubmitHandler.bind(this);
-    this.validateField = validateField.bind(this);
-    this.handleBlur = handleBlur.bind(this);
+    formInitialize.call(this, ['firstName', 'lastName', 'password']);
 
   };
 
-  // arrState = [
-  //   [
-  //     'values', [
-  //       [ 'firstName', '' ],
-  //       [ 'lastName', '' ],
-  //       [ 'password', '' ],
-  //     ]
-  //   ],
-  //   [
-  //     'formErrors', [
-  //       [ 'firstName', '' ],
-  //       [ 'lastName', '' ],
-  //       [ 'password', '' ],
-  //     ]
-  //   ],
-  //   [
-  //     'visited', [
-  //       [ 'firstName', 'false' ],
-  //       [ 'lastName', 'false' ],
-  //       [ 'password', 'false' ],
-  //     ]
-  //   ],
-  //   [ 'passwordValid', 'false' ],
-  //   [ 'formValid', 'false' ],
-  // ];
-
-  // state = new Map(this.arrState);
-
-  state = {
-    values: {
-      firstName: '',
-      lastName: '',
-      password: '',
-    },
-    formErrors: {
-      firstName: '',
-      lastName: '',
-      password: '',
-    },
-    visited: {
-      firstName: false,
-      lastName: false,
-      password: false,
-    },
-    passwordValid: false,
-    formValid: false,
-  };
+  state = {};
 
   componentDidMount() {
     this.initialValidation();
+    console.log(this.state);
   };
 
   render() {

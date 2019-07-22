@@ -5,52 +5,22 @@ import { bindActionCreators } from "redux";
 
 import TextInput from '../TextInput/TextInput';
 import InputPass from "../InputPass/InputPass";
-import { initialValidation,handleChange,onSubmitHandler,validateField,handleBlur} from '../../../Libs/FormValidation';
+import formInitialize from '../../../Libs/FormValidation';
 
 import { modalOpen } from "../../../Store/Actions/actionModal";
-
-
 
 class FormSignUp extends React.Component {
   constructor(props) {
     super(props);
 
-    this.initialValidation = initialValidation.bind(this);
-    this.handleChange = handleChange.bind(this);
-    this.onSubmitHandler = onSubmitHandler.bind(this);
-    this.validateField = validateField.bind(this);
-    this.handleBlur = handleBlur.bind(this);
+    formInitialize.call(this, ['firstName', 'lastName', 'email', 'password', 'passwordConfirm']);
   };
 
-  state = {
-    values: {
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: '',
-      passwordConfirm: '',
-    },
-    formErrors: {
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: '',
-      passwordConfirm: '',
-    },
-    visited: {
-      firstName: false,
-      lastName: false,
-      email: false,
-      password: false,
-      passwordConfirm: false
-    },
-    passwordValid: false,
-    passwordConfirmValid: false,
-    formValid: false,
-  };
+  state = {};
 
   componentDidMount() {
     this.initialValidation();
+    console.log(this.state);
   };
 
   render() {

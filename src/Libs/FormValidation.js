@@ -1,9 +1,42 @@
 
 //Form Validation
+export default function formInitialize(fieldArray) {
+
+  this.initialValidation = initialValidation.bind(this);
+  this.handleChange = handleChange.bind(this);
+  this.onSubmitHandler = onSubmitHandler.bind(this);
+  this.validateField = validateField.bind(this);
+  this.handleBlur = handleBlur.bind(this);
 
 
-export function initialValidation() {
-    console.log(this);
+  this.state = {
+    ...this.state,
+    formErrors: {},
+    values: {},
+    visited: {},
+    formValid: false,
+  };
+
+
+  fieldArray.forEach(fieldName => {
+    this.state.values = {
+      ...this.state.values,
+      [fieldName]: '',
+    };
+    this.state.formErrors = {
+      ...this.state.formErrors,
+      [fieldName]: '',
+    };
+    this.state.visited = {
+      ...this.state.visited,
+      [fieldName]: false,
+    };
+  });
+}
+
+
+function initialValidation() {
+
     let initValid = this.state.values;
     let keys = Object.keys(initValid);
 
@@ -13,7 +46,7 @@ export function initialValidation() {
     });
   }
 
-export function handleChange(e) {
+function handleChange(e) {
     const {target: {name, value}} = e;
     this.setState({
       values: {
@@ -22,37 +55,38 @@ export function handleChange(e) {
       },
     }, () => { this.initialValidation( name, value ) } );
 
-  };
+  }
 
-export function onSubmitHandler(e) {
+function onSubmitHandler(e) {
     e.preventDefault();
     console.log(this.state);
-  };
+  }
 
-export function validateField(fieldName, value) {
+function validateField(fieldName, value) {
     let fieldValidationErrors = this.state.formErrors;
-    let passwordValid = this.state.passwordValid;
-    let passwordConfirmValid = this.state.passwordConfirmValid;
+    let passwordConfirmValid;
 
     switch(fieldName) {
       case 'firstName':
-        const firstNameValid = value.length <= 20 && value.length >= 2;
+        let firstNameValid = value.length <= 20 && value.length >= 2;
         fieldValidationErrors.firstName = firstNameValid ? '' : 'between 2 and 20 symbols';
         break;
       case 'lastName':
-        const lastNameValid = value.length <= 20 && value.length >= 2;
+        let lastNameValid = value.length <= 20 && value.length >= 2;
         fieldValidationErrors.lastName = lastNameValid ? '' : 'between 2 and 20 symbols';
         break;
       case 'email':
-        const emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+        let emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
         fieldValidationErrors.email = emailValid ? '' : 'is invalid';
         break;
       case 'password':
-        passwordValid = value.length >= 6;
+        let passwordValid = value.length >= 6;
         fieldValidationErrors.password = passwordValid ? '' : 'min 6' +
           ' symbols';
-        passwordConfirmValid = value === this.state.values.passwordConfirm;
-        fieldValidationErrors.passwordConfirm = passwordConfirmValid ? '' : 'passwords, you entered is not the same';
+        if (this.state.formErrors.passwordConfirm !== undefined) {
+          passwordConfirmValid =value === this.state.values.passwordConfirm;
+          fieldValidationErrors.passwordConfirm = passwordConfirmValid ? '' : 'passwords, you entered is not the same';
+        }
         break;
       case 'passwordConfirm':
         passwordConfirmValid = value === this.state.values.password;
@@ -74,9 +108,9 @@ export function validateField(fieldName, value) {
       formErrors: fieldValidationErrors,
       formValid: formValid
     });
-  };
+  }
 
-export function handleBlur(e) {
+function handleBlur(e) {
     const { target: {name} } = e;
 
     this.setState({
@@ -85,9 +119,11 @@ export function handleBlur(e) {
         [name]: true,
       },
     });
-  };
+  }
 
 
 
 
 // export default formValidation;
+
+
