@@ -5,6 +5,7 @@ import { bindActionCreators } from "redux";
 
 import TextInput from '../TextInput/TextInput';
 import InputPass from "../InputPass/InputPass";
+import Select from "../Select/Select";
 import formInitialize from '../../../Libs/FormValidation';
 
 import { modalOpen } from "../../../Store/Actions/actionModal";
@@ -13,10 +14,14 @@ class FormSignUp extends React.Component {
   constructor(props) {
     super(props);
 
-    formInitialize.call(this, ['firstName', 'lastName', 'email', 'password', 'passwordConfirm']);
+    formInitialize.call(this, ['firstName', 'lastName', 'email', 'password', 'passwordConfirm', 'verCode']);
   };
 
-  state = {};
+  state = {
+    values: {
+      role: 'user'
+    }
+  };
 
   componentDidMount() {
     this.initialValidation();
@@ -37,41 +42,41 @@ class FormSignUp extends React.Component {
         </div>
         <form action="" className='form'>
 
-            <TextInput
-              placeholder={'First name'}
-              name={'firstName'}
-              label={''}
-              type={'text'}
-              state={this.state.values.firstName}
-              onChange={this.handleChange}
-              onBlur={this.handleBlur}
-              error={formErrors.firstName}
-              visited={visited.firstName}
-            />
+          <TextInput
+            placeholder={'First name'}
+            name={'firstName'}
+            label={''}
+            type={'text'}
+            state={this.state.values.firstName}
+            onChange={this.handleChange}
+            onBlur={this.handleBlur}
+            error={formErrors.firstName}
+            visited={visited.firstName}
+          />
 
-            <TextInput
-              placeholder={'Last name'}
-              name={'lastName'}
-              label={''}
-              type={'text'}
-              state={this.state.values.lastName}
-              onChange={this.handleChange}
-              onBlur={this.handleBlur}
-              error={formErrors.lastName}
-              visited={visited.lastName}
-            />
+          <TextInput
+            placeholder={'Last name'}
+            name={'lastName'}
+            label={''}
+            type={'text'}
+            state={this.state.values.lastName}
+            onChange={this.handleChange}
+            onBlur={this.handleBlur}
+            error={formErrors.lastName}
+            visited={visited.lastName}
+          />
 
-            <TextInput
-              placeholder={'Email'}
-              name={'email'}
-              type={'email'}
-              label={'Contact information:'}
-              state={this.state.values.email}
-              onChange={this.handleChange}
-              onBlur={this.handleBlur}
-              error={formErrors.email}
-              visited={visited.email}
-            />
+          <TextInput
+            placeholder={'Email'}
+            name={'email'}
+            type={'email'}
+            label={'Contact information:'}
+            state={this.state.values.email}
+            onChange={this.handleChange}
+            onBlur={this.handleBlur}
+            error={formErrors.email}
+            visited={visited.email}
+          />
 
           <div className='form-password'>
             <div className='form-password__block' id="form-password__block">
@@ -100,6 +105,16 @@ class FormSignUp extends React.Component {
 
             </div>
           </div>
+
+          <Select
+            name={'role'}
+            label={"Role;"}
+            state={this.state.values.role}
+            onChange={this.handleChange}
+            onBlur={this.handleBlur}
+            error={formErrors.verCode}
+            visited={visited.verCode}
+          />
 
           <p className='form-license'>
             Any personal information you provide will be dealt with in accordance with

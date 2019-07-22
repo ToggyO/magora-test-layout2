@@ -92,6 +92,15 @@ function validateField(fieldName, value) {
         passwordConfirmValid = value === this.state.values.password;
         fieldValidationErrors.passwordConfirm = passwordConfirmValid ? '' : 'passwords, you entered is not the same';
         break;
+      case 'verCode':
+        if (this.state.values.role === 'admin') {
+          const verCodeValid = value.length >= 6;
+          fieldValidationErrors.verCode = verCodeValid ? '' : 'min 6' +
+            ' symbols';
+        } else {
+          fieldValidationErrors.verCode = '';
+        }
+        break;
       default:
         break;
     }
