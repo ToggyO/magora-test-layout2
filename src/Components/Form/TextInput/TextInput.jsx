@@ -6,7 +6,7 @@ import InputWrapper from "../InputWrapper/InputWrapper";
 
 const TextInput = (props) => {
 
-  const { label, type, placeholder, name, value, onChange, onBlur, error, visited } = props;
+  const { label, type, placeholder, name, value, onChange, onBlur, error, visited, style } = props;
 
   return (
     <div className={s.inputBlock}>
@@ -19,6 +19,7 @@ const TextInput = (props) => {
           value={value}
           onChange={onChange}
           onBlur={onBlur}
+          style={style}
         />
       </InputWrapper>
     </div>

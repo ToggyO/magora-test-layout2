@@ -7,17 +7,19 @@ import TextInput from '../TextInput/TextInput';
 import InputPass from "../InputPass/InputPass";
 import Select from "../Select/Select";
 import formInitialize from '../../../Libs/FormValidation';
+import validationConditionsSignUp from './ValidationConditionsSignUp';
 
 import { modalOpen } from "../../../Store/Actions/actionModal";
 
+
 let options = [
   {
-    title: 'Administrator',
-    value: 'admin'
+    title: 'Individual',
+    value: 'individual'
   },
   {
-    title: 'User',
-    value: 'user'
+    title: 'Council',
+    value: 'council'
   }
 ];
 
@@ -33,8 +35,8 @@ class FormSignUp extends React.Component {
       { fieldName:'password', initValue: ''},
       { fieldName:'passwordConfirm', initValue: ''},
       { fieldName:'verCode', initValue: ''},
-      {fieldName: 'role', initValue: 'user'}
-    ]);
+      { fieldName: 'role', initValue: 'individual'}
+    ], validationConditionsSignUp);
   };
 
   state = {
@@ -42,12 +44,8 @@ class FormSignUp extends React.Component {
   };
 
   componentDidMount() {
-    this.initialValidation();
     console.log(this.state);
   };
-
-
-
 
   render() {
 
@@ -63,6 +61,30 @@ class FormSignUp extends React.Component {
           </h2>
         </div>
         <form action="" className='form'>
+
+          <div className='form-switchRole'>
+            <Select
+              name={'role'}
+              label={''}
+              state={this.state.values.role}
+              onChange={this.handleChange}
+              option={opt}
+            />
+            {this.state.values.role === 'council' &&
+            <TextInput
+              placeholder={'Ver code'}
+              name={'verCode'}
+              label={''}
+              type={'text'}
+              state={this.state.values.verCode}
+              onChange={this.handleChange}
+              onBlur={this.handleBlur}
+              error={formErrors.verCode}
+              visited={visited.verCode}
+              style={{marginTop: '-10px'}}
+            />
+            }
+          </div>
 
           <TextInput
             placeholder={'First name'}
@@ -127,30 +149,6 @@ class FormSignUp extends React.Component {
 
             </div>
           </div>
-
-          <div>
-            <Select
-              name={'role'}
-              label={"Role"}
-              state={this.state.values.role}
-              onChange={this.handleChange}
-              option={opt}
-            />
-            {this.state.values.role === 'admin' &&
-              <TextInput
-                placeholder={'Ver code'}
-                name={'verCode'}
-                label={''}
-                type={'text'}
-                state={this.state.values.verCode}
-                onChange={this.handleChange}
-                onBlur={this.handleBlur}
-                error={formErrors.verCode}
-                visited={visited.verCode}
-              />
-            }
-          </div>
-
 
           <p className='form-license'>
             Any personal information you provide will be dealt with in accordance with

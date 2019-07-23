@@ -8,6 +8,7 @@ import formInitialize from '../../../Libs/FormValidation';
 import { connect } from "react-redux";
 import { modalOpen } from "../../../Store/Actions/actionModal";
 import { bindActionCreators } from "redux";
+import validationConditionsSignIn from "./ValidationConditionsSignIn";
 
 
 class FormSignIn extends React.Component {
@@ -19,14 +20,13 @@ class FormSignIn extends React.Component {
       { fieldName:'lastName', initValue: ''},
       { fieldName:'password', initValue: ''},
 
-    ]);
+    ], validationConditionsSignIn);
 
   };
 
   state = {};
 
   componentDidMount() {
-    this.initialValidation();
     console.log(this.state);
   };
 
