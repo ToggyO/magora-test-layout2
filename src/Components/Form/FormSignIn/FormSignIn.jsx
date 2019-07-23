@@ -14,7 +14,12 @@ class FormSignIn extends React.Component {
   constructor(props) {
     super(props);
 
-    formInitialize.call(this, ['firstName', 'lastName', 'password']);
+    formInitialize.call(this, [
+      { fieldName:'firstName', initValue: ''},
+      { fieldName:'lastName', initValue: ''},
+      { fieldName:'password', initValue: ''},
+
+    ]);
 
   };
 

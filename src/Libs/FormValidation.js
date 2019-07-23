@@ -17,11 +17,10 @@ export default function formInitialize(fieldArray) {
     formValid: false,
   };
 
-
-  fieldArray.forEach(fieldName => {
+  fieldArray.forEach(({fieldName, initValue}) => {
     this.state.values = {
       ...this.state.values,
-      [fieldName]: '',
+      [fieldName]: initValue,
     };
     this.state.formErrors = {
       ...this.state.formErrors,
@@ -32,6 +31,22 @@ export default function formInitialize(fieldArray) {
       [fieldName]: false,
     };
   });
+
+
+  // fieldArray.forEach((fieldName, value) => {
+  //   this.state.values = {
+  //     ...this.state.values,
+  //     [fieldName]: value,
+  //   };
+  //   this.state.formErrors = {
+  //     ...this.state.formErrors,
+  //     [fieldName]: value,
+  //   };
+  //   this.state.visited = {
+  //     ...this.state.visited,
+  //     [fieldName]: false,
+  //   };
+  // });
 }
 
 

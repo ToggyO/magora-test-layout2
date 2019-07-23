@@ -10,17 +10,35 @@ import formInitialize from '../../../Libs/FormValidation';
 
 import { modalOpen } from "../../../Store/Actions/actionModal";
 
+let options = [
+  {
+    title: 'Administrator',
+    value: 'admin'
+  },
+  {
+    title: 'User',
+    value: 'user'
+  }
+];
+
+
 class FormSignUp extends React.Component {
   constructor(props) {
     super(props);
 
-    formInitialize.call(this, ['firstName', 'lastName', 'email', 'password', 'passwordConfirm', 'verCode']);
+    formInitialize.call(this, [
+      { fieldName:'firstName', initValue: ''},
+      { fieldName:'lastName', initValue: ''},
+      { fieldName:'email', initValue: ''},
+      { fieldName:'password', initValue: ''},
+      { fieldName:'passwordConfirm', initValue: ''},
+      { fieldName:'verCode', initValue: ''},
+      {fieldName: 'role', initValue: 'user'}
+    ]);
   };
 
   state = {
-    values: {
-      role: 'user'
-    }
+
   };
 
   componentDidMount() {
@@ -28,10 +46,14 @@ class FormSignUp extends React.Component {
     console.log(this.state);
   };
 
+
+
+
   render() {
 
     const formErrors = this.state.formErrors;
     const visited = this.state.visited;
+    const opt = options;
 
     return (
       <div className="main-form">
@@ -106,15 +128,29 @@ class FormSignUp extends React.Component {
             </div>
           </div>
 
-          <Select
-            name={'role'}
-            label={"Role;"}
-            state={this.state.values.role}
-            onChange={this.handleChange}
-            onBlur={this.handleBlur}
-            error={formErrors.verCode}
-            visited={visited.verCode}
-          />
+          <div>
+            <Select
+              name={'role'}
+              label={"Role"}
+              state={this.state.values.role}
+              onChange={this.handleChange}
+              option={opt}
+            />
+            {this.state.values.role === 'admin' &&
+              <TextInput
+                placeholder={'Ver code'}
+                name={'verCode'}
+                label={''}
+                type={'text'}
+                state={this.state.values.verCode}
+                onChange={this.handleChange}
+                onBlur={this.handleBlur}
+                error={formErrors.verCode}
+                visited={visited.verCode}
+              />
+            }
+          </div>
+
 
           <p className='form-license'>
             Any personal information you provide will be dealt with in accordance with
