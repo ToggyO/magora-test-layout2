@@ -11,11 +11,9 @@ class Possibilities extends React.Component {
    return (
      <div className="pos wrapper">
        <div className="pos-container wrapper-container">
-         <div className="pos-container-content wrapper-container-content">
-           <PosSearch />
-           <PosReg />
-           <PosTools />
-         </div>
+         <PosSearch />
+         <PosReg />
+         <PosTools />
        </div>
      </div>
    );

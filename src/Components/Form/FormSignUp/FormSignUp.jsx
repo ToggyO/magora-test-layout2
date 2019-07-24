@@ -48,15 +48,12 @@ class FormSignUp extends React.Component {
   };
 
   render() {
-
-    const formErrors = this.state.formErrors;
-    const visited = this.state.visited;
     const opt = options;
 
     return (
       <div className="main-form">
         <div className="main-form__headline">
-          <h2 className='h2-black fs-24 lh-30 ls-3 fw-700 mb-10'>
+          <h2 className='h2-black fs-24 lh-30 ls-3 fw-700 mb-10 t-align-c'>
            Join the Tribus community
           </h2>
         </div>
@@ -66,21 +63,16 @@ class FormSignUp extends React.Component {
             <Select
               name={'role'}
               label={''}
-              state={this.state.values.role}
+
               onChange={this.handleChange}
               option={opt}
             />
             {this.state.values.role === 'council' &&
             <TextInput
               placeholder={'Ver code'}
-              name={'verCode'}
               label={''}
               type={'text'}
-              state={this.state.values.verCode}
-              onChange={this.handleChange}
-              onBlur={this.handleBlur}
-              error={formErrors.verCode}
-              visited={visited.verCode}
+              {...this.passAdditionalProps('verCode')}
               style={{marginTop: '-10px'}}
             />
             }
@@ -88,38 +80,23 @@ class FormSignUp extends React.Component {
 
           <TextInput
             placeholder={'First name'}
-            name={'firstName'}
             label={''}
             type={'text'}
-            state={this.state.values.firstName}
-            onChange={this.handleChange}
-            onBlur={this.handleBlur}
-            error={formErrors.firstName}
-            visited={visited.firstName}
+            {...this.passAdditionalProps('firstName')}
           />
 
           <TextInput
             placeholder={'Last name'}
-            name={'lastName'}
             label={''}
             type={'text'}
-            state={this.state.values.lastName}
-            onChange={this.handleChange}
-            onBlur={this.handleBlur}
-            error={formErrors.lastName}
-            visited={visited.lastName}
+            {...this.passAdditionalProps('lastName')}
           />
 
           <TextInput
             placeholder={'Email'}
-            name={'email'}
             type={'email'}
             label={'Contact information:'}
-            state={this.state.values.email}
-            onChange={this.handleChange}
-            onBlur={this.handleBlur}
-            error={formErrors.email}
-            visited={visited.email}
+            {...this.passAdditionalProps('email')}
           />
 
           <div className='form-password'>
@@ -127,30 +104,20 @@ class FormSignUp extends React.Component {
 
                 <InputPass
                   placeholder={'Enter password'}
-                  name={'password'}
                   label={'Password:'}
-                  state={this.state.values.password}
-                  onChange={this.handleChange}
-                  onBlur={this.handleBlur}
-                  error={formErrors.password}
-                  visited={visited.password}
+                  {...this.passAdditionalProps('password')}
                 />
 
                 <InputPass
                   placeholder={'Confirm password'}
-                  name={'passwordConfirm'}
                   label="&nbsp;"
-                  state={this.state.values.passwordConfirm}
-                  onChange={this.handleChange}
-                  onBlur={this.handleBlur}
-                  error={formErrors.passwordConfirm}
-                  visited={visited.passwordConfirm}
+                  {...this.passAdditionalProps('passwordConfirm')}
                 />
 
             </div>
           </div>
 
-          <p className='form-license'>
+          <p className='form-license t-align-c'>
             Any personal information you provide will be dealt with in accordance with
             our
             <a href="./#">

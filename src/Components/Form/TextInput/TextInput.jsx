@@ -6,17 +6,20 @@ import InputWrapper from "../InputWrapper/InputWrapper";
 
 const TextInput = (props) => {
 
-  const { label, type, placeholder, name, value, onChange, onBlur, error, visited, style } = props;
+  const { label, type, placeholder, name, onChange, onBlur, error, visited, style, value } = props;
+
+  const inputId = `input-${name}`;
 
   return (
     <div className={s.inputBlock}>
-      <InputWrapper label={label} error={error} visited={visited}>
+      <InputWrapper label={label} error={error} visited={visited} inputId={inputId}>
         <input
+          id={inputId}
           className={ error && visited ? 'error' : null }
           type={type}
           placeholder={placeholder}
-          name={name}
           value={value}
+          name={name}
           onChange={onChange}
           onBlur={onBlur}
           style={style}

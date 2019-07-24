@@ -8,12 +8,12 @@ import Community from './Community/Community';
 
 const Home = () => {
   return (
-    <div className="app-main">
+    <>
       <Banner />
       <Possibilities />
       <Lamp />
       <Community />
-    </div>
+    </>
   );
 }
 

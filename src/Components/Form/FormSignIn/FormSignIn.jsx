@@ -38,8 +38,8 @@ class FormSignIn extends React.Component {
     return (
       <div className="main-form">
         <div className="main-form__headline">
-          <h2 className='h2-black fs-24 lh-30 ls-3 fw-700 mb-10'>
-            Join the Tribus community
+          <h2 className='h2-black fs-24 lh-30 ls-3 fw-700 mb-10 t-align-c'>
+            Sign in to share ideas and support others
           </h2>
         </div>
         <form action="" className='form'>
@@ -84,7 +84,7 @@ class FormSignIn extends React.Component {
             </a>
           </div>
 
-          <p className='form-license'>
+          <p className='form-license t-align-c'>
             Business or local council?
             <a href="./#">
               Click here.

@@ -8,7 +8,7 @@ class Main extends React.Component {
     return (
       <div className='main wrapper'>
         <div className="wrapper-container">
-          <div className="main-container wrapper-container-content pt-25 pb-30 pl-106 pr-106">
+          <div className="main-container pt-25 pb-30 pl-106 pr-106">
             <Form />
           </div>
         </div>

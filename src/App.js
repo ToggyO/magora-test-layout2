@@ -15,11 +15,11 @@ function App() {
     <div className="App">
       <Modal />
       <Header />
-      <div className="App-container">
+      <>
         <Route exact path='/' component={Home}/>
         <Route exact path='/registration' component={Registration}/>
         <Route exact path='/projectSearch' component={FindProjects}/>
-      </div>
+      </>
       <Footer />
     </div>
   );

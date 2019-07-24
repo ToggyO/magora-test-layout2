@@ -46,12 +46,7 @@ const PosTools = () => {
        The tools you need to get things done!
      </h2>
      <div className="pos-tools__cards d-f fw-w jc-c">
-       {cards.map( (card, i) =>
-           {
-           return <Card key={i} card={card}/>
-           }
-         )
-       }
+       {cards.map( (card, i) => <Card key={i} card={card}/>)}
      </div>
    </div>
    );
