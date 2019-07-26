@@ -6,10 +6,10 @@ import CommunityProjects from "./CommunityProjects/CommunityProjects";
 
 const FindProjects = () => {
   return (
-    <div className='findProjects'>
+    <>
       <ProjectSearch />
       <CommunityProjects />
-    </div>
+    </>
   )
 };
 

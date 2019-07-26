@@ -1,61 +1,99 @@
 import React from 'react';
-import Select from 'react-select'
+import Select, {components} from 'react-select'
 import './ProjectSearch.sass';
 import {NavLink} from "react-router-dom";
+import Icon from  '../../../Icons/Icons';
+import { styles } from '../../../Components/ReactSelect/Styles/filterStyles';
+import { moduleStyles } from '../../../Components/ReactSelect/Styles/modulesStyles';
+import {sortOptions, categoryOptions, benefitsOptions, modulesOptions} from '../FindProjectOptions';
+import { Option, DropdownIndicator, ValueContainer } from '../../../Components/ReactSelect/components/custom_components';
 
-
-const options = [
-  { value: 'chocolate', label: 'Chocolate' },
-  { value: 'strawberry', label: 'Strawberry' },
-  { value: 'vanilla', label: 'Vanilla' }
-]
 
 const FindProjects = () => {
   return (
     <div className='projectSearch wrapper'>
-      <div className="projectSearch-container wrapper-container">
-        <div className="projectSearch-content wrapper-container-content">
-          <div className="projectSearch-switchBtns">
-            <NavLink to='/projectSearch'>
-              <button></button>
-              <h6>Projects</h6>
-            </NavLink>
-            <NavLink to='/grantsSearch'>
-              <button></button>
-              <h6>Grants</h6>
-            </NavLink>
-            <NavLink to='/eventsSearch'>
-              <button></button>
-              <h6>Events</h6>
-            </NavLink>
-          </div>
-          <div className="projectSearch-filterBlock">
-            <div className="filterBlock__headlines">
-              <h2>Find Projects</h2>
-              <h3>that matter to you</h3>
-            </div>
-            <div className="filterBlock__search">
-              <div className='filterBlock__search-input'>
-                <input type="text"/>
-                <button>Find</button>
-              </div>
-            </div>
-            <div className="filterBlock__filters">
-              <div className='filters-sort'>
-                <div className='filters-sort__sortBy'>
-                  <Select options={options} />
-                  <Select options={options} />
-                </div>
-                <div className='filters-sort__activeModules'>
-                  <Select options={options} />
-                </div>
-                <div className='filters-sort__category'>
-                  <Select options={options} />
-                </div>
-              </div>
-            </div>
-          </div>
+      <div className="projectSearch-container wrapper-container prS-adapt d-f pl-35 pr-35 pt-25 pb-25">
+
+        <div className="projectSearch-switchBtns prS-adapt__switchBtns d-f fd-c ai-c jc-sb">
+          <NavLink to='/projectSearch'>
+            <button className='btn rounded roundedLarge'>
+              <Icon iconName='searchProjectIcon' className='projectSmall'/>
+            </button>
+            <h6 className='h2-white fs-20 lh-27 fw-700 t-align-c'>Projects</h6>
+          </NavLink>
+          <NavLink to='/grantsSearch'>
+            <button className='btn rounded roundedSmall'>
+              <Icon iconName='searchGrantsIcon'/>
+            </button>
+            <h6 className='h2-white fs-16 lh-22 fw-700 t-align-c'>Grants</h6>
+          </NavLink>
+          <NavLink to='/eventsSearch'>
+            <button className='btn rounded roundedSmall'>
+              <Icon iconName='searchEventsIcon'/>
+            </button>
+            <h6 className='h2-white fs-16 lh-22 fw-700 t-align-c'>Events</h6>
+          </NavLink>
         </div>
+
+        <form className="projectSearch-filterBlock prS-adapt__filterBlock pl-32">
+          <div className="filterBlock__headlines prS-adapt__headlines h2-white fs-55 lh-75 fw-600 pb-9">
+            Find Projects<span className='h2-white fs-30 lh-41 fw-600 ml-4'>that matter to you</span>
+          </div>
+          <div className="filterBlock__search k prS-adapt__search pt-7 pb-7">
+            <div className='filterBlock__search-input prS-adapt__search-input d-f'>
+              <Icon iconName='shape' className='shape__grey ml-7'/>
+              <input className='fs-18 lh-22 ls-6 fw-500' type="text" placeholder='Search Projects by Postcode, Suburb or State'/>
+              <span>
+                <button className='btn blue xs fs-20 lh-27'>Find</button>
+              </span>
+            </div>
+          </div>
+          <div className="filterBlock__filters prS-adapt__filters pt-7">
+            <div className='filters-sort d-f'>
+              <div className='filters-sort__sortBy'>
+                <Select
+                  className="Select custom-select"
+                  components={{DropdownIndicator}}
+                  styles={styles}
+                  options={sortOptions}
+                  placeholder={'Sort By...'}
+                  inputValue=''
+                />
+                <Select
+                  components={{DropdownIndicator, Option}}
+                  isMulti
+                  closeMenuOnSelect={false}
+                  hideSelectedOptions={false}
+                  styles={moduleStyles}
+                  options={categoryOptions}
+                  className='mt-6'
+                  placeholder={'Active modules'}
+                  inputValue=''
+                  // isFocused={true}
+                />
+              </div>
+              <div className='filters-sort__category prS-adapt__category ml-16'>
+                <Select
+                  components={{DropdownIndicator}}
+                  styles={styles}
+                  options={benefitsOptions}
+                  placeholder={'Choose category'}
+                  inputValue=''
+                />
+              </div>
+              <div className='filters-sort__benefits prS-adapt__benefits ml-16'>
+                <Select
+                  components={{DropdownIndicator}}
+                  styles={styles}
+                  options={modulesOptions}
+                  placeholder={'Choose benefits'}
+                  inputValue=''
+                />
+              </div>
+            </div>
+          </div>
+        </form>
+
       </div>
     </div>
   )
@@ -63,3 +101,33 @@ const FindProjects = () => {
 
 
 export default FindProjects;
+
+
+
+
+
+
+
+
+
+
+
+
+//
+// import React, { type ElementConfig } from 'react';
+// import Select, {components} from 'react-select'
+// import './ProjectSearch.sass';
+// import {NavLink} from "react-router-dom";
+// import Icon from  '../../../Icons/Icons';
+// import { styles } from  './selectStyles';
+//
+//
+// const DropdownIndicator = (
+//   props: ElementConfig<typeof components.DropdownIndicator>
+// ) => {
+//   return (
+//     <components.DropdownIndicator {...props}>
+//       <Icon iconName='dropdownCircle' />
+//     </components.DropdownIndicator>
+//   );
+// };

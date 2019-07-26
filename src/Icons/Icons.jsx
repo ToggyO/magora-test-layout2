@@ -4,6 +4,7 @@ import SVG from 'react-inlinesvg';
 import './iconsStyle.sass';
 
 function Icons({ iconName, className }) {
+
   switch (iconName) {
     case 'shape':
       return (
@@ -13,25 +14,25 @@ function Icons({ iconName, className }) {
       return (
         <SVG src="../img/footer/logo-green.svg" className={className} />
       );
-    case 'searchIcon':
+    case 'searchProjectIcon':
       return (
-        <SVG src="../img/icons/SearchIcon.svg" className={className} />
+        <SVG src="../img/findProjects/IdeaProjects.svg" className={className} />
       );
-    case 'proIcon':
+    case 'searchGrantsIcon':
       return(
-        <SVG src="../img/icons/ProIcon.svg" className={className} />
+        <SVG src="../img/findProjects/IdeaGrants.svg" className={className} />
       );
-    case 'doneIcon':
+    case 'searchEventsIcon':
       return (
-        <SVG src="../img/icons/done.svg" className={className} />
+        <SVG src="../img/findProjects/IdeaEvents.svg" className={className} />
       );
-    case 'openMenuIcon':
+    case 'dropdownCircle':
       return (
-        <SVG src="../img/icons/OpenMenuIcon.svg" className={className} />
+        <SVG src="../img/findProjects/dropdown.svg" className={className} />
       );
-    case 'closeMenuIcon':
+    case 'squareCheckbox':
       return (
-        <SVG src="../img/icons/CloseMenuIcon.svg" className={className} />
+        <SVG src="../img/findProjects/checkbox.svg" className={className} />
       );
     case 'edit':
       return (
