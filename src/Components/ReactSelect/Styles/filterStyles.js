@@ -1,5 +1,3 @@
-
-
 export const styles = {
   menu: (provided, state) => ({
     ...provided,
@@ -19,6 +17,14 @@ export const styles = {
       backgroundColor: '#dff8ff'
     },
   }),
+  valueContainer: (provided, state) => ({
+    ...provided,
+    flexWrap: 'nowrap',
+    maxWidth: '270px',
+    minWidth: '100px',
+    overflow: 'hidden',
+    height: '34px'
+  }),
   container: (provided, state) => ({
     ...provided,
     position: 'relative',
@@ -29,10 +35,11 @@ export const styles = {
    return {
     ...provided,
     // none of react-select's styles are passed to <Control />
+    minWidth: '180px',
     width: '100%',
     backgroundColor: '#fff',
     borderRadius: '24.5px',
-    zIndex: '11',
+    zIndex: state.selectProps.menuIsOpen ? '11' : '0',
     borderColor: state.isFocused ? '#35D0DE' : 'white',
     boxShadow: 'none',
     height: '49px',

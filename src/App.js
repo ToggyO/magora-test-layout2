@@ -9,7 +9,6 @@ import Registration from './Pages/Registration/Registration';
 import FindProjects from "./Pages/FindProjects/FindProjects";
 
 
-
 function App() {
   return (
     <div className="App">

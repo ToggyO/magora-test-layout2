@@ -53,7 +53,7 @@ export const moduleStyles = {
   valueContainer: (provided, state) => ({
     ...provided,
     flexWrap: 'nowrap',
-    maxWidth: '214px',
+    maxWidth: '270px',
     minWidth: '100px',
     overflow: 'hidden',
     height: '34px'
@@ -68,7 +68,8 @@ export const moduleStyles = {
    return {
     ...provided,
     // none of react-select's styles are passed to <Control />
-    width: '100%',
+    minWidth: '260px',
+     // maxWidth: '270px',
     backgroundColor: '#fff',
     borderRadius: '24.5px',
     zIndex: '8',
