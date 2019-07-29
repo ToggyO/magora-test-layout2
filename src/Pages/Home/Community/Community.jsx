@@ -15,7 +15,7 @@ class Community extends React.Component {
                 <h2 className="fs-36 lh-36 ls-6 fs-700 h2-black t-align-l mb-2">What’s happening in your community?</h2>
                 <h3 className="fs-22 lh-22 fs-500 h3-lightGrey t-align-l">3 Featured projects showing, 2 most viewed and least supported idea.</h3>
               </div>
-              <div className="com-block__projectCards com-adapt__projectCards d-f fw-w">
+              <div className="com-block__projectCards com-adapt__projectCards d-f fw-w jc-c">
                 {projectCard.map( (card, i) => <ProjectCard key={i} card={card}/>)}
               </div>
             </div>

@@ -16,7 +16,7 @@ const ProjectCard = (props) => {
           </div>
         </div>
         <img className="projectCard-image" src={image.image} alt=""/>
-        <div className="projectCard-avatar pCard-adapt__avatar">
+        <div className="projectCard-avatar pCard-adapt__avatar d-f jc-c">
           <img src={image.avatar} alt=""/>
         </div>
         <div className="projectCard-info mb-2 pCard-adapt__info">

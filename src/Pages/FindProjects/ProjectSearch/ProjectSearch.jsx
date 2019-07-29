@@ -13,7 +13,7 @@ const ProjectSearch = () => {
 
   const [opened, toggleOpen] = useState(false);
 
-  if (opened) {
+  if (opened && window.innerWidth <= 991) {
     document.body.style.overflow = 'hidden';
   } else {
     document.body.style.overflow = 'scroll ';
@@ -21,9 +21,9 @@ const ProjectSearch = () => {
 
   return (
     <div className='projectSearch wrapper'>
-      <div className="projectSearch-container wrapper-container prS-adapt d-f pl-35 pr-35 pt-25 pb-25">
+      <div className={`projectSearch-container wrapper-container prS-adapt d-f pl-35 pr-35 pt-25 pb-25  ${ opened ? 'isOpen' : null }`}>
 
-        <div className="projectSearch-switchBtns prS-adapt__switchBtns d-f fd-c ai-c jc-sb">
+        <div className={`projectSearch-switchBtns prS-adapt__switchBtns d-f fd-c ai-c jc-sb ${ opened ? 'isOpen' : null }-buttons`}>
           <NavLink to='/projectSearch'>
             <button className='btn rounded roundedLarge' >
               <Icon iconName='searchProjectIcon' className='projectSmall'/>
@@ -44,11 +44,11 @@ const ProjectSearch = () => {
           </NavLink>
         </div>
 
-        <form className="projectSearch-filterBlock prS-adapt__filterBlock pl-32">
-          <div className="filterBlock__headlines prS-adapt__headlines h2-white fs-55 lh-75 fw-600 pb-9">
+        <form className={`projectSearch-filterBlock prS-adapt__filterBlock pl-32`}>
+          <div className={`filterBlock__headlines prS-adapt__headlines h2-white fs-55 lh-75 fw-600 pb-9 ${ opened ? 'isOpen' : null }-headlines`}>
             Find Projects<span className='h2-white fs-30 lh-41 fw-600 ml-4'>that matter to you</span>
           </div>
-          <div className="filterBlock__search k prS-adapt__search pt-7 pb-7">
+          <div className={`filterBlock__search k prS-adapt__search pt-7 pb-7 ${ opened ? 'isOpen' : null }-search`}>
             <div
               className='filterBlock__search-input prS-adapt__search-input d-f'
               onClick={ () => toggleOpen(!opened) }
@@ -61,7 +61,7 @@ const ProjectSearch = () => {
             </div>
           </div>
           <div className='filterBlock__filters prS-adapt__filters pt-7'>
-            <div className={`filters-sort prS-adapt__filters-sort d-f ${ opened ? 'isOpen' : null }`}>
+            <div className={`filters-sort prS-adapt__filters-sort d-f ${ opened ? 'isOpen' : null }-sort`}>
 
               <div className='filters-sort__sortBy'>
                 <Select
