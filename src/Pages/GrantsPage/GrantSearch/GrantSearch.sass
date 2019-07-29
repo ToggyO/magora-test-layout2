@@ -3,8 +3,8 @@
 @import "../../../../node_modules/rfs/sass"
 
 
-.projectSearch
-  background: url('/img/findProjects/Projects.png') no-repeat
+.grantSearch
+  background: url('/img/grantsPage/GrantsBG.png') no-repeat
   background-size: cover
   background-position-y: 50%
   height: 580px
@@ -66,13 +66,13 @@
 
 
 .filters-sort
-  &__sortBy
+  &__grantsSortBy
     width: 100%
 
-  &__category
+  &__grantsCategory
     width: 100%
 
-  &__benefits
+  &__grantsBenefits
     width: 100%
 
 
@@ -92,23 +92,6 @@
     padding: 40px 20px
   +r(xxs)
     padding: 20px 10px
-
-  &__switchBtns
-    +r(lg)
-      flex-direction: row
-      justify-content: space-around
-      margin: 0 auto
-      padding-top: 40px
-      width: 45%
-      a:nth-child(2), a:nth-child(3)
-        margin-left: 30px
-
-    +r(sm)
-      a:nth-child(2), a:nth-child(3)
-        margin-left: 60px
-    +r(xxs)
-      a:nth-child(2), a:nth-child(3)
-        margin-left: 25px
 
 
   &__search
@@ -144,7 +127,7 @@
       +r(lg)
         display: none
 
-  &__category
+  &__grantsCategory
     +r(xl)
       margin-left: 50px
     +r(lgx)
@@ -152,13 +135,31 @@
     +r(lg)
       margin: 25px 0 0 0
 
-  &__benefits
+  &__grantsBenefits
     +r(xl)
       margin-left: 50px
     +r(lgx)
       margin-left: 30px
     +r(lg)
       margin: 25px 0 0 0
+
+.grantsAdapt__switchBtns
+  +r(lg)
+    flex-direction: row
+    justify-content: space-around
+    margin: 0 auto
+    padding-top: 40px
+    width: 45%
+    a:nth-child(2), a:nth-child(3)
+      margin-left: 30px
+
+  +r(sm)
+    a:nth-child(2), a:nth-child(3)
+      margin-left: 60px
+  +r(xxs)
+    a:nth-child(2), a:nth-child(3)
+      margin-left: 25px
+
 
 
 //Displayed filters block
@@ -205,3 +206,7 @@
     padding: 40px 0 20px 0
     margin: 0 auto
 
+//
+//.smallSelect
+//  +r(lg)
+//    height: 40px

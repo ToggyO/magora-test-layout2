@@ -14,9 +14,17 @@ function Icons({ iconName, className }) {
       return (
         <SVG src="../img/footer/logo-green.svg" className={className} />
       );
+    case 'searchProjectIconLg':
+      return (
+        <SVG src="../img/findProjects/IdeaProjectsLg.svg" className={className} />
+      );
     case 'searchProjectIcon':
       return (
-        <SVG src="../img/findProjects/IdeaProjects.svg" className={className} />
+        <SVG src="../img/grantsPage/IdeaProjects.svg" className={className} />
+      );
+    case 'searchGrantsIconLg':
+      return(
+        <SVG src="../img/grantsPage/IdeaGrantsLg.svg" className={className} />
       );
     case 'searchGrantsIcon':
       return(
@@ -33,14 +41,6 @@ function Icons({ iconName, className }) {
     case 'squareCheckbox':
       return (
         <SVG src="../img/findProjects/checkbox.svg" className={className} />
-      );
-    case 'edit':
-      return (
-        <SVG src="../img/admin/edit.svg" className={className} />
-      );
-    case 'delete':
-      return (
-        <SVG src="../img/admin/del.svg" className={className} />
       );
     default:
       return (

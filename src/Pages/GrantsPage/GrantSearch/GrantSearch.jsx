@@ -1,15 +1,15 @@
 import React, {useState} from 'react';
 import Select from 'react-select'
-import './ProjectSearch.sass';
+import './GrantSearch.sass';
 import {NavLink} from "react-router-dom";
 import Icon from  '../../../Icons/Icons';
 import { styles } from '../../../Components/ReactSelect/Styles/filterStyles';
 import { moduleStyles } from '../../../Components/ReactSelect/Styles/modulesStyles';
-import {sortOptions, categoryOptions, benefitsOptions, modulesOptions} from '../FindProjectOptions';
+import {sortOptions, categoryOptions, benefitsOptions, modulesOptions} from '../GrantsPageOptions';
 import { Option, DropdownIndicator } from '../../../Components/ReactSelect/components/custom_components';
 
 
-const ProjectSearch = () => {
+const GrantSearch = () => {
 
   const [opened, toggleOpen] = useState(false);
 
@@ -20,21 +20,21 @@ const ProjectSearch = () => {
   }
 
   return (
-    <div className='projectSearch wrapper'>
-      <div className={`projectSearch-container wrapper-container prS-adapt d-f pl-35 pr-35 pt-25 pb-25  ${ opened ? 'isOpen' : null }`}>
+    <div className='grantSearch wrapper'>
+      <div className={`grantSearch-container wrapper-container prS-adapt d-f pl-35 pr-35 pt-25 pb-25  ${ opened ? 'isOpen' : null }`}>
 
-        <div className={`projectSearch-switchBtns prS-adapt__switchBtns d-f fd-c ai-c jc-sb ${ opened ? 'isOpen' : null }-buttons`}>
-          <NavLink to='/projectSearch'>
-            <button className='btn rounded roundedLarge' >
-              <Icon iconName='searchProjectIconLg' className='projectSmall'/>
+        <div className={`grantSearch-switchBtns grantsAdapt__switchBtns d-f fd-c ai-c jc-sb ${ opened ? 'isOpen' : null }-buttons`}>
+          <NavLink to='/projectSearch' className='d-f fd-c ai-c'>
+            <button className='btn rounded roundedSmall' >
+              <Icon iconName='searchProjectIcon' />
             </button>
-            <h6 className='h2-white fs-20 lh-27 fw-700 t-align-c'>Projects</h6>
+            <h6 className='h2-white fs-16 lh-22 fw-700 t-align-c'>Projects</h6>
           </NavLink>
           <NavLink to='/grantsSearch'>
-            <button className='btn rounded roundedSmall'>
-              <Icon iconName='searchGrantsIcon'/>
+            <button className='btn rounded roundedLarge'>
+              <Icon iconName='searchGrantsIconLg' className='grantsSmall'/>
             </button>
-            <h6 className='h2-white fs-16 lh-22 fw-700 t-align-c'>Grants</h6>
+            <h6 className='h2-white fs-20 lh-27 fw-700 t-align-c'>Gra`nts</h6>
           </NavLink>
           <NavLink to='/eventsSearch'>
             <button className='btn rounded roundedSmall'>
@@ -44,9 +44,9 @@ const ProjectSearch = () => {
           </NavLink>
         </div>
 
-        <form className={`projectSearch-filterBlock prS-adapt__filterBlock pl-32`}>
+        <form className={`grantSearch-filterBlock prS-adapt__filterBlock pl-32`}>
           <div className={`filterBlock__headlines prS-adapt__headlines h2-white fs-55 lh-75 fw-600 pb-9 ${ opened ? 'isOpen' : null }-headlines`}>
-            Find Projects<span className='h2-white fs-30 lh-41 fw-600 ml-4'>that matter to you</span>
+            Find Grants<span className='h2-white fs-30 lh-41 fw-600 ml-4'>that matter to you</span>
           </div>
           <div className={`filterBlock__search k prS-adapt__search pt-7 pb-7 ${ opened ? 'isOpen' : null }-search`}>
             <div
@@ -63,7 +63,7 @@ const ProjectSearch = () => {
           <div className='filterBlock__filters prS-adapt__filters pt-7'>
             <div className={`filters-sort prS-adapt__filters-sort d-f ${ opened ? 'isOpen' : null }-sort`}>
 
-              <div className='filters-sort__sortBy'>
+              <div className='filters-sort__grantsSortBy'>
                 <Select
                   components={{DropdownIndicator}}
                   styles={styles}
@@ -79,26 +79,26 @@ const ProjectSearch = () => {
                   styles={moduleStyles}
                   options={categoryOptions}
                   className='mt-6'
-                  placeholder={'Active modules'}
+                  placeholder={'Grant creator'}
                   inputValue=''
                   // isFocused={true}
                 />
               </div>
-              <div className='filters-sort__category prS-adapt__category ml-16'>
+              <div className='filters-sort__grantsCategory prS-adapt__grantsCategory ml-16'>
                 <Select
                   components={{DropdownIndicator}}
                   styles={styles}
                   options={benefitsOptions}
-                  placeholder={'Choose category'}
+                  placeholder={'Choose grant category'}
                   inputValue=''
                 />
               </div>
-              <div className='filters-sort__benefits prS-adapt__benefits ml-16'>
+              <div className='filters-sort__grantsBenefits prS-adapt__grantsBenefits ml-16'>
                 <Select
                   components={{DropdownIndicator}}
                   styles={styles}
                   options={modulesOptions}
-                  placeholder={'Choose benefits'}
+                  placeholder={'Choose grant benefits'}
                   inputValue=''
                 />
               </div>
@@ -129,7 +129,7 @@ const ProjectSearch = () => {
 
 
 
-export default ProjectSearch;
+export default GrantSearch;
 
 
 
