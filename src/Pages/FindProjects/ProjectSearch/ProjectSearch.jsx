@@ -62,6 +62,7 @@ const ProjectSearch = () => {
           </div>
           <div className='filterBlock__filters prS-adapt__filters pt-7'>
             <div className={`filters-sort prS-adapt__filters-sort d-f ${ opened ? 'isOpen' : null }`}>
+
               <div className='filters-sort__sortBy'>
                 <Select
                   components={{DropdownIndicator}}
