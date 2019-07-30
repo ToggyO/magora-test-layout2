@@ -43,7 +43,6 @@ const EventCard = (props) => {
             onClick={ () => {
               onClick();
               console.log(props.state);
-
               }
             }
           >

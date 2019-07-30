@@ -14,6 +14,7 @@ const EventProjects = (props) => {
       <div className="eventsProjects-content wrapper-container pl-31 pr-31 pt-13 pb-13 d-f fw-w jc-c">
         {eventCard.map( (card, i) => <EventCard key={i} card={card} onClick={ props.switchButton } state={ props.switchButtonState }/>)}
       </div>
+      <button onClick={ () => props.switchButton } >{ props.switchButtonState ? 'Attended event' : 'Attend' }</button>
     </div>
   )
 };

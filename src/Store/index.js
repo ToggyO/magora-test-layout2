@@ -1,10 +1,14 @@
-import {createStore} from "redux";
+import {applyMiddleware, createStore} from "redux";
 import { reducers } from './Reducers/reducers';
+import thunkMiddleware from 'redux-thunk';
+import { logger } from 'redux-logger';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 
-let store = createStore(reducers);
+let store = createStore(
+  reducers,
+  composeWithDevTools(applyMiddleware(logger, thunkMiddleware)),
+);
 
-//  (^_^)
-window.store = store;
 
 export default store;

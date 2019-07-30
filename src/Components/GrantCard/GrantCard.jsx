@@ -4,7 +4,7 @@ import './GrantCard.sass';
 
 const GrantCard = (props) => {
 
-  const { image, information, cost } = props.card;
+  const { image, information, } = props.card;
 
   return (
     <div className="grantCard pCard-adapt pl-10 pr-10 pt-5 pb-5">

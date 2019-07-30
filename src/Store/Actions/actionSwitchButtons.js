@@ -4,7 +4,7 @@ export const SWITCH_BUTTON_ACTIONS = {
 };
 
 
-export const attendButtonSwitch = (modalKey, options) => {
+export const attendButtonSwitch = () => {
   return {
     type: SWITCH_BUTTON_ACTIONS.ATTEND_BUTTON
   };

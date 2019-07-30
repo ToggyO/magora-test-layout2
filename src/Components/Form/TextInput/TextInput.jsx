@@ -13,17 +13,18 @@ const TextInput = (props) => {
   return (
     <div className={s.inputBlock}>
       <InputWrapper label={label} error={error} visited={visited} inputId={inputId}>
-        <input
-          id={inputId}
-          className={ error && visited ? 'error' : null }
-          type={type}
-          placeholder={placeholder}
-          value={value}
-          name={name}
-          onChange={onChange}
-          onBlur={onBlur}
-          style={style}
-        />
+        <div className={`${s.inputBlock_texInput} ${error && visited ? 'error' : null}`}>
+          <input
+            id={inputId}
+            type={type}
+            placeholder={placeholder}
+            value={value}
+            name={name}
+            onChange={onChange}
+            onBlur={onBlur}
+            style={style}
+          />
+        </div>
       </InputWrapper>
     </div>
   )
