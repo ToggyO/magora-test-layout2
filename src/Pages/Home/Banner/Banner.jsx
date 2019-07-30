@@ -1,8 +1,10 @@
 import React from 'react';
 import './Banner.sass';
+import {modalOpen} from "../../../Store/Actions/actionModal";
+import {connect} from "react-redux";
 
 
-const Banner = () => {
+const Banner = (props) => {
   return (
       <div className="banner wrapper">
         <div className="banner-container wrapper-container d-f jc-c ai-c">
@@ -14,13 +16,32 @@ const Banner = () => {
             <div className="banner-search__block">
               <form action="" className="search-block__form wrapper d-f">
                 <input className="search-block__input sh-inputLarge input-lg h6-skyFont fs-16 w-75 pl-10" type="text" placeholder="Describe your idea"/>
-                <button className="search-block__create btn green md fs-18 ls-27 lh-18 fw-600 ml-20 w-25 sh-btn-lg">Create project</button>
+                <button
+                  className="search-block__create btn green md fs-18 ls-27 lh-18 fw-600 ml-20 w-25 sh-btn-lg"
+                  onClick={ (e) => {
+                    e.preventDefault();
+                    props.openModal('signInModal');
+                    }
+                  }
+                >
+                  Create project
+                </button>
               </form>
             </div>
           </div>
         </div>
       </div>
   );
-}
+};
 
-export default Banner;
+
+let mapDispatchToProps = (dispatch) => {
+  return {
+    openModal: (modalKey) => {
+      dispatch( modalOpen(modalKey) );
+    }
+  }
+};
+
+
+export default connect( null, mapDispatchToProps )(Banner);

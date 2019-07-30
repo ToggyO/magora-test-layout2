@@ -80,6 +80,7 @@ export default function formInitialize(fieldArray, validationConditions) {
   }
 
   function handleBlur(e) {
+    debugger;
     const {target: {name}} = e;
 
     this.setState({

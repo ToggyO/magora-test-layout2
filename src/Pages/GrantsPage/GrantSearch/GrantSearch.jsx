@@ -32,9 +32,9 @@ const GrantSearch = () => {
           </NavLink>
           <NavLink to='/grantsSearch'>
             <button className='btn rounded roundedLarge'>
-              <Icon iconName='searchGrantsIconLg' className='grantsSmall'/>
+              <Icon iconName='searchGrantsIconLg' className='projectSmall'/>
             </button>
-            <h6 className='h2-white fs-20 lh-27 fw-700 t-align-c'>Gra`nts</h6>
+            <h6 className='h2-white fs-20 lh-27 fw-700 t-align-c'>Grants</h6>
           </NavLink>
           <NavLink to='/eventsSearch'>
             <button className='btn rounded roundedSmall'>
@@ -146,7 +146,7 @@ export default GrantSearch;
 //
 // import React, { type ElementConfig } from 'react';
 // import Select, {components} from 'react-select'
-// import './GrantSearch.sass';
+// import './EventSearch.sass';
 // import {NavLink} from "react-router-dom";
 // import Icon from  '../../../Icons/Icons';
 // import { styles } from  './selectStyles';

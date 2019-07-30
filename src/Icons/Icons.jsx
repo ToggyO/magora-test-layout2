@@ -42,6 +42,14 @@ function Icons({ iconName, className }) {
       return (
         <SVG src="../img/findProjects/checkbox.svg" className={className} />
       );
+    case 'calendar':
+      return (
+        <SVG src="../img/findProjects/IdeaEvents.svg" className={className} />
+      );
+    case 'searchEventsIconLg':
+      return (
+        <SVG src="../img/eventsPage/IdeaEventsLg.svg" className={className} />
+      );
     default:
       return (
         <SVG src="../img/icons/plugIcon.svg" className={className} />

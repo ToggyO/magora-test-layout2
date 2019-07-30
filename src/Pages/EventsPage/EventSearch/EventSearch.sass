@@ -3,17 +3,14 @@
 @import "../../../../node_modules/rfs/sass"
 
 
-.grantSearch
-  background: url('/img/grantsPage/GrantsBG.png') no-repeat
+.eventSearch
+  background: url('/img/eventsPage/search-events.png') no-repeat
   background-size: cover
   background-position-y: 50%
   height: 580px
   //margin-bottom: 10px
-  +r(xl)
-    background-position-x: 60%
   +r(lg)
     height: 480px
-    background-position-x: 80%
   +r(xs)
     height: 400px
   +r(xxs)
@@ -69,13 +66,20 @@
 
 
 .filters-sort
-  &__grantsSortBy
+
+  &__dateContainer
     width: 100%
 
-  &__grantsCategory
+    &-catBen
+
+  &__eventsSortBy
+    width: 30%
+    min-width: 260px
+
+  &__eventsCategory
     width: 100%
 
-  &__grantsBenefits
+  &__eventsBenefits
     width: 100%
 
 
@@ -107,6 +111,10 @@
           display: none
 
   &__filterBlock
+    +r(xxl)
+      padding-left: 100px
+    +r(xl)
+      padding-left: 70px
     +r(lg)
       padding: 0
 
@@ -130,23 +138,23 @@
       +r(lg)
         display: none
 
-  &__grantsCategory
+  &__eventsCategory
     +r(xl)
-      margin-left: 50px
-    +r(lgx)
       margin-left: 30px
+    //+r(lgx)
+    //  margin-left: 30px
     +r(lg)
       margin: 25px 0 0 0
 
-  &__grantsBenefits
+  &__eventsBenefits
     +r(xl)
-      margin-left: 50px
-    +r(lgx)
       margin-left: 30px
+    //+r(lgx)
+    //  margin-left: 30px
     +r(lg)
       margin: 25px 0 0 0
 
-.grantsAdapt__switchBtns
+.eventsAdapt__switchBtns
   +r(lg)
     flex-direction: row
     justify-content: space-around
@@ -202,6 +210,26 @@
       padding: 0 20px
       overflow: hidden
       height: 100vh
+
+    &__sort
+      +r(lg)
+        width: 100%
+
+    &__dateContainer
+      +r(lg)
+        display: flex
+        flex-direction: column-reverse
+
+      &-datePicker
+        +r(lg)
+          flex-direction: column
+
+
+      &-catBen
+        +r(lg)
+          display: flex
+          flex-direction: column
+          margin-top: 0
 
 
 .showApplyButton

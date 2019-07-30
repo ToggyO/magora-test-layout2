@@ -8,6 +8,7 @@ import Home from './Pages/Home/Home';
 import Registration from './Pages/Registration/Registration';
 import FindProjects from "./Pages/FindProjects/FindProjects";
 import GrantsPage from "./Pages/GrantsPage/GrantsPage";
+import EventsPage from "./Pages/EventsPage/EventsPage";
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route exact path='/registration' component={Registration}/>
         <Route exact path='/projectSearch' component={FindProjects}/>
         <Route exact path='/grantsSearch' component={GrantsPage}/>
+        <Route exact path='/eventsSearch' component={EventsPage}/>
       </>
       <Footer />
     </div>
