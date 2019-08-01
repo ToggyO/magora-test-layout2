@@ -1,15 +1,23 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Select from 'react-select'
 import './ProjectSearch.sass';
 import {NavLink} from "react-router-dom";
 import Icon from  '../../../Icons/Icons';
 import { styles } from '../../../Components/ReactSelect/Styles/filterStyles';
 import { moduleStyles } from '../../../Components/ReactSelect/Styles/modulesStyles';
-import {sortOptions, categoryOptions, benefitsOptions, modulesOptions} from '../FindProjectOptions';
 import { Option, DropdownIndicator } from '../../../Components/ReactSelect/components/custom_components';
+import {bindActionCreators} from "redux";
+import {connect} from "react-redux";
+import {getOptions} from "../../../Store/Actions/actionGetSortOptions";
+import {modulesOptions, sortOptions} from "../FindProjectOptions";
 
 
-const ProjectSearch = () => {
+
+const ProjectSearch = (props) => {
+
+  useEffect( () => {
+      props.getOptions();
+  },[]);
 
   const [opened, toggleOpen] = useState(false);
 
@@ -18,6 +26,20 @@ const ProjectSearch = () => {
   } else {
     document.body.style.overflow = 'scroll ';
   }
+
+ let categoryOptions =  props.fetchedOptions.categories.map(item => {
+    return {
+            value: item.id,
+            label: item.name
+          }
+  });
+  let benefitsOptions =  props.fetchedOptions.benefits.map(item => {
+    return {
+      value: item.id,
+      label: item.name
+    }
+  });
+
 
   return (
     <div className='projectSearch wrapper'>
@@ -44,7 +66,10 @@ const ProjectSearch = () => {
           </NavLink>
         </div>
 
-        <form className={`projectSearch-filterBlock prS-adapt__filterBlock pl-32`}>
+        <form
+          className={`projectSearch-filterBlock prS-adapt__filterBlock pl-32`}
+          onSubmit={() => {}}
+        >
           <div className={`filterBlock__headlines prS-adapt__headlines h2-white fs-55 lh-75 fw-600 pb-9 ${ opened ? 'isOpen' : null }-headlines`}>
             Find Projects<span className='h2-white fs-30 lh-41 fw-600 ml-4'>that matter to you</span>
           </div>
@@ -56,7 +81,11 @@ const ProjectSearch = () => {
               <Icon iconName='shape' className='shape__grey ml-7'/>
               <input className='fs-18 lh-22 ls-6 fw-500' type="text" placeholder='Search Projects by Postcode, Suburb or State' />
               <span>
-                <button className='btn blue xs fs-20 lh-27'>Find</button>
+                <button type='submit'
+                  className='btn blue xs fs-20 lh-27'
+                >
+                  Find
+                </button>
               </span>
             </div>
           </div>
@@ -70,6 +99,7 @@ const ProjectSearch = () => {
                   options={sortOptions}
                   placeholder={'Sort By...'}
                   inputValue=''
+
                 />
                 <Select
                   components={{DropdownIndicator, Option}}
@@ -77,7 +107,7 @@ const ProjectSearch = () => {
                   closeMenuOnSelect={false}
                   hideSelectedOptions={false}
                   styles={moduleStyles}
-                  options={categoryOptions}
+                  options={modulesOptions}
                   className='mt-6'
                   placeholder={'Active modules'}
                   inputValue=''
@@ -88,7 +118,7 @@ const ProjectSearch = () => {
                 <Select
                   components={{DropdownIndicator}}
                   styles={styles}
-                  options={benefitsOptions}
+                  options={categoryOptions}
                   placeholder={'Choose category'}
                   inputValue=''
                 />
@@ -97,7 +127,7 @@ const ProjectSearch = () => {
                 <Select
                   components={{DropdownIndicator}}
                   styles={styles}
-                  options={modulesOptions}
+                  options={benefitsOptions}
                   placeholder={'Choose benefits'}
                   inputValue=''
                 />
@@ -128,8 +158,16 @@ const ProjectSearch = () => {
 };
 
 
+let mapStateToProps = ({ fetchedOptions }) => ({ fetchedOptions, });
 
-export default ProjectSearch;
+let mapDispatchToProps = (dispatch) => {
+  return {
+    getOptions: bindActionCreators(getOptions, dispatch)
+  }
+};
+
+export default connect( mapStateToProps, mapDispatchToProps )(ProjectSearch);
+
 
 
 

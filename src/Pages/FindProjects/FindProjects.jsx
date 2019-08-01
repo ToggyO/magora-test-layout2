@@ -7,7 +7,7 @@ import CommunityProjects from "./CommunityProjects/CommunityProjects";
 const FindProjects = (props) => {
   return (
     <>
-      <ProjectSearch />
+      <ProjectSearch {...props}/>
       <CommunityProjects {...props}/>
     </>
   )

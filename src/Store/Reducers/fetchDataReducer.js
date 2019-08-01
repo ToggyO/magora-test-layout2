@@ -1,4 +1,4 @@
-import { FETCHED_DATA } from '../Actions/actionFetchData';
+import { FETCHED_PROJECTS_DATA } from '../Actions/actionFetchProjectsData';
 
 let InitialState = {
   items: [],
@@ -6,19 +6,18 @@ let InitialState = {
   loading: false,
   pageSize: 9,
   totalCardsCount: 0,
-  currentPage: 1
-
+  currentPage: 1,
 };
 
 
-const fetchDataReducer = (state = InitialState, action) => {
+const fetchedDataReducer = (state = InitialState, action) => {
   switch(action.type) {
-    case FETCHED_DATA.REQUEST_PROJECTS:
+    case FETCHED_PROJECTS_DATA.REQUEST_PROJECTS:
       return {
         ...state,
         loading: true
       };
-    case FETCHED_DATA.RECEIVE_PROJECTS:
+    case FETCHED_PROJECTS_DATA.RECEIVE_PROJECTS:
       return {
         ...state,
         ...action.payload,
@@ -31,4 +30,4 @@ const fetchDataReducer = (state = InitialState, action) => {
   }
 };
 
-export default fetchDataReducer;
+export default fetchedDataReducer;

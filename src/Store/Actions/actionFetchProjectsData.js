@@ -1,20 +1,19 @@
 import axios from "axios";
 
-export const FETCHED_DATA = {
+export const FETCHED_PROJECTS_DATA = {
   REQUEST_PROJECTS: 'REQUEST_PROJECTS',
   RECEIVE_PROJECTS: 'RECEIVE_PROJECTS',
-  INVALID_DATA: 'INVALID_DATA',
 };
 
 const requestProjects = () => {
   return {
-    type: FETCHED_DATA.REQUEST_PROJECTS,
+    type: FETCHED_PROJECTS_DATA.REQUEST_PROJECTS,
   }
 };
 
 const receiveProjects = (projects) => {
   return {
-    type: FETCHED_DATA.RECEIVE_PROJECTS,
+    type: FETCHED_PROJECTS_DATA.RECEIVE_PROJECTS,
     payload: projects.data.data,
   }
 };
@@ -26,3 +25,4 @@ export const getProjects = (page, pageSize) => {
       .then(res => dispatch(receiveProjects(res)))
   };
 };
+
