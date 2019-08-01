@@ -4,11 +4,11 @@ import ProjectSearch from "./ProjectSearch/ProjectSearch";
 import CommunityProjects from "./CommunityProjects/CommunityProjects";
 
 
-const FindProjects = () => {
+const FindProjects = (props) => {
   return (
     <>
       <ProjectSearch />
-      <CommunityProjects />
+      <CommunityProjects {...props}/>
     </>
   )
 };

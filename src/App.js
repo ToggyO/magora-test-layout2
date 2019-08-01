@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 import './App.sass';
 import Header from './Components/Header/Header';
 import Footer from './Components/Footer/Footer';
@@ -17,11 +17,13 @@ function App() {
       <Modal />
       <Header />
       <>
-        <Route exact path='/' component={Home}/>
-        <Route exact path='/registration' component={Registration}/>
-        <Route exact path='/projectSearch' component={FindProjects}/>
-        <Route exact path='/grantsSearch' component={GrantsPage}/>
-        <Route exact path='/eventsSearch' component={EventsPage}/>
+        <Switch>
+          <Route exact path='/' component={Home}/>
+          <Route path='/registration' component={Registration}/>
+          <Route path='/projectSearch' component={FindProjects}/>
+          <Route path='/grantsSearch' component={GrantsPage}/>
+          <Route path='/eventsSearch' component={EventsPage}/>
+        </Switch>
       </>
       <Footer />
     </div>

@@ -6,6 +6,7 @@ import switchButtonReducer from "./switchButtonReducer";
 
 
 export const reducers = combineReducers({
+
   modalState: modalReducer,
   fetchedData: fetchDataReducer,
   switchButtonState: switchButtonReducer,
