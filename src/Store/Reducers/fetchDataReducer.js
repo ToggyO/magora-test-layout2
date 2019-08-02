@@ -7,6 +7,14 @@ let InitialState = {
   pageSize: 9,
   totalCardsCount: 0,
   currentPage: 1,
+  sortOptions: {
+    sort: '',
+    category: '',
+    benefit: '',
+    // volunteering: false,
+    // petition: false,
+    // crowdfunding: false,
+  }
 };
 
 
@@ -24,6 +32,15 @@ const fetchedDataReducer = (state = InitialState, action) => {
         loading: false,
         totalCardsCount: action.payload.total,
         currentPage: action.payload.page,
+      };
+    case FETCHED_PROJECTS_DATA.PROJECT_SORT_VALUES:
+    debugger;
+      return {
+        ...state,
+        sortOptions: {
+          ...state.sortOptions,
+          [action.payload.name]: action.payload.value
+        }
       };
     default:
       return state;

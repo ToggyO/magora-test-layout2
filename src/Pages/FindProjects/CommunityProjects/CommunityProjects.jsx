@@ -5,7 +5,7 @@ import { getProjects } from "../../../Store/Actions/actionFetchProjectsData";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import history from "../../../history";
-// import { parse } from 'qs';
+import { parse } from 'qs';
 
 
 class CommunityProjects extends React.Component {
@@ -15,20 +15,20 @@ class CommunityProjects extends React.Component {
   componentDidMount() {
     window.scrollTo(0, 0);
 
-    let params = { };
-    let url = this.props.location.search;
+    // let params = { };
+    // let url = this.props.location.search;
 
-    if (url) {
-      // debugger;
-      url.split('?')[1].split('&').map(item => {
-        const key = item.split('=')[0];
-        const value = item.split('=')[1];
-        params[key] = value;
-      });
-    }
-    // const queryString = parse( this.props.location.search, { ignoreQueryPrefix: true });
-    // this.props.getProjects( queryString.page || this.data.currentPage, this.data.pageSize);
-    this.props.getProjects( params.page || this.data.currentPage, this.data.pageSize);
+    // if (url) {
+      // url.split('?')[1].split('&').map(item => {
+      //
+      //   const [key,value] = item.split('=')
+      //   params[key] = value;
+      // });
+    // }
+    // this.props.getProjects( params.page || this.data.currentPage, this.data.pageSize);
+    const queryString = parse( this.props.location.search, { ignoreQueryPrefix: true });
+    this.props.getProjects( queryString.page || this.data.currentPage, this.data.pageSize);
+
   }
 
   componentDidUpdate() {
@@ -54,9 +54,11 @@ class CommunityProjects extends React.Component {
             className={ this.props.currentPage === page ? 'selectedPage' : '' }
             onClick={ (e) => {
               this.props.getProjects(page, this.data.pageSize);
-              history.push(`/projectSearch?page=${page}`);
+              let pagesHistory = `page=${page}`;
+              history.push(`?${pagesHistory}`);
             }
           }
+
           style={{marginLeft: 10}}
           key={i}
         >
