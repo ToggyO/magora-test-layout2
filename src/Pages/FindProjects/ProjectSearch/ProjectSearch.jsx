@@ -85,7 +85,7 @@ const ProjectSearch = (props) => {
           className={`projectSearch-filterBlock prS-adapt__filterBlock pl-32`}
           onSubmit={ (e) => {
               e.preventDefault();
-              makeQueryString(props.fetchedProjectsData.sortOptions);
+              makeQueryString(props.fetchedProjectsData);
             }
 
           }

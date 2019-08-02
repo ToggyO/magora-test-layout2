@@ -10,22 +10,10 @@ import { parse } from 'qs';
 
 class CommunityProjects extends React.Component {
 
-  data = this.props.fetchedProjectsData;
+  data = this.props.fetchedProjectsData.history;
 
   componentDidMount() {
     window.scrollTo(0, 0);
-
-    // let params = { };
-    // let url = this.props.location.search;
-
-    // if (url) {
-      // url.split('?')[1].split('&').map(item => {
-      //
-      //   const [key,value] = item.split('=')
-      //   params[key] = value;
-      // });
-    // }
-    // this.props.getProjects( params.page || this.data.currentPage, this.data.pageSize);
     const queryString = parse( this.props.location.search, { ignoreQueryPrefix: true });
     this.props.getProjects( queryString.page || this.data.currentPage, this.data.pageSize);
 
@@ -38,7 +26,7 @@ class CommunityProjects extends React.Component {
   render() {
 
     let projectsList = this.props.fetchedProjectsData.items.map((item, i) => <ProjectCard key={item.idea.id} item={item}/>);
-    let pagesCount = Math.ceil(this.props.fetchedProjectsData.totalCardsCount / this.props.fetchedProjectsData.pageSize);
+    let pagesCount = Math.ceil(this.props.fetchedProjectsData.totalCardsCount / this.props.fetchedProjectsData.history.pageSize);
     let pages = [ ];
     for (let i = 1; i <= pagesCount; i++) {
       pages.push(i);

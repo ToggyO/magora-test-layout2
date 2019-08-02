@@ -11,7 +11,8 @@ import GrantsPage from "./Pages/GrantsPage/GrantsPage";
 import EventsPage from "./Pages/EventsPage/EventsPage";
 
 
-function App() {
+function App(props) {
+  debugger;
   return (
     <div className="App">
       <Modal />
@@ -20,7 +21,7 @@ function App() {
         <Switch>
           <Route exact path='/' component={Home}/>
           <Route path='/registration' component={Registration}/>
-          <Route path='/projectSearch' component={FindProjects}/>
+          <Route path='/projectSearch' render={() => <FindProjects {...props}/>}/>
           <Route path='/grantsSearch' component={GrantsPage}/>
           <Route path='/eventsSearch' component={EventsPage}/>
         </Switch>
