@@ -14,6 +14,7 @@ import {projectsSortValues} from "../../../Store/Actions/actionFetchProjectsData
 
 
 
+
 const ProjectSearch = (props) => {
 
   useEffect( () => {
@@ -53,6 +54,7 @@ const ProjectSearch = (props) => {
     console.log(queryString);
   };
 
+
   return (
     <div className='projectSearch wrapper'>
       <div className={`projectSearch-container wrapper-container prS-adapt d-f pl-35 pr-35 pt-25 pb-25  ${ opened ? 'isOpen' : null }`}>
@@ -82,10 +84,12 @@ const ProjectSearch = (props) => {
           className={`projectSearch-filterBlock prS-adapt__filterBlock pl-32`}
           onSubmit={ (e) => {
               e.preventDefault();
+              debugger;
               makeQueryString(props.fetchedProjectsData.history);
             }
           }
           >
+
           <div className={`filterBlock__headlines prS-adapt__headlines h2-white fs-55 lh-75 fw-600 pb-9 ${ opened ? 'isOpen' : null }-headlines`}>
             Find Projects<span className='h2-white fs-30 lh-41 fw-600 ml-4'>that matter to you</span>
           </div>
@@ -116,6 +120,7 @@ const ProjectSearch = (props) => {
                   placeholder={'Sort By...'}
                   inputValue=''
                   onChange={value => props.projectsSortValues(value.value, 'sort')}
+
                 />
                 <Select
                   components={{DropdownIndicator, Option}}
@@ -137,6 +142,7 @@ const ProjectSearch = (props) => {
                   options={categoryOptions}
                   placeholder={'Choose category'}
                   inputValue=''
+                  onChange={value => props.projectsSortValues(value.value, 'category')}
                 />
               </div>
               <div className='filters-sort__benefits prS-adapt__benefits ml-16'>
@@ -146,6 +152,7 @@ const ProjectSearch = (props) => {
                   options={benefitsOptions}
                   placeholder={'Choose benefits'}
                   inputValue=''
+                  onChange={value => props.projectsSortValues(value.value, 'benefits')}
                 />
               </div>
               <div
@@ -173,14 +180,12 @@ const ProjectSearch = (props) => {
   )
 };
 
-
-let mapStateToProps = ({ fetchedOptions }) => ({ fetchedOptions, });
+let mapStateToProps = ({ fetchedOptions, fetchedProjectsData, }) => ({ fetchedOptions, fetchedProjectsData, });
 
 let mapDispatchToProps = (dispatch) => {
   return {
     getOptions: bindActionCreators(getOptions, dispatch),
     projectsSortValues: bindActionCreators(projectsSortValues, dispatch)
-
   }
 };
 

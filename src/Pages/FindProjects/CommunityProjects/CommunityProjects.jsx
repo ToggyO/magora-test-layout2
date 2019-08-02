@@ -5,20 +5,30 @@ import { getProjects } from "../../../Store/Actions/actionFetchProjectsData";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import history from "../../../history";
-import { parse } from 'qs';
+// import { parse } from 'qs';
 
 
 class CommunityProjects extends React.Component {
 
-  data = this.props.fetchedProjectsData.history;
+  data = this.props.fetchedProjectsData;
 
   componentDidMount() {
     window.scrollTo(0, 0);
 
-    const queryString = parse( this.props.location.search, { ignoreQueryPrefix: true });
-    console.log(queryString);
-    this.props.getProjects( queryString.page || this.data.currentPage, this.data.pageSize);
+    let params = { };
+    let url = this.props.location.search;
 
+    if (url) {
+      // debugger;
+      url.split('?')[1].split('&').map(item => {
+        const key = item.split('=')[0];
+        const value = item.split('=')[1];
+        params[key] = value;
+      });
+    }
+    // const queryString = parse( this.props.location.search, { ignoreQueryPrefix: true });
+    // this.props.getProjects( queryString.page || this.data.currentPage, this.data.pageSize);
+    this.props.getProjects( params.page || this.data.currentPage, this.data.pageSize);
   }
 
   componentDidUpdate() {
@@ -28,7 +38,7 @@ class CommunityProjects extends React.Component {
   render() {
 
     let projectsList = this.props.fetchedProjectsData.items.map((item, i) => <ProjectCard key={item.idea.id} item={item}/>);
-    let pagesCount = Math.ceil(this.props.fetchedProjectsData.totalCardsCount / this.props.fetchedProjectsData.history.pageSize);
+    let pagesCount = Math.ceil(this.props.fetchedProjectsData.totalCardsCount / this.props.fetchedProjectsData.pageSize);
     let pages = [ ];
     for (let i = 1; i <= pagesCount; i++) {
       pages.push(i);

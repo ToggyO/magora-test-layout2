@@ -12,7 +12,8 @@ let InitialState = {
     category: '',
     benefit: '',
   }
-}
+};
+
 
 const fetchedDataReducer = (state = InitialState, action) => {
   switch(action.type) {
@@ -32,8 +33,8 @@ const fetchedDataReducer = (state = InitialState, action) => {
     case FETCHED_PROJECTS_DATA.PROJECT_SORT_VALUES:
       return {
         ...state,
-        sortOptions: {
-          ...state.sortOptions,
+        history: {
+          ...state.history,
           [action.payload.name]: action.payload.value
         }
       };
