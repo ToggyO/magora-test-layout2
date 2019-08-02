@@ -19,7 +19,7 @@ export const Option = props => {
           }
         }
       />
-      {props.label}
+      {props.value}
       <span
         style={
           {

@@ -10,8 +10,6 @@ import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 import {getOptions} from "../../../Store/Actions/actionGetSortOptions";
 import {modulesOptions, sortOptions} from "../FindProjectOptions";
-import {projectsSortValues} from "../../../Store/Actions/actionFetchProjectsData";
-import history from "../../../history";
 
 
 
@@ -42,11 +40,10 @@ const ProjectSearch = (props) => {
     }
   });
 
-
   const makeQueryString = (obj) => {
     let queryString = '?';
-
     Object.keys(obj).forEach(key => {
+    debugger;
       if (obj[key]) {
         return queryString += `&${key}=${obj[key]}`;
       } else {
@@ -87,9 +84,8 @@ const ProjectSearch = (props) => {
               e.preventDefault();
               makeQueryString(props.fetchedProjectsData);
             }
-
           }
-        >
+          >
           <div className={`filterBlock__headlines prS-adapt__headlines h2-white fs-55 lh-75 fw-600 pb-9 ${ opened ? 'isOpen' : null }-headlines`}>
             Find Projects<span className='h2-white fs-30 lh-41 fw-600 ml-4'>that matter to you</span>
           </div>
@@ -119,8 +115,7 @@ const ProjectSearch = (props) => {
                   options={sortOptions}
                   placeholder={'Sort By...'}
                   inputValue=''
-                  // value={props.sortedValues.sort}
-                  onChange={ value =>  props.projectsSortValues(value.label, 'sort')}
+
                 />
                 <Select
                   components={{DropdownIndicator, Option}}
@@ -142,8 +137,6 @@ const ProjectSearch = (props) => {
                   options={categoryOptions}
                   placeholder={'Choose category'}
                   inputValue=''
-                  // value={props.sortedValues.category}
-                  onChange={ value =>  props.projectsSortValues(value.value, 'category')}
                 />
               </div>
               <div className='filters-sort__benefits prS-adapt__benefits ml-16'>
@@ -153,8 +146,6 @@ const ProjectSearch = (props) => {
                   options={benefitsOptions}
                   placeholder={'Choose benefits'}
                   inputValue=''
-                  // value={props.sortedValues.benefit}
-                  onChange={ value =>  props.projectsSortValues(value.value, 'benefit')}
                 />
               </div>
               <div
@@ -183,12 +174,11 @@ const ProjectSearch = (props) => {
 };
 
 
-let mapStateToProps = ({ fetchedOptions, fetchedProjectsData, }) => ({ fetchedOptions, fetchedProjectsData, });
+let mapStateToProps = ({ fetchedOptions }) => ({ fetchedOptions, });
 
 let mapDispatchToProps = (dispatch) => {
   return {
-    getOptions: bindActionCreators(getOptions, dispatch),
-    projectsSortValues: bindActionCreators(projectsSortValues, dispatch),
+    getOptions: bindActionCreators(getOptions, dispatch)
   }
 };
 

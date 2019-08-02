@@ -2,14 +2,14 @@ import React from 'react';
 import s from './FormError.module.sass';
 
 
-const FormError = ({ error, visited }) => {
+const FormError = (props) => {
 
-  // const  = props;
+  // const { error, visited } = props;
 
-  if (error && visited) {
+  if (props.error && props.visited) {
     return (
       <div className={s.form_error}>
-        {error}
+        {props.error}
       </div>
     );
   }

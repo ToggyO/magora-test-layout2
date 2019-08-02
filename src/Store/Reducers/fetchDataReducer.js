@@ -12,12 +12,7 @@ let InitialState = {
     category: '',
     benefit: '',
   }
-  // volunteering: false,
-  // petition: false,
-  // crowdfunding: false,
-
-};
-
+}
 
 const fetchedDataReducer = (state = InitialState, action) => {
   switch(action.type) {

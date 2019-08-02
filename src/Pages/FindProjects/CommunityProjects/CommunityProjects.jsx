@@ -14,6 +14,7 @@ class CommunityProjects extends React.Component {
 
   componentDidMount() {
     window.scrollTo(0, 0);
+
     const queryString = parse( this.props.location.search, { ignoreQueryPrefix: true });
     this.props.getProjects( queryString.page || this.data.currentPage, this.data.pageSize);
 
@@ -42,11 +43,9 @@ class CommunityProjects extends React.Component {
             className={ this.props.currentPage === page ? 'selectedPage' : '' }
             onClick={ (e) => {
               this.props.getProjects(page, this.data.pageSize);
-              let pagesHistory = `page=${page}`;
-              history.push(`?${pagesHistory}`);
+              history.push(`/projectSearch?page=${page}`);
             }
           }
-
           style={{marginLeft: 10}}
           key={i}
         >

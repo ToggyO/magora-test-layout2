@@ -20,6 +20,7 @@ const receiveProjects = (projects) => {
 };
 
 export const projectsSortValues = (value, name) => {
+debugger;
   return {
     type: FETCHED_PROJECTS_DATA.PROJECT_SORT_VALUES,
     payload: {
