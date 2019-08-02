@@ -16,6 +16,7 @@ class CommunityProjects extends React.Component {
     window.scrollTo(0, 0);
 
     const queryString = parse( this.props.location.search, { ignoreQueryPrefix: true });
+    console.log(queryString);
     this.props.getProjects( queryString.page || this.data.currentPage, this.data.pageSize);
 
   }

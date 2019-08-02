@@ -12,7 +12,6 @@ import EventsPage from "./Pages/EventsPage/EventsPage";
 
 
 function App(props) {
-  debugger;
   return (
     <div className="App">
       <Modal />

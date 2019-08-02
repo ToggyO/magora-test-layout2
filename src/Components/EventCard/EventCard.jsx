@@ -5,7 +5,7 @@ import './EventCard.sass';
 const EventCard = (props) => {
 
   const { image, information, } = props.card;
-  const { onClick } = props;
+
 
   return (
     <div className="eventCard eVcard-adapt pl-10 pr-10 pt-5 pb-5">
@@ -40,13 +40,8 @@ const EventCard = (props) => {
         <div className="eventCard-btn eVcard-adapt__btn mb-4 pl-7 pr-7">
           <button
             className={`btn green lg sh-btn-sm`}
-            onClick={ () => {
-              onClick();
-              console.log(props.state);
-              }
-            }
           >
-            { props.state ? 'Attended event' : 'Attend' }
+            111
           </button>
         </div>
       </div>

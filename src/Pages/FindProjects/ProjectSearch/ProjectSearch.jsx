@@ -10,6 +10,7 @@ import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 import {getOptions} from "../../../Store/Actions/actionGetSortOptions";
 import {modulesOptions, sortOptions} from "../FindProjectOptions";
+import {projectsSortValues} from "../../../Store/Actions/actionFetchProjectsData";
 
 
 
@@ -29,9 +30,9 @@ const ProjectSearch = (props) => {
 
  let categoryOptions =  props.fetchedOptions.categories.map(item => {
     return {
-            value: item.id,
-            label: item.name
-          }
+      value: item.id,
+      label: item.name
+    }
   });
   let benefitsOptions =  props.fetchedOptions.benefits.map(item => {
     return {
@@ -43,7 +44,6 @@ const ProjectSearch = (props) => {
   const makeQueryString = (obj) => {
     let queryString = '?';
     Object.keys(obj).forEach(key => {
-    debugger;
       if (obj[key]) {
         return queryString += `&${key}=${obj[key]}`;
       } else {
@@ -82,7 +82,7 @@ const ProjectSearch = (props) => {
           className={`projectSearch-filterBlock prS-adapt__filterBlock pl-32`}
           onSubmit={ (e) => {
               e.preventDefault();
-              makeQueryString(props.fetchedProjectsData);
+              makeQueryString(props.fetchedProjectsData.history);
             }
           }
           >
@@ -115,7 +115,7 @@ const ProjectSearch = (props) => {
                   options={sortOptions}
                   placeholder={'Sort By...'}
                   inputValue=''
-
+                  onChange={value => props.projectsSortValues(value.value, 'sort')}
                 />
                 <Select
                   components={{DropdownIndicator, Option}}
@@ -178,7 +178,9 @@ let mapStateToProps = ({ fetchedOptions }) => ({ fetchedOptions, });
 
 let mapDispatchToProps = (dispatch) => {
   return {
-    getOptions: bindActionCreators(getOptions, dispatch)
+    getOptions: bindActionCreators(getOptions, dispatch),
+    projectsSortValues: bindActionCreators(projectsSortValues, dispatch)
+
   }
 };
 
