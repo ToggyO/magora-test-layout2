@@ -10,18 +10,25 @@ import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 import {getOptions} from "../../../Store/Actions/actionGetSortOptions";
 import {modulesOptions, sortOptions} from "../FindProjectOptions";
-import {projectsSortValues} from "../../../Store/Actions/actionFetchProjectsData";
-
+import {getProjects, projectsSortValues} from "../../../Store/Actions/actionFetchProjectsData";
+import {makeQueryString} from "../../../Libs/SortingHelpers";
+import { parse } from 'qs';
+import history from "../../../history";
 
 
 
 const ProjectSearch = (props) => {
 
+  const data = props.fetchedProjectsData.history;
+  const queryString = parse( props.location.search, { ignoreQueryPrefix: true });
+
+
   useEffect( () => {
-      props.getOptions();
+    props.getOptions();
   },[]);
 
   const [opened, toggleOpen] = useState(false);
+
 
   if (opened && window.innerWidth <= 991) {
     document.body.style.overflow = 'hidden';
@@ -29,30 +36,28 @@ const ProjectSearch = (props) => {
     document.body.style.overflow = 'scroll ';
   }
 
- let categoryOptions =  props.fetchedOptions.categories.map(item => {
-    return {
-      value: item.id,
-      label: item.name
-    }
-  });
-  let benefitsOptions =  props.fetchedOptions.benefits.map(item => {
+  let sortFieldOptions =  sortOptions.map(item => {
     return {
       value: item.id,
       label: item.name
     }
   });
 
-  const makeQueryString = (obj) => {
-    let queryString = '?';
-    Object.keys(obj).forEach(key => {
-      if (obj[key]) {
-        return queryString += `&${key}=${obj[key]}`;
-      } else {
-        return queryString
-      }
-    });
-    console.log(queryString);
-  };
+ let categoryOptions = props.fetchedOptions.categories.map(item => {
+     return {
+       value: item.id,
+       label: item.name
+     }
+   });
+
+  console.log(props.fetchedOptions.categories);
+
+  let benefitsOptions =  props.fetchedOptions.benefits.map(item => {
+    return {
+      value: item.id,
+      label: item.name
+    }
+  });
 
 
   return (
@@ -84,8 +89,7 @@ const ProjectSearch = (props) => {
           className={`projectSearch-filterBlock prS-adapt__filterBlock pl-32`}
           onSubmit={ (e) => {
               e.preventDefault();
-              debugger;
-              makeQueryString(props.fetchedProjectsData.history);
+              history.push(makeQueryString(props.fetchedProjectsData.history));
             }
           }
           >
@@ -116,11 +120,11 @@ const ProjectSearch = (props) => {
                 <Select
                   components={{DropdownIndicator}}
                   styles={styles}
-                  options={sortOptions}
+                  options={sortFieldOptions}
                   placeholder={'Sort By...'}
                   inputValue=''
                   onChange={value => props.projectsSortValues(value.value, 'sort')}
-
+                  defaultValue={sortFieldOptions[1]}
                 />
                 <Select
                   components={{DropdownIndicator, Option}}
@@ -136,14 +140,18 @@ const ProjectSearch = (props) => {
                 />
               </div>
               <div className='filters-sort__category prS-adapt__category ml-16'>
-                <Select
-                  components={{DropdownIndicator}}
-                  styles={styles}
-                  options={categoryOptions}
-                  placeholder={'Choose category'}
-                  inputValue=''
-                  onChange={value => props.projectsSortValues(value.value, 'category')}
-                />
+                {props.fetchedProjectsData.loading ? 'Waiting!' :
+                  <Select
+                    components={{DropdownIndicator}}
+                    styles={styles}
+                    options={categoryOptions}
+                    placeholder={'Choose category'}
+                    inputValue=''
+                    onChange={value => props.projectsSortValues(value.value, 'category')}
+                    defaultValue={categoryOptions[1]}
+                    // defaultValue={value => queryString.category ? value.value = queryString.category : ''}
+                  />
+                }
               </div>
               <div className='filters-sort__benefits prS-adapt__benefits ml-16'>
                 <Select
@@ -153,6 +161,7 @@ const ProjectSearch = (props) => {
                   placeholder={'Choose benefits'}
                   inputValue=''
                   onChange={value => props.projectsSortValues(value.value, 'benefits')}
+                  defaultValue={benefitsOptions[1]}
                 />
               </div>
               <div
@@ -185,7 +194,8 @@ let mapStateToProps = ({ fetchedOptions, fetchedProjectsData, }) => ({ fetchedOp
 let mapDispatchToProps = (dispatch) => {
   return {
     getOptions: bindActionCreators(getOptions, dispatch),
-    projectsSortValues: bindActionCreators(projectsSortValues, dispatch)
+    projectsSortValues: bindActionCreators(projectsSortValues, dispatch),
+    getProjects: bindActionCreators(getProjects, dispatch),
   }
 };
 

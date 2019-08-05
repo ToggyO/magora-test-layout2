@@ -1,8 +1,12 @@
 import { SORT_OPTIONS } from "../Actions/actionGetSortOptions";
 
 let InitialState = {
-  categories: [ ],
-  benefits: [ ]
+  categories: [
+    { id: '', name: 'All projects'}
+  ],
+  benefits: [
+    { id: '', name: 'All projects'}
+  ]
 };
 
 const fetchedOptionsReducer = (state = InitialState, action) => {
@@ -11,15 +15,13 @@ const fetchedOptionsReducer = (state = InitialState, action) => {
     // debugger;
       return {
         ...state,
-        ...action.payload,
-        categories: action.payload.items,
+        categories: [...state.categories, ...action.payload.items]
       };
     case SORT_OPTIONS.RECEIVE_BENEFITS_OPTIONS:
     // debugger;
       return {
         ...state,
-        ...action.payload,
-        benefits: action.payload.items
+        benefits: [...state.benefits, action.payload.items]
       };
     default:
       return state;

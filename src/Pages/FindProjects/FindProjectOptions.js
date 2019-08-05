@@ -1,27 +1,15 @@
 
 export  const sortOptions = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' }
-  ];
-
-export  const categoryOptions = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' }
-  ];
-
-export  const benefitsOptions = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' }
-  ];
+  {id: '', name: 'All projects'},
+  {id: 'createDate', name: 'Oldest'},
+  {id: '!createDate', name: 'Newest'},
+];
 
 export  const modulesOptions = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' }
-  ];
+  { value: 'crowdfunding', label: 'Crowdfunding' },
+  { value: 'volunteering', label: 'Volunteering' },
+  { value: 'petition', label: 'Petition' }
+];
 
 
 

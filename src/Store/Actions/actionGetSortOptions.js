@@ -26,6 +26,5 @@ export const getOptions = () => {
       .then(res => dispatch(receiveCategoriesOptions(res)));
     axios.get('https://dev.tribus.org/api/v0.7/benefits')
       .then(res => dispatch(receiveBenefitsOptions(res)));
-
   }
 };

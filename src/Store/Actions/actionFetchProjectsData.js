@@ -3,7 +3,8 @@ import axios from "axios";
 export const FETCHED_PROJECTS_DATA = {
   REQUEST_PROJECTS: 'REQUEST_PROJECTS',
   RECEIVE_PROJECTS: 'RECEIVE_PROJECTS',
-  PROJECT_SORT_VALUES: 'PROJECT_SORT_VALUES'
+  PROJECT_SORT_VALUES: 'PROJECT_SORT_VALUES',
+  SET_CURRENT_PAGES: 'SET_CURRENT_PAGE'
 };
 
 const requestProjects = () => {
@@ -30,11 +31,18 @@ export const projectsSortValues = (value, name) => {
 };
 
 
-export const getProjects = (page, pageSize) => {
+export const getProjects = (page, benefit, category, sort) => {
   return (dispatch) => {
     dispatch(requestProjects());
-    return axios.get(`https://dev.tribus.org/api/v0.7/ideas?Page=${page}&PageSize=${pageSize}&States=IDEA`)
+    const BASE_URL = 'https://dev.tribus.org/api/v0.7/ideas?';
+    let benefitReq = benefit ? `&Benefit=${benefit}` : '';
+    let categoryReq = category ? `&Category=${category}` : '';
+    let sortReq = sort ? `&sort=${sort}` : '';
+    let Url = `${BASE_URL}Page=${page}&PageSize=9${benefitReq}${categoryReq}${sortReq}`;
+    console.log(Url);
+    return axios.get(Url)
       .then(res => dispatch(receiveProjects(res)))
   };
 };
 
+// https://dev.tribus.org/api/v0.7/ideas?Page=1&PageSize=9&Benefit=18a2be21-93e8-40b0-ba05-2bf236e4bceb&Category=18a2be21-93e8-40b0-ba05-2bf236e4bceb&sort=createDate

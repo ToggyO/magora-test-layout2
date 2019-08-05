@@ -1,39 +1,46 @@
 import React from 'react';
 import './CommunityProjects.sass';
 import ProjectCard from "../../../Components/ProjectCard/ProjectCard";
-import { getProjects } from "../../../Store/Actions/actionFetchProjectsData";
+import {
+  getProjects,
+  projectsSortValues,
+
+} from "../../../Store/Actions/actionFetchProjectsData";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import history from "../../../history";
-// import { parse } from 'qs';
+import { stringify, parse } from 'qs';
+// import {makeQueryString} from "../../../Libs/SortingHelpers";
 
 
 class CommunityProjects extends React.Component {
 
-  data = this.props.fetchedProjectsData;
+  data = this.props.fetchedProjectsData.history;
 
   componentDidMount() {
     window.scrollTo(0, 0);
-
-    let params = { };
-    let url = this.props.location.search;
-
-    if (url) {
-      // debugger;
-      url.split('?')[1].split('&').map(item => {
-        const key = item.split('=')[0];
-        const value = item.split('=')[1];
-        params[key] = value;
-      });
-    }
-    // const queryString = parse( this.props.location.search, { ignoreQueryPrefix: true });
-    // this.props.getProjects( queryString.page || this.data.currentPage, this.data.pageSize);
-    this.props.getProjects( params.page || this.data.currentPage, this.data.pageSize);
+    const queryString = parse( this.props.location.search, { ignoreQueryPrefix: true });
+    this.props.getProjects( queryString.page || this.props.fetchedProjectsData.currentPage, queryString.benefits || this.data.benefit, queryString.category || this.data.category, queryString.sort || this.data.sort );
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
+    // if (this.props.location.search !== prevProps.location.search) {
+    //   const queryString = parse( this.props.location.search, { ignoreQueryPrefix: true });
+    //   this.props.getProjects( queryString.page || this.props.fetchedProjectsData.currentPage, queryString.benefits || this.data.benefits, queryString.category || this.data.category, queryString.sort || this.data.sort );
+    //
+    // }
     window.scrollTo(0, 0);
   }
+
+  onPageChanged = (page) => {
+    const parseString = parse( this.props.location.search, { ignoreQueryPrefix: true });
+    parseString.page = page;
+    history.push(`${this.props.location.pathname}?${stringify(parseString)}`);
+    const queryString = parse( this.props.location.search, { ignoreQueryPrefix: true });
+    this.props.getProjects( page, queryString.benefits || this.data.benefit, queryString.category || this.data.category, queryString.sort || this.data.sort );
+    // this.props.getProjects(page);
+
+  };
 
   render() {
 
@@ -51,11 +58,8 @@ class CommunityProjects extends React.Component {
         </div>
         <div style={{width: '100%'}}>
           { pages.map( (page, i) => <span
-            className={ this.props.currentPage === page ? 'selectedPage' : '' }
-            onClick={ (e) => {
-              this.props.getProjects(page, this.data.pageSize);
-              history.push(`/projectSearch?page=${page}`);
-            }
+            className={ this.props.fetchedProjectsData.currentPage === page ? 'selectedPage' : '' }
+            onClick={ () => {this.onPageChanged(page)}
           }
           style={{marginLeft: 10}}
           key={i}
@@ -74,8 +78,25 @@ let mapStateToProps = ({ fetchedProjectsData }) => ({ fetchedProjectsData, });
 
 let mapDispatchToProps = (dispatch) => {
   return {
-    getProjects: bindActionCreators(getProjects, dispatch)
+    getProjects: bindActionCreators(getProjects, dispatch),
+    projectsSortValues: bindActionCreators(projectsSortValues, dispatch),
   }
 };
 
 export default connect( mapStateToProps, mapDispatchToProps )(CommunityProjects);
+
+
+
+
+
+
+
+
+
+
+
+
+// history.push({
+//   pathname: this.props.location.pathname,
+//   search: stringify(parseString)
+// });
