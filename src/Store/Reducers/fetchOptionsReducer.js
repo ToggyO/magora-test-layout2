@@ -1,4 +1,5 @@
 import { SORT_OPTIONS } from "../Actions/actionGetSortOptions";
+import {FETCHED_PROJECTS_DATA} from "../Actions/actionFetchProjectsData";
 
 let InitialState = {
   categories: [
@@ -6,22 +7,33 @@ let InitialState = {
   ],
   benefits: [
     { id: '', name: 'All projects'}
-  ]
+  ],
+  loading: false
 };
 
 const fetchedOptionsReducer = (state = InitialState, action) => {
   switch(action.type) {
-    case SORT_OPTIONS.RECEIVE_CATEGORIES_OPTIONS:
-    // debugger;
+    case FETCHED_PROJECTS_DATA.REQUEST_PROJECTS:
+      debugger;
       return {
         ...state,
-        categories: [...state.categories, ...action.payload.items]
+        loading: true
+      };
+    case SORT_OPTIONS.RECEIVE_CATEGORIES_OPTIONS:
+    debugger;
+      return {
+        ...state,
+        ...action.payload,
+        categories: [...state.categories, ...action.payload.items],
+        loading: false
       };
     case SORT_OPTIONS.RECEIVE_BENEFITS_OPTIONS:
-    // debugger;
+    debugger;
       return {
         ...state,
-        benefits: [...state.benefits, action.payload.items]
+        ...action.payload,
+        benefits: [...state.benefits, action.payload.items],
+        loading: false
       };
     default:
       return state;
