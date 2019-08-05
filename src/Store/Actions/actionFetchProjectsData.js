@@ -39,7 +39,6 @@ export const getProjects = (page, benefit, category, sort) => {
     let categoryReq = category ? `&Category=${category}` : '';
     let sortReq = sort ? `&sort=${sort}` : '';
     let Url = `${BASE_URL}Page=${page}&PageSize=9${benefitReq}${categoryReq}${sortReq}`;
-    console.log(Url);
     return axios.get(Url)
       .then(res => dispatch(receiveProjects(res)))
   };
