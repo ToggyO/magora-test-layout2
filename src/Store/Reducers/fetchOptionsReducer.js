@@ -21,7 +21,7 @@ const fetchedOptionsReducer = (state = InitialState, action) => {
     // debugger;
       return {
         ...state,
-        benefits: [...state.benefits, action.payload.items]
+        benefits: [...state.benefits, ...action.payload.items]
       };
     default:
       return state;

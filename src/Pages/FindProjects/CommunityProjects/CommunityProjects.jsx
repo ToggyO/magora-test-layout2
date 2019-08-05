@@ -24,11 +24,11 @@ class CommunityProjects extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    // if (this.props.location.search !== prevProps.location.search) {
-    //   const queryString = parse( this.props.location.search, { ignoreQueryPrefix: true });
-    //   this.props.getProjects( queryString.page || this.props.fetchedProjectsData.currentPage, queryString.benefits || this.data.benefits, queryString.category || this.data.category, queryString.sort || this.data.sort );
-    //
-    // }
+    if (this.props.location.search !== prevProps.location.search) {
+      const queryString = parse( this.props.location.search, { ignoreQueryPrefix: true });
+      this.props.getProjects( queryString.page || this.props.fetchedProjectsData.currentPage, queryString.benefits || this.data.benefits, queryString.category || this.data.category, queryString.sort || this.data.sort );
+
+    }
     window.scrollTo(0, 0);
   }
 
@@ -37,7 +37,7 @@ class CommunityProjects extends React.Component {
     parseString.page = page;
     history.push(`${this.props.location.pathname}?${stringify(parseString)}`);
     const queryString = parse( this.props.location.search, { ignoreQueryPrefix: true });
-    this.props.getProjects( page, queryString.benefits || this.data.benefit, queryString.category || this.data.category, queryString.sort || this.data.sort );
+    this.props.getProjects( page, queryString.benefits || this.data.benefits, queryString.category || this.data.category, queryString.sort || this.data.sort );
     // this.props.getProjects(page);
 
   };

@@ -50,8 +50,6 @@ const ProjectSearch = (props) => {
      }
    });
 
-  console.log(props.fetchedOptions.categories);
-
   let benefitsOptions =  props.fetchedOptions.benefits.map(item => {
     return {
       value: item.id,
@@ -124,7 +122,7 @@ const ProjectSearch = (props) => {
                   placeholder={'Sort By...'}
                   inputValue=''
                   onChange={value => props.projectsSortValues(value.value, 'sort')}
-                  defaultValue={sortFieldOptions[1]}
+                  // defaultValue={sortFieldOptions[1]}
                 />
                 <Select
                   components={{DropdownIndicator, Option}}
@@ -140,7 +138,7 @@ const ProjectSearch = (props) => {
                 />
               </div>
               <div className='filters-sort__category prS-adapt__category ml-16'>
-                {props.fetchedProjectsData.loading ? 'Waiting!' :
+
                   <Select
                     components={{DropdownIndicator}}
                     styles={styles}
@@ -148,10 +146,10 @@ const ProjectSearch = (props) => {
                     placeholder={'Choose category'}
                     inputValue=''
                     onChange={value => props.projectsSortValues(value.value, 'category')}
-                    defaultValue={categoryOptions[1]}
+                    // defaultValue={categoryOptions[1]}
                     // defaultValue={value => queryString.category ? value.value = queryString.category : ''}
                   />
-                }
+
               </div>
               <div className='filters-sort__benefits prS-adapt__benefits ml-16'>
                 <Select

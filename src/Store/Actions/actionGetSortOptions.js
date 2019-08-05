@@ -2,9 +2,17 @@ import axios from "axios";
 
 
 export const SORT_OPTIONS = {
+  REQUEST_OPTIONS: 'REQUEST_OPTIONS',
   RECEIVE_CATEGORIES_OPTIONS: 'RECEIVE_CATEGORIES_OPTIONS',
   RECEIVE_BENEFITS_OPTIONS: 'RECEIVE_BENEFITS_OPTIONS',
 };
+
+// const requestOptions = () => {
+//   debugger;
+//   return {
+//     type: SORT_OPTIONS.REQUEST_OPTIONS,
+//   }
+// };
 
 const  receiveCategoriesOptions = (categories) => {
   return {
@@ -21,10 +29,10 @@ const  receiveBenefitsOptions = (benefits) => {
 };
 
 export const getOptions = () => {
-  return (dispatch) => {
-    axios.get('https://dev.tribus.org/api/v0.7/categories')
-      .then(res => dispatch(receiveCategoriesOptions(res)));
-    axios.get('https://dev.tribus.org/api/v0.7/benefits')
-      .then(res => dispatch(receiveBenefitsOptions(res)));
-  }
+    return (dispatch) => {
+      axios.get('https://dev.tribus.org/api/v0.7/categories')
+        .then(res => dispatch(receiveCategoriesOptions(res)));
+      axios.get('https://dev.tribus.org/api/v0.7/benefits')
+        .then(res => dispatch(receiveBenefitsOptions(res)));
+    }
 };
