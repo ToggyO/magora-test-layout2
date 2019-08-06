@@ -10,6 +10,9 @@ let InitialState = {
     sort: '',
     category: '',
     benefits: '',
+    crowdfunding: false,
+    volunteering: false,
+    petition: false
   }
 };
 
@@ -37,6 +40,24 @@ const fetchedDataReducer = (state = InitialState, action) => {
           [action.payload.name]: action.payload.value
         }
       };
+    case FETCHED_PROJECTS_DATA.PROJECT_SORT_CHECKBOX_VALUES:
+      return {
+        ...state,
+        history: {
+          ...state.history,
+          [action.payload.name]: !action.payload.value
+        }
+      };
+    // case FETCHED_PROJECTS_DATA.UPLOAD_SORT_VALUES:
+    //   return {
+    //     ...state,
+    //     history: {
+    //       ...state.history,
+    //       sort: action.payload.sort,
+    //       category: action.payload.category,
+    //       benefits: action.payload.benefits,
+    //     }
+    //   };
     default:
       return state;
   }

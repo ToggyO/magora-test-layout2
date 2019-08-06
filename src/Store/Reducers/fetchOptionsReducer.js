@@ -6,22 +6,38 @@ let InitialState = {
   ],
   benefits: [
     { id: '', name: 'All projects'}
-  ]
+  ],
+  categoriesLoading: false,
+  benefitsLoading: false,
 };
 
 const fetchedOptionsReducer = (state = InitialState, action) => {
   switch(action.type) {
+    case SORT_OPTIONS.REQUEST_CATEGORIES_OPTIONS:
+      // debugger;
+      return {
+        ...state,
+        categoriesLoading: true
+      };
+    case SORT_OPTIONS.REQUEST_BENEFITS_OPTIONS:
+      // debugger;
+      return {
+        ...state,
+        benefitsLoading: true
+      };
     case SORT_OPTIONS.RECEIVE_CATEGORIES_OPTIONS:
     // debugger;
       return {
         ...state,
-        categories: [...state.categories, ...action.payload.items]
+        categories: [...state.categories, ...action.payload.items],
+        categoriesLoading: !state.categoriesLoading
       };
     case SORT_OPTIONS.RECEIVE_BENEFITS_OPTIONS:
     // debugger;
       return {
         ...state,
-        benefits: [...state.benefits, ...action.payload.items]
+        benefits: [...state.benefits, ...action.payload.items],
+        benefitsLoading: !state.benefitsLoading
       };
     default:
       return state;

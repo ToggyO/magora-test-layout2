@@ -15,18 +15,21 @@ import { stringify, parse } from 'qs';
 
 class CommunityProjects extends React.Component {
 
-  data = this.props.fetchedProjectsData.history;
+  // data = this.props.fetchedProjectsData.history;
 
   componentDidMount() {
     window.scrollTo(0, 0);
+    let data = this.props.fetchedProjectsData.history;
     const queryString = parse( this.props.location.search, { ignoreQueryPrefix: true });
-    this.props.getProjects( queryString.page || this.props.fetchedProjectsData.currentPage, queryString.benefits || this.data.benefit, queryString.category || this.data.category, queryString.sort || this.data.sort );
+    this.props.getProjects( queryString.page || this.props.fetchedProjectsData.currentPage, queryString.benefits || data.benefit, queryString.category || data.category, queryString.sort || data.sort, queryString.petition || data.petition, queryString.crowdfunding || data.crowdfunding, queryString.volunteering || data.volunteering);
+    console.log(queryString);
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.location.search !== prevProps.location.search) {
+      let data = this.props.fetchedProjectsData.history;
       const queryString = parse( this.props.location.search, { ignoreQueryPrefix: true });
-      this.props.getProjects( queryString.page || this.props.fetchedProjectsData.currentPage, queryString.benefits || this.data.benefits, queryString.category || this.data.category, queryString.sort || this.data.sort );
+      this.props.getProjects( queryString.page || this.props.fetchedProjectsData.currentPage, queryString.benefits || data.benefit, queryString.category || data.category, queryString.sort || data.sort, queryString.petition || data.petition, queryString.crowdfunding || data.crowdfunding, queryString.volunteering || data.volunteering);
 
     }
     window.scrollTo(0, 0);
@@ -36,10 +39,6 @@ class CommunityProjects extends React.Component {
     const parseString = parse( this.props.location.search, { ignoreQueryPrefix: true });
     parseString.page = page;
     history.push(`${this.props.location.pathname}?${stringify(parseString)}`);
-    const queryString = parse( this.props.location.search, { ignoreQueryPrefix: true });
-    this.props.getProjects( page, queryString.benefits || this.data.benefits, queryString.category || this.data.category, queryString.sort || this.data.sort );
-    // this.props.getProjects(page);
-
   };
 
   render() {

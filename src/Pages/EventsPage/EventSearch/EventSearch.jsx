@@ -6,8 +6,10 @@ import Icon from  '../../../Icons/Icons';
 import { styles } from '../../../Components/ReactSelect/Styles/filterStyles';
 import { moduleStyles } from '../../../Components/ReactSelect/Styles/modulesStyles';
 import {sortOptions, categoryOptions, benefitsOptions, modulesOptions} from '../EventsPageOptions';
-import { Option, DropdownIndicator } from '../../../Components/ReactSelect/components/custom_components';
+import { DropdownIndicator } from '../../../Components/ReactSelect/components/custom_components';
 import DatePicker from "../../../Components/ReactDatePicker/DatePicker";
+import Option from '../../../Components/ReactSelect/components/checkbox';
+
 
 
 const EventSearch = () => {
