@@ -15,55 +15,30 @@ import {
   getProjects,
   projectsSortValues,
 } from "../../../Store/Actions/actionFetchProjectsData";
-import {makeQueryString} from "../../../Libs/SortingHelpers";
-// import { parse } from 'qs';
 import history from "../../../history";
+import {makeQueryString, renderOptions} from "../../../Libs/additionalSortingFunctions";
+// import {parse} from "qs";
+// import AsyncSelect from 'react-select/async'
 
 
 
 const ProjectSearch = (props) => {
 
-  // const data = props.fetchedProjectsData.history;
-  // const queryString = parse( props.location.search, { ignoreQueryPrefix: true });
+  const [opened, toggleOpen] = useState(false);
 
+  const { sortValues } = props.fetchedProjectsData.history;
 
   useEffect( () => {
     props.getCategoriesOptions();
     props.getBenefitsOptions();
-    // props.uploadSortValuesToState(queryString.sort || '', queryString.category || '', queryString.benefits || '')
-    // debugger;
-    // console.log(data.category);
   },[]);
 
-  const [opened, toggleOpen] = useState(false);
-
-
-  if (opened && window.innerWidth <= 991) {
-    document.body.style.overflow = 'hidden';
-  } else {
-    document.body.style.overflow = 'scroll ';
-  }
-
-  let sortFieldOptions =  sortOptions.map(item => {
-    return {
-      value: item.id,
-      label: item.name
-    }
-  });
-
- let categoryOptions = props.fetchedOptions.categories.map(item => {
-     return {
-       value: item.id,
-       label: item.name
-     }
-   });
-
-  let benefitsOptions =  props.fetchedOptions.benefits.map(item => {
-    return {
-      value: item.id,
-      label: item.name
-    }
-  });
+  // if (opened && window.innerWidth <= 991) {
+  //   document.body.style.overflow = 'hidden';
+  // } else {
+  //   document.body.style.overflow = 'scroll ';
+  // }
+  // const parseString = parse( props.location.search, { ignoreQueryPrefix: true });
 
 
   return (
@@ -126,14 +101,11 @@ const ProjectSearch = (props) => {
                 <Select
                   components={{DropdownIndicator}}
                   styles={styles}
-                  options={sortFieldOptions}
+                  options={renderOptions(sortOptions)}
                   placeholder={'Sort By...'}
-                  inputValue=''
                   onChange={value => props.projectsSortValues(value.value, 'sort')}
-                  // value={data.sort}
-                  // defaultValue={queryString.sort}
-                  // defaultValue={value => queryString.sort ? value.value = queryString.sort : ''}
-                  // defaultValue={sortFieldOptions[1]}
+                  isDisabled={ !!props.fetchedOptions.categoriesLoading }
+                  // defaultValue={renderOptions(sortOptions).filter(item => item.value === parseString.sort)}
                 />
                 <Select
                   components={{DropdownIndicator, Option}}
@@ -145,37 +117,33 @@ const ProjectSearch = (props) => {
                   className='mt-6'
                   placeholder={'Active modules'}
                   inputValue=''
+                  isDisabled={ !!props.fetchedOptions.categoriesLoading }
                   // defaultValue={value => queryString.benefits ? value.value = queryString.benefits : ''}
                 />
               </div>
               <div className='filters-sort__category prS-adapt__category ml-16'>
-                {props.fetchedOptions.categoriesLoading
-                  ? 'Waiting!'
-                  : <Select
-                      components={{DropdownIndicator}}
-                      styles={styles}
-                      options={categoryOptions}
-                      placeholder={'Choose category'}
-                      inputValue=''
-                      onChange={value => props.projectsSortValues(value.value, 'category')}
-                      // selectedOption={data.category}
-                    />
-                }
-              </div>
-              <div className='filters-sort__benefits prS-adapt__benefits ml-16'>
-                {props.fetchedOptions.benefitsLoading
-                  ? 'Waiting!'
-                  : <Select
+                 <Select
                     components={{DropdownIndicator}}
                     styles={styles}
-                    options={benefitsOptions}
-                    placeholder={'Choose benefits'}
+                    options={renderOptions(props.fetchedOptions.categories)}
+                    placeholder={'Choose category'}
                     inputValue=''
-                    onChange={value => props.projectsSortValues(value.value, 'benefits')}
-                    // defaultValue={value => queryString.benefits ? value.value = queryString.benefits : ''}
-                    // defaultValue={benefitsOptions[1]}
+                    onChange={value => props.projectsSortValues(value.value, 'category')}
+                    isDisabled={ !!props.fetchedOptions.categoriesLoading }
+                    // value={renderOptions(props.fetchedOptions.categories).filter(item => item.value === parseString.category)}
                   />
-                }
+              </div>
+              <div className='filters-sort__benefits prS-adapt__benefits ml-16'>
+                 <Select
+                  components={{DropdownIndicator}}
+                  styles={styles}
+                  options={renderOptions(props.fetchedOptions.benefits)}
+                  placeholder={'Choose benefits'}
+                  inputValue=''
+                  onChange={value => props.projectsSortValues(value.value, 'benefits')}
+                  isDisabled={ !!props.fetchedOptions.benefitsLoading }
+                  // defaultValue={ !props.isDisabled && renderOptions(props.fetchedOptions.benefits).filter(item => item.value === parseString.benefits)}
+                />
               </div>
               <div
                 className={`filters-sort__btn ${ opened ? 'showApplyButton' : null }`}

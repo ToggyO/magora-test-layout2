@@ -50,6 +50,10 @@ function Icons({ iconName, className }) {
       return (
         <SVG src="../img/eventsPage/IdeaEventsLg.svg" className={className} />
       );
+    case 'preloader':
+      return (
+        <SVG src="../img/preloader.svg" className={className} />
+      );
     default:
       return (
         <SVG src="../img/icons/plugIcon.svg" className={className} />

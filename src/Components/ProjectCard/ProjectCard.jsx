@@ -3,12 +3,12 @@ import './ProjectCard.sass';
 
 const path = 'img/community';
 const placeholderImage = 'img/placeholder-image.jpg';
-const placeholderAvatar = 'img/avatar-placeholder.png'
+const placeholderAvatar = 'img/avatar-placeholder.png';
 
 
 const ProjectCard = (props) => {
 
-  const { idea, publisher, location, resource, supportersCount, supported } = props.item;
+  const { idea, publisher, resource, supportersCount, supported } = props.item;
 
   return (
     <div className="projectCard pCard-adapt pl-10 pr-10 pt-5 pb-5 d-f fd-c">

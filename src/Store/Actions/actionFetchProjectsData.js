@@ -67,6 +67,7 @@ export const getProjects = (page, benefit, category, sort, petition, crowdfundin
     let Url = `${BASE_URL}Page=${page}&PageSize=9${petitionReq}${crowdfundingReq}${volunteeringReq}${benefitReq}${categoryReq}${sortReq}`;
     return axios.get(Url)
       .then(res => dispatch(receiveProjects(res)))
+      .catch( error => console.log(error))
   };
 };
 
