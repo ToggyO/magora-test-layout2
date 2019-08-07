@@ -12,6 +12,7 @@ import {
   renderingProjects
 } from "../../../Libs/additionalSortingFunctions";
 import Preloader from "../../../Components/Preloader/Preloader";
+import Pagination from "../../../Components/Pagination/Pagination";
 
 
 
@@ -45,15 +46,16 @@ class CommunityProjects extends React.Component {
               : renderingProjects(this.props.fetchedProjectsData.items)
           }
         </div>
-        <div style={{width: '100%'}}>
-          {
-            renderingPagination(
-              this.props.fetchedProjectsData.totalCardsCount,
-              9,
-              this.props.fetchedProjectsData.currentPage,
-              this.props.location
-            )
-          }
+        <div className='pt-5 pb-5 pl-5 pr-5 d-f jc-c' style={{width: '100%'}}>
+          <Pagination {...this.props}/>
+          {/*{*/}
+          {/*  renderingPagination(*/}
+          {/*    this.props.fetchedProjectsData.totalCardsCount,*/}
+          {/*    9,*/}
+          {/*    this.props.fetchedProjectsData.currentPage,*/}
+          {/*    this.props.location*/}
+          {/*  )*/}
+          {/*}*/}
         </div>
       </div>
     )
