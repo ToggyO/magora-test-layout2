@@ -1,38 +1,22 @@
 import React from 'react';
 import './CommunityProjects.sass';
 import {
-  receivingData,
   renderingProjects
 } from "../../../Libs/additionalSortingFunctions";
 import Preloader from "../../../Components/Preloader/Preloader";
-import Pagination from "../../../Components/Pagination/Pagination";
 
 
 
-class CommunityProjects extends React.Component {
-  constructor(props) {
-    super(props);
 
-    this.receivingData = receivingData.bind(this);
-  }
+class CommunityProjectsEmpty extends React.Component {
 
   componentDidMount() {
     window.scrollTo(0, 0);
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.props.location.search !== prevProps.location.search) {
-      this.receivingData(this.props.location, this.props.getProjects, this.props.projectsData)
-      window.scrollTo(0, 650)
-    }
-  }
-
   render() {
 
-    const {
-      projectsData,
-      location
-    } = this.props;
+    const { projectsData } = this.props;
 
     return (
       <div className='communityProjects wrapper'>
@@ -44,18 +28,7 @@ class CommunityProjects extends React.Component {
           }
         </div>
         <div className='pt-5 pb-5 pl-5 pr-5 d-f jc-c' style={{width: '100%'}}>
-          <Pagination
-            projectsData={projectsData}
-            location={location}
-          />
-          {/*{*/}
-          {/*  renderingPagination(*/}
-          {/*    this.props.fetchedProjectsData.totalCardsCount,*/}
-          {/*    9,*/}
-          {/*    this.props.fetchedProjectsData.currentPage,*/}
-          {/*    this.props.location*/}
-          {/*  )*/}
-          {/*}*/}
+
         </div>
       </div>
     )
@@ -63,7 +36,7 @@ class CommunityProjects extends React.Component {
 }
 
 
-export default CommunityProjects;
+export default CommunityProjectsEmpty;
 
 
 // let mapStateToProps = ({ fetchedProjectsData }) => ({ fetchedProjectsData, });

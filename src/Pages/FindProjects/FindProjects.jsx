@@ -7,6 +7,8 @@ import {getProjects, projectsSortValues} from "../../Store/Actions/actionFetchPr
 import {getBenefitsOptions, getCategoriesOptions} from "../../Store/Actions/actionGetSortOptions";
 import {connect} from "react-redux";
 import {receivingData} from "../../Libs/additionalSortingFunctions";
+import CommunityProjectsEmpty from "./CommunityProjects/CommunityProjectsEmpty";
+import ProjectSearchEmpty from "./ProjectSearch/ProjectSearchEmpty";
 
 
 
@@ -43,33 +45,39 @@ const FindProjects = (props) => {
 
 
   if(!initialize) {
-    return null;
+    return (
+      <>
+        <ProjectSearchEmpty />
+        <CommunityProjectsEmpty projectsData={fetchedProjectsData}/>
+      </>
+    )
+  } else {
+    return (
+      <>
+        <ProjectSearch
+          projectsData={fetchedProjectsData}
+          optionsData={fetchedOptions}
+          location={location}
+          getProjects={getProjects}
+          projectsSortValues={projectsSortValues}
+          getCategoriesOptions={getCategoriesOptions}
+          getBenefitsOptions={getBenefitsOptions}
+          history={history}
+        />
+        <CommunityProjects
+          projectsData={fetchedProjectsData}
+          optionsData={fetchedOptions}
+          location={location}
+          getProjects={getProjects}
+          projectsSortValues={projectsSortValues}
+          getCategoriesOptions={getCategoriesOptions}
+          getBenefitsOptions={getBenefitsOptions}
+          history={history}
+        />
+      </>
+    )
   }
 
-  return (
-    <>
-      <ProjectSearch
-        projectsData={fetchedProjectsData}
-        optionsData={fetchedOptions}
-        location={location}
-        getProjects={getProjects}
-        projectsSortValues={projectsSortValues}
-        getCategoriesOptions={getCategoriesOptions}
-        getBenefitsOptions={getBenefitsOptions}
-        history={history}
-      />
-      <CommunityProjects
-        projectsData={fetchedProjectsData}
-        optionsData={fetchedOptions}
-        location={location}
-        getProjects={getProjects}
-        projectsSortValues={projectsSortValues}
-        getCategoriesOptions={getCategoriesOptions}
-        getBenefitsOptions={getBenefitsOptions}
-        history={history}
-      />
-    </>
-  )
 };
 
 

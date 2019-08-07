@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import Select from 'react-select'
 import './ProjectSearch.sass';
 import {NavLink} from "react-router-dom";
@@ -8,26 +8,17 @@ import { moduleStyles } from '../../../Components/ReactSelect/Styles/modulesStyl
 import { DropdownIndicator } from '../../../Components/ReactSelect/components/custom_components';
 import Option from '../../../Components/ReactSelect/components/checkbox';
 import {modulesOptions, sortOptions} from "../FindProjectOptions";
-import history from "../../../history";
 import {
-  makeQueryString,
-  mapQueryParamsToState,
   renderOptions
 } from "../../../Libs/additionalSortingFunctions";
-import {parse} from "qs";
 
 
 
 
-const ProjectSearch = (props) => {
+
+const ProjectSearchEmpty = (props) => {
 
   const [opened, toggleOpen] = useState(false);
-
-  const parseString = parse( props.location.search, { ignoreQueryPrefix: true });
-
-  useEffect(() => {
-    mapQueryParamsToState(parseString, props.projectsSortValues)
-  }, []);
 
   // if (opened && window.innerWidth <= 991) {
   //   document.body.style.overflow = 'hidden';
@@ -62,13 +53,7 @@ const ProjectSearch = (props) => {
 
         <form
           className={`projectSearch-filterBlock prS-adapt__filterBlock pl-32`}
-          onSubmit={ (e) => {
-              e.preventDefault();
-              history.push(
-                makeQueryString(props.projectsData.history)
-              );
-            }
-          }
+
           >
 
           <div className={`filterBlock__headlines prS-adapt__headlines h2-white fs-55 lh-75 fw-600 pb-9 ${ opened ? 'isOpen' : null }-headlines`}>
@@ -99,9 +84,6 @@ const ProjectSearch = (props) => {
                   styles={styles}
                   options={renderOptions(sortOptions)}
                   placeholder={'Sort By...'}
-                  onChange={value => props.projectsSortValues(value.value, 'sort')}
-                  isDisabled={ !!props.optionsData.categoriesLoading }
-                  defaultValue={renderOptions(sortOptions).filter(item => item.value === parseString.sort)}
                 />
                 <Select
                   components={{DropdownIndicator, Option}}
@@ -113,34 +95,25 @@ const ProjectSearch = (props) => {
                   className='mt-6'
                   placeholder={'Active modules'}
                   inputValue=''
-                  isDisabled={ !!props.optionsData.categoriesLoading }
-                  defaultValue={modulesOptions.filter(item => parseString[item.value])}
-                  location={props.location}
+
                 />
               </div>
               <div className='filters-sort__category prS-adapt__category ml-16'>
                  <Select
                     components={{DropdownIndicator}}
                     styles={styles}
-                    options={renderOptions(props.optionsData.categories)}
                     placeholder={'Choose category'}
                     inputValue=''
                     hasValue
-                    onChange={value => props.projectsSortValues(value.value, 'category')}
-                    isDisabled={ !!props.optionsData.categoriesLoading }
-                    defaultValue={renderOptions(props.optionsData.categories).filter(item => item.value === parseString.category)}
                  />
               </div>
               <div className='filters-sort__benefits prS-adapt__benefits ml-16'>
                  <Select
                   components={{DropdownIndicator}}
                   styles={styles}
-                  options={renderOptions(props.optionsData.benefits)}
                   placeholder={'Choose benefits'}
                   inputValue=''
-                  onChange={value => props.projectsSortValues(value.value, 'benefits')}
-                  isDisabled={ !!props.optionsData.benefitsLoading }
-                  defaultValue={ renderOptions(props.optionsData.benefits).filter(item => item.value === parseString.benefits)}
+
                 />
               </div>
               <div
@@ -169,7 +142,7 @@ const ProjectSearch = (props) => {
 };
 
 
-export default ProjectSearch;
+export default ProjectSearchEmpty;
 
 
 

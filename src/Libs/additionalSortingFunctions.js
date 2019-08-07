@@ -61,7 +61,13 @@ export const receivingData = (location, getProjects, data) => {
 };
 
 
-
+export const mapQueryParamsToState = (string, func) => {
+  Object.keys(string).forEach(key => {
+    if (string[key]) {
+      return func(string[key], key);
+    }
+  });
+};
 
 
 
