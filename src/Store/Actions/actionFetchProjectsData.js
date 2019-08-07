@@ -57,6 +57,7 @@ export const projectsSortCheckboxValues = (name, value) => {
 export const getProjects = (page, benefit, category, sort, petition, crowdfunding, volunteering) => {
   return (dispatch) => {
     dispatch(requestProjects());
+
     const BASE_URL = 'https://dev.tribus.org/api/v0.7/ideas?';
     let petitionReq = petition ? '&Petitions=true' : '';
     let crowdfundingReq = crowdfunding ? '&Crowdfunding=true' : '';
@@ -65,6 +66,7 @@ export const getProjects = (page, benefit, category, sort, petition, crowdfundin
     let categoryReq = category ? `&Category=${category}` : '';
     let sortReq = sort ? `&sort=${sort}` : '';
     let Url = `${BASE_URL}Page=${page}&PageSize=9${petitionReq}${crowdfundingReq}${volunteeringReq}${benefitReq}${categoryReq}${sortReq}`;
+
     return axios.get(Url)
       .then(res => dispatch(receiveProjects(res)))
       .catch( error => console.log(error))

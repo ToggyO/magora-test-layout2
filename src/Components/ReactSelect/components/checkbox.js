@@ -3,9 +3,13 @@ import {projectsSortCheckboxValues} from "../../../Store/Actions/actionFetchProj
 import {components} from "react-select";
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
+import {parse} from "qs";
 
 
-const Option = props => {
+const Option = (props) => {
+  // debugger;
+
+  // const parseString = parse( props.selectProps.location.search, { ignoreQueryPrefix: true });
 
   return (
     <div

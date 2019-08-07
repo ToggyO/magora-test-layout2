@@ -25,23 +25,26 @@ class Pagination extends React.Component {
     // if (typeof this.props.customPageClick === 'function') {
     //   return this.props.customPageClick(selectedPage + 1);
     // }
-    // const { history } = this.props;
     // const { location = {} } = history;
     // const { search = '', pathname } = location;
-    const queries = parse(this.props.location.search, { ignoreQueryPrefix: true }) || {};
+    const { location,  } = this.props;
+    const queries = parse(location.search, { ignoreQueryPrefix: true }) || {};
     queries.page = selectedPage + 1;
-    history.push(`${this.props.location.pathname}?${stringify(queries)}`);
+    history.push(`${location.pathname}?${stringify(queries)}`);
   };
+
+
   render() {
     console.log(this.props);
-    // const { history } = this.props;
+    const { location, projectsData } = this.props;
+
     // const { location = {} } = history;
     // const { search = '' } = location;
-    const queries = parse(this.props.location.search, { ignoreQueryPrefix: true }) || {};
+    const queries = parse(location.search, { ignoreQueryPrefix: true }) || {};
 
-    const initialPage = queries.page || this.props.fetchedProjectsData.currentPage || 1;
+    const initialPage = queries.page || projectsData.currentPage || 1;
 
-    const { totalCardsCount = 0, pageSize } = this.props.fetchedProjectsData;
+    const { totalCardsCount = 0, pageSize } = projectsData;
     const pageCount = Math.ceil(totalCardsCount / pageSize);
     if (pageCount <= 1) {
       return null;

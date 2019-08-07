@@ -2,6 +2,7 @@
 // import history from "../history";
 import ProjectCard from "../Components/ProjectCard/ProjectCard";
 import React from "react";
+import {parse} from "qs";
 
 
 export const  makeQueryString = (obj) => {
@@ -15,13 +16,6 @@ export const  makeQueryString = (obj) => {
   });
   return `?${queryString.slice(1)}`;
 };
-
-
-// export const onPageChanged = (page, location) => {
-//   const parseString = parse( location.search, { ignoreQueryPrefix: true });
-//   parseString.page = page;
-//   history.push(`${location.pathname}?${stringify(parseString)}`);
-// };
 
 
 export const renderingProjects = (data) => {
@@ -48,6 +42,47 @@ export const renderingProjects = (data) => {
 };
 
 
+export const renderOptions = (items) => {
+  // console.log(items);
+  return items.map(item => ({ value: item.id, label: item.name}));
+};
+
+
+export const receivingData = (location, getProjects, data) => {
+  const queryString = parse( location.search, { ignoreQueryPrefix: true });
+  getProjects(
+    queryString.page || data.currentPage,
+    queryString.benefits || data.history.benefits,
+    queryString.category || data.history.category,
+    queryString.sort || data.history.sort,
+    queryString.petition || data.history.petition,
+    queryString.crowdfunding || data.history.crowdfunding,
+    queryString.volunteering || data.history.volunteering);
+};
+
+
+
+
+
+
+
+
+
+
+
+
+// export const renderOptions = (items) => {
+//   return new Promise(() => items.map(item => ({ value: item.id, label: item.name})))
+// };
+
+
+// export const onPageChanged = (page, location) => {
+//   const parseString = parse( location.search, { ignoreQueryPrefix: true });
+//   parseString.page = page;
+//   history.push(`${location.pathname}?${stringify(parseString)}`);
+// };
+
+
 // export const renderingPagination = (totalItemCount, pageSize, currentPage, someProps) => {
 //   let pagesCount = Math.ceil(totalItemCount / pageSize);
 //   let pages = [ ];
@@ -65,9 +100,3 @@ export const renderingProjects = (data) => {
 //     </span>
 //   )
 // };
-
-
-export const renderOptions = (items) => {
-  console.log(items);
-  return items.map(item => ({ value: item.id, label: item.name}));
-};

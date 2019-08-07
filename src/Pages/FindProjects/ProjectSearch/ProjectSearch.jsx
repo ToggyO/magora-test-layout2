@@ -7,18 +7,11 @@ import { styles } from '../../../Components/ReactSelect/Styles/filterStyles';
 import { moduleStyles } from '../../../Components/ReactSelect/Styles/modulesStyles';
 import { DropdownIndicator } from '../../../Components/ReactSelect/components/custom_components';
 import Option from '../../../Components/ReactSelect/components/checkbox';
-import {bindActionCreators} from "redux";
-import {connect} from "react-redux";
-import {getCategoriesOptions, getBenefitsOptions } from "../../../Store/Actions/actionGetSortOptions";
 import {modulesOptions, sortOptions} from "../FindProjectOptions";
-import {
-  getProjects,
-  projectsSortValues,
-} from "../../../Store/Actions/actionFetchProjectsData";
 import history from "../../../history";
 import {makeQueryString, renderOptions} from "../../../Libs/additionalSortingFunctions";
-// import {parse} from "qs";
-// import AsyncSelect from 'react-select/async'
+import {parse} from "qs";
+
 
 
 
@@ -26,19 +19,25 @@ const ProjectSearch = (props) => {
 
   const [opened, toggleOpen] = useState(false);
 
-  const { sortValues } = props.fetchedProjectsData.history;
+  const parseString = parse( props.location.search, { ignoreQueryPrefix: true });
+  console.log(parseString);
 
-  useEffect( () => {
-    props.getCategoriesOptions();
-    props.getBenefitsOptions();
-  },[]);
+  useEffect(() => {
+    Object.keys(parseString).forEach(key => {
+      if (parseString[key]) {
+        console.log(parseString[key]);
+        return props.projectsSortValues(parseString[key], key);
+      }
+    });
+  }, []);
 
   // if (opened && window.innerWidth <= 991) {
   //   document.body.style.overflow = 'hidden';
   // } else {
   //   document.body.style.overflow = 'scroll ';
   // }
-  // const parseString = parse( props.location.search, { ignoreQueryPrefix: true });
+
+
 
 
   return (
@@ -70,7 +69,9 @@ const ProjectSearch = (props) => {
           className={`projectSearch-filterBlock prS-adapt__filterBlock pl-32`}
           onSubmit={ (e) => {
               e.preventDefault();
-              history.push(makeQueryString(props.fetchedProjectsData.history));
+              history.push(
+                makeQueryString(props.projectsData.history)
+              );
             }
           }
           >
@@ -104,8 +105,8 @@ const ProjectSearch = (props) => {
                   options={renderOptions(sortOptions)}
                   placeholder={'Sort By...'}
                   onChange={value => props.projectsSortValues(value.value, 'sort')}
-                  isDisabled={ !!props.fetchedOptions.categoriesLoading }
-                  // defaultValue={renderOptions(sortOptions).filter(item => item.value === parseString.sort)}
+                  isDisabled={ !!props.optionsData.categoriesLoading }
+                  defaultValue={renderOptions(sortOptions).filter(item => item.value === parseString.sort)}
                 />
                 <Select
                   components={{DropdownIndicator, Option}}
@@ -117,32 +118,34 @@ const ProjectSearch = (props) => {
                   className='mt-6'
                   placeholder={'Active modules'}
                   inputValue=''
-                  isDisabled={ !!props.fetchedOptions.categoriesLoading }
-                  // defaultValue={value => queryString.benefits ? value.value = queryString.benefits : ''}
+                  isDisabled={ !!props.optionsData.categoriesLoading }
+                  defaultValue={modulesOptions.filter(item => parseString[item.value])}
+                  location={props.location}
                 />
               </div>
               <div className='filters-sort__category prS-adapt__category ml-16'>
                  <Select
                     components={{DropdownIndicator}}
                     styles={styles}
-                    options={renderOptions(props.fetchedOptions.categories)}
+                    options={renderOptions(props.optionsData.categories)}
                     placeholder={'Choose category'}
                     inputValue=''
+                    hasValue
                     onChange={value => props.projectsSortValues(value.value, 'category')}
-                    isDisabled={ !!props.fetchedOptions.categoriesLoading }
-                    // value={renderOptions(props.fetchedOptions.categories).filter(item => item.value === parseString.category)}
-                  />
+                    isDisabled={ !!props.optionsData.categoriesLoading }
+                    defaultValue={renderOptions(props.optionsData.categories).filter(item => item.value === parseString.category)}
+                 />
               </div>
               <div className='filters-sort__benefits prS-adapt__benefits ml-16'>
                  <Select
                   components={{DropdownIndicator}}
                   styles={styles}
-                  options={renderOptions(props.fetchedOptions.benefits)}
+                  options={renderOptions(props.optionsData.benefits)}
                   placeholder={'Choose benefits'}
                   inputValue=''
                   onChange={value => props.projectsSortValues(value.value, 'benefits')}
-                  isDisabled={ !!props.fetchedOptions.benefitsLoading }
-                  // defaultValue={ !props.isDisabled && renderOptions(props.fetchedOptions.benefits).filter(item => item.value === parseString.benefits)}
+                  isDisabled={ !!props.optionsData.benefitsLoading }
+                  defaultValue={ renderOptions(props.optionsData.benefits).filter(item => item.value === parseString.benefits)}
                 />
               </div>
               <div
@@ -170,20 +173,8 @@ const ProjectSearch = (props) => {
   )
 };
 
-let mapStateToProps = ({ fetchedOptions, fetchedProjectsData, }) => ({ fetchedOptions, fetchedProjectsData, });
 
-let mapDispatchToProps = (dispatch) => {
-  return {
-    getCategoriesOptions: bindActionCreators(getCategoriesOptions, dispatch),
-    getBenefitsOptions: bindActionCreators(getBenefitsOptions, dispatch),
-    projectsSortValues: bindActionCreators(projectsSortValues, dispatch),
-    getProjects: bindActionCreators(getProjects, dispatch),
-    // uploadSortValuesToState: bindActionCreators(uploadSortValuesToState, dispatch),
-  }
-};
-
-export default connect( mapStateToProps, mapDispatchToProps )(ProjectSearch);
-
+export default ProjectSearch;
 
 
 
