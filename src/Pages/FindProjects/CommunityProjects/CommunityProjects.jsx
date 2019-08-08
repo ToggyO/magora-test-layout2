@@ -1,7 +1,7 @@
 import React from 'react';
 import './CommunityProjects.sass';
 import {
-  receivingData,
+  receivingProjectsData,
   renderingProjects
 } from "../../../Libs/additionalSortingFunctions";
 import Preloader from "../../../Components/Preloader/Preloader";
@@ -13,7 +13,7 @@ class CommunityProjects extends React.Component {
   constructor(props) {
     super(props);
 
-    this.receivingData = receivingData.bind(this);
+    this.receivingData = receivingProjectsData.bind(this);
   }
 
   componentDidMount() {

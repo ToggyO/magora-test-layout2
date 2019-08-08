@@ -45,16 +45,29 @@ export const renderingProjects = (data) => {
 };
 
 
-export const receivingData = (location, getProjects, data) => {
+export const receivingProjectsData = (location, asyncActionCreator, data) => {
   const queryString = parse( location.search, { ignoreQueryPrefix: true });
-  getProjects(
+  asyncActionCreator(
     queryString.page || data.currentPage,
     queryString.benefits || data.history.benefits,
     queryString.category || data.history.category,
     queryString.sort || data.history.sort,
     queryString.petition || data.history.petition,
     queryString.crowdfunding || data.history.crowdfunding,
-    queryString.volunteering || data.history.volunteering);
+    queryString.volunteering || data.history.volunteering
+  );
+};
+
+
+export const receivingGrantsData = (location, asyncActionCreator, data) => {
+  const queryString = parse( location.search, { ignoreQueryPrefix: true });
+  asyncActionCreator(
+    queryString.page || data.currentPage,
+    queryString.benefits || data.history.benefits,
+    queryString.category || data.history.category,
+    queryString.sort || data.history.sort,
+    queryString.creator || data.history.creator,
+  );
 };
 
 

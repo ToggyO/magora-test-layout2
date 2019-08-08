@@ -9,7 +9,7 @@ const MySelect = (props) => {
     options,
     placeholder,
     defaultValue,
-    projectsSortValues,
+    sortValues,
     name
   } = props;
 
@@ -20,7 +20,7 @@ const MySelect = (props) => {
       options={options}
       placeholder={placeholder}
       inputValue=''
-      onChange={value => projectsSortValues(value.value, name)}
+      onChange={value => sortValues(value.value, name)}
       defaultValue={defaultValue}
     />
   )

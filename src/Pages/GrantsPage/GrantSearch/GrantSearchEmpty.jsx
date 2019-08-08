@@ -4,28 +4,21 @@ import SearchButtonsBlock from "../../../Components/SearchButtonsBlock";
 import FormSearchWrapper from "../../../Components/Form/FormSearchWrapper";
 import MySelect from "../../../Components/ReactSelect/components/MySelect";
 import {creatorOptions, sortOptions} from "../../FindProjects/FindProjectOptions";
+import {parse} from "qs";
 
 
-const GrantSearch = (props) => {
-  console.log(props);
-  // if (opened && window.innerWidth <= 991) {
-  //   document.body.style.overflow = 'hidden';
-  // } else {
-  //   document.body.style.overflow = 'scroll ';
-  // }
 
-  const {
-    location,
-    grantsData,
-    optionsData,
-    sortValues,
-    parseString,
-  } = props;
+const GrantSearchEmpty = (props) => {
+
+  // const {
+  //   location,
+  //   grantsData,
+  //   sortValues
+  // } = props;
 
   return (
     <div className='grantSearch wrapper'>
       <div className={`grantSearch-container wrapper-container prS-adapt d-f pl-35 pr-35 pt-25 pb-25 `}>
-
         <SearchButtonsBlock
           projectSearchButton={{
             className: 'btn rounded roundedSmall',
@@ -44,40 +37,40 @@ const GrantSearch = (props) => {
           }}
         />
         <FormSearchWrapper
-          projectsData={grantsData}
-          location={location}
+          // projectsData={grantsData}
+          // location={location}
         >
           <div className='filters-sort__sortBy'>
             <MySelect
-              options={sortOptions}
+              // options={sortOptions}
               placeholder='Sort By...'
-              sortValues={sortValues}
-              defaultValue={sortOptions.filter(item => item.value === parseString.sort)}
+              // sortValues={sortValues}
+
               name='sort'
             />
             <MySelect
-              options={creatorOptions}
+              // options={creatorOptions}
               placeholder='Choose grant creator'
-              sortValues={sortValues}
-              defaultValue={creatorOptions.filter(item => item.value === parseString.creator)}
-              name='creator'
+              // sortValues={sortValues}
+
+              name='sort'
             />
           </div>
           <div className='filters-sort__category prS-adapt__category ml-16'>
             <MySelect
-              options={optionsData.categories}
+              // options={sortOptions}
               placeholder='Choose category'
-              sortValues={sortValues}
-              defaultValue={optionsData.categories.filter(item => item.value === parseString.category)}
+              // sortValues={sortValues}
+
               name='category'
             />
           </div>
           <div className='filters-sort__benefits prS-adapt__benefits ml-16'>
             <MySelect
-              options={optionsData.benefits}
+              // options={sortOptions}
               placeholder='Choose benefits'
-              sortValues={sortValues}
-              defaultValue={optionsData.benefits.filter(item => item.value === parseString.benefits)}
+              // sortValues={sortValues}
+
               name='benefits'
             />
           </div>
@@ -90,7 +83,7 @@ const GrantSearch = (props) => {
 
 
 
-export default GrantSearch;
+export default GrantSearchEmpty;
 
 
 

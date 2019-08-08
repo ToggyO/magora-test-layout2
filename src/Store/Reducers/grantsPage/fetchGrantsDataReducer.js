@@ -2,6 +2,7 @@ import { FETCHED_GRANTS_DATA } from '../../Actions/grantsPage/actionFetchGrantsD
 
 let InitialState = {
   items: [],
+  isGrantsData: false,
   errors: {},
   loading: false,
   totalCardsCount: 0,
@@ -17,20 +18,16 @@ let InitialState = {
 
 const fetchedGrantsDataReducer = (state = InitialState, action) => {
   switch(action.type) {
-    case FETCHED_GRANTS_DATA.REQUEST_GRANTS:
-      return {
-        ...state,
-        loading: true
-      };
-    case FETCHED_GRANTS_DATA.RECEIVE_PROJECTS:
+    case FETCHED_GRANTS_DATA.RECEIVE_GRANTS:
       return {
         ...state,
         ...action.payload,
         loading: false,
         totalCardsCount: action.payload.total,
-        currentPage: action.payload.page
+        currentPage: action.payload.page,
+        isGrantsData: true,
       };
-    case FETCHED_GRANTS_DATA.RECEIVE_GRANTS:
+    case FETCHED_GRANTS_DATA.GRANTS_SORT_VALUES:
       return {
         ...state,
         history: {

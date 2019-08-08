@@ -4,19 +4,18 @@ import GrantSearch from "./GrantSearch/GrantSearch";
 import GrantProjects from "./GrantProjects/GrantProjects";
 import {bindActionCreators} from "redux";
 import {
-  getProjects,
-  projectsSortValues
-} from "../../Store/Actions/projectSearchPage/actionFetchProjectsData";
+  getGrants,
+  grantsSortValues
+} from "../../Store/Actions/grantsPage/actionFetchGrantsData";
 import {
   getBenefitsOptions,
   getCategoriesOptions
 } from '../../Store/Actions/projectSearchPage/actionGetSortOptions';
 import {connect} from "react-redux";
-import {receivingData} from "../../Libs/additionalSortingFunctions";
-import ProjectSearchEmpty from "../FindProjects/ProjectSearch/ProjectSearchEmpty";
-import CommunityProjectsEmpty from "../FindProjects/CommunityProjects/CommunityProjectsEmpty";
-import ProjectSearch from "../FindProjects/ProjectSearch/ProjectSearch";
-import {getGrants} from "../../Store/Actions/grantsPage/actionFetchGrantsData";
+import {mapQueryParamsToState, receivingGrantsData} from "../../Libs/additionalSortingFunctions";
+import {parse} from "qs";
+import GrantSearchEmpty from "./GrantSearch/GrantSearchEmpty";
+
 
 
 const GrantsPage = (props) => {
@@ -26,7 +25,7 @@ const GrantsPage = (props) => {
     fetchedProjectsOptions,
     location,
     getGrants,
-    projectsSortValues,
+    grantsSortValues,
     getCategoriesOptions,
     getBenefitsOptions,
     history,
@@ -34,29 +33,35 @@ const GrantsPage = (props) => {
 
   const [initialize, setInitialize] = useState(false);
 
+  const parseString = parse( props.location.search, { ignoreQueryPrefix: true });
+
   useEffect( () => {
     window.scrollTo(0, 0);
 
     let categoriesOptions = getCategoriesOptions();
     let benefitsOptions = getBenefitsOptions();
-    // let grantsData = receivingData(location, getGrants, fetchedGrantsData);
+    let grantsData = receivingGrantsData(location, getGrants, fetchedGrantsData);
+    mapQueryParamsToState(parseString, grantsSortValues);
 
     Promise.all([
       categoriesOptions,
       benefitsOptions,
-      // grantsData
+      grantsData
     ]).then(() => setInitialize(true));
   },[]);
 
 
   if(!initialize) {
+    // console.log(initialize);
     return (
       <>
-        {/*<ProjectSearchEmpty />*/}
+        <GrantSearchEmpty />
         {/*<CommunityProjectsEmpty projectsData={fetchedProjectsData}/>*/}
       </>
     )
   } else {
+    // console.log(initialize);
+
     return (
       <>
         <GrantSearch
@@ -64,10 +69,11 @@ const GrantsPage = (props) => {
           optionsData={fetchedProjectsOptions}
           location={location}
           getProjects={getGrants}
-          projectsSortValues={projectsSortValues}
+          sortValues={grantsSortValues}
           getCategoriesOptions={getCategoriesOptions}
           getBenefitsOptions={getBenefitsOptions}
           history={history}
+          parseString={parseString}
         />
         {/*<GrantProjects*/}
         {/*  grantsData={fetchedGrantsData}*/}
@@ -78,6 +84,7 @@ const GrantsPage = (props) => {
         {/*  getCategoriesOptions={getCategoriesOptions}*/}
         {/*  getBenefitsOptions={getBenefitsOptions}*/}
         {/*  history={history}*/}
+        {/*parseString={parseString}*/}
         {/*/>*/}
       </>
     )
@@ -88,8 +95,8 @@ const GrantsPage = (props) => {
 let mapStateToProps = ({ fetchedGrantsData, fetchedProjectsOptions, }) => ({ fetchedGrantsData, fetchedProjectsOptions, });
 let mapDispatchToProps = (dispatch) => {
   return {
-    getProjects: bindActionCreators(getProjects, dispatch),
-    projectsSortValues: bindActionCreators(projectsSortValues, dispatch),
+    getGrants: bindActionCreators(getGrants, dispatch),
+    grantsSortValues: bindActionCreators(grantsSortValues, dispatch),
     getCategoriesOptions: bindActionCreators(getCategoriesOptions, dispatch),
     getBenefitsOptions: bindActionCreators(getBenefitsOptions, dispatch),
   }

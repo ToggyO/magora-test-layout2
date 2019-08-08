@@ -3,8 +3,7 @@ import * as axios from "axios";
 export const FETCHED_GRANTS_DATA = {
   REQUEST_GRANTS: 'REQUEST_GRANTS',
   RECEIVE_GRANTS: 'RECEIVE_GRANTS',
-  PROJECT_SORT_VALUES: 'PROJECT_SORT_VALUES',
-  PROJECT_SORT_CHECKBOX_VALUES: 'PROJECT_SORT_CHECKBOX_VALUES',
+  GRANTS_SORT_VALUES: 'GRANTS_SORT_VALUES',
 };
 
 const requestGrants = () => {
@@ -20,9 +19,9 @@ const receiveGrants = (projects) => {
   }
 };
 
-export const projectsSortValues = (value, name) => {
+export const grantsSortValues = (value, name) => {
   return {
-    type: FETCHED_GRANTS_DATA.PROJECT_SORT_VALUES,
+    type: FETCHED_GRANTS_DATA.GRANTS_SORT_VALUES,
     payload: {
       value,
       name

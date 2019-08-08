@@ -6,7 +6,7 @@ import {bindActionCreators} from "redux";
 import {getProjects, projectsSortValues} from "../../Store/Actions/projectSearchPage/actionFetchProjectsData";
 import {getBenefitsOptions, getCategoriesOptions} from "../../Store/Actions/projectSearchPage/actionGetSortOptions";
 import {connect} from "react-redux";
-import {mapQueryParamsToState, receivingData} from "../../Libs/additionalSortingFunctions";
+import {mapQueryParamsToState, receivingProjectsData} from "../../Libs/additionalSortingFunctions";
 import CommunityProjectsEmpty from "./CommunityProjects/CommunityProjectsEmpty";
 import ProjectSearchEmpty from "./ProjectSearch/ProjectSearchEmpty";
 import {parse} from "qs";
@@ -35,8 +35,8 @@ const FindProjects = (props) => {
     window.scrollTo(0, 0);
     getCategoriesOptions();
     getBenefitsOptions();
-    receivingData(location, getProjects, fetchedProjectsData);
-    mapQueryParamsToState(parseString, projectsSortValues)
+    receivingProjectsData(location, getProjects, fetchedProjectsData);
+    mapQueryParamsToState(parseString, projectsSortValues);
 
 
     // Promise.all([
@@ -77,6 +77,7 @@ const FindProjects = (props) => {
           getCategoriesOptions={getCategoriesOptions}
           getBenefitsOptions={getBenefitsOptions}
           history={history}
+          parseString={parseString}
         />
         <CommunityProjects
           projectsData={fetchedProjectsData}
@@ -87,6 +88,7 @@ const FindProjects = (props) => {
           getCategoriesOptions={getCategoriesOptions}
           getBenefitsOptions={getBenefitsOptions}
           history={history}
+          parseString={parseString}
         />
       </>
     )

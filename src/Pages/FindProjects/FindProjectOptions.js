@@ -11,6 +11,12 @@ export  const modulesOptions = [
   { value: 'petition', label: 'Petition' }
 ];
 
+export  const creatorOptions = [
+  {value: '', label: 'All creators'},
+  { value: 'council', label: 'Council' },
+  { value: 'business', label: 'Business' },
+  { value: 'admin', label: 'Tribus' }
+];
 
 
 

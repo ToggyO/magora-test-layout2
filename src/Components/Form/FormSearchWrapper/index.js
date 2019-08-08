@@ -1,18 +1,12 @@
 import history from "../../../history";
 import {
   makeQueryString,
-  mapQueryParamsToState,
 } from "../../../Libs/additionalSortingFunctions";
 import Icon from "../../../Icons/Icons";
-import Select from "react-select";
-import {DropdownIndicator} from "../../ReactSelect/components/custom_components";
-import {styles} from "../../ReactSelect/Styles/filterStyles";
-import {modulesOptions, sortOptions} from "../../../Pages/FindProjects/FindProjectOptions";
-import Option from "../../ReactSelect/components/checkbox";
-import {moduleStyles} from "../../ReactSelect/Styles/modulesStyles";
-import React, {useState, useEffect} from 'react';
+
+import React, {useState} from 'react';
 import './style.sass';
-import {parse} from "qs";
+
 
 
 
