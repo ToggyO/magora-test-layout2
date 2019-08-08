@@ -8,17 +8,17 @@ export const SORT_OPTIONS = {
   RECEIVE_BENEFITS_OPTIONS: 'RECEIVE_BENEFITS_OPTIONS',
 };
 
-const requestCategoriesOptions = () => {
-  return {
-    type: SORT_OPTIONS.REQUEST_CATEGORIES_OPTIONS,
-  }
-};
-
-const requestBenefitsOptions = () => {
-  return {
-    type: SORT_OPTIONS.REQUEST_BENEFITS_OPTIONS,
-  }
-};
+// const requestCategoriesOptions = () => {
+//   return {
+//     type: SORT_OPTIONS.REQUEST_CATEGORIES_OPTIONS,
+//   }
+// };
+//
+// const requestBenefitsOptions = () => {
+//   return {
+//     type: SORT_OPTIONS.REQUEST_BENEFITS_OPTIONS,
+//   }
+// };
 
 const  receiveCategoriesOptions = (categories) => {
   return {
@@ -37,16 +37,16 @@ const  receiveBenefitsOptions = (benefits) => {
 export const getCategoriesOptions = () => {
   // debugger;
   return (dispatch) => {
-    dispatch(requestCategoriesOptions());
-    return axios.get('https://dev.tribus.org/api/v0.7/categories')
+
+     axios.get('https://dev.tribus.org/api/v0.7/categories')
       .then(res => dispatch(receiveCategoriesOptions(res)));
   }
 };
 
 export const getBenefitsOptions = () => {
   return (dispatch) => {
-    dispatch(requestBenefitsOptions());
-    return axios.get('https://dev.tribus.org/api/v0.7/benefits')
+
+     axios.get('https://dev.tribus.org/api/v0.7/benefits')
       .then(res => dispatch(receiveBenefitsOptions(res)));
   }
 };

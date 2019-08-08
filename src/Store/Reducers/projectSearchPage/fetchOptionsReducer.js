@@ -7,24 +7,24 @@ let InitialState = {
   benefits: [
     { value: '', label: 'All projects'}
   ],
-  categoriesLoading: false,
-  benefitsLoading: false,
+  isCategories: false,
+  isBenefits: false
 };
 
 const fetchedOptionsReducer = (state = InitialState, action) => {
   switch(action.type) {
-    case SORT_OPTIONS.REQUEST_CATEGORIES_OPTIONS:
-      // debugger;
-      return {
-        ...state,
-        categoriesLoading: true
-      };
-    case SORT_OPTIONS.REQUEST_BENEFITS_OPTIONS:
-      // debugger;
-      return {
-        ...state,
-        benefitsLoading: true
-      };
+    // case SORT_OPTIONS.REQUEST_CATEGORIES_OPTIONS:
+    //   // debugger;
+    //   return {
+    //     ...state,
+    //     categoriesLoading: true
+    //   };
+    // case SORT_OPTIONS.REQUEST_BENEFITS_OPTIONS:
+    //   // debugger;
+    //   return {
+    //     ...state,
+    //     benefitsLoading: true
+    //   };
     case SORT_OPTIONS.RECEIVE_CATEGORIES_OPTIONS:
     // debugger;
       return {
@@ -34,7 +34,7 @@ const fetchedOptionsReducer = (state = InitialState, action) => {
           ...action.payload.items.map(item =>
             ({ value: item.id, label: item.name}))
         ],
-        categoriesLoading: !state.categoriesLoading
+        isCategories: true
       };
     case SORT_OPTIONS.RECEIVE_BENEFITS_OPTIONS:
     // debugger;
@@ -45,7 +45,7 @@ const fetchedOptionsReducer = (state = InitialState, action) => {
           ...action.payload.items.map(item =>
           ({ value: item.id, label: item.name}))
         ],
-        benefitsLoading: !state.benefitsLoading
+        isBenefits: true
       };
     default:
       return state;

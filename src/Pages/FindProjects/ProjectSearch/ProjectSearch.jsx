@@ -1,7 +1,11 @@
 import React from 'react';
 import './ProjectSearch.sass';
-import FormSearch from '../../../Components/Form/FormSearch';
+import FormSearchWrapper from '../../../Components/Form/FormSearchWrapper';
 import SearchButtonsBlock from '../../../Components/SearchButtonsBlock';
+import CheckboxSelect from "../../../Components/ReactSelect/components/CheckboxSelect";
+import {modulesOptions, sortOptions} from "../FindProjectOptions";
+import {parse} from "qs";
+import MySelect from "../../../Components/ReactSelect/components/MySelect";
 
 
 const ProjectSearch = (props) => {
@@ -11,11 +15,13 @@ const ProjectSearch = (props) => {
   //   document.body.style.overflow = 'scroll ';
   // }
 
+  const parseString = parse( props.location.search, { ignoreQueryPrefix: true });
+
   const {
     location,
     projectsData,
     optionsData,
-    projectsSortValues
+    projectsSortValues,
   } = props;
 
   return (
@@ -39,12 +45,46 @@ const ProjectSearch = (props) => {
            iconClassName: '',
          }}
         />
-        <FormSearch
+
+        <FormSearchWrapper
           location={location}
           projectsData={projectsData}
-          optionsData={optionsData}
           projectsSortValues={projectsSortValues}
-        />
+          parseString={parseString}
+        >
+          <div className='filters-sort__sortBy'>
+            <MySelect
+              options={sortOptions}
+              placeholder='Sort By...'
+              projectsSortValues={projectsSortValues}
+              defaultValue={sortOptions.filter(item => item.value === parseString.sort)}
+              name='sort'
+            />
+            <CheckboxSelect
+              options={modulesOptions}
+              placeholder='Active modules'
+              defaultValue={modulesOptions.filter(item => parseString[item.value])}
+            />
+          </div>
+          <div className='filters-sort__category prS-adapt__category ml-16'>
+            <MySelect
+              options={optionsData.categories}
+              placeholder='Choose category'
+              projectsSortValues={projectsSortValues}
+              defaultValue={optionsData.categories.filter(item => item.value === parseString.sort)}
+              name='category'
+            />
+          </div>
+          <div className='filters-sort__benefits prS-adapt__benefits ml-16'>
+            <MySelect
+              options={optionsData.benefits}
+              placeholder='Choose benefits'
+              projectsSortValues={projectsSortValues}
+              defaultValue={optionsData.benefits.filter(item => item.value === parseString.sort)}
+              name='benefits'
+            />
+          </div>
+        </FormSearchWrapper>
 
       </div>
     </div>

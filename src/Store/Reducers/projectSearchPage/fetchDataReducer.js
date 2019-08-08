@@ -2,6 +2,7 @@ import { FETCHED_PROJECTS_DATA } from '../../Actions/projectSearchPage/actionFet
 
 let InitialState = {
   items: [],
+  isProjectsData: false,
   errors: {},
   loading: false,
   totalCardsCount: 0,
@@ -30,7 +31,8 @@ const fetchedDataReducer = (state = InitialState, action) => {
         ...action.payload,
         loading: false,
         totalCardsCount: action.payload.total,
-        currentPage: action.payload.page
+        currentPage: action.payload.page,
+        isProjectsData: true
       };
     case FETCHED_PROJECTS_DATA.PROJECT_SORT_VALUES:
       return {

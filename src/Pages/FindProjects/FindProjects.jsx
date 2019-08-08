@@ -6,9 +6,10 @@ import {bindActionCreators} from "redux";
 import {getProjects, projectsSortValues} from "../../Store/Actions/projectSearchPage/actionFetchProjectsData";
 import {getBenefitsOptions, getCategoriesOptions} from "../../Store/Actions/projectSearchPage/actionGetSortOptions";
 import {connect} from "react-redux";
-import {receivingData} from "../../Libs/additionalSortingFunctions";
+import {mapQueryParamsToState, receivingData} from "../../Libs/additionalSortingFunctions";
 import CommunityProjectsEmpty from "./CommunityProjects/CommunityProjectsEmpty";
 import ProjectSearchEmpty from "./ProjectSearch/ProjectSearchEmpty";
+import {parse} from "qs";
 
 
 
@@ -17,7 +18,7 @@ const FindProjects = (props) => {
 
   const {
     fetchedProjectsData,
-    fetchedOptions,
+    fetchedProjectsOptions,
     location,
     getProjects,
     projectsSortValues,
@@ -25,6 +26,8 @@ const FindProjects = (props) => {
     getBenefitsOptions,
     history,
   } = props;
+
+  const parseString = parse( props.location.search, { ignoreQueryPrefix: true });
 
   const [initialize, setInitialize] = useState(false);
 
@@ -34,22 +37,27 @@ const FindProjects = (props) => {
     let categoriesOptions = getCategoriesOptions();
     let benefitsOptions = getBenefitsOptions();
     let projectsData = receivingData(location, getProjects, fetchedProjectsData);
+    let mapQueryParams = mapQueryParamsToState(parseString, projectsSortValues)
+
 
     Promise.all([
       categoriesOptions,
       benefitsOptions,
-      projectsData
+      projectsData,
+      mapQueryParams
     ]).then(() => setInitialize(true));
   },[]);
 
   // useEffect( () => {
-  //   (fetchedProjectsData.items.length &&
-  //     fetchedOptions.categories.length > 1 &&
-  //     fetchedOptions.benefits.length > 1) && setInitialize(true);
-  //   console.log('da');
-  // },[fetchedProjectsData.items, fetchedOptions.categories, fetchedOptions.benefits ]);
+  //   (fetchedProjectsData.items.length > 0 &&
+  //     fetchedProjectsOptions.categories.length > 1 &&
+  //     fetchedProjectsOptions.benefits.length > 1) && setInitialize(true);
+  //   console.log(initialize);
+  //   debugger;
+  // },[fetchedProjectsData.items, fetchedProjectsOptions.categories, fetchedProjectsOptions.benefits ]);
 
   if(!initialize) {
+    console.log(initialize);
     return (
       <>
         <ProjectSearchEmpty />
@@ -57,11 +65,13 @@ const FindProjects = (props) => {
       </>
     )
   } else {
+    console.log(initialize);
     return (
+
       <>
         <ProjectSearch
           projectsData={fetchedProjectsData}
-          optionsData={fetchedOptions}
+          optionsData={fetchedProjectsOptions}
           location={location}
           getProjects={getProjects}
           projectsSortValues={projectsSortValues}
@@ -71,7 +81,7 @@ const FindProjects = (props) => {
         />
         <CommunityProjects
           projectsData={fetchedProjectsData}
-          optionsData={fetchedOptions}
+          optionsData={fetchedProjectsOptions}
           location={location}
           getProjects={getProjects}
           projectsSortValues={projectsSortValues}
@@ -86,7 +96,7 @@ const FindProjects = (props) => {
 };
 
 
-let mapStateToProps = ({ fetchedProjectsData, fetchedOptions, }) => ({ fetchedProjectsData, fetchedOptions, });
+let mapStateToProps = ({ fetchedProjectsData, fetchedProjectsOptions, }) => ({ fetchedProjectsData, fetchedProjectsOptions, });
 let mapDispatchToProps = (dispatch) => {
   return {
     getProjects: bindActionCreators(getProjects, dispatch),

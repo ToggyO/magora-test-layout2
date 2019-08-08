@@ -16,15 +16,19 @@ import {parse} from "qs";
 
 
 
-const FormSearch = (props) => {
+const FormSearchWrapper = (props) => {
 
   const [opened, toggleOpen] = useState(false);
 
-  const parseString = parse( props.location.search, { ignoreQueryPrefix: true });
+  const {
+    projectsData,
+    parseString,
+    projectsSortValues
+  } = props;
 
-  useEffect(() => {
-    mapQueryParamsToState(parseString, props.projectsSortValues)
-  }, []);
+  // useEffect(() => {
+  //   mapQueryParamsToState(parseString, projectsSortValues)
+  // }, []);
 
 
   if (opened && window.innerWidth <= 991) {
@@ -39,7 +43,7 @@ const FormSearch = (props) => {
       className={`filterBlock prS-adapt__filterBlock pl-32 ${ opened ? 'isOpen' : null }`}
       onSubmit={ (e) => {
           e.preventDefault();
-          history.push(makeQueryString(props.projectsData.history));
+          history.push(makeQueryString(projectsData.history));
         }
       }
     >
@@ -66,52 +70,8 @@ const FormSearch = (props) => {
       <div className='filterBlock__filters prS-adapt__filters pt-7'>
         <div className={`filters-sort prS-adapt__filters-sort d-f ${ opened ? 'isOpen' : null }-sort`}>
 
-          <div className='filters-sort__sortBy'>
-            <Select
-              components={{DropdownIndicator}}
-              styles={styles}
-              options={sortOptions}
-              placeholder={'Sort By...'}
-              onChange={value => props.projectsSortValues(value.value, 'sort')}
-              defaultValue={sortOptions.filter(item => item.value === parseString.sort)}
-            />
-            <Select
-              components={{DropdownIndicator, Option}}
-              isMulti
-              closeMenuOnSelect={false}
-              hideSelectedOptions={false}
-              styles={moduleStyles}
-              options={modulesOptions}
-              className='mt-6'
-              placeholder={'Active modules'}
-              inputValue=''
-              defaultValue={modulesOptions.filter(item => parseString[item.value])}
-              location={props.location}
-            />
-          </div>
-          <div className='filters-sort__category prS-adapt__category ml-16'>
-            <Select
-              components={{DropdownIndicator}}
-              styles={styles}
-              options={props.optionsData.categories}
-              placeholder={'Choose category'}
-              inputValue=''
-              hasValue
-              onChange={value => props.projectsSortValues(value.value, 'category')}
-              defaultValue={props.optionsData.categories.filter(item => item.value === parseString.category)}
-            />
-          </div>
-          <div className='filters-sort__benefits prS-adapt__benefits ml-16'>
-            <Select
-              components={{DropdownIndicator}}
-              styles={styles}
-              options={props.optionsData.benefits}
-              placeholder={'Choose benefits'}
-              inputValue=''
-              onChange={value => props.projectsSortValues(value.value, 'benefits')}
-              defaultValue={ props.optionsData.benefits.filter(item => item.value === parseString.benefits)}
-            />
-          </div>
+          {props.children}
+
           <div
             className={`filters-sort__btn ${ opened ? 'showApplyButton' : null }`}
             style={{ display: 'none' }}
@@ -134,4 +94,4 @@ const FormSearch = (props) => {
   )
 };
 
-export default FormSearch;
+export default FormSearchWrapper;

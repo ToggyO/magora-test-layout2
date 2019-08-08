@@ -1,6 +1,6 @@
 import React from 'react';
 import './Banner.sass';
-import {modalOpen} from "../../../Store/Actions/projectSearchPage/actionModal";
+import {modalOpen} from "../../../Store/Actions/modal/actionModal";
 import {connect} from "react-redux";
 
 
