@@ -35,10 +35,11 @@ const  receiveBenefitsOptions = (benefits) => {
 };
 
 export const getCategoriesOptions = () => {
+  // debugger;
   return (dispatch) => {
     dispatch(requestCategoriesOptions());
     return axios.get('https://dev.tribus.org/api/v0.7/categories')
-        .then(res => dispatch(receiveCategoriesOptions(res)));
+      .then(res => dispatch(receiveCategoriesOptions(res)));
   }
 };
 

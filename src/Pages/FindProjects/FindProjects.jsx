@@ -14,7 +14,7 @@ import ProjectSearchEmpty from "./ProjectSearch/ProjectSearchEmpty";
 
 
 const FindProjects = (props) => {
-
+  console.log(props);
   const {
     fetchedProjectsData,
     fetchedOptions,

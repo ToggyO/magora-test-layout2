@@ -42,12 +42,6 @@ export const renderingProjects = (data) => {
 };
 
 
-export const renderOptions = (items) => {
-  // console.log(items);
-  return items.map(item => ({ value: item.id, label: item.name}));
-};
-
-
 export const receivingData = (location, getProjects, data) => {
   const queryString = parse( location.search, { ignoreQueryPrefix: true });
   getProjects(
@@ -74,7 +68,10 @@ export const mapQueryParamsToState = (string, func) => {
 
 
 
-
+// export const renderOptions = (items) => {
+//   // console.log(items);
+//   return items.map(item => ({ value: item.id, label: item.name}));
+// };
 
 
 // export const renderOptions = (items) => {

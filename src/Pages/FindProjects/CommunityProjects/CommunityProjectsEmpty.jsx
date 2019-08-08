@@ -39,13 +39,4 @@ class CommunityProjectsEmpty extends React.Component {
 export default CommunityProjectsEmpty;
 
 
-// let mapStateToProps = ({ fetchedProjectsData }) => ({ fetchedProjectsData, });
-// let mapDispatchToProps = (dispatch) => {
-//   return {
-//     getProjects: bindActionCreators(getProjects, dispatch),
-//     projectsSortValues: bindActionCreators(projectsSortValues, dispatch),
-//   }
-// };
-// export default connect( mapStateToProps, mapDispatchToProps )(CommunityProjects);
-
 

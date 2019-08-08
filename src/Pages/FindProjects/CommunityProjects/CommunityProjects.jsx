@@ -17,13 +17,21 @@ class CommunityProjects extends React.Component {
   }
 
   componentDidMount() {
-    window.scrollTo(0, 0);
+    window.scrollTo({
+      left: 0,
+      top: 0,
+      behavior: 'smooth'
+    })
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.location.search !== prevProps.location.search) {
       this.receivingData(this.props.location, this.props.getProjects, this.props.projectsData)
-      window.scrollTo(0, 650)
+      window.scrollTo({
+        left: 0,
+        top: 550,
+        behavior: 'smooth'
+      })
     }
   }
 
@@ -62,17 +70,6 @@ class CommunityProjects extends React.Component {
   }
 }
 
-
 export default CommunityProjects;
-
-
-// let mapStateToProps = ({ fetchedProjectsData }) => ({ fetchedProjectsData, });
-// let mapDispatchToProps = (dispatch) => {
-//   return {
-//     getProjects: bindActionCreators(getProjects, dispatch),
-//     projectsSortValues: bindActionCreators(projectsSortValues, dispatch),
-//   }
-// };
-// export default connect( mapStateToProps, mapDispatchToProps )(CommunityProjects);
 
 

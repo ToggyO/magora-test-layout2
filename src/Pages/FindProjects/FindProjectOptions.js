@@ -1,8 +1,8 @@
 
 export  const sortOptions = [
-  {id: '', name: 'All projects'},
-  {id: 'createDate', name: 'Oldest'},
-  {id: '!createDate', name: 'Newest'},
+  {value: '', label: 'All projects'},
+  {value: 'createDate', label: 'Oldest'},
+  {value: '!createDate', label: 'Newest'},
 ];
 
 export  const modulesOptions = [

@@ -1,0 +1,96 @@
+@import '../../../Styles/bin/variables'
+@import '../../../Styles/bin/mixins'
+@import "../../../../node_modules/rfs/sass"
+
+
+.filterBlock
+  width: 100%
+
+  &__headlines
+    span
+
+  &__search
+
+    &-input
+      background-color: #fff
+      border-radius: 31px
+      box-shadow: 0 9px 23px 0 rgba(0,0,0,0.15)
+      height: 62px
+
+      input
+        border: none
+
+      input::placeholder
+        font-size: 18px
+        +r(xs)
+          font-size: 14px
+
+      input::placeholder::before
+        content: ''
+        display: inline-block
+
+      span
+        padding: 10px
+
+  &__search-input
+
+  &__filters
+
+
+
+.filters-sort
+  &__sortBy
+    width: 100%
+
+  &__category
+    width: 100%
+
+  &__benefits
+    width: 100%
+
+
+//Displayed filters block
+.isOpen
+  +r(lg)
+    display: flex
+    flex-direction: column
+    width: 100vw
+    height: 100vh
+    margin-left: -40px
+    position: fixed
+    overflow: hidden
+    top: 0
+    bottom: 0
+    padding: 20px 20px
+    background-color: rgba(236, 234, 235, 0.99)
+    z-index: 1000
+
+  &-buttons
+    +r(lg)
+      display: none
+
+  &-headlines
+    +r(lg)
+      display: none
+
+  &-search
+    +r(lg)
+      padding: 5px 20px
+
+  &-sort
+    +r(lg)
+      display: flex
+      flex-direction: column
+      top: 0
+      left: 0
+      z-index: 15
+      padding: 0 20px
+      overflow: hidden
+
+
+.showApplyButton
+  +r(lg)
+    display: block !important
+    padding: 40px 0 20px 0
+    margin: 0 auto
+

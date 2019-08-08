@@ -8,12 +8,6 @@ import { moduleStyles } from '../../../Components/ReactSelect/Styles/modulesStyl
 import { DropdownIndicator } from '../../../Components/ReactSelect/components/custom_components';
 import Option from '../../../Components/ReactSelect/components/checkbox';
 import {modulesOptions, sortOptions} from "../FindProjectOptions";
-import {
-  renderOptions
-} from "../../../Libs/additionalSortingFunctions";
-
-
-
 
 
 const ProjectSearchEmpty = (props) => {
@@ -52,7 +46,7 @@ const ProjectSearchEmpty = (props) => {
         </div>
 
         <form
-          className={`projectSearch-filterBlock prS-adapt__filterBlock pl-32`}
+          className={`filterBlock prS-adapt__filterBlock pl-32`}
 
           >
 
@@ -82,7 +76,7 @@ const ProjectSearchEmpty = (props) => {
                 <Select
                   components={{DropdownIndicator}}
                   styles={styles}
-                  options={renderOptions(sortOptions)}
+                  options={sortOptions}
                   placeholder={'Sort By...'}
                 />
                 <Select
@@ -151,26 +145,3 @@ export default ProjectSearchEmpty;
 
 
 
-
-
-
-
-
-//
-// import React, { type ElementConfig } from 'react';
-// import Select, {components} from 'react-select'
-// import './EventSearch.sass';
-// import {NavLink} from "react-router-dom";
-// import Icon from  '../../../Icons/Icons';
-// import { styles } from  './selectStyles';
-//
-//
-// const DropdownIndicator = (
-//   props: ElementConfig<typeof components.DropdownIndicator>
-// ) => {
-//   return (
-//     <components.DropdownIndicator {...props}>
-//       <Icon iconName='dropdownCircle' />
-//     </components.DropdownIndicator>
-//   );
-// };

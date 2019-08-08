@@ -2,10 +2,10 @@ import { SORT_OPTIONS } from "../Actions/actionGetSortOptions";
 
 let InitialState = {
   categories: [
-    { id: '', name: 'All projects'}
+    { value: '', label: 'All projects'}
   ],
   benefits: [
-    { id: '', name: 'All projects'}
+    { value: '', label: 'All projects'}
   ],
   categoriesLoading: false,
   benefitsLoading: false,
@@ -29,14 +29,22 @@ const fetchedOptionsReducer = (state = InitialState, action) => {
     // debugger;
       return {
         ...state,
-        categories: [...state.categories, ...action.payload.items],
+        categories: [
+          ...state.categories,
+          ...action.payload.items.map(item =>
+            ({ value: item.id, label: item.name}))
+        ],
         categoriesLoading: !state.categoriesLoading
       };
     case SORT_OPTIONS.RECEIVE_BENEFITS_OPTIONS:
     // debugger;
       return {
         ...state,
-        benefits: [...state.benefits, ...action.payload.items],
+        benefits: [
+          ...state.benefits,
+          ...action.payload.items.map(item =>
+          ({ value: item.id, label: item.name}))
+        ],
         benefitsLoading: !state.benefitsLoading
       };
     default:
