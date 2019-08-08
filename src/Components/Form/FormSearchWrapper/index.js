@@ -22,8 +22,6 @@ const FormSearchWrapper = (props) => {
 
   const {
     projectsData,
-    parseString,
-    projectsSortValues
   } = props;
 
   // useEffect(() => {

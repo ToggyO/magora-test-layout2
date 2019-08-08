@@ -16,7 +16,7 @@ const ProjectSearch = (props) => {
   // }
 
   const parseString = parse( props.location.search, { ignoreQueryPrefix: true });
-
+  console.log(parseString);
   const {
     location,
     projectsData,
@@ -47,10 +47,8 @@ const ProjectSearch = (props) => {
         />
 
         <FormSearchWrapper
-          location={location}
+
           projectsData={projectsData}
-          projectsSortValues={projectsSortValues}
-          parseString={parseString}
         >
           <div className='filters-sort__sortBy'>
             <MySelect
@@ -71,7 +69,7 @@ const ProjectSearch = (props) => {
               options={optionsData.categories}
               placeholder='Choose category'
               projectsSortValues={projectsSortValues}
-              defaultValue={optionsData.categories.filter(item => item.value === parseString.sort)}
+              defaultValue={optionsData.categories.filter(item => item.value === parseString.category)}
               name='category'
             />
           </div>
@@ -80,7 +78,7 @@ const ProjectSearch = (props) => {
               options={optionsData.benefits}
               placeholder='Choose benefits'
               projectsSortValues={projectsSortValues}
-              defaultValue={optionsData.benefits.filter(item => item.value === parseString.sort)}
+              defaultValue={optionsData.benefits.filter(item => item.value === parseString.benefits)}
               name='benefits'
             />
           </div>

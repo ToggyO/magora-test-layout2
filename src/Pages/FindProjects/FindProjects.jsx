@@ -33,28 +33,27 @@ const FindProjects = (props) => {
 
   useEffect( () => {
     window.scrollTo(0, 0);
+    getCategoriesOptions();
+    getBenefitsOptions();
+    receivingData(location, getProjects, fetchedProjectsData);
+    mapQueryParamsToState(parseString, projectsSortValues)
 
-    let categoriesOptions = getCategoriesOptions();
-    let benefitsOptions = getBenefitsOptions();
-    let projectsData = receivingData(location, getProjects, fetchedProjectsData);
-    let mapQueryParams = mapQueryParamsToState(parseString, projectsSortValues)
 
-
-    Promise.all([
-      categoriesOptions,
-      benefitsOptions,
-      projectsData,
-      mapQueryParams
-    ]).then(() => setInitialize(true));
+    // Promise.all([
+    //   categoriesOptions,
+    //   benefitsOptions,
+    //   projectsData,
+    //   mapQueryParams
+    // ]).then(() => setInitialize(true));
   },[]);
 
-  // useEffect( () => {
-  //   (fetchedProjectsData.items.length > 0 &&
-  //     fetchedProjectsOptions.categories.length > 1 &&
-  //     fetchedProjectsOptions.benefits.length > 1) && setInitialize(true);
-  //   console.log(initialize);
-  //   debugger;
-  // },[fetchedProjectsData.items, fetchedProjectsOptions.categories, fetchedProjectsOptions.benefits ]);
+  useEffect( () => {
+    (fetchedProjectsData.isProjectsData &&
+      fetchedProjectsOptions.isCategories &&
+      fetchedProjectsOptions.isBenefits ) && setInitialize(true);
+    console.log(initialize);
+
+  },[fetchedProjectsData.isProjectsData, fetchedProjectsOptions.isCategories, fetchedProjectsOptions.isBenefits ]);
 
   if(!initialize) {
     console.log(initialize);
