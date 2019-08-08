@@ -6,7 +6,7 @@ import InputPass from "../InputPass/InputPass";
 import formInitialize from '../../../Libs/FormValidation';
 
 import { connect } from "react-redux";
-import { modalOpen } from "../../../Store/Actions/actionModal";
+import { modalOpen } from "../../../Store/Actions/projectSearchPage/actionModal";
 import { bindActionCreators } from "redux";
 import validationConditionsSignIn from "./ValidationConditionsSignIn";
 

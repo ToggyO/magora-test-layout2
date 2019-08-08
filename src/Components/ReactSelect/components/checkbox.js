@@ -1,5 +1,5 @@
 import React from "react";
-import {projectsSortCheckboxValues} from "../../../Store/Actions/actionFetchProjectsData";
+import {projectsSortCheckboxValues} from "../../../Store/Actions/projectSearchPage/actionFetchProjectsData";
 import {components} from "react-select";
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";

@@ -25,14 +25,17 @@ export const renderingProjects = (data) => {
     return <h1
       style={
         {
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
           padding: '20px 35px',
           width: '100%',
-          borderRadius: '5px',
+          height: 100,
+          borderRadius: '2px',
           fontSize: 28,
-          color: '#fff',
+          color: '#313131',
           fontWeight: '700',
-          backgroundColor: '#4ccceb',
-          textAlign: 'center'
+          borderBottom: '2px solid #808080'
         }
       }
     >

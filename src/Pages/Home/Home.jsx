@@ -2,8 +2,7 @@ import React from 'react';
 import Banner from './Banner/Banner';
 import Possibilities from './Possibilities/Possibilities';
 import Lamp from './Lamp/Lamp';
-import Community from './Community/Community';
-
+// import Community from './Community/Community';
 
 
 const Home = () => {
@@ -12,10 +11,10 @@ const Home = () => {
       <Banner />
       <Possibilities />
       <Lamp />
-      <Community />
+      {/*<Community />*/}
     </>
   );
-}
+};
 
 export default Home;
 

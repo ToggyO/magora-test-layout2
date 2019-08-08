@@ -1,6 +1,6 @@
 import React from 'react';
 import './CardModal.sass';
-import {modalOpen} from "../../../Store/Actions/actionModal";
+import {modalOpen} from "../../../Store/Actions/projectSearchPage/actionModal";
 import {connect} from "react-redux";
 
 

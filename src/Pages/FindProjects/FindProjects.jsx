@@ -3,8 +3,8 @@ import './FindProjects.sass';
 import ProjectSearch from "./ProjectSearch/ProjectSearch";
 import CommunityProjects from "./CommunityProjects/CommunityProjects";
 import {bindActionCreators} from "redux";
-import {getProjects, projectsSortValues} from "../../Store/Actions/actionFetchProjectsData";
-import {getBenefitsOptions, getCategoriesOptions} from "../../Store/Actions/actionGetSortOptions";
+import {getProjects, projectsSortValues} from "../../Store/Actions/projectSearchPage/actionFetchProjectsData";
+import {getBenefitsOptions, getCategoriesOptions} from "../../Store/Actions/projectSearchPage/actionGetSortOptions";
 import {connect} from "react-redux";
 import {receivingData} from "../../Libs/additionalSortingFunctions";
 import CommunityProjectsEmpty from "./CommunityProjects/CommunityProjectsEmpty";
@@ -14,7 +14,7 @@ import ProjectSearchEmpty from "./ProjectSearch/ProjectSearchEmpty";
 
 
 const FindProjects = (props) => {
-  console.log(props);
+
   const {
     fetchedProjectsData,
     fetchedOptions,
@@ -40,9 +40,14 @@ const FindProjects = (props) => {
       benefitsOptions,
       projectsData
     ]).then(() => setInitialize(true));
-
   },[]);
 
+  // useEffect( () => {
+  //   (fetchedProjectsData.items.length &&
+  //     fetchedOptions.categories.length > 1 &&
+  //     fetchedOptions.benefits.length > 1) && setInitialize(true);
+  //   console.log('da');
+  // },[fetchedProjectsData.items, fetchedOptions.categories, fetchedOptions.benefits ]);
 
   if(!initialize) {
     return (

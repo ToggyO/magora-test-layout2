@@ -9,7 +9,7 @@ import Select from "../Select/Select";
 import formInitialize from '../../../Libs/FormValidation';
 import validationConditionsSignUp from './ValidationConditionsSignUp';
 
-import { modalOpen } from "../../../Store/Actions/actionModal";
+import { modalOpen } from "../../../Store/Actions/projectSearchPage/actionModal";
 
 
 let options = [

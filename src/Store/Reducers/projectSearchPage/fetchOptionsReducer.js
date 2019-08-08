@@ -1,4 +1,4 @@
-import { SORT_OPTIONS } from "../Actions/actionGetSortOptions";
+import { SORT_OPTIONS } from "../../Actions/projectSearchPage/actionGetSortOptions";
 
 let InitialState = {
   categories: [

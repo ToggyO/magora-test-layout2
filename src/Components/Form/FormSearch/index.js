@@ -73,7 +73,6 @@ const FormSearch = (props) => {
               options={sortOptions}
               placeholder={'Sort By...'}
               onChange={value => props.projectsSortValues(value.value, 'sort')}
-              isDisabled={ !!props.optionsData.categoriesLoading }
               defaultValue={sortOptions.filter(item => item.value === parseString.sort)}
             />
             <Select
@@ -86,7 +85,6 @@ const FormSearch = (props) => {
               className='mt-6'
               placeholder={'Active modules'}
               inputValue=''
-              isDisabled={ !!props.optionsData.categoriesLoading }
               defaultValue={modulesOptions.filter(item => parseString[item.value])}
               location={props.location}
             />
@@ -100,7 +98,6 @@ const FormSearch = (props) => {
               inputValue=''
               hasValue
               onChange={value => props.projectsSortValues(value.value, 'category')}
-              isDisabled={ !!props.optionsData.categoriesLoading }
               defaultValue={props.optionsData.categories.filter(item => item.value === parseString.category)}
             />
           </div>
@@ -112,7 +109,6 @@ const FormSearch = (props) => {
               placeholder={'Choose benefits'}
               inputValue=''
               onChange={value => props.projectsSortValues(value.value, 'benefits')}
-              isDisabled={ !!props.optionsData.benefitsLoading }
               defaultValue={ props.optionsData.benefits.filter(item => item.value === parseString.benefits)}
             />
           </div>
