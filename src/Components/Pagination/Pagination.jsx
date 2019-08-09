@@ -4,22 +4,22 @@ import { parse, stringify } from 'qs';
 import './Pagination.scss';
 import history from '../../history';
 import PaginationArrow from "./PaginationArrow/PaginationArrow";
+import PropTypes from 'prop-types';
 
 class Pagination extends React.Component {
 
   // static propTypes = {
-  //   total: PropTypes.number,
+  //   totalCardsCount: PropTypes.number,
   //   pageSize: PropTypes.number,
-  //   history: PropTypes.object,
-  //   page: PropTypes.any,
-  //   customPageClick: PropTypes.any,
+  //   location: PropTypes.object,
+  //   currentPage: PropTypes.any,
+  //
   // };
   // static defaultProps = {
-  //   total: 1,
-  //   pageSize: 1,
-  //   history: {},
-  //   page: null,
-  //   customPageClick: null,
+  //   totalCardsCount: 1,
+  //   pageSize: 9,
+  //   location: {},
+  //   currentPage: null,
   // };
   onPageChange = ({ selected: selectedPage = 0 }) => {
     // if (typeof this.props.customPageClick === 'function') {
@@ -35,13 +35,13 @@ class Pagination extends React.Component {
 
 
   render() {
-    const { location, projectsData } = this.props;
+    const { location, projectsData, currentPage } = this.props;
 
     // const { location = {} } = history;
     // const { search = '' } = location;
     const queries = parse(location.search, { ignoreQueryPrefix: true }) || {};
 
-    const initialPage = queries.page || projectsData.currentPage || 1;
+    const initialPage = queries.page || currentPage || 1;
 
     const { totalCardsCount = 0, pageSize } = projectsData;
     const pageCount = Math.ceil(totalCardsCount / pageSize);

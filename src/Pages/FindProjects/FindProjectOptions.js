@@ -18,6 +18,11 @@ export  const creatorOptions = [
   { value: 'admin', label: 'Tribus' }
 ];
 
+export  const eventTypeOptions = [
+  {value: '', label: 'All types'},
+  { value: 'paid', label: 'Payed Events' },
+  { value: 'free', label: 'Free Events' },
+];
 
 
 

@@ -3,6 +3,7 @@ import modalReducer from './modal/modalReducer';
 import fetchedDataReducer from './projectSearchPage/fetchDataReducer';
 import fetchedOptionsReducer from './projectSearchPage/fetchOptionsReducer';
 import fetchedGrantsDataReducer from './grantsPage/fetchGrantsDataReducer';
+import fetchedEventsDataReducer from "./eventsPage/fetchEventsDataReducer";
 
 
 export const reducers = combineReducers({
@@ -10,5 +11,6 @@ export const reducers = combineReducers({
   fetchedProjectsData: fetchedDataReducer,
   fetchedProjectsOptions: fetchedOptionsReducer,
   fetchedGrantsData: fetchedGrantsDataReducer,
+  fetchedEventsData: fetchedEventsDataReducer,
 });
 

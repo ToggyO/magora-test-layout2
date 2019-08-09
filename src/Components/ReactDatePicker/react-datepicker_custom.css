@@ -1,3 +1,16 @@
+/*@import '../../Styles/bin/variables.sass';*/
+/*@import '../../Styles/bin/mixins.sass';*/
+/*@import '../../../node_modules/rfs/sass.sass';*/
+
+@media (max-width: 991px) {
+  .react-datepicker__header {
+    padding-top: 5px !important;
+  }
+  .react-datepicker__navigation {
+    margin-top: 0 !important;
+  }
+}
+
 input {
   border: none;
 }
@@ -152,6 +165,7 @@ input::placeholder {
   border-top-right-radius: 0.3rem;
   padding-top: 25px;
   position: relative;
+
 }
 
 .react-datepicker__header--time {

@@ -8,12 +8,6 @@ import MySelect from "../../../Components/ReactSelect/components/MySelect";
 
 const GrantSearchEmpty = (props) => {
 
-  // const {
-  //   location,
-  //   grantsData,
-  //   sortValues
-  // } = props;
-
   return (
     <div className='grantSearch wrapper'>
       <div className={`grantSearch-container wrapper-container prS-adapt d-f pl-35 pr-35 pt-25 pb-25 `}>
@@ -34,42 +28,26 @@ const GrantSearchEmpty = (props) => {
             iconClassName: '',
           }}
         />
-        <FormSearchWrapper
-          // projectsData={grantsData}
-          // location={location}
-        >
-
+        <FormSearchWrapper>
           <div className='filters-sort__sortBy'>
             <MySelect
-              // options={sortOptions}
               placeholder='Sort By...'
-              // sortValues={sortValues}
-
               name='sort'
             />
             <MySelect
-              // options={creatorOptions}
               placeholder='Choose grant creator'
-              // sortValues={sortValues}
-
               name='sort'
             />
           </div>
           <div className='filters-sort__category prS-adapt__category ml-16'>
             <MySelect
-              // options={sortOptions}
               placeholder='Choose category'
-              // sortValues={sortValues}
-
               name='category'
             />
           </div>
           <div className='filters-sort__benefits prS-adapt__benefits ml-16'>
             <MySelect
-              // options={sortOptions}
               placeholder='Choose benefits'
-              // sortValues={sortValues}
-
               name='benefits'
             />
           </div>

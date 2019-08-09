@@ -16,21 +16,7 @@ import FormSearchWrapper from "../../../Components/Form/FormSearchWrapper";
 
 
 
-const EventSearch = (props) => {
-
-  // if (opened && window.innerWidth <= 991) {
-  //   document.body.style.overflow = 'hidden';
-  // } else {
-  //   document.body.style.overflow = 'scroll ';
-  // }
-
-  const {
-    location,
-    eventsData,
-    optionsData,
-    sortValues,
-    parseString,
-  } = props;
+const EventSearchEmpty = (props) => {
 
   return (
     <div className='eventSearch wrapper'>
@@ -54,23 +40,14 @@ const EventSearch = (props) => {
           }}
         />
 
-        <FormSearchWrapper
-          projectsData={eventsData}
-          location={location}
-        >
+        <FormSearchWrapper>
           <div className='filters-sort__eventsSortBy prS-adapt__eventsSortBy'>
             <MySelect
-              options={sortOptions}
               placeholder='Sort By...'
-              sortValues={sortValues}
-              defaultValue={sortOptions.filter(item => item.value === parseString.sort)}
               name='sort'
             />
             <MySelect
-              options={eventTypeOptions}
               placeholder='Choose grant creator'
-              sortValues={sortValues}
-              defaultValue={eventTypeOptions.filter(item => item.value === parseString.eventType)}
               name='eventType'
             />
           </div>
@@ -82,19 +59,13 @@ const EventSearch = (props) => {
             <div className='filters-sort__catBen mt-6 d-f'>
               <div className='filters-sort__category prS-adapt__eventsCategory ml-14'>
                 <MySelect
-                  options={optionsData.categories}
                   placeholder='Choose category'
-                  sortValues={sortValues}
-                  defaultValue={optionsData.categories.filter(item => item.value === parseString.category)}
                   name='category'
                 />
               </div>
               <div className='filters-sort__benefits prS-adapt__eventsBenefits ml-14'>
                 <MySelect
-                  options={optionsData.benefits}
                   placeholder='Choose benefits'
-                  sortValues={sortValues}
-                  defaultValue={optionsData.benefits.filter(item => item.value === parseString.benefits)}
                   name='benefits'
                 />
               </div>
@@ -111,7 +82,7 @@ const EventSearch = (props) => {
 
 
 
-export default EventSearch;
+export default EventSearchEmpty;
 
 
 

@@ -19,7 +19,7 @@ const GrantCard = (props) => {
         {/*    <img className="pl-7" src={image.status} alt=""/>*/}
         {/*  </div>*/}
         {/*</div>*/}
-        <img className="projectCard-image" src={resource !== null ? resource.formatUrls.small : placeholderImage } alt="loc"/>
+        <img className="projectCard-image" onError={(e) => e.target.src = placeholderImage} src={resource !== null ? resource.formatUrls.small : placeholderImage } alt="loc"/>
         <div className="projectCard-avatar pCard-adapt__avatar d-f jc-c">
           <span className="projectCard-avatar__container">
             <img src={publisher.avatar !== null ? publisher.avatar.originalUrl : placeholderAvatar } alt="small"/>
