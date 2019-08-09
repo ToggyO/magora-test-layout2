@@ -1,5 +1,6 @@
 import { FETCHED_GRANTS_DATA } from '../../Actions/grantsPage/actionFetchGrantsData';
 
+
 let InitialState = {
   items: [],
   isGrantsData: false,
@@ -18,6 +19,11 @@ let InitialState = {
 
 const fetchedGrantsDataReducer = (state = InitialState, action) => {
   switch(action.type) {
+    case FETCHED_GRANTS_DATA.REQUEST_GRANTS:
+      return {
+        ...state,
+        loading: true
+      };
     case FETCHED_GRANTS_DATA.RECEIVE_GRANTS:
       return {
         ...state,

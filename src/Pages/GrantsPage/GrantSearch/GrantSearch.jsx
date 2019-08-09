@@ -7,7 +7,7 @@ import {creatorOptions, sortOptions} from "../../FindProjects/FindProjectOptions
 
 
 const GrantSearch = (props) => {
-  console.log(props);
+
   // if (opened && window.innerWidth <= 991) {
   //   document.body.style.overflow = 'hidden';
   // } else {

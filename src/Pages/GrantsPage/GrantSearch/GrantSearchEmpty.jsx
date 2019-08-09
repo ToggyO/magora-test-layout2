@@ -3,8 +3,6 @@ import './GrantSearch.sass';
 import SearchButtonsBlock from "../../../Components/SearchButtonsBlock";
 import FormSearchWrapper from "../../../Components/Form/FormSearchWrapper";
 import MySelect from "../../../Components/ReactSelect/components/MySelect";
-import {creatorOptions, sortOptions} from "../../FindProjects/FindProjectOptions";
-import {parse} from "qs";
 
 
 
@@ -40,6 +38,7 @@ const GrantSearchEmpty = (props) => {
           // projectsData={grantsData}
           // location={location}
         >
+
           <div className='filters-sort__sortBy'>
             <MySelect
               // options={sortOptions}

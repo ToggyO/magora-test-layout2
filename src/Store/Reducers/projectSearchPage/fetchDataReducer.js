@@ -4,7 +4,7 @@ let InitialState = {
   items: [],
   isProjectsData: false,
   errors: {},
-  // loading: false,
+  loading: false,
   totalCardsCount: 0,
   currentPage: 1,
   history: {
@@ -20,11 +20,11 @@ let InitialState = {
 
 const fetchedDataReducer = (state = InitialState, action) => {
   switch(action.type) {
-    // case FETCHED_PROJECTS_DATA.REQUEST_PROJECTS:
-    //   return {
-    //     ...state,
-    //     loading: true
-    //   };
+    case FETCHED_PROJECTS_DATA.REQUEST_PROJECTS:
+      return {
+        ...state,
+        loading: true
+      };
     case FETCHED_PROJECTS_DATA.RECEIVE_PROJECTS:
       return {
         ...state,

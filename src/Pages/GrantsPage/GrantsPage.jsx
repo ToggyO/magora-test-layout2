@@ -15,7 +15,7 @@ import {connect} from "react-redux";
 import {mapQueryParamsToState, receivingGrantsData} from "../../Libs/additionalSortingFunctions";
 import {parse} from "qs";
 import GrantSearchEmpty from "./GrantSearch/GrantSearchEmpty";
-
+import GrantProjectsEmpty from "./GrantProjects/GrantProjectsEmpty";
 
 
 const GrantsPage = (props) => {
@@ -36,19 +36,27 @@ const GrantsPage = (props) => {
   const parseString = parse( props.location.search, { ignoreQueryPrefix: true });
 
   useEffect( () => {
-    window.scrollTo(0, 0);
-
-    let categoriesOptions = getCategoriesOptions();
-    let benefitsOptions = getBenefitsOptions();
-    let grantsData = receivingGrantsData(location, getGrants, fetchedGrantsData);
+    getCategoriesOptions();
+    getBenefitsOptions();
+    receivingGrantsData(location, getGrants, fetchedGrantsData);
     mapQueryParamsToState(parseString, grantsSortValues);
 
-    Promise.all([
-      categoriesOptions,
-      benefitsOptions,
-      grantsData
-    ]).then(() => setInitialize(true));
+    // Promise.all([
+    //   categoriesOptions,
+    //   benefitsOptions,
+    //   grantsData
+    // ]).then(() => setInitialize(true));
+    // console.log(initialize);
+
   },[]);
+
+  useEffect( () => {
+    (fetchedGrantsData.isGrantsData &&
+      fetchedProjectsOptions.isCategories &&
+      fetchedProjectsOptions.isBenefits ) && setInitialize(true);
+    console.log(initialize);
+
+  },[fetchedGrantsData.isGrantsData, fetchedProjectsOptions.isCategories, fetchedProjectsOptions.isBenefits ]);
 
 
   if(!initialize) {
@@ -56,12 +64,11 @@ const GrantsPage = (props) => {
     return (
       <>
         <GrantSearchEmpty />
-        {/*<CommunityProjectsEmpty projectsData={fetchedProjectsData}/>*/}
+        <GrantProjectsEmpty grantsData={fetchedGrantsData}/>
       </>
     )
   } else {
     // console.log(initialize);
-
     return (
       <>
         <GrantSearch
@@ -75,17 +82,17 @@ const GrantsPage = (props) => {
           history={history}
           parseString={parseString}
         />
-        {/*<GrantProjects*/}
-        {/*  grantsData={fetchedGrantsData}*/}
-        {/*  optionsData={fetchedProjectsOptions}*/}
-        {/*  location={location}*/}
-        {/*  getProjects={getGrants}*/}
-        {/*  projectsSortValues={projectsSortValues}*/}
-        {/*  getCategoriesOptions={getCategoriesOptions}*/}
-        {/*  getBenefitsOptions={getBenefitsOptions}*/}
-        {/*  history={history}*/}
-        {/*parseString={parseString}*/}
-        {/*/>*/}
+        <GrantProjects
+          grantsData={fetchedGrantsData}
+          optionsData={fetchedProjectsOptions}
+          location={location}
+          getGrants={getGrants}
+          sortValues={grantsSortValues}
+          getCategoriesOptions={getCategoriesOptions}
+          getBenefitsOptions={getBenefitsOptions}
+          history={history}
+          parseString={parseString}
+        />
       </>
     )
   }

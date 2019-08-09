@@ -32,7 +32,6 @@ const FindProjects = (props) => {
   const [initialize, setInitialize] = useState(false);
 
   useEffect( () => {
-    window.scrollTo(0, 0);
     getCategoriesOptions();
     getBenefitsOptions();
     receivingProjectsData(location, getProjects, fetchedProjectsData);
