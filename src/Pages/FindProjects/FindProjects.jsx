@@ -3,7 +3,7 @@ import './FindProjects.sass';
 import ProjectSearch from "./ProjectSearch/ProjectSearch";
 import CommunityProjects from "./CommunityProjects/CommunityProjects";
 import {bindActionCreators} from "redux";
-import {getProjects, sortValues} from "../../Store/Actions/projectSearchPage/actionFetchProjectsData";
+import {getProjects, sortValues, stateItemsCleaning} from "../../Store/Actions/projectSearchPage/actionFetchProjectsData";
 import {getBenefitsOptions, getCategoriesOptions} from "../../Store/Actions/projectSearchPage/actionGetSortOptions";
 import {connect} from "react-redux";
 import {mapQueryParamsToState, receivingProjectsData} from "../../Libs/additionalSortingFunctions";
@@ -25,6 +25,7 @@ const FindProjects = (props) => {
     getCategoriesOptions,
     getBenefitsOptions,
     history,
+    stateItemsCleaning
   } = props;
 
   const parseString = parse( props.location.search, { ignoreQueryPrefix: true });
@@ -89,6 +90,7 @@ const FindProjects = (props) => {
           getBenefitsOptions={getBenefitsOptions}
           history={history}
           parseString={parseString}
+          stateItemsCleaning={stateItemsCleaning}
         />
       </>
     )
@@ -104,7 +106,7 @@ let mapDispatchToProps = (dispatch) => {
     sortValues: bindActionCreators(sortValues, dispatch),
     getCategoriesOptions: bindActionCreators(getCategoriesOptions, dispatch),
     getBenefitsOptions: bindActionCreators(getBenefitsOptions, dispatch),
-    // uploadSortValuesToState: bindActionCreators(uploadSortValuesToState, dispatch),
+    stateItemsCleaning: bindActionCreators(stateItemsCleaning, dispatch),
   }
 };
 

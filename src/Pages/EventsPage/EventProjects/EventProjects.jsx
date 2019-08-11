@@ -33,6 +33,10 @@ class EventProjects extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    this.props.stateItemsCleaning();
+  }
+
   render() {
 
     const {

@@ -31,6 +31,10 @@ class GrantProjects extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    this.props.stateItemsCleaning();
+  }
+
   render() {
 
     const {

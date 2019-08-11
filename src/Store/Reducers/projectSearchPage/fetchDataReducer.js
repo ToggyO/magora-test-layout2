@@ -54,16 +54,11 @@ const fetchedDataReducer = (state = InitialState, action) => {
           [action.payload.name]: !action.payload.value
         }
       };
-    // case FETCHED_PROJECTS_DATA.UPLOAD_SORT_VALUES:
-    //   return {
-    //     ...state,
-    //     history: {
-    //       ...state.history,
-    //       sort: action.payload.sort,
-    //       category: action.payload.category,
-    //       benefits: action.payload.benefits,
-    //     }
-    //   };
+    case FETCHED_PROJECTS_DATA.DATA_CLEANING:
+      return {
+        ...state,
+        items: []
+      };
     default:
       return state;
   }

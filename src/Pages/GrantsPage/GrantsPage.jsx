@@ -3,7 +3,7 @@ import './GrantsPage.sass';
 import GrantSearch from "./GrantSearch/GrantSearch";
 import GrantProjects from "./GrantProjects/GrantProjects";
 import {bindActionCreators} from "redux";
-import {sortValues, getGrants} from "../../Store/Actions/projectSearchPage/actionFetchProjectsData";
+import {sortValues, getGrants, stateItemsCleaning} from "../../Store/Actions/projectSearchPage/actionFetchProjectsData";
 import {
   getBenefitsOptions,
   getCategoriesOptions
@@ -26,6 +26,7 @@ const GrantsPage = (props) => {
     getCategoriesOptions,
     getBenefitsOptions,
     history,
+    stateItemsCleaning
   } = props;
 
   const [initialize, setInitialize] = useState(false);
@@ -89,6 +90,7 @@ const GrantsPage = (props) => {
           getBenefitsOptions={getBenefitsOptions}
           history={history}
           parseString={parseString}
+          stateItemsCleaning={stateItemsCleaning}
         />
       </>
     )
@@ -103,6 +105,7 @@ let mapDispatchToProps = (dispatch) => {
     sortValues: bindActionCreators(sortValues, dispatch),
     getCategoriesOptions: bindActionCreators(getCategoriesOptions, dispatch),
     getBenefitsOptions: bindActionCreators(getBenefitsOptions, dispatch),
+    stateItemsCleaning: bindActionCreators(stateItemsCleaning, dispatch),
   }
 };
 

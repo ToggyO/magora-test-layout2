@@ -6,7 +6,7 @@ export const FETCHED_PROJECTS_DATA = {
   PROJECT_SORT_VALUES: 'PROJECT_SORT_VALUES',
   SET_CURRENT_PAGES: 'SET_CURRENT_PAGE',
   PROJECT_SORT_CHECKBOX_VALUES: 'PROJECT_SORT_CHECKBOX_VALUES',
-  // UPLOAD_SORT_VALUES: 'UPLOAD_SORT_VALUES'
+  DATA_CLEANING: 'DATA_CLEANING'
 };
 
 const requestData = () => {
@@ -42,16 +42,11 @@ export const projectsSortCheckboxValues = (name, value) => {
   }
 };
 
-// export const uploadSortValuesToState = (sort, category, benefits) => {
-//   return {
-//     type: FETCHED_PROJECTS_DATA.UPLOAD_SORT_VALUES,
-//     payload: {
-//       sort,
-//       category,
-//       benefits
-//     }
-//   }
-// };
+export const stateItemsCleaning = () => {
+  return {
+    type: FETCHED_PROJECTS_DATA.DATA_CLEANING,
+  }
+};
 
 
 export const getProjects = (page, benefit, category, sort, petition, crowdfunding, volunteering) => {

@@ -35,6 +35,10 @@ class CommunityProjects extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    this.props.stateItemsCleaning();
+  }
+
   render() {
 
     const {
@@ -71,5 +75,3 @@ class CommunityProjects extends React.Component {
 }
 
 export default CommunityProjects;
-
-
