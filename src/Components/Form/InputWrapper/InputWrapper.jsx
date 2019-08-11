@@ -4,18 +4,21 @@ import s from './InputWrapper.module.sass';
 
 
 const InputWrapper = (props) => {
+
+  const { label, error, visited, inputId } = props;
+
   return (
     <div className={s.inputWrapper}>
       <label
-        htmlFor="form-password__block"
-        className={`${s.inputWrapper_label} ${ props.error && props.visited ? 'error-label' : null }`}
+        htmlFor={inputId}
+        className={`${s.inputWrapper_label} ${ error && visited ? 'error-label' : null }`}
       >
-        {props.label}
+        {label}
       </label>
       {props.children}
       <FormError
-        error={props.error}
-        visited={props.visited}
+        error={error}
+        visited={visited}
       />
     </div>
   );

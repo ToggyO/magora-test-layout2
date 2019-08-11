@@ -14,23 +14,28 @@ class InputPass extends React.Component {
 
   showHidePw = () => {
     this.setState({
-      isPwShown: !(this.state.isPwShown)
+      isPwShown: !this.state.isPwShown
     });
   };
+
+  inputId = `input-${this.props.name}`;
+
+
   render() {
 
-    const { style, label, placeholder, name, value, onChange, onBlur, error, visited } = this.props;
+    const { style, label, placeholder, name, onChange, onBlur, error, visited, value } = this.props;
     const { isPwShown } = this.state;
-    // debugger;
+
     return (
       <div className={s.inputPass} style={style}>
-        <InputWrapper label={label} error={error} visited={visited}>
+        <InputWrapper label={label} error={error} visited={visited} inputId={this.inputId}>
           <div className={`${s.container} ${ error && visited ? 'error' : null }`}>
             <input
+              id={this.inputId}
               type={isPwShown ? 'text' : 'password'}
               placeholder={placeholder}
-              name={name}
               value={value}
+              name={name}
               onChange={onChange}
               onBlur={onBlur}
             />

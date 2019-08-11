@@ -8,6 +8,7 @@ export default function formInitialize(fieldArray, validationConditions) {
   this.validateField = validateField.bind(this);
   this.handleBlur = handleBlur.bind(this);
   this.validationConditions = validationConditions.bind(this);
+  this.passAdditionalProps = passAdditionalProps.bind(this);
 
   this.state = {
     ...this.state,
@@ -26,10 +27,10 @@ export default function formInitialize(fieldArray, validationConditions) {
     //   ...this.state.formErrors,
     //   [fieldName]: '',
     // };
-    this.state.visited = {
-      ...this.state.visited,
-      [fieldName]: false,
-    };
+    // this.state.visited = {
+    //   ...this.state.visited,
+    //   [fieldName]: false,
+    // };
   });
 
   // Обдумать
@@ -87,6 +88,17 @@ export default function formInitialize(fieldArray, validationConditions) {
         [name]: true,
       },
     });
+  }
+
+  function passAdditionalProps(fieldName) {
+    return {
+      name: fieldName,
+      value: this.state.values[fieldName],
+      onChange: this.handleChange,
+      onBlur: this.handleBlur,
+      error: this.state.formErrors[fieldName],
+      visited: this.state.visited[fieldName],
+    };
   }
 };
 

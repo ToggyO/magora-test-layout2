@@ -1,4 +1,4 @@
-import { MODAL_ACTIONS } from '../Actions/actionModal';
+import { MODAL_ACTIONS } from '../../Actions/modal/actionModal';
 
 const initialState = {
   modalKey: '',

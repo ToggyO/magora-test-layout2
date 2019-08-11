@@ -1,13 +1,16 @@
 import { combineReducers } from 'redux';
-import modalReducer from './modalReducer';
-import formSignUpReducer from './formSignUpReducer';
-
-//при устройстве валидации я доработаю стейт формы
-
+import modalReducer from './modal/modalReducer';
+import fetchedDataReducer from './projectSearchPage/fetchDataReducer';
+import fetchedOptionsReducer from './projectSearchPage/fetchOptionsReducer';
+import fetchedGrantsDataReducer from './grantsPage/fetchGrantsDataReducer';
+import fetchedEventsDataReducer from "./eventsPage/fetchEventsDataReducer";
 
 
 export const reducers = combineReducers({
   modalState: modalReducer,
-  formState: formSignUpReducer
+  fetchedProjectsData: fetchedDataReducer,
+  fetchedProjectsOptions: fetchedOptionsReducer,
+  fetchedGrantsData: fetchedGrantsDataReducer,
+  fetchedEventsData: fetchedEventsDataReducer,
 });
 

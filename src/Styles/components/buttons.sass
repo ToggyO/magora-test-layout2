@@ -37,6 +37,11 @@ $className: btn
 
 
 //Shapes
+.#{$className}.xs
+  padding: 8px 22px
+  border-radius: 21px
+
+
 .#{$className}.sm
   padding: 18px 22px
   border-radius: 26px
@@ -53,7 +58,7 @@ $className: btn
 
 
 .#{$className}.lg
-  padding: 17px 25px
+  padding: 17px 20px
   border-radius: 26px
 
 
@@ -64,3 +69,28 @@ $className: btn
    padding: 22px 70px
 
 
+.#{$className}.rounded
+  border: 2px solid #ffffff
+  background-color: #ffffff
+  border-radius: 50%
+
+
+.#{$className}.roundedSmall
+  width: 58px
+  height: 58px
+  box-shadow: 0 1px 14px 0 rgba(0,0,0,0.22), 0 11px 13px 0 rgba(0,0,0,0.19)
+  +r(sm)
+    width: 48px
+    height: 48px
+
+
+.#{$className}.roundedLarge
+  width: 115px
+  height: 115px
+  box-shadow: 0 1px 29px 0 rgba(0,0,0,0.22), 0 23px 26px 0 rgba(0,0,0,0.19)
+  +r(lg)
+    width: 80px
+    height: 80px
+  +r(sm)
+    width: 65px
+    height: 65px

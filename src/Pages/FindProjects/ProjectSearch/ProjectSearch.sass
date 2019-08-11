@@ -1,5 +1,111 @@
+@import '../../../Styles/bin/variables'
+@import '../../../Styles/bin/mixins'
+@import "../../../../node_modules/rfs/sass"
+
+
 .projectSearch
   background: url('/img/findProjects/Projects.png') no-repeat
   background-size: cover
   background-position-y: 50%
   height: 580px
+  //margin-bottom: 10px
+  +r(lg)
+    height: 480px
+  +r(xs)
+    height: 400px
+  +r(xxs)
+    height: 340px
+
+  &-container
+    a
+      button
+      h6
+
+
+//Adaptation
+.prS-adapt
+  +r(xxl)
+    padding: 100px
+  +r(xl)
+    padding: 100px 70px
+  +r(lgx)
+    padding: 70px 40px
+  +r(lg)
+    flex-direction: column-reverse
+  +r(xs)
+    padding: 40px 20px
+  +r(xxs)
+    padding: 20px 10px
+
+  &__switchBtns
+    +r(lg)
+      flex-direction: row
+      justify-content: space-around
+      margin: 0 auto
+      padding-top: 40px
+      width: 45%
+      a:nth-child(2), a:nth-child(3)
+        margin-left: 30px
+
+    +r(sm)
+      a:nth-child(2), a:nth-child(3)
+        margin-left: 60px
+    +r(xxs)
+      a:nth-child(2), a:nth-child(3)
+        margin-left: 25px
+
+
+  &__search
+    +r(xxs)
+      padding: 10px 0 0 0
+    &-input
+      +r(lg)
+        height: 40px
+        span
+          display: none
+
+  &__filterBlock
+    +r(xxl)
+      padding-left: 100px
+    +r(xl)
+      padding-left: 70px
+    +r(lg)
+      padding: 0
+
+  &__headlines
+    +r(lg)
+      display: flex
+      flex-direction: column
+      text-align: center
+      padding-bottom: 0
+      span
+        margin-left: 0
+    +r(xs)
+      font-size: 40px
+      line-height: 55px
+      span
+        font-size: 20px
+        line-height: 30px
+
+  &__filters
+    &-sort
+      +r(lg)
+        display: none
+
+  &__category
+    +r(xl)
+      margin-left: 50px
+    +r(lgx)
+      margin-left: 30px
+    +r(lg)
+      margin: 25px 0 0 0
+
+  &__benefits
+    +r(xl)
+      margin-left: 50px
+    +r(lgx)
+      margin-left: 30px
+    +r(lg)
+      margin: 25px 0 0 0
+
+

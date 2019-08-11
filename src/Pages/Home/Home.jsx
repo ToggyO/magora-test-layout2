@@ -2,20 +2,19 @@ import React from 'react';
 import Banner from './Banner/Banner';
 import Possibilities from './Possibilities/Possibilities';
 import Lamp from './Lamp/Lamp';
-import Community from './Community/Community';
-
+// import Community from './Community/Community';
 
 
 const Home = () => {
   return (
-    <div className="app-main">
+    <>
       <Banner />
       <Possibilities />
       <Lamp />
-      <Community />
-    </div>
+      {/*<Community />*/}
+    </>
   );
-}
+};
 
 export default Home;
 

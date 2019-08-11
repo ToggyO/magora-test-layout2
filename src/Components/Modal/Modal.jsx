@@ -4,7 +4,7 @@ import FormSignIn from '../Form/FormSignIn/FormSignIn';
 import CardModal from "./CardModal/CardModal";
 import FormSignUp from "../Form/FormSignUp/FormSignUp";
 import { connect } from "react-redux";
-import { modalClose } from "../../Store/Actions/actionModal";
+import { modalClose } from "../../Store/Actions/modal/actionModal";
 import { bindActionCreators } from "redux";
 
 

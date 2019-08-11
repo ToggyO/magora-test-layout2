@@ -3,15 +3,19 @@ import './Registration.sass';
 import Main from './Main/Main';
 
 
+class Registration extends React.Component {
 
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
 
-const Registration = () => {
-
-  return (
-    <div className="app-main">
-      <Main />
-    </div>
-  );
+  render() {
+    return (
+      <>
+        <Main />
+      </>
+    );
+  }
 };
 
 

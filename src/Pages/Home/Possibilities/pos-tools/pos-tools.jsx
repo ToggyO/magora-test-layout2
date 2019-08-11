@@ -1,7 +1,7 @@
 import React from 'react';
 import './pos-tools.sass'
 import Card from './Card/Card';
-import {modalOpen} from "../../../../Store/Actions/actionModal";
+import {modalOpen} from "../../../../Store/Actions/modal/actionModal";
 import {connect} from "react-redux";
 
 const path = 'img/possibilities/cards';
@@ -46,12 +46,7 @@ const PosTools = () => {
        The tools you need to get things done!
      </h2>
      <div className="pos-tools__cards d-f fw-w jc-c">
-       {cards.map( (card, i) =>
-           {
-           return <Card key={i} card={card}/>
-           }
-         )
-       }
+       {cards.map( (card, i) => <Card key={i} card={card}/>)}
      </div>
    </div>
    );

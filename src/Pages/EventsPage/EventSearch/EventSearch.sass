@@ -1,0 +1,77 @@
+@import '../../../Styles/bin/variables'
+@import '../../../Styles/bin/mixins'
+@import "../../../../node_modules/rfs/sass"
+
+
+.eventSearch
+  background: url('/img/eventsPage/search-events.png') no-repeat
+  background-size: cover
+  background-position-y: 50%
+  height: 580px
+  //margin-bottom: 10px
+  +r(lg)
+    height: 480px
+  +r(xs)
+    height: 400px
+  +r(xxs)
+    height: 340px
+
+  &-container
+
+  &-switchBtns
+    min-height: 116px
+
+    a
+      button
+
+      h6
+
+  &-filterBlock
+    width: 100%
+
+
+.filters-sort
+
+  &__dateContainer
+    width: 100%
+    +r(lg)
+      display: flex
+      flex-direction: column-reverse
+
+  &__eventsSortBy
+    width: 43%
+
+  &__catBen
+    +r(lg)
+      margin-top: 0
+      display: flex
+      flex-direction: column
+
+
+//Adaptation
+.prS-adapt
+
+  &__eventsSortBy
+    +r(lg)
+      width: 100%
+
+  &__date-picker
+    +r(lg)
+      flex-direction: column
+
+  &__eventsCategory
+    +r(xl)
+      margin-left: 30px
+    //+r(lgx)
+    //  margin-left: 30px
+    +r(lg)
+      margin: 25px 0 0 0
+
+  &__eventsBenefits
+    +r(xl)
+      margin-left: 30px
+    //+r(lgx)
+    //  margin-left: 30px
+    +r(lg)
+      margin: 25px 0 0 0
+

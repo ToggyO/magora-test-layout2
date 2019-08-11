@@ -1,7 +1,7 @@
 import React from 'react';
 import './LoggedOut.sass'
 import { NavLink } from 'react-router-dom';
-import { modalOpen } from "../../../Store/Actions/actionModal";
+import { modalOpen } from "../../../Store/Actions/modal/actionModal";
 import { connect } from 'react-redux';
 
 const LoggedOut = (props) => {
