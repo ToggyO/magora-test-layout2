@@ -2,7 +2,7 @@ import { FETCHED_PROJECTS_DATA } from '../../Actions/projectSearchPage/actionFet
 
 let InitialState = {
   items: [],
-  isProjectsData: false,
+  isData: false,
   errors: {},
   loading: false,
   totalCardsCount: 0,
@@ -11,6 +11,10 @@ let InitialState = {
     sort: '',
     category: '',
     benefits: '',
+    creator: '',
+    eventType: '',
+    startDate: '',
+    endDate: '',
     crowdfunding: false,
     volunteering: false,
     petition: false
@@ -32,7 +36,7 @@ const fetchedDataReducer = (state = InitialState, action) => {
         loading: false,
         totalCardsCount: action.payload.total,
         currentPage: action.payload.page,
-        isProjectsData: true
+        isData: true
       };
     case FETCHED_PROJECTS_DATA.PROJECT_SORT_VALUES:
       return {

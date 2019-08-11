@@ -3,10 +3,7 @@ import './GrantsPage.sass';
 import GrantSearch from "./GrantSearch/GrantSearch";
 import GrantProjects from "./GrantProjects/GrantProjects";
 import {bindActionCreators} from "redux";
-import {
-  getGrants,
-  grantsSortValues
-} from "../../Store/Actions/grantsPage/actionFetchGrantsData";
+import {sortValues, getGrants} from "../../Store/Actions/projectSearchPage/actionFetchProjectsData";
 import {
   getBenefitsOptions,
   getCategoriesOptions
@@ -21,11 +18,11 @@ import GrantProjectsEmpty from "./GrantProjects/GrantProjectsEmpty";
 const GrantsPage = (props) => {
 
   const {
-    fetchedGrantsData,
+    fetchedData,
     fetchedProjectsOptions,
     location,
     getGrants,
-    grantsSortValues,
+    sortValues,
     getCategoriesOptions,
     getBenefitsOptions,
     history,
@@ -38,8 +35,8 @@ const GrantsPage = (props) => {
   useEffect( () => {
     getCategoriesOptions();
     getBenefitsOptions();
-    receivingGrantsData(location, getGrants, fetchedGrantsData);
-    mapQueryParamsToState(parseString, grantsSortValues);
+    receivingGrantsData(location, getGrants, fetchedData);
+    mapQueryParamsToState(parseString, sortValues);
 
     // Promise.all([
     //   categoriesOptions,
@@ -49,14 +46,14 @@ const GrantsPage = (props) => {
     // console.log(initialize);
 
   },[]);
-
+  debugger;
   useEffect( () => {
-    (fetchedGrantsData.isGrantsData &&
+    (fetchedData.isData &&
       fetchedProjectsOptions.isCategories &&
       fetchedProjectsOptions.isBenefits ) && setInitialize(true);
     console.log(initialize);
 
-  },[fetchedGrantsData.isGrantsData, fetchedProjectsOptions.isCategories, fetchedProjectsOptions.isBenefits ]);
+  },[fetchedData.isData, fetchedProjectsOptions.isCategories, fetchedProjectsOptions.isBenefits ]);
 
 
   if(!initialize) {
@@ -64,7 +61,7 @@ const GrantsPage = (props) => {
     return (
       <>
         <GrantSearchEmpty />
-        <GrantProjectsEmpty grantsData={fetchedGrantsData}/>
+        <GrantProjectsEmpty grantsData={fetchedData}/>
       </>
     )
   } else {
@@ -72,22 +69,22 @@ const GrantsPage = (props) => {
     return (
       <>
         <GrantSearch
-          grantsData={fetchedGrantsData}
+          grantsData={fetchedData}
           optionsData={fetchedProjectsOptions}
           location={location}
           getProjects={getGrants}
-          sortValues={grantsSortValues}
+          sortValues={sortValues}
           getCategoriesOptions={getCategoriesOptions}
           getBenefitsOptions={getBenefitsOptions}
           history={history}
           parseString={parseString}
         />
         <GrantProjects
-          grantsData={fetchedGrantsData}
+          grantsData={fetchedData}
           optionsData={fetchedProjectsOptions}
           location={location}
           getGrants={getGrants}
-          sortValues={grantsSortValues}
+          sortValues={sortValues}
           getCategoriesOptions={getCategoriesOptions}
           getBenefitsOptions={getBenefitsOptions}
           history={history}
@@ -99,11 +96,11 @@ const GrantsPage = (props) => {
 };
 
 
-let mapStateToProps = ({ fetchedGrantsData, fetchedProjectsOptions, }) => ({ fetchedGrantsData, fetchedProjectsOptions, });
+let mapStateToProps = ({ fetchedData, fetchedProjectsOptions, }) => ({ fetchedData, fetchedProjectsOptions, });
 let mapDispatchToProps = (dispatch) => {
   return {
     getGrants: bindActionCreators(getGrants, dispatch),
-    grantsSortValues: bindActionCreators(grantsSortValues, dispatch),
+    sortValues: bindActionCreators(sortValues, dispatch),
     getCategoriesOptions: bindActionCreators(getCategoriesOptions, dispatch),
     getBenefitsOptions: bindActionCreators(getBenefitsOptions, dispatch),
   }

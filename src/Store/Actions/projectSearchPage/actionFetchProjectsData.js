@@ -1,4 +1,4 @@
-import axios from "axios";
+import * as axios from "axios";
 
 export const FETCHED_PROJECTS_DATA = {
   REQUEST_PROJECTS: 'REQUEST_PROJECTS',
@@ -9,20 +9,20 @@ export const FETCHED_PROJECTS_DATA = {
   // UPLOAD_SORT_VALUES: 'UPLOAD_SORT_VALUES'
 };
 
-const requestProjects = () => {
+const requestData = () => {
   return {
     type: FETCHED_PROJECTS_DATA.REQUEST_PROJECTS,
   }
 };
 
-const receiveProjects = (projects) => {
+const receiveData = (projects) => {
   return {
     type: FETCHED_PROJECTS_DATA.RECEIVE_PROJECTS,
     payload: projects.data.data,
   }
 };
 
-export const projectsSortValues = (value, name) => {
+export const sortValues = (value, name) => {
   return {
     type: FETCHED_PROJECTS_DATA.PROJECT_SORT_VALUES,
     payload: {
@@ -56,7 +56,7 @@ export const projectsSortCheckboxValues = (name, value) => {
 
 export const getProjects = (page, benefit, category, sort, petition, crowdfunding, volunteering) => {
   return (dispatch) => {
-    dispatch(requestProjects());
+    dispatch(requestData());
 
     const BASE_URL = 'https://dev.tribus.org/api/v0.7/ideas?';
     let petitionReq = petition ? '&Petitions=true' : '';
@@ -66,9 +66,47 @@ export const getProjects = (page, benefit, category, sort, petition, crowdfundin
     let categoryReq = category ? `&Category=${category}` : '';
     let sortReq = sort ? `&sort=${sort}` : '';
     let Url = `${BASE_URL}Page=${page}&PageSize=9${petitionReq}${crowdfundingReq}${volunteeringReq}${benefitReq}${categoryReq}${sortReq}`;
+    debugger;
+    return axios.get(Url)
+      .then(res => dispatch(receiveData(res)))
+      .catch( error => console.log(error))
+  };
+};
+
+
+export const getGrants = (page, benefit, category, sort, creator) => {
+  return (dispatch) => {
+    dispatch(requestData());
+
+    const BASE_URL = 'https://dev.tribus.org/api/v0.7/grants?';
+    let creatorReq = creator ? `&Creator=${creator}` : '';
+    let benefitReq = benefit ? `&Benefit=${benefit}` : '';
+    let categoryReq = category ? `&Category=${category}` : '';
+    let sortReq = sort ? `&sort=${sort}` : '';
+    let Url = `${BASE_URL}Page=${page}&PageSize=9${creatorReq}${benefitReq}${categoryReq}${sortReq}`;
 
     return axios.get(Url)
-      .then(res => dispatch(receiveProjects(res)))
+      .then(res => dispatch(receiveData(res)))
+      .catch( error => console.log(error))
+  };
+};
+
+
+export const getEvents = (page, benefit, category, sort, eventType, startDate, endDate) => {
+  return (dispatch) => {
+    dispatch(requestData());
+
+    const BASE_URL = 'https://dev.tribus.org/api/v0.7/events?';
+    let startDateReq = startDate ? `&StartDate=${startDate}` : '';
+    let endDateReq = endDate ? `&StartDate=${endDate}` : '';
+    let typeReq = eventType ? `&Type=${eventType}` : '';
+    let benefitReq = benefit ? `&Benefit=${benefit}` : '';
+    let categoryReq = category ? `&Category=${category}` : '';
+    let sortReq = sort ? `&sort=${sort}` : '';
+    let Url = `${BASE_URL}Page=${page}&PageSize=9${typeReq}${benefitReq}${categoryReq}${sortReq}${startDateReq}${endDateReq}`;
+
+    return axios.get(Url)
+      .then(res => dispatch(receiveData(res)))
       .catch( error => console.log(error))
   };
 };

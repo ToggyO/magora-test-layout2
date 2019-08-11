@@ -3,7 +3,7 @@ import './FindProjects.sass';
 import ProjectSearch from "./ProjectSearch/ProjectSearch";
 import CommunityProjects from "./CommunityProjects/CommunityProjects";
 import {bindActionCreators} from "redux";
-import {getProjects, projectsSortValues} from "../../Store/Actions/projectSearchPage/actionFetchProjectsData";
+import {getProjects, sortValues} from "../../Store/Actions/projectSearchPage/actionFetchProjectsData";
 import {getBenefitsOptions, getCategoriesOptions} from "../../Store/Actions/projectSearchPage/actionGetSortOptions";
 import {connect} from "react-redux";
 import {mapQueryParamsToState, receivingProjectsData} from "../../Libs/additionalSortingFunctions";
@@ -15,13 +15,13 @@ import {parse} from "qs";
 
 
 const FindProjects = (props) => {
-  debugger;
+
   const {
-    fetchedProjectsData,
+    fetchedData,
     fetchedProjectsOptions,
     location,
     getProjects,
-    projectsSortValues,
+    sortValues,
     getCategoriesOptions,
     getBenefitsOptions,
     history,
@@ -32,10 +32,11 @@ const FindProjects = (props) => {
   const [initialize, setInitialize] = useState(false);
 
   useEffect( () => {
+
     getCategoriesOptions();
     getBenefitsOptions();
-    receivingProjectsData(location, getProjects, fetchedProjectsData);
-    mapQueryParamsToState(parseString, projectsSortValues);
+    receivingProjectsData(location, getProjects, fetchedData);
+    mapQueryParamsToState(parseString, sortValues);
 
 
     // Promise.all([
@@ -45,21 +46,21 @@ const FindProjects = (props) => {
     //   mapQueryParams
     // ]).then(() => setInitialize(true));
   },[]);
-
+// debugger;
   useEffect( () => {
-    (fetchedProjectsData.isProjectsData &&
+    (fetchedData.isData &&
       fetchedProjectsOptions.isCategories &&
       fetchedProjectsOptions.isBenefits ) && setInitialize(true);
     console.log(initialize);
 
-  },[fetchedProjectsData.isProjectsData, fetchedProjectsOptions.isCategories, fetchedProjectsOptions.isBenefits ]);
+  },[fetchedData.isData, fetchedProjectsOptions.isCategories, fetchedProjectsOptions.isBenefits ]);
 
   if(!initialize) {
     console.log(initialize);
     return (
       <>
         <ProjectSearchEmpty />
-        <CommunityProjectsEmpty projectsData={fetchedProjectsData}/>
+        <CommunityProjectsEmpty projectsData={fetchedData}/>
       </>
     )
   } else {
@@ -68,22 +69,22 @@ const FindProjects = (props) => {
 
       <>
         <ProjectSearch
-          projectsData={fetchedProjectsData}
+          projectsData={fetchedData}
           optionsData={fetchedProjectsOptions}
           location={location}
           getProjects={getProjects}
-          projectsSortValues={projectsSortValues}
+          projectsSortValues={sortValues}
           getCategoriesOptions={getCategoriesOptions}
           getBenefitsOptions={getBenefitsOptions}
           history={history}
           parseString={parseString}
         />
         <CommunityProjects
-          projectsData={fetchedProjectsData}
+          projectsData={fetchedData}
           optionsData={fetchedProjectsOptions}
           location={location}
           getProjects={getProjects}
-          projectsSortValues={projectsSortValues}
+          projectsSortValues={sortValues}
           getCategoriesOptions={getCategoriesOptions}
           getBenefitsOptions={getBenefitsOptions}
           history={history}
@@ -96,11 +97,11 @@ const FindProjects = (props) => {
 };
 
 
-let mapStateToProps = ({ fetchedProjectsData, fetchedProjectsOptions, }) => ({ fetchedProjectsData, fetchedProjectsOptions, });
+let mapStateToProps = ({ fetchedData, fetchedProjectsOptions, }) => ({ fetchedData, fetchedProjectsOptions, });
 let mapDispatchToProps = (dispatch) => {
   return {
     getProjects: bindActionCreators(getProjects, dispatch),
-    projectsSortValues: bindActionCreators(projectsSortValues, dispatch),
+    sortValues: bindActionCreators(sortValues, dispatch),
     getCategoriesOptions: bindActionCreators(getCategoriesOptions, dispatch),
     getBenefitsOptions: bindActionCreators(getBenefitsOptions, dispatch),
     // uploadSortValuesToState: bindActionCreators(uploadSortValuesToState, dispatch),

@@ -6,28 +6,25 @@ import {parse} from "qs";
 import {
   mapQueryParamsToState,
   receivingEventsData,
-  receivingProjectsData
 } from "../../Libs/additionalSortingFunctions";
-import ProjectSearchEmpty from "../FindProjects/ProjectSearch/ProjectSearchEmpty";
-import CommunityProjectsEmpty from "../FindProjects/CommunityProjects/CommunityProjectsEmpty";
 import {bindActionCreators} from "redux";
 import {
   getBenefitsOptions,
   getCategoriesOptions
 } from "../../Store/Actions/projectSearchPage/actionGetSortOptions";
 import {connect} from "react-redux";
-import {eventsSortValues, getEvents} from "../../Store/Actions/eventsPage/actionFetchEventsData";
+import {sortValues, getEvents} from "../../Store/Actions/projectSearchPage/actionFetchProjectsData";
 import EventSearchEmpty from "./EventSearch/EventSearchEmpty";
 import EventProjectsEmpty from "./EventProjects/EventProjectsEmpty";
 
 
 const EventsPage = (props) => {
   const {
-    fetchedEventsData,
+    fetchedData,
     fetchedProjectsOptions,
     location,
     getEvents,
-    eventsSortValues,
+    sortValues,
     getCategoriesOptions,
     getBenefitsOptions,
     history,
@@ -40,8 +37,8 @@ const EventsPage = (props) => {
   useEffect( () => {
     getCategoriesOptions();
     getBenefitsOptions();
-    receivingEventsData(location, getEvents, fetchedEventsData);
-    mapQueryParamsToState(parseString, eventsSortValues);
+    receivingEventsData(location, getEvents, fetchedData);
+    mapQueryParamsToState(parseString, sortValues);
 
 
     // Promise.all([
@@ -53,12 +50,12 @@ const EventsPage = (props) => {
   },[]);
 
   useEffect( () => {
-    (fetchedEventsData.isEventsData &&
+    (fetchedData.isData &&
       fetchedProjectsOptions.isCategories &&
       fetchedProjectsOptions.isBenefits ) && setInitialize(true);
     console.log(initialize);
 
-  },[fetchedEventsData.isEventsData, fetchedProjectsOptions.isCategories, fetchedProjectsOptions.isBenefits ]);
+  },[fetchedData.isData, fetchedProjectsOptions.isCategories, fetchedProjectsOptions.isBenefits ]);
 
 
   if(!initialize) {
@@ -66,7 +63,7 @@ const EventsPage = (props) => {
     return (
       <>
         <EventSearchEmpty />
-        <EventProjectsEmpty eventsData={fetchedEventsData}/>
+        <EventProjectsEmpty eventsData={fetchedData}/>
       </>
     )
   } else {
@@ -75,22 +72,22 @@ const EventsPage = (props) => {
 
       <>
         <EventSearch
-          eventsData={fetchedEventsData}
+          eventsData={fetchedData}
           optionsData={fetchedProjectsOptions}
           location={location}
           getProjects={getEvents}
-          sortValues={eventsSortValues}
+          sortValues={sortValues}
           getCategoriesOptions={getCategoriesOptions}
           getBenefitsOptions={getBenefitsOptions}
           history={history}
           parseString={parseString}
         />
         <EventProjects
-          projectsData={fetchedEventsData}
+          projectsData={fetchedData}
           optionsData={fetchedProjectsOptions}
           location={location}
           getProjects={getEvents}
-          sortValues={eventsSortValues}
+          sortValues={sortValues}
           getCategoriesOptions={getCategoriesOptions}
           getBenefitsOptions={getBenefitsOptions}
           history={history}
@@ -103,11 +100,11 @@ const EventsPage = (props) => {
 };
 
 
-let mapStateToProps = ({ fetchedEventsData, fetchedProjectsOptions, }) => ({ fetchedEventsData, fetchedProjectsOptions, });
+let mapStateToProps = ({ fetchedData, fetchedProjectsOptions, }) => ({ fetchedData, fetchedProjectsOptions, });
 let mapDispatchToProps = (dispatch) => {
   return {
     getEvents: bindActionCreators(getEvents, dispatch),
-    eventsSortValues: bindActionCreators(eventsSortValues, dispatch),
+    sortValues: bindActionCreators(sortValues, dispatch),
     getCategoriesOptions: bindActionCreators(getCategoriesOptions, dispatch),
     getBenefitsOptions: bindActionCreators(getBenefitsOptions, dispatch),
   }
