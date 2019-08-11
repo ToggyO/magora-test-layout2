@@ -18,9 +18,10 @@ class EventProjectsEmpty extends React.Component {
       <div className='eventsProjects wrapper'>
         <div className="eventsProjects-content wrapper-container pl-31 pr-31 pt-13 pb-13 d-f fw-w jc-c">
           {
-            eventsData.loading
-              ? <Preloader />
-              : renderingEvents(eventsData.items)
+            <Preloader />
+            // eventsData.loading
+            //   ? <Preloader />
+            //   : renderingEvents(eventsData.items)
           }
         </div>
         <div className='pt-5 pb-5 pl-5 pr-5 d-f jc-c' style={{width: '100%'}}>

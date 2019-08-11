@@ -57,7 +57,18 @@ const fetchedDataReducer = (state = InitialState, action) => {
     case FETCHED_PROJECTS_DATA.DATA_CLEANING:
       return {
         ...state,
-        items: []
+        history: {
+          sort: '',
+          category: '',
+          benefits: '',
+          creator: '',
+          eventType: '',
+          startDate: '',
+          endDate: '',
+          crowdfunding: false,
+          volunteering: false,
+          petition: false
+        }
       };
     default:
       return state;
