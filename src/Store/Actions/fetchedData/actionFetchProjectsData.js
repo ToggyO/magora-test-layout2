@@ -61,7 +61,7 @@ export const getProjects = (page, benefit, category, sort, petition, crowdfundin
     let categoryReq = category ? `&Category=${category}` : '';
     let sortReq = sort ? `&sort=${sort}` : '';
     let Url = `${BASE_URL}Page=${page}&PageSize=9${petitionReq}${crowdfundingReq}${volunteeringReq}${benefitReq}${categoryReq}${sortReq}`;
-    debugger;
+
     return axios.get(Url)
       .then(res => dispatch(receiveData(res)))
       .catch( error => console.log(error))

@@ -1,17 +1,8 @@
-import React, {useState} from 'react';
-import Select from 'react-select'
+import React from 'react';
 import './EventSearch.sass';
-import {NavLink} from "react-router-dom";
-import Icon from  '../../../Icons/Icons';
-import { styles } from '../../../Components/ReactSelect/Styles/filterStyles';
-import { moduleStyles } from '../../../Components/ReactSelect/Styles/modulesStyles';
-// import {sortOptions, categoryOptions, benefitsOptions, modulesOptions} from '../EventsPageOptions';
-import { DropdownIndicator } from '../../../Components/ReactSelect/components/custom_components';
 import DatePicker from "../../../Components/ReactDatePicker/DatePicker";
-import Option from '../../../Components/ReactSelect/components/checkbox';
 import SearchButtonsBlock from "../../../Components/SearchButtonsBlock";
 import MySelect from "../../../Components/ReactSelect/components/MySelect";
-import {sortOptions, eventTypeOptions} from "../../FindProjects/FindProjectOptions";
 import FormSearchWrapper from "../../../Components/Form/FormSearchWrapper";
 
 

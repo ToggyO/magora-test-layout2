@@ -56,14 +56,6 @@ class GrantProjects extends React.Component {
             projectsData={grantsData}
             location={location}
           />
-          {/*{*/}
-          {/*  renderingPagination(*/}
-          {/*    this.props.fetchedProjectsData.totalCardsCount,*/}
-          {/*    9,*/}
-          {/*    this.props.fetchedProjectsData.currentPage,*/}
-          {/*    this.props.location*/}
-          {/*  )*/}
-          {/*}*/}
         </div>
       </div>
     )

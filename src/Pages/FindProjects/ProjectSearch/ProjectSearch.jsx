@@ -4,7 +4,6 @@ import FormSearchWrapper from '../../../Components/Form/FormSearchWrapper';
 import SearchButtonsBlock from '../../../Components/SearchButtonsBlock';
 import CheckboxSelect from "../../../Components/ReactSelect/components/CheckboxSelect";
 import {modulesOptions, sortOptions} from "../FindProjectOptions";
-import {parse} from "qs";
 import MySelect from "../../../Components/ReactSelect/components/MySelect";
 
 

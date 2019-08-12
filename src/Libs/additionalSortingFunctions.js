@@ -62,7 +62,6 @@ export const renderingEvents = (data) => {
 export const receivingProjectsData = (location, asyncActionCreator, data) => {
 
   const queryString = parse( location.search, { ignoreQueryPrefix: true });
-  debugger;
   asyncActionCreator(
     queryString.page || data.currentPage,
     queryString.benefits || data.history.benefits,

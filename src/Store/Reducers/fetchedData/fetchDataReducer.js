@@ -1,4 +1,4 @@
-import { FETCHED_PROJECTS_DATA } from '../../Actions/projectSearchPage/actionFetchProjectsData';
+import { FETCHED_PROJECTS_DATA } from '../../Actions/fetchedData/actionFetchProjectsData';
 
 let InitialState = {
   items: [],

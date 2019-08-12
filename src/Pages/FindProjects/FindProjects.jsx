@@ -3,8 +3,8 @@ import './FindProjects.sass';
 import ProjectSearch from "./ProjectSearch/ProjectSearch";
 import CommunityProjects from "./CommunityProjects/CommunityProjects";
 import {bindActionCreators} from "redux";
-import {getProjects, sortValues, stateItemsCleaning} from "../../Store/Actions/projectSearchPage/actionFetchProjectsData";
-import {getBenefitsOptions, getCategoriesOptions} from "../../Store/Actions/projectSearchPage/actionGetSortOptions";
+import {getProjects, sortValues, stateItemsCleaning} from "../../Store/Actions/fetchedData/actionFetchProjectsData";
+import {getBenefitsOptions, getCategoriesOptions} from "../../Store/Actions/fetchedData/actionGetSortOptions";
 import {connect} from "react-redux";
 import {mapQueryParamsToState, receivingProjectsData} from "../../Libs/additionalSortingFunctions";
 import CommunityProjectsEmpty from "./CommunityProjects/CommunityProjectsEmpty";
@@ -47,7 +47,7 @@ const FindProjects = (props) => {
     //   mapQueryParams
     // ]).then(() => setInitialize(true));
   },[]);
-// debugger;
+
   useEffect( () => {
     (fetchedData.isData &&
       fetchedProjectsOptions.isCategories &&

@@ -3,11 +3,11 @@ import './GrantsPage.sass';
 import GrantSearch from "./GrantSearch/GrantSearch";
 import GrantProjects from "./GrantProjects/GrantProjects";
 import {bindActionCreators} from "redux";
-import {sortValues, getGrants, stateItemsCleaning} from "../../Store/Actions/projectSearchPage/actionFetchProjectsData";
+import {sortValues, getGrants, stateItemsCleaning} from "../../Store/Actions/fetchedData/actionFetchProjectsData";
 import {
   getBenefitsOptions,
   getCategoriesOptions
-} from '../../Store/Actions/projectSearchPage/actionGetSortOptions';
+} from '../../Store/Actions/fetchedData/actionGetSortOptions';
 import {connect} from "react-redux";
 import {mapQueryParamsToState, receivingGrantsData} from "../../Libs/additionalSortingFunctions";
 import {parse} from "qs";
@@ -47,12 +47,11 @@ const GrantsPage = (props) => {
     // console.log(initialize);
 
   },[]);
-  debugger;
+
   useEffect( () => {
     (fetchedData.isData &&
       fetchedProjectsOptions.isCategories &&
       fetchedProjectsOptions.isBenefits ) && setInitialize(true);
-    console.log(initialize);
 
   },[fetchedData.isData, fetchedProjectsOptions.isCategories, fetchedProjectsOptions.isBenefits ]);
 

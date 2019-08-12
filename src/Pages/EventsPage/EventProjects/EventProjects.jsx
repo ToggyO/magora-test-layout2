@@ -1,7 +1,5 @@
 import React from 'react';
 import './EventProjects.sass';
-import EventCard from "../../../Components/EventCard/EventCard";
-import { eventCard } from './eventCardsInfo';
 import Preloader from "../../../Components/Preloader/Preloader";
 import {receivingEventsData, renderingEvents} from "../../../Libs/additionalSortingFunctions";
 import Pagination from "../../../Components/Pagination/Pagination";

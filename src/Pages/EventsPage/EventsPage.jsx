@@ -11,9 +11,9 @@ import {bindActionCreators} from "redux";
 import {
   getBenefitsOptions,
   getCategoriesOptions
-} from "../../Store/Actions/projectSearchPage/actionGetSortOptions";
+} from "../../Store/Actions/fetchedData/actionGetSortOptions";
 import {connect} from "react-redux";
-import {sortValues, getEvents, stateItemsCleaning} from "../../Store/Actions/projectSearchPage/actionFetchProjectsData";
+import {sortValues, getEvents, stateItemsCleaning} from "../../Store/Actions/fetchedData/actionFetchProjectsData";
 import EventSearchEmpty from "./EventSearch/EventSearchEmpty";
 import EventProjectsEmpty from "./EventProjects/EventProjectsEmpty";
 
@@ -54,13 +54,11 @@ const EventsPage = (props) => {
     (fetchedData.isData &&
       fetchedProjectsOptions.isCategories &&
       fetchedProjectsOptions.isBenefits ) && setInitialize(true);
-    console.log(initialize);
 
   },[fetchedData.isData, fetchedProjectsOptions.isCategories, fetchedProjectsOptions.isBenefits ]);
 
 
   if(!initialize) {
-    console.log(initialize);
     return (
       <>
         <EventSearchEmpty />
@@ -68,7 +66,6 @@ const EventsPage = (props) => {
       </>
     )
   } else {
-    console.log(initialize);
     return (
 
       <>
