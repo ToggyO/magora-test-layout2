@@ -1,16 +1,17 @@
 import React from 'react';
 import './EventProjects.sass';
 import Preloader from "../../../Components/Preloader/Preloader";
-import {receivingEventsData, renderingEvents} from "../../../Libs/additionalSortingFunctions";
+import { renderingEvents} from "../../../Libs/additionalSortingFunctions";
 import Pagination from "../../../Components/Pagination/Pagination";
+import {getDataFromServer} from "../../../Store/Actions/fetchedData/actionFetchProjectsData";
 
 
 class EventProjects extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.receivingData = receivingEventsData.bind(this);
-  }
+  // constructor(props) {
+  //   super(props);
+  //
+  //   this.receivingData = receivingEventsData.bind(this);
+  // }
 
   componentDidMount() {
     window.scrollTo({
@@ -39,7 +40,8 @@ class EventProjects extends React.Component {
 
     const {
       projectsData,
-      location
+      location,
+      getDataFromServer
     } = this.props;
 
     return (

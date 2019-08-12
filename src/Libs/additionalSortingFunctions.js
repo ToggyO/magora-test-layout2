@@ -59,45 +59,45 @@ export const renderingEvents = (data) => {
 };
 
 
-export const receivingProjectsData = (location, asyncActionCreator, data) => {
-
-  const queryString = parse( location.search, { ignoreQueryPrefix: true });
-  asyncActionCreator(
-    queryString.page || data.currentPage,
-    queryString.benefits || data.history.benefits,
-    queryString.category || data.history.category,
-    queryString.sort || data.history.sort,
-    queryString.petition || data.history.petition,
-    queryString.crowdfunding || data.history.crowdfunding,
-    queryString.volunteering || data.history.volunteering
-  );
-};
-
-
-export const receivingGrantsData = (location, asyncActionCreator, data) => {
-  const queryString = parse( location.search, { ignoreQueryPrefix: true });
-  asyncActionCreator(
-    queryString.page || data.currentPage,
-    queryString.benefits || data.history.benefits,
-    queryString.category || data.history.category,
-    queryString.sort || data.history.sort,
-    queryString.creator || data.history.creator,
-  );
-};
-
-
-export const receivingEventsData = (location, asyncActionCreator, data) => {
-  const queryString = parse( location.search, { ignoreQueryPrefix: true });
-  asyncActionCreator(
-    queryString.page || data.currentPage,
-    queryString.benefits || data.history.benefits,
-    queryString.category || data.history.category,
-    queryString.sort || data.history.sort,
-    queryString.type || data.history.eventType,
-    queryString.startDate || data.history.startDate,
-    queryString.endDate || data.history.endDate,
-  );
-};
+// export const receivingProjectsData = (location, asyncActionCreator, data) => {
+//
+//   const queryString = parse( location.search, { ignoreQueryPrefix: true });
+//   asyncActionCreator(
+//     queryString.page || data.currentPage,
+//     queryString.benefits || data.history.benefits,
+//     queryString.category || data.history.category,
+//     queryString.sort || data.history.sort,
+//     queryString.petition || data.history.petition,
+//     queryString.crowdfunding || data.history.crowdfunding,
+//     queryString.volunteering || data.history.volunteering
+//   );
+// };
+//
+//
+// export const receivingGrantsData = (location, asyncActionCreator, data) => {
+//   const queryString = parse( location.search, { ignoreQueryPrefix: true });
+//   asyncActionCreator(
+//     queryString.page || data.currentPage,
+//     queryString.benefits || data.history.benefits,
+//     queryString.category || data.history.category,
+//     queryString.sort || data.history.sort,
+//     queryString.creator || data.history.creator,
+//   );
+// };
+//
+//
+// export const receivingEventsData = (location, asyncActionCreator, data) => {
+//   const queryString = parse( location.search, { ignoreQueryPrefix: true });
+//   asyncActionCreator(
+//     queryString.page || data.currentPage,
+//     queryString.benefits || data.history.benefits,
+//     queryString.category || data.history.category,
+//     queryString.sort || data.history.sort,
+//     queryString.type || data.history.eventType,
+//     queryString.startDate || data.history.startDate,
+//     queryString.endDate || data.history.endDate,
+//   );
+// };
 
 
 export const mapQueryParamsToState = (string, func) => {

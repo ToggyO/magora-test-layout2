@@ -5,7 +5,7 @@ import EventProjects from "./EventProjects/EventProjects";
 import {parse} from "qs";
 import {
   mapQueryParamsToState,
-  receivingEventsData,
+
 } from "../../Libs/additionalSortingFunctions";
 import {bindActionCreators} from "redux";
 import {
@@ -15,9 +15,9 @@ import {
 import {connect} from "react-redux";
 import {
   sortValues,
-  getEvents,
+
   stateItemsCleaning,
-  datePick
+  datePick, getDataFromServer
 } from "../../Store/Actions/fetchedData/actionFetchProjectsData";
 import EventSearchEmpty from "./EventSearch/EventSearchEmpty";
 import EventProjectsEmpty from "./EventProjects/EventProjectsEmpty";
@@ -35,6 +35,7 @@ const EventsPage = (props) => {
     history,
     stateItemsCleaning,
     datePick,
+    getDataFromServer,
   } = props;
 
   const parseString = parse( props.location.search, { ignoreQueryPrefix: true });
@@ -44,7 +45,7 @@ const EventsPage = (props) => {
   useEffect( () => {
     getCategoriesOptions();
     getBenefitsOptions();
-    receivingEventsData(location, getEvents, fetchedData);
+    getDataFromServer(fetchedData, parseString, 'events');
     mapQueryParamsToState(parseString, sortValues);
 
 
@@ -60,7 +61,6 @@ const EventsPage = (props) => {
     (fetchedData.isData &&
       fetchedProjectsOptions.isCategories &&
       fetchedProjectsOptions.isBenefits ) && setInitialize(true);
-
   },[fetchedData.isData, fetchedProjectsOptions.isCategories, fetchedProjectsOptions.isBenefits ]);
 
 
@@ -91,7 +91,7 @@ const EventsPage = (props) => {
           projectsData={fetchedData}
           optionsData={fetchedProjectsOptions}
           location={location}
-          getProjects={getEvents}
+          getProjects={getDataFromServer}
           sortValues={sortValues}
           getCategoriesOptions={getCategoriesOptions}
           getBenefitsOptions={getBenefitsOptions}
@@ -109,7 +109,7 @@ const EventsPage = (props) => {
 let mapStateToProps = ({ fetchedData, fetchedProjectsOptions, }) => ({ fetchedData, fetchedProjectsOptions, });
 let mapDispatchToProps = (dispatch) => {
   return {
-    getEvents: bindActionCreators(getEvents, dispatch),
+    getDataFromServer: bindActionCreators(getDataFromServer, dispatch),
     sortValues: bindActionCreators(sortValues, dispatch),
     getCategoriesOptions: bindActionCreators(getCategoriesOptions, dispatch),
     getBenefitsOptions: bindActionCreators(getBenefitsOptions, dispatch),
