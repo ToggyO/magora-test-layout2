@@ -6,7 +6,8 @@ export const FETCHED_PROJECTS_DATA = {
   PROJECT_SORT_VALUES: 'PROJECT_SORT_VALUES',
   SET_CURRENT_PAGES: 'SET_CURRENT_PAGE',
   PROJECT_SORT_CHECKBOX_VALUES: 'PROJECT_SORT_CHECKBOX_VALUES',
-  DATA_CLEANING: 'DATA_CLEANING'
+  DATA_CLEANING: 'DATA_CLEANING',
+  DATE_PICK: 'DATE_PICK',
 };
 
 const requestData = () => {
@@ -45,6 +46,17 @@ export const projectsSortCheckboxValues = (name, value) => {
 export const stateItemsCleaning = () => {
   return {
     type: FETCHED_PROJECTS_DATA.DATA_CLEANING,
+  }
+};
+
+export const datePick = (date, name) => {
+  debugger;
+  return {
+    type: FETCHED_PROJECTS_DATA.DATE_PICK,
+    payload: {
+      date,
+      name
+    }
   }
 };
 

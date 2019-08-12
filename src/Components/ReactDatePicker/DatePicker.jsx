@@ -22,8 +22,6 @@ export default class DatePickerStart extends React.Component {
     this.handleChangeEnd = this.handleChangeEnd.bind(this);
   }
 
-
-
   handleChangeStart(date) {
     this.setState({
       ...this.state,
@@ -50,7 +48,7 @@ export default class DatePickerStart extends React.Component {
             startDate={this.state.startDate}
             endDate={this.state.endDate}
             onChange={this.handleChangeStart}
-            // onSelect={}
+            onSelect={(date) => this.props.datePick(date, 'startDate')}
           />
           <div
             className='datepicker-custom__calendar'
@@ -71,13 +69,14 @@ export default class DatePickerStart extends React.Component {
         <DateStyledWrapper>
           <DatePicker
             placeholderText="Date to..."
-            dateFormat="dd/MM/yyyy"
+            dateFormat="dd/MM/yyyy/"
             selected={this.state.endDate}
             selectsEnd
             startDate={this.state.startDate}
             endDate={this.state.endDate}
             minDate={this.state.startDate}
             onChange={this.handleChangeEnd}
+            onSelect={(date) => this.props.datePick(date, 'endDate')}
           />
           <div
             className='datepicker-custom__calendar'

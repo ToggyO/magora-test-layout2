@@ -70,6 +70,15 @@ const fetchedDataReducer = (state = InitialState, action) => {
           petition: false
         }
       };
+    case FETCHED_PROJECTS_DATA.DATE_PICK:
+      debugger;
+      return {
+        ...state,
+        history: {
+          ...state.history,
+          [action.payload.name]: action.payload.date.toISOString()
+        }
+      };
     default:
       return state;
   }

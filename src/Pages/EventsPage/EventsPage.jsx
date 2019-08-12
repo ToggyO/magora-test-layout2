@@ -13,7 +13,12 @@ import {
   getCategoriesOptions
 } from "../../Store/Actions/fetchedData/actionGetSortOptions";
 import {connect} from "react-redux";
-import {sortValues, getEvents, stateItemsCleaning} from "../../Store/Actions/fetchedData/actionFetchProjectsData";
+import {
+  sortValues,
+  getEvents,
+  stateItemsCleaning,
+  datePick
+} from "../../Store/Actions/fetchedData/actionFetchProjectsData";
 import EventSearchEmpty from "./EventSearch/EventSearchEmpty";
 import EventProjectsEmpty from "./EventProjects/EventProjectsEmpty";
 
@@ -28,7 +33,8 @@ const EventsPage = (props) => {
     getCategoriesOptions,
     getBenefitsOptions,
     history,
-    stateItemsCleaning
+    stateItemsCleaning,
+    datePick,
   } = props;
 
   const parseString = parse( props.location.search, { ignoreQueryPrefix: true });
@@ -79,6 +85,7 @@ const EventsPage = (props) => {
           getBenefitsOptions={getBenefitsOptions}
           history={history}
           parseString={parseString}
+          datePick={datePick}
         />
         <EventProjects
           projectsData={fetchedData}
@@ -107,6 +114,7 @@ let mapDispatchToProps = (dispatch) => {
     getCategoriesOptions: bindActionCreators(getCategoriesOptions, dispatch),
     getBenefitsOptions: bindActionCreators(getBenefitsOptions, dispatch),
     stateItemsCleaning: bindActionCreators(stateItemsCleaning, dispatch),
+    datePick: bindActionCreators(datePick, dispatch),
   }
 };
 

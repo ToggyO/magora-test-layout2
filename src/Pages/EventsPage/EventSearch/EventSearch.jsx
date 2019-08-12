@@ -7,7 +7,6 @@ import {sortOptions, eventTypeOptions} from "../../FindProjects/FindProjectOptio
 import FormSearchWrapper from "../../../Components/Form/FormSearchWrapper";
 
 
-
 const EventSearch = (props) => {
 
   // if (opened && window.innerWidth <= 991) {
@@ -22,6 +21,7 @@ const EventSearch = (props) => {
     optionsData,
     sortValues,
     parseString,
+    datePick,
   } = props;
 
   return (
@@ -69,7 +69,11 @@ const EventSearch = (props) => {
 
           <div className='filters-sort__dateContainer'>
             <div className={`filters-sort__datePicker prS-adapt__date-picker d-f jc-sb`}>
-              <DatePicker />
+              <DatePicker
+                startDate={eventsData.history.startDate}
+                endDate={eventsData.history.endDate}
+                datePick={datePick}
+              />
             </div>
             <div className='filters-sort__catBen mt-6 d-f'>
               <div className='filters-sort__category prS-adapt__eventsCategory ml-14'>

@@ -102,6 +102,7 @@ export const receivingEventsData = (location, asyncActionCreator, data) => {
 
 export const mapQueryParamsToState = (string, func) => {
   Object.keys(string).forEach(key => {
+    debugger;
     if (string[key]) {
       return func(string[key], key);
     }
