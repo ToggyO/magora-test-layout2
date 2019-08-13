@@ -1,4 +1,5 @@
 import * as axios from "axios";
+import {makeRequestString, mergeQueryUrlWithHistory} from "../../../Libs/additionalSortingFunctions";
 
 export const FETCHED_PROJECTS_DATA = {
   REQUEST_PROJECTS: 'REQUEST_PROJECTS',
@@ -44,13 +45,13 @@ export const projectsSortCheckboxValues = (name, value) => {
 };
 
 export const stateItemsCleaning = () => {
+  // debugger;
   return {
     type: FETCHED_PROJECTS_DATA.DATA_CLEANING,
   }
 };
 
 export const datePick = (date, name) => {
-  debugger;
   return {
     type: FETCHED_PROJECTS_DATA.DATE_PICK,
     payload: {
@@ -61,42 +62,17 @@ export const datePick = (date, name) => {
 };
 
 
-export const getDataFromServer = (data, queryString, projectType) => { // projectType
+export const getDataFromServer = (data, queries, projectType) => { // projectType
   // = ideas || grants || events
-
+  console.log(data);
+// debugger;
   return (dispatch) => {
     dispatch(requestData());
 
-
-    let stateSimplify = (data) => {
-
-    };
-
-    let petition = queryString.petition || data.history.petition;
-    let crowdfunding = queryString.crowdfunding || data.history.crowdfunding;
-    let volunteering = queryString.volunteering || data.history.volunteering;
-    let benefit = queryString.benefits || data.history.benefits;
-    let category = queryString.category || data.history.category;
-    let sort = queryString.sort || data.history.sort;
-    let page = queryString.page || data.currentPage;
-    let creator = queryString.creator || data.history.creator;
-    let eventType = queryString.type || data.history.eventType;
-    let startDate = queryString.startDate || data.history.startDate;
-    let endDate = queryString.endDate || data.history.endDate;
+    let requestString = makeRequestString(mergeQueryUrlWithHistory(data, queries));
 
     const BASE_URL = `https://dev.tribus.org/api/v0.7/${projectType}?`;
-    let petitionReq = petition ? '&Petitions=true' : '';
-    let crowdfundingReq = crowdfunding ? '&Crowdfunding=true' : '';
-    let volunteeringReq = volunteering ? '&Volunteering=true' : '';
-    let benefitReq = benefit ? `&Benefit=${benefit}` : '';
-    let categoryReq = category ? `&Category=${category}` : '';
-    let sortReq = sort ? `&sort=${sort}` : '';
-    let creatorReq = creator ? `&Creator=${creator}` : '';
-    let startDateReq = startDate ? `&StartDate=${startDate}` : '';
-    let endDateReq = endDate ? `&endDate=${endDate}` : '';
-    let typeReq = eventType ? `&Type=${eventType}` : '';
-
-    let Url = `${BASE_URL}Page=${page}&PageSize=9${typeReq}${creatorReq}${petitionReq}${crowdfundingReq}${volunteeringReq}${benefitReq}${categoryReq}${sortReq}${startDateReq}${endDateReq}`;
+    let Url = `${BASE_URL}&PageSize=9${requestString}`;
 
     return axios.get(Url)
       .then(res => dispatch(receiveData(res)))
@@ -104,6 +80,46 @@ export const getDataFromServer = (data, queryString, projectType) => { // projec
   };
 };
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// let petition = queryString.petition || data.petition;
+// let crowdfunding = queryString.crowdfunding || data.crowdfunding;
+// let volunteering = queryString.volunteering || data.volunteering;
+// let benefit = queryString.benefits || data.benefits;
+// let category = queryString.category || data.category;
+// let sort = queryString.sort || data.sort;
+// let page = queryString.page || data.currentPage;
+// let creator = queryString.creator || data.creator;
+// let eventType = queryString.type || data.type;
+// let startDate = queryString.startDate || data.startDate;
+// let endDate = queryString.endDate || data.endDate;
+//
+// let petitionReq = petition ? '&Petitions=true' : '';
+// let crowdfundingReq = crowdfunding ? '&Crowdfunding=true' : '';
+// let volunteeringReq = volunteering ? '&Volunteering=true' : '';
+// let benefitReq = benefit ? `&Benefit=${benefit}` : '';
+// let categoryReq = category ? `&Category=${category}` : '';
+// let sortReq = sort ? `&Sort=${sort}` : '';
+// let creatorReq = creator ? `&Creator=${creator}` : '';
+// let startDateReq = startDate ? `&StartDate=${startDate}` : '';
+// let endDateReq = endDate ? `&endDate=${endDate}` : '';
+// let typeReq = eventType ? `&Type=${eventType}` : '';
+// let Url = `${BASE_URL}Page=${page}&PageSize=9${typeReq}${creatorReq}${petitionReq}${crowdfundingReq}${volunteeringReq}${benefitReq}${categoryReq}${sortReq}${startDateReq}${endDateReq}`;
 
 
 

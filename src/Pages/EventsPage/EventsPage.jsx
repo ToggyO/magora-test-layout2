@@ -5,7 +5,6 @@ import EventProjects from "./EventProjects/EventProjects";
 import {parse} from "qs";
 import {
   mapQueryParamsToState,
-
 } from "../../Libs/additionalSortingFunctions";
 import {bindActionCreators} from "redux";
 import {
@@ -15,9 +14,9 @@ import {
 import {connect} from "react-redux";
 import {
   sortValues,
-
   stateItemsCleaning,
-  datePick, getDataFromServer
+  datePick,
+  getDataFromServer
 } from "../../Store/Actions/fetchedData/actionFetchProjectsData";
 import EventSearchEmpty from "./EventSearch/EventSearchEmpty";
 import EventProjectsEmpty from "./EventProjects/EventProjectsEmpty";
@@ -28,14 +27,13 @@ const EventsPage = (props) => {
     fetchedData,
     fetchedProjectsOptions,
     location,
-    getEvents,
     sortValues,
     getCategoriesOptions,
     getBenefitsOptions,
     history,
     stateItemsCleaning,
-    datePick,
     getDataFromServer,
+    datePick,
   } = props;
 
   const parseString = parse( props.location.search, { ignoreQueryPrefix: true });
@@ -45,23 +43,20 @@ const EventsPage = (props) => {
   useEffect( () => {
     getCategoriesOptions();
     getBenefitsOptions();
-    getDataFromServer(fetchedData, parseString, 'events');
     mapQueryParamsToState(parseString, sortValues);
-
-
-    // Promise.all([
-    //   categoriesOptions,
-    //   benefitsOptions,
-    //   projectsData,
-    //   mapQueryParams
-    // ]).then(() => setInitialize(true));
+    getDataFromServer(fetchedData.history, parseString, 'events');
   },[]);
+
 
   useEffect( () => {
     (fetchedData.isData &&
       fetchedProjectsOptions.isCategories &&
       fetchedProjectsOptions.isBenefits ) && setInitialize(true);
-  },[fetchedData.isData, fetchedProjectsOptions.isCategories, fetchedProjectsOptions.isBenefits ]);
+  },[
+    fetchedData.isData,
+    fetchedProjectsOptions.isCategories,
+    fetchedProjectsOptions.isBenefits
+  ]);
 
 
   if(!initialize) {
@@ -79,7 +74,6 @@ const EventsPage = (props) => {
           eventsData={fetchedData}
           optionsData={fetchedProjectsOptions}
           location={location}
-          getProjects={getEvents}
           sortValues={sortValues}
           getCategoriesOptions={getCategoriesOptions}
           getBenefitsOptions={getBenefitsOptions}
@@ -98,6 +92,7 @@ const EventsPage = (props) => {
           history={history}
           parseString={parseString}
           stateItemsCleaning={stateItemsCleaning}
+          getDataFromServer={getDataFromServer}
         />
       </>
     )

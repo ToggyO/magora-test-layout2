@@ -1,54 +1,28 @@
 import React from "react";
 import DatePicker from "react-datepicker";
-// import moment from 'moment';
+import moment from 'moment';
 import "./react-datepicker_custom.css";
 import DateStyledWrapper from "./DateStyledWrapper";
 import Icon from '../../Icons/Icons';
 
 
 export default class DatePickerStart extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      startDate: null,
-      endDate: null,
-    };
-    // this.state = {
-    //   startDate: new Date(),
-    //   endDate: new Date(),
-    // };
-
-    this.handleChangeStart = this.handleChangeStart.bind(this);
-    this.handleChangeEnd = this.handleChangeEnd.bind(this);
-  }
-
-  handleChangeStart(date) {
-    this.setState({
-      ...this.state,
-      startDate: date,
-    });
-  }
-
-  handleChangeEnd(date) {
-    this.setState({
-      ...this.state,
-      endDate: date,
-    });
-  }
-
   render() {
+
+    let startDateFromState = this.props.startDate && moment(this.props.startDate).toDate();
+    let endDateFromState = this.props.endDate && moment(this.props.endDate).toDate();
+
     return (
       <>
         <DateStyledWrapper>
           <DatePicker
             placeholderText="Date from..."
             dateFormat="dd/MM/yyyy"
-            selected={this.state.startDate}
+            selected={startDateFromState}
             selectsStart
-            startDate={this.state.startDate}
-            endDate={this.state.endDate}
-            onChange={this.handleChangeStart}
-            onSelect={(date) => this.props.datePick(date, 'startDate')}
+            startDate={startDateFromState}
+            endDate={endDateFromState}
+            onSelect={(date) => this.props.datePick(moment(date).toISOString(), 'startDate')}
           />
           <div
             className='datepicker-custom__calendar'
@@ -70,13 +44,12 @@ export default class DatePickerStart extends React.Component {
           <DatePicker
             placeholderText="Date to..."
             dateFormat="dd/MM/yyyy/"
-            selected={this.state.endDate}
+            selected={endDateFromState}
             selectsEnd
-            startDate={this.state.startDate}
-            endDate={this.state.endDate}
-            minDate={this.state.startDate}
-            onChange={this.handleChangeEnd}
-            onSelect={(date) => this.props.datePick(date, 'endDate')}
+            startDate={startDateFromState}
+            endDate={endDateFromState}
+            minDate={startDateFromState}
+            onSelect={(date) => this.props.datePick(moment(date).toISOString(), 'endDate')}
           />
           <div
             className='datepicker-custom__calendar'
@@ -99,3 +72,45 @@ export default class DatePickerStart extends React.Component {
   }
 };
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// constructor(props) {
+//   super(props);
+//   this.state = {
+//     startDate: null,
+//     endDate: null,
+//   };
+//   // this.state = {
+//   //   startDate: new Date(),
+//   //   endDate: new Date(),
+//   // };
+//
+//   this.handleChangeStart = this.handleChangeStart.bind(this);
+//   this.handleChangeEnd = this.handleChangeEnd.bind(this);
+// }
+//
+// handleChangeStart(date) {
+//   this.setState({
+//     ...this.state,
+//     startDate: date,
+//   });
+// }
+//
+// handleChangeEnd(date) {
+//   this.setState({
+//     ...this.state,
+//     endDate: date,
+//   });
+// }

@@ -62,8 +62,8 @@ const EventSearch = (props) => {
               options={eventTypeOptions}
               placeholder='Choose grant creator'
               sortValues={sortValues}
-              defaultValue={eventTypeOptions.filter(item => item.value === parseString.eventType)}
-              name='eventType'
+              defaultValue={eventTypeOptions.filter(item => item.value === parseString.type)}
+              name='type'
             />
           </div>
 
@@ -91,7 +91,7 @@ const EventSearch = (props) => {
                   placeholder='Choose benefits'
                   sortValues={sortValues}
                   defaultValue={optionsData.benefits.filter(item => item.value === parseString.benefits)}
-                  name='benefits'
+                  name='benefit'
                 />
               </div>
             </div>
@@ -104,7 +104,6 @@ const EventSearch = (props) => {
     </div>
   )
 };
-
 
 
 export default EventSearch;

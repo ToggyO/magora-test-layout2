@@ -20,8 +20,8 @@ function App(props) {
         <Switch>
           <Route exact path='/' component={Home}/>
           <Route path='/registration' component={Registration}/>
-          {/*<Route path='/projectSearch' component={FindProjects}/>*/}
-          {/*<Route path='/grantsSearch' component={GrantsPage}/>*/}
+          <Route path='/projectSearch' component={FindProjects}/>
+          <Route path='/grantsSearch' component={GrantsPage}/>
           <Route path='/eventsSearch' component={EventsPage}/>
         </Switch>
       </>

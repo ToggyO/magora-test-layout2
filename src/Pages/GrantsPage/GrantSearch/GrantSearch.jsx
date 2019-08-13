@@ -78,7 +78,7 @@ const GrantSearch = (props) => {
               placeholder='Choose benefits'
               sortValues={sortValues}
               defaultValue={optionsData.benefits.filter(item => item.value === parseString.benefits)}
-              name='benefits'
+              name='benefit'
             />
           </div>
         </FormSearchWrapper>
@@ -87,7 +87,6 @@ const GrantSearch = (props) => {
     </div>
   )
 };
-
 
 
 export default GrantSearch;

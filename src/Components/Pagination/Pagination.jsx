@@ -4,7 +4,7 @@ import { parse, stringify } from 'qs';
 import './Pagination.scss';
 import history from '../../history';
 import PaginationArrow from "./PaginationArrow/PaginationArrow";
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 class Pagination extends React.Component {
 
@@ -35,13 +35,14 @@ class Pagination extends React.Component {
 
 
   render() {
-    const { location, projectsData, currentPage } = this.props;
+
+    const { location, projectsData } = this.props;
 
     // const { location = {} } = history;
     // const { search = '' } = location;
     const queries = parse(location.search, { ignoreQueryPrefix: true }) || {};
 
-    const initialPage = queries.page || currentPage || 1;
+    const initialPage = queries.page || projectsData.history.page || 1;
 
     const { totalCardsCount = 0, pageSize } = projectsData;
     const pageCount = Math.ceil(totalCardsCount / pageSize);

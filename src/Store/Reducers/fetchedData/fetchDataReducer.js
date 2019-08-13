@@ -6,13 +6,14 @@ let InitialState = {
   errors: {},
   loading: false,
   totalCardsCount: 0,
-  currentPage: 1,
+  // currentPage: 1,
   history: {
+    page: 1,
     sort: '',
     category: '',
-    benefits: '',
+    benefit: '',
     creator: '',
-    eventType: '',
+    type: '',
     startDate: '',
     endDate: '',
     crowdfunding: false,
@@ -35,8 +36,11 @@ const fetchedDataReducer = (state = InitialState, action) => {
         ...action.payload,
         loading: false,
         totalCardsCount: action.payload.total,
-        currentPage: action.payload.page,
-        isData: true
+        isData: true,
+        history: {
+          ...state.history,
+          page: action.payload.page,
+        }
       };
     case FETCHED_PROJECTS_DATA.PROJECT_SORT_VALUES:
       return {
@@ -55,14 +59,16 @@ const fetchedDataReducer = (state = InitialState, action) => {
         }
       };
     case FETCHED_PROJECTS_DATA.DATA_CLEANING:
+      console.log('cleanUp done');
       return {
         ...state,
         history: {
+          page: 1,
           sort: '',
           category: '',
-          benefits: '',
+          benefit: '',
           creator: '',
-          eventType: '',
+          type: '',
           startDate: '',
           endDate: '',
           crowdfunding: false,
@@ -71,12 +77,11 @@ const fetchedDataReducer = (state = InitialState, action) => {
         }
       };
     case FETCHED_PROJECTS_DATA.DATE_PICK:
-      debugger;
       return {
         ...state,
         history: {
           ...state.history,
-          [action.payload.name]: action.payload.date.toISOString()
+          [action.payload.name]: action.payload.date
         }
       };
     default:

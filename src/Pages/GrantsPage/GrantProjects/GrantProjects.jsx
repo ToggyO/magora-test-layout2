@@ -1,16 +1,11 @@
 import React from 'react';
 import './GrantProjects.sass';
-import {receivingGrantsData, renderingGrants} from "../../../Libs/additionalSortingFunctions";
+import {renderingGrants} from "../../../Libs/additionalSortingFunctions";
 import Preloader from "../../../Components/Preloader/Preloader";
 import Pagination from "../../../Components/Pagination/Pagination";
 
 
 class GrantProjects extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.receivingData = receivingGrantsData.bind(this);
-  }
 
   componentDidMount() {
     window.scrollTo({
@@ -18,22 +13,25 @@ class GrantProjects extends React.Component {
       top: 0,
       behavior: 'smooth'
     })
+    console.log('mount');
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.location.search !== prevProps.location.search) {
-      this.receivingData(this.props.location, this.props.getGrants, this.props.grantsData)
+      this.props.getDataFromServer(this.props.grantsData.history, this.props.parseString, 'grants');
       window.scrollTo({
         left: 0,
         top: 550,
         behavior: 'smooth'
       })
     }
+    console.log('update');
   }
 
-  componentWillUnmount() {
-    this.props.stateItemsCleaning();
-  }
+  // componentWillUnmount() {
+  //   this.props.stateItemsCleaning();
+  //   console.log('unmount');
+  // }
 
   render() {
 
