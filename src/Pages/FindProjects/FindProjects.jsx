@@ -8,7 +8,11 @@ import {
   sortValues,
   stateItemsCleaning
 } from "../../Store/Actions/fetchedData/actionFetchProjectsData";
-import {getBenefitsOptions, getCategoriesOptions} from "../../Store/Actions/fetchedData/actionGetSortOptions";
+import {
+  getBenefitsOptions,
+  getCategoriesOptions,
+  stateOptionsCleaning
+} from "../../Store/Actions/fetchedData/actionGetSortOptions";
 import {connect} from "react-redux";
 import {mapQueryParamsToState} from "../../Libs/additionalSortingFunctions";
 import CommunityProjectsEmpty from "./CommunityProjects/CommunityProjectsEmpty";
@@ -28,6 +32,7 @@ const FindProjects = (props) => {
     history,
     stateItemsCleaning,
     getDataFromServer,
+    stateOptionsCleaning
   } = props;
 
   const parseString = parse( props.location.search, { ignoreQueryPrefix: true });
@@ -35,7 +40,6 @@ const FindProjects = (props) => {
   const [initialize, setInitialize] = useState(false);
 
   useEffect( () => {
-
     getCategoriesOptions();
     getBenefitsOptions();
     mapQueryParamsToState(parseString, sortValues);
@@ -43,6 +47,7 @@ const FindProjects = (props) => {
 
     return () => {
       stateItemsCleaning();
+      stateOptionsCleaning();
       console.log('unmount');
     };
   },[]);
@@ -83,7 +88,7 @@ const FindProjects = (props) => {
           optionsData={fetchedProjectsOptions}
           location={location}
           getProjects={getProjects}
-          projectsSortValues={sortValues}
+          sortValues={sortValues}
           getCategoriesOptions={getCategoriesOptions}
           getBenefitsOptions={getBenefitsOptions}
           history={history}
@@ -106,6 +111,7 @@ let mapDispatchToProps = (dispatch) => {
     getCategoriesOptions: bindActionCreators(getCategoriesOptions, dispatch),
     getBenefitsOptions: bindActionCreators(getBenefitsOptions, dispatch),
     stateItemsCleaning: bindActionCreators(stateItemsCleaning, dispatch),
+    stateOptionsCleaning: bindActionCreators(stateOptionsCleaning, dispatch),
   }
 };
 

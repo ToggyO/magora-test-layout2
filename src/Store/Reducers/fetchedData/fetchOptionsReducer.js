@@ -47,6 +47,19 @@ const fetchedOptionsReducer = (state = InitialState, action) => {
         ],
         isBenefits: true
       };
+    case SORT_OPTIONS.STATE_OPTIONS_CLEANING:
+      // debugger;
+      console.log('options cleaned');
+      return {
+        categories: [
+          { value: '', label: 'All projects'}
+        ],
+        benefits: [
+          { value: '', label: 'All projects'}
+        ],
+        isCategories: false,
+        isBenefits: false
+      };
     default:
       return state;
   }

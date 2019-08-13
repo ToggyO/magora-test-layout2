@@ -10,7 +10,8 @@ const MySelect = (props) => {
     placeholder,
     defaultValue,
     sortValues,
-    name
+    name,
+    value
   } = props;
 
   return (
@@ -22,6 +23,7 @@ const MySelect = (props) => {
       inputValue=''
       onChange={value => sortValues(value.value, name)}
       defaultValue={defaultValue}
+      value={value}
     />
   )
 };

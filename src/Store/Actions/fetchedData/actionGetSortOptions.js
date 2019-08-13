@@ -6,6 +6,7 @@ export const SORT_OPTIONS = {
   // REQUEST_BENEFITS_OPTIONS: 'REQUEST_BENEFITS_OPTIONS',
   RECEIVE_CATEGORIES_OPTIONS: 'RECEIVE_CATEGORIES_OPTIONS',
   RECEIVE_BENEFITS_OPTIONS: 'RECEIVE_BENEFITS_OPTIONS',
+  STATE_OPTIONS_CLEANING: 'STATE_OPTIONS_CLEANING',
 };
 
 // const requestCategoriesOptions = () => {
@@ -31,6 +32,13 @@ const  receiveBenefitsOptions = (benefits) => {
   return {
     type: SORT_OPTIONS.RECEIVE_BENEFITS_OPTIONS,
     payload: benefits.data.data
+  }
+};
+
+export const stateOptionsCleaning = () => {
+  // debugger;
+  return {
+    type: SORT_OPTIONS.STATE_OPTIONS_CLEANING,
   }
 };
 

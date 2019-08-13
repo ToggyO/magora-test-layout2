@@ -1,6 +1,7 @@
 import React from 'react';
 import './CommunityProjects.sass';
 import {
+  mapQueryParamsToState,
   renderingProjects
 } from "../../../Libs/additionalSortingFunctions";
 import Preloader from "../../../Components/Preloader/Preloader";
@@ -25,8 +26,11 @@ class CommunityProjects extends React.Component {
         left: 0,
         top: 550,
         behavior: 'smooth'
-      })
+      });
+      mapQueryParamsToState(this.props.parseString, this.props.sortValues);
     }
+
+
     console.log('update');
   }
 

@@ -9,7 +9,7 @@ import {
 import {bindActionCreators} from "redux";
 import {
   getBenefitsOptions,
-  getCategoriesOptions
+  getCategoriesOptions, stateOptionsCleaning
 } from "../../Store/Actions/fetchedData/actionGetSortOptions";
 import {connect} from "react-redux";
 import {
@@ -34,6 +34,7 @@ const EventsPage = (props) => {
     stateItemsCleaning,
     getDataFromServer,
     datePick,
+    stateOptionsCleaning
   } = props;
 
   const parseString = parse( props.location.search, { ignoreQueryPrefix: true });
@@ -45,6 +46,12 @@ const EventsPage = (props) => {
     getBenefitsOptions();
     mapQueryParamsToState(parseString, sortValues);
     getDataFromServer(fetchedData.history, parseString, 'events');
+
+    return () => {
+      stateItemsCleaning();
+      stateOptionsCleaning();
+      console.log('unmount');
+    };
   },[]);
 
 
@@ -109,7 +116,9 @@ let mapDispatchToProps = (dispatch) => {
     getCategoriesOptions: bindActionCreators(getCategoriesOptions, dispatch),
     getBenefitsOptions: bindActionCreators(getBenefitsOptions, dispatch),
     stateItemsCleaning: bindActionCreators(stateItemsCleaning, dispatch),
+    stateOptionsCleaning: bindActionCreators(stateOptionsCleaning, dispatch),
     datePick: bindActionCreators(datePick, dispatch),
+
   }
 };
 

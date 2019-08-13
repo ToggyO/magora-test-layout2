@@ -62,10 +62,16 @@ export const datePick = (date, name) => {
 };
 
 
+let lastKey;
+
 export const getDataFromServer = (data, queries, projectType) => { // projectType
   // = ideas || grants || events
+
   console.log(data);
-// debugger;
+
+  let key = Math.random()*100000;
+  lastKey = key;
+
   return (dispatch) => {
     dispatch(requestData());
 
@@ -75,7 +81,11 @@ export const getDataFromServer = (data, queries, projectType) => { // projectTyp
     let Url = `${BASE_URL}&PageSize=9${requestString}`;
 
     return axios.get(Url)
-      .then(res => dispatch(receiveData(res)))
+      .then(res => {
+        if (lastKey === key) {
+          dispatch(receiveData(res))
+        }
+      })
       .catch( error => console.log(error))
   };
 };

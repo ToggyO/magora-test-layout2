@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './ProjectSearch.sass';
 import FormSearchWrapper from '../../../Components/Form/FormSearchWrapper';
 import SearchButtonsBlock from '../../../Components/SearchButtonsBlock';
@@ -13,7 +13,6 @@ const ProjectSearch = (props) => {
   // } else {
   //   document.body.style.overflow = 'scroll ';
   // }
-
   const {
     location,
     projectsData,
@@ -21,6 +20,11 @@ const ProjectSearch = (props) => {
     projectsSortValues,
     parseString,
   } = props;
+
+  useEffect(() => {
+    // projectsData.history;
+  },[ projectsData.history]);
+
 
   return (
     <div className='projectSearch wrapper'>
@@ -55,6 +59,7 @@ const ProjectSearch = (props) => {
               sortValues={projectsSortValues}
               defaultValue={sortOptions.filter(item => item.value === parseString.sort)}
               name='sort'
+              value={sortOptions.filter(item => item.value === projectsData.history.sort)}
             />
             <CheckboxSelect
               options={modulesOptions}
@@ -69,6 +74,10 @@ const ProjectSearch = (props) => {
               sortValues={projectsSortValues}
               defaultValue={optionsData.categories.filter(item => item.value === parseString.category)}
               name='category'
+              value={optionsData.categories.filter(item => parseString.category
+                ? item.value === parseString.category
+                : item.value === projectsData.history.category
+              )}
             />
           </div>
           <div className='filters-sort__benefits prS-adapt__benefits ml-16'>
@@ -76,8 +85,12 @@ const ProjectSearch = (props) => {
               options={optionsData.benefits}
               placeholder='Choose benefits'
               sortValues={projectsSortValues}
-              defaultValue={optionsData.benefits.filter(item => item.value === parseString.benefits)}
+              defaultValue={optionsData.benefits.filter(item => item.value === parseString.benefit)}
               name='benefit'
+              value={optionsData.benefits.filter(item => parseString.benefit
+                ? item.value === parseString.benefit
+                : item.value === projectsData.history.benefit
+              )}
             />
           </div>
         </FormSearchWrapper>

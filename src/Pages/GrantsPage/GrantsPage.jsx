@@ -10,7 +10,7 @@ import {
 } from "../../Store/Actions/fetchedData/actionFetchProjectsData";
 import {
   getBenefitsOptions,
-  getCategoriesOptions
+  getCategoriesOptions, stateOptionsCleaning
 } from '../../Store/Actions/fetchedData/actionGetSortOptions';
 import {connect} from "react-redux";
 import {mapQueryParamsToState} from "../../Libs/additionalSortingFunctions";
@@ -31,6 +31,7 @@ const GrantsPage = (props) => {
     history,
     stateItemsCleaning,
     getDataFromServer,
+    stateOptionsCleaning,
   } = props;
 
   const [initialize, setInitialize] = useState(false);
@@ -38,13 +39,18 @@ const GrantsPage = (props) => {
   const parseString = parse( props.location.search, { ignoreQueryPrefix: true });
 
   useEffect( () => {
+
+    let key = Math.random() * 100000;
+    console.log(key);
+
     getCategoriesOptions();
     getBenefitsOptions();
     mapQueryParamsToState(parseString, sortValues);
-    getDataFromServer(fetchedData.history, parseString, 'grants');
+    getDataFromServer(fetchedData.history, parseString, 'grants', key);
 
     return () => {
       stateItemsCleaning();
+      stateOptionsCleaning();
       console.log('unmount');
     };
   },[]);
@@ -107,6 +113,7 @@ let mapDispatchToProps = (dispatch) => {
     getCategoriesOptions: bindActionCreators(getCategoriesOptions, dispatch),
     getBenefitsOptions: bindActionCreators(getBenefitsOptions, dispatch),
     stateItemsCleaning: bindActionCreators(stateItemsCleaning, dispatch),
+    stateOptionsCleaning: bindActionCreators(stateOptionsCleaning, dispatch),
   }
 };
 
