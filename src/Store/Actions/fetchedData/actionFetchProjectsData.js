@@ -45,7 +45,7 @@ export const projectsSortCheckboxValues = (name, value) => {
 };
 
 export const stateItemsCleaning = () => {
-  // debugger;
+  debugger;
   return {
     type: FETCHED_PROJECTS_DATA.DATA_CLEANING,
   }
@@ -68,7 +68,7 @@ export const getDataFromServer = (data, queries, projectType) => { // projectTyp
   // = ideas || grants || events
 
   console.log(data);
-
+  debugger;
   let key = Math.random()*100000;
   lastKey = key;
 

@@ -59,10 +59,11 @@ export const renderingEvents = (data) => {
 };
 
 
-export const mapQueryParamsToState = (string, func, actionClean) => {
-  actionClean();
+export const mapQueryParamsToState = (string, func) => {
+  // actionClean();
   Object.keys(string).forEach(key => {
     if (string[key]) {
+      debugger;
       return func(string[key], key);
     }
   });

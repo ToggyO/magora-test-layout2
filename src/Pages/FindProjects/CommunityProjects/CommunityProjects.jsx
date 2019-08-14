@@ -15,22 +15,23 @@ class CommunityProjects extends React.Component {
       left: 0,
       top: 0,
       behavior: 'smooth'
-    })
-    console.log('mount');
+    });
+    // console.log('mount');
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.location.search !== prevProps.location.search) {
-      this.props.getDataFromServer(this.props.projectsData.history, parseQueryString(this.props.location.search), 'ideas');
-      debugger;
-      window.scrollTo({
-        left: 0,
-        top: 550,
-        behavior: 'smooth'
-      });
+      // mapQueryParamsToState(parseQueryString(this.props.location.search), this.props.sortValues, this.props.stateItemsCleaning);
+      // this.props.getDataFromServer(this.props.projectsData.history, parseQueryString(this.props.location.search), 'ideas');
+      // debugger;
+      // window.scrollTo({
+      //   left: 0,
+      //   top: 550,
+      //   behavior: 'smooth'
+      // });
       // mapQueryParamsToState(this.props.parseString, this.props.sortValues);
     }
-    console.log('update');
+    // console.log('update');
   }
 
   // componentWillUnmount() {
