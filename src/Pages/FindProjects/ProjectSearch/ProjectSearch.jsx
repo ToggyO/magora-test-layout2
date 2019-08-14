@@ -64,6 +64,7 @@ const ProjectSearch = (props) => {
             <CheckboxSelect
               options={modulesOptions}
               placeholder='Active modules'
+              // value={[modulesOptions[0]]}
               value={modulesOptions.filter(item => projectsData.history[item.value])}
               // defaultValue={modulesOptions.filter(item => parseString[item.value])}
             />
@@ -75,8 +76,7 @@ const ProjectSearch = (props) => {
               sortValues={projectsSortValues}
               // defaultValue={optionsData.categories.filter(item => item.value === parseString.category)}
               name='category'
-              value={optionsData.categories.filter(item => item.value === projectsData.history.category
-              )}
+              value={optionsData.categories.filter(item => item.value === projectsData.history.category)}
             />
           </div>
           <div className='filters-sort__benefits prS-adapt__benefits ml-16'>

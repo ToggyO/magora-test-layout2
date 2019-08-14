@@ -1,7 +1,7 @@
 import React from 'react';
 import './CommunityProjects.sass';
 import {
-  mapQueryParamsToState,
+  mapQueryParamsToState, parseQueryString,
   renderingProjects
 } from "../../../Libs/additionalSortingFunctions";
 import Preloader from "../../../Components/Preloader/Preloader";
@@ -21,13 +21,14 @@ class CommunityProjects extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.location.search !== prevProps.location.search) {
-      this.props.getDataFromServer(this.props.projectsData.history, this.props.parseString, 'ideas');
+      this.props.getDataFromServer(this.props.projectsData.history, parseQueryString(this.props.location.search), 'ideas');
+      debugger;
       window.scrollTo({
         left: 0,
         top: 550,
         behavior: 'smooth'
       });
-      mapQueryParamsToState(this.props.parseString, this.props.sortValues);
+      // mapQueryParamsToState(this.props.parseString, this.props.sortValues);
     }
     console.log('update');
   }

@@ -40,13 +40,14 @@ const FindProjects = (props) => {
   const [initialize, setInitialize] = useState(false);
 
   useEffect(() => {
-    mapQueryParamsToState(parseQueryString(location), sortValues);
+    mapQueryParamsToState(parseQueryString(location.search), sortValues, stateItemsCleaning);
+    debugger;
   }, [location.search]);
 
   useEffect( () => {
     getCategoriesOptions();
     getBenefitsOptions();
-    getDataFromServer(fetchedData.history, parseString, 'ideas');
+    getDataFromServer(fetchedData.history, parseQueryString(location.search), 'ideas');
 
     return () => {
       stateItemsCleaning();
@@ -84,7 +85,7 @@ const FindProjects = (props) => {
           getCategoriesOptions={getCategoriesOptions}
           getBenefitsOptions={getBenefitsOptions}
           history={history}
-          parseString={parseString}
+          // parseString={parseString}
         />
         <CommunityProjects
           projectsData={fetchedData}
@@ -95,7 +96,7 @@ const FindProjects = (props) => {
           getCategoriesOptions={getCategoriesOptions}
           getBenefitsOptions={getBenefitsOptions}
           history={history}
-          parseString={parseString}
+          // parseString={parseString}
           stateItemsCleaning={stateItemsCleaning}
           getDataFromServer={getDataFromServer}
         />

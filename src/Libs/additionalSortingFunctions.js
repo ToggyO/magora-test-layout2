@@ -59,9 +59,9 @@ export const renderingEvents = (data) => {
 };
 
 
-export const mapQueryParamsToState = (string, func) => {
+export const mapQueryParamsToState = (string, func, actionClean) => {
+  actionClean();
   Object.keys(string).forEach(key => {
-    // debugger;
     if (string[key]) {
       return func(string[key], key);
     }
@@ -98,7 +98,8 @@ export const mergeQueryUrlWithHistory = (data, queries) => {
 
 
 export const parseQueryString = (location) => {
-  return parse(location.search, { ignoreQueryPrefix: true });
+  // debugger;
+  return parse(location, { ignoreQueryPrefix: true });
 };
 
 
