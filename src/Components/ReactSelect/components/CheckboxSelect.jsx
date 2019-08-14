@@ -10,6 +10,7 @@ const CheckboxSelect = (props) => {
   const {
     options,
     placeholder,
+    value,
     defaultValue
   } = props;
 
@@ -24,7 +25,8 @@ const CheckboxSelect = (props) => {
       className='mt-6'
       placeholder={placeholder}
       inputValue=''
-      defaultValue={defaultValue}
+      // defaultValue={defaultValue}
+      value={value}
     />
   )
 };

@@ -2,6 +2,7 @@ import ProjectCard from "../Components/ProjectCard/ProjectCard";
 import React from "react";
 import GrantCard from "../Components/GrantCard/GrantCard";
 import EventCard from "../Components/EventCard/EventCard";
+import {parse} from 'qs';
 
 
 export const  makeQueryString = (obj) => {
@@ -93,6 +94,11 @@ export const mergeQueryUrlWithHistory = (data, queries) => {
   });
   // console.log(obj);
   return obj;
+};
+
+
+export const parseQueryString = (location) => {
+  return parse(location.search, { ignoreQueryPrefix: true });
 };
 
 

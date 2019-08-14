@@ -29,8 +29,6 @@ class CommunityProjects extends React.Component {
       });
       mapQueryParamsToState(this.props.parseString, this.props.sortValues);
     }
-
-
     console.log('update');
   }
 

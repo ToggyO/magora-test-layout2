@@ -57,14 +57,15 @@ const ProjectSearch = (props) => {
               options={sortOptions}
               placeholder='Sort By...'
               sortValues={projectsSortValues}
-              defaultValue={sortOptions.filter(item => item.value === parseString.sort)}
+              // defaultValue={sortOptions.filter(item => item.value === parseString.sort)}
               name='sort'
               value={sortOptions.filter(item => item.value === projectsData.history.sort)}
             />
             <CheckboxSelect
               options={modulesOptions}
               placeholder='Active modules'
-              defaultValue={modulesOptions.filter(item => parseString[item.value])}
+              value={modulesOptions.filter(item => projectsData.history[item.value])}
+              // defaultValue={modulesOptions.filter(item => parseString[item.value])}
             />
           </div>
           <div className='filters-sort__category prS-adapt__category ml-16'>
@@ -72,11 +73,9 @@ const ProjectSearch = (props) => {
               options={optionsData.categories}
               placeholder='Choose category'
               sortValues={projectsSortValues}
-              defaultValue={optionsData.categories.filter(item => item.value === parseString.category)}
+              // defaultValue={optionsData.categories.filter(item => item.value === parseString.category)}
               name='category'
-              value={optionsData.categories.filter(item => parseString.category
-                ? item.value === parseString.category
-                : item.value === projectsData.history.category
+              value={optionsData.categories.filter(item => item.value === projectsData.history.category
               )}
             />
           </div>
@@ -85,11 +84,9 @@ const ProjectSearch = (props) => {
               options={optionsData.benefits}
               placeholder='Choose benefits'
               sortValues={projectsSortValues}
-              defaultValue={optionsData.benefits.filter(item => item.value === parseString.benefit)}
+              // defaultValue={optionsData.benefits.filter(item => item.value === parseString.benefit)}
               name='benefit'
-              value={optionsData.benefits.filter(item => parseString.benefit
-                ? item.value === parseString.benefit
-                : item.value === projectsData.history.benefit
+              value={optionsData.benefits.filter(item => item.value === projectsData.history.benefit
               )}
             />
           </div>

@@ -14,10 +14,10 @@ import {
   stateOptionsCleaning
 } from "../../Store/Actions/fetchedData/actionGetSortOptions";
 import {connect} from "react-redux";
-import {mapQueryParamsToState} from "../../Libs/additionalSortingFunctions";
+import {mapQueryParamsToState, parseQueryString} from "../../Libs/additionalSortingFunctions";
 import CommunityProjectsEmpty from "./CommunityProjects/CommunityProjectsEmpty";
 import ProjectSearchEmpty from "./ProjectSearch/ProjectSearchEmpty";
-import {parse} from "qs";
+// import {parse} from "qs";
 
 
 const FindProjects = (props) => {
@@ -35,14 +35,17 @@ const FindProjects = (props) => {
     stateOptionsCleaning
   } = props;
 
-  const parseString = parse( props.location.search, { ignoreQueryPrefix: true });
+  // const parseString = parse( props.location.search, { ignoreQueryPrefix: true });
 
   const [initialize, setInitialize] = useState(false);
+
+  useEffect(() => {
+    mapQueryParamsToState(parseQueryString(location), sortValues);
+  }, [location.search]);
 
   useEffect( () => {
     getCategoriesOptions();
     getBenefitsOptions();
-    mapQueryParamsToState(parseString, sortValues);
     getDataFromServer(fetchedData.history, parseString, 'ideas');
 
     return () => {
