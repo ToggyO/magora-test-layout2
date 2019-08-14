@@ -8,11 +8,7 @@ import MySelect from "../../../Components/ReactSelect/components/MySelect";
 
 
 const ProjectSearch = (props) => {
-  // if (opened && window.innerWidth <= 991) {
-  //   document.body.style.overflow = 'hidden';
-  // } else {
-  //   document.body.style.overflow = 'scroll ';
-  // }
+
   const {
     location,
     projectsData,
@@ -21,9 +17,9 @@ const ProjectSearch = (props) => {
     parseString,
   } = props;
 
-  useEffect(() => {
-    // projectsData.history;
-  },[ projectsData.history]);
+  // useEffect(() => {
+  //   // projectsData.history;
+  // },[ projectsData.history]);
 
 
   return (

@@ -4,7 +4,7 @@ import EventSearch from "./EventSearch/EventSearch";
 import EventProjects from "./EventProjects/EventProjects";
 import {parse} from "qs";
 import {
-  mapQueryParamsToState,
+  mapQueryParamsToState, parseQueryString,
 } from "../../Libs/additionalSortingFunctions";
 import {bindActionCreators} from "redux";
 import {
@@ -20,6 +20,7 @@ import {
 } from "../../Store/Actions/fetchedData/actionFetchProjectsData";
 import EventSearchEmpty from "./EventSearch/EventSearchEmpty";
 import EventProjectsEmpty from "./EventProjects/EventProjectsEmpty";
+import store from "../../Store";
 
 
 const EventsPage = (props) => {
@@ -37,22 +38,23 @@ const EventsPage = (props) => {
     stateOptionsCleaning
   } = props;
 
-  const parseString = parse( props.location.search, { ignoreQueryPrefix: true });
-
   const [initialize, setInitialize] = useState(false);
 
   useEffect( () => {
+    stateItemsCleaning();
     getCategoriesOptions();
     getBenefitsOptions();
-    mapQueryParamsToState(parseString, sortValues);
-    getDataFromServer(fetchedData.history, parseString, 'events');
+    mapQueryParamsToState(parseQueryString(location.search), sortValues);
+    const currentState = store.getState();
+    getDataFromServer(currentState.fetchedData.history, parseQueryString(location.search), 'events');
+    console.log('mount');
 
     return () => {
       stateItemsCleaning();
       stateOptionsCleaning();
       console.log('unmount');
     };
-  },[]);
+  },[location.search]);
 
 
   useEffect( () => {
@@ -85,7 +87,6 @@ const EventsPage = (props) => {
           getCategoriesOptions={getCategoriesOptions}
           getBenefitsOptions={getBenefitsOptions}
           history={history}
-          parseString={parseString}
           datePick={datePick}
         />
         <EventProjects
@@ -97,7 +98,6 @@ const EventsPage = (props) => {
           getCategoriesOptions={getCategoriesOptions}
           getBenefitsOptions={getBenefitsOptions}
           history={history}
-          parseString={parseString}
           stateItemsCleaning={stateItemsCleaning}
           getDataFromServer={getDataFromServer}
         />

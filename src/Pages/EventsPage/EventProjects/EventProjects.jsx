@@ -17,7 +17,6 @@ class EventProjects extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.location.search !== prevProps.location.search) {
-      this.props.getDataFromServer(this.props.projectsData.history, this.props.parseString, 'events');
       window.scrollTo({
         left: 0,
         top: 550,
@@ -25,10 +24,6 @@ class EventProjects extends React.Component {
       })
     }
   }
-
-  // componentWillUnmount() {
-  //   this.props.stateItemsCleaning();
-  // }
 
   render() {
 

@@ -8,12 +8,6 @@ import {creatorOptions, sortOptions} from "../../FindProjects/FindProjectOptions
 
 const GrantSearch = (props) => {
 
-  // if (opened && window.innerWidth <= 991) {
-  //   document.body.style.overflow = 'hidden';
-  // } else {
-  //   document.body.style.overflow = 'scroll ';
-  // }
-
   const {
     location,
     grantsData,
@@ -52,14 +46,14 @@ const GrantSearch = (props) => {
               options={sortOptions}
               placeholder='Sort By...'
               sortValues={sortValues}
-              defaultValue={sortOptions.filter(item => item.value === parseString.sort)}
+              value={sortOptions.filter(item => item.value === grantsData.history.sort)}
               name='sort'
             />
             <MySelect
               options={creatorOptions}
               placeholder='Choose grant creator'
               sortValues={sortValues}
-              defaultValue={creatorOptions.filter(item => item.value === parseString.creator)}
+              value={creatorOptions.filter(item => item.value === grantsData.history.creator)}
               name='creator'
             />
           </div>
@@ -68,7 +62,7 @@ const GrantSearch = (props) => {
               options={optionsData.categories}
               placeholder='Choose category'
               sortValues={sortValues}
-              defaultValue={optionsData.categories.filter(item => item.value === parseString.category)}
+              value={optionsData.categories.filter(item => item.value === grantsData.history.category)}
               name='category'
             />
           </div>
@@ -77,7 +71,7 @@ const GrantSearch = (props) => {
               options={optionsData.benefits}
               placeholder='Choose benefits'
               sortValues={sortValues}
-              defaultValue={optionsData.benefits.filter(item => item.value === parseString.benefits)}
+              value={optionsData.benefits.filter(item => item.value === grantsData.history.benefit)}
               name='benefit'
             />
           </div>

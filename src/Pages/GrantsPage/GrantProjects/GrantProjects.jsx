@@ -13,12 +13,11 @@ class GrantProjects extends React.Component {
       top: 0,
       behavior: 'smooth'
     })
-    console.log('mount');
+
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.location.search !== prevProps.location.search) {
-      this.props.getDataFromServer(this.props.grantsData.history, this.props.parseString, 'grants');
       window.scrollTo({
         left: 0,
         top: 550,
@@ -27,11 +26,6 @@ class GrantProjects extends React.Component {
     }
     console.log('update');
   }
-
-  // componentWillUnmount() {
-  //   this.props.stateItemsCleaning();
-  //   console.log('unmount');
-  // }
 
   render() {
 
@@ -59,7 +53,6 @@ class GrantProjects extends React.Component {
     )
   }
 }
-
 
 
 export default GrantProjects;

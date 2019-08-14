@@ -17,8 +17,8 @@ import {connect} from "react-redux";
 import {mapQueryParamsToState, parseQueryString} from "../../Libs/additionalSortingFunctions";
 import CommunityProjectsEmpty from "./CommunityProjects/CommunityProjectsEmpty";
 import ProjectSearchEmpty from "./ProjectSearch/ProjectSearchEmpty";
-// import {parse} from "qs";
 import store from "../../Store";
+
 
 const FindProjects = (props) => {
   const {
@@ -35,15 +35,7 @@ const FindProjects = (props) => {
     stateOptionsCleaning
   } = props;
 
-  // const parseString = parse( props.location.search, { ignoreQueryPrefix: true });
-
   const [initialize, setInitialize] = useState(false);
-  //
-  // useEffect(() => {
-  //   getCategoriesOptions();
-  //   getBenefitsOptions();
-  //
-  // }, []);
 
   useEffect( () => {
     stateItemsCleaning();
@@ -52,11 +44,6 @@ const FindProjects = (props) => {
     mapQueryParamsToState(parseQueryString(location.search), sortValues);
     const currentState = store.getState();
     getDataFromServer(currentState.fetchedData.history, parseQueryString(location.search), 'ideas');
-    window.scrollTo({
-      left: 0,
-      top:  550,
-      behavior: 'smooth'
-    });
     console.log('mount');
 
     return () => {

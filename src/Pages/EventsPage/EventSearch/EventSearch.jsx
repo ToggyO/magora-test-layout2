@@ -9,12 +9,6 @@ import FormSearchWrapper from "../../../Components/Form/FormSearchWrapper";
 
 const EventSearch = (props) => {
 
-  // if (opened && window.innerWidth <= 991) {
-  //   document.body.style.overflow = 'hidden';
-  // } else {
-  //   document.body.style.overflow = 'scroll ';
-  // }
-
   const {
     location,
     eventsData,
@@ -55,14 +49,14 @@ const EventSearch = (props) => {
               options={sortOptions}
               placeholder='Sort By...'
               sortValues={sortValues}
-              defaultValue={sortOptions.filter(item => item.value === parseString.sort)}
+              value={sortOptions.filter(item => item.value === eventsData.history.sort)}
               name='sort'
             />
             <MySelect
               options={eventTypeOptions}
               placeholder='Choose grant creator'
               sortValues={sortValues}
-              defaultValue={eventTypeOptions.filter(item => item.value === parseString.type)}
+              value={eventTypeOptions.filter(item => item.value === eventsData.history.type)}
               name='type'
             />
           </div>
@@ -81,7 +75,7 @@ const EventSearch = (props) => {
                   options={optionsData.categories}
                   placeholder='Choose category'
                   sortValues={sortValues}
-                  defaultValue={optionsData.categories.filter(item => item.value === parseString.category)}
+                  value={optionsData.categories.filter(item => item.value === eventsData.history.category)}
                   name='category'
                 />
               </div>
@@ -90,7 +84,7 @@ const EventSearch = (props) => {
                   options={optionsData.benefits}
                   placeholder='Choose benefits'
                   sortValues={sortValues}
-                  defaultValue={optionsData.benefits.filter(item => item.value === parseString.benefits)}
+                  value={optionsData.benefits.filter(item => item.value === eventsData.history.benefit)}
                   name='benefit'
                 />
               </div>

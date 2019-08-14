@@ -1,7 +1,6 @@
 import React from 'react';
 import './CommunityProjects.sass';
 import {
-  mapQueryParamsToState, parseQueryString,
   renderingProjects
 } from "../../../Libs/additionalSortingFunctions";
 import Preloader from "../../../Components/Preloader/Preloader";
@@ -16,7 +15,6 @@ class CommunityProjects extends React.Component {
       top: 0,
       behavior: 'smooth'
     });
-    // console.log('mount');
   }
 
   componentDidUpdate(prevProps) {
@@ -24,20 +22,15 @@ class CommunityProjects extends React.Component {
       // mapQueryParamsToState(parseQueryString(this.props.location.search), this.props.sortValues, this.props.stateItemsCleaning);
       // this.props.getDataFromServer(this.props.projectsData.history, parseQueryString(this.props.location.search), 'ideas');
       // debugger;
-      // window.scrollTo({
-      //   left: 0,
-      //   top: 550,
-      //   behavior: 'smooth'
-      // });
+      window.scrollTo({
+        left: 0,
+        top: 550,
+        behavior: 'smooth'
+      });
       // mapQueryParamsToState(this.props.parseString, this.props.sortValues);
     }
     // console.log('update');
   }
-
-  // componentWillUnmount() {
-  //   this.props.stateItemsCleaning();
-  //   console.log('unmount');
-  // }
 
   render() {
 

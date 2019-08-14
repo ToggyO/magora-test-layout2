@@ -13,10 +13,10 @@ import {
   getCategoriesOptions, stateOptionsCleaning
 } from '../../Store/Actions/fetchedData/actionGetSortOptions';
 import {connect} from "react-redux";
-import {mapQueryParamsToState} from "../../Libs/additionalSortingFunctions";
-import {parse} from "qs";
+import {mapQueryParamsToState, parseQueryString} from "../../Libs/additionalSortingFunctions";
 import GrantSearchEmpty from "./GrantSearch/GrantSearchEmpty";
 import GrantProjectsEmpty from "./GrantProjects/GrantProjectsEmpty";
+import store from "../../Store";
 
 
 const GrantsPage = (props) => {
@@ -36,24 +36,21 @@ const GrantsPage = (props) => {
 
   const [initialize, setInitialize] = useState(false);
 
-  const parseString = parse( props.location.search, { ignoreQueryPrefix: true });
-
   useEffect( () => {
-
-    let key = Math.random() * 100000;
-    console.log(key);
-
+    stateItemsCleaning();
     getCategoriesOptions();
     getBenefitsOptions();
-    mapQueryParamsToState(parseString, sortValues);
-    getDataFromServer(fetchedData.history, parseString, 'grants', key);
+    mapQueryParamsToState(parseQueryString(location.search), sortValues);
+    const currentState = store.getState();
+    getDataFromServer(currentState.fetchedData.history, parseQueryString(location.search), 'grants');
+    console.log('mount');
 
     return () => {
       stateItemsCleaning();
       stateOptionsCleaning();
       console.log('unmount');
     };
-  },[]);
+  },[location.search]);
 
   useEffect( () => {
     (fetchedData.isData &&
@@ -84,7 +81,6 @@ const GrantsPage = (props) => {
           getCategoriesOptions={getCategoriesOptions}
           getBenefitsOptions={getBenefitsOptions}
           history={history}
-          parseString={parseString}
         />
         <GrantProjects
           grantsData={fetchedData}
@@ -95,7 +91,6 @@ const GrantsPage = (props) => {
           getCategoriesOptions={getCategoriesOptions}
           getBenefitsOptions={getBenefitsOptions}
           history={history}
-          parseString={parseString}
           stateItemsCleaning={stateItemsCleaning}
           getDataFromServer={getDataFromServer}
         />
