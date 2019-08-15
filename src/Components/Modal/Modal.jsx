@@ -1,11 +1,14 @@
 import React from 'react';
 import s from './Modal.module.sass';
-import FormSignIn from '../Form/FormSignIn/FormSignIn';
+// import FormSignIn from '../Form/FormSignIn/FormSignIn';
+// import FormSignUp from '../Form/FormSignUp/FormSignUp';
 import CardModal from "./CardModal/CardModal";
-import FormSignUp from "../Form/FormSignUp/FormSignUp";
 import { connect } from "react-redux";
 import { modalClose } from "../../Store/Actions/modal/actionModal";
 import { bindActionCreators } from "redux";
+import RegistrationForm from "../Form/ReduxForm/RegistrationForm/";
+import AuthForm from "../Form/ReduxForm/AuthForm";
+import {RegistrationSuccess} from "./RegistrationSuccess";
 
 
 class Modal extends React.Component {
@@ -35,11 +38,13 @@ class Modal extends React.Component {
     let { modalKey, options } = this.props.modalState;
     switch (modalKey) {
       case 'signInModal':
-        return <FormSignIn />;
-      case 'signUnModal':
-        return <FormSignUp />;
+        return <AuthForm />;
+      case 'signUpModal':
+        return <RegistrationForm />;
       case 'pos-card':
         return <CardModal card={options} />;
+      case 'regSuccess':
+        return <RegistrationSuccess />;
       default:
         return null;
     }

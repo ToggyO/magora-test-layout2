@@ -4,11 +4,11 @@ import Option from './Option/Option';
 import InputWrapper from "../InputWrapper/InputWrapper";
 
 
-class Select extends React.Component {
+class ReduxFormSelect extends React.Component {
 
   render() {
 
-    const { label, option, name, state, onChange,  error, visited } = this.props;
+    const { input, label, option, name, state, onChange,  error, visited } = this.props;
 
     return (
       <div>
@@ -23,6 +23,6 @@ class Select extends React.Component {
 
     )
   }
-};
+}
 
-export default Select;
+export default ReduxFormSelect;

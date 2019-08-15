@@ -65,7 +65,7 @@ class FormSignUp extends React.Component {
               label={''}
 
               onChange={this.handleChange}
-              option={opt}
+              options={opt}
             />
             {this.state.values.role === 'council' &&
             <TextInput

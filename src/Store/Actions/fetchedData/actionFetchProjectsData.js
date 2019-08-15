@@ -1,4 +1,4 @@
-import * as axios from "axios";
+import {AxiosInstance as axios} from "axios";
 import {makeRequestString, mergeQueryUrlWithHistory} from "../../../Libs/additionalSortingFunctions";
 
 export const FETCHED_PROJECTS_DATA = {
@@ -45,7 +45,7 @@ export const projectsSortCheckboxValues = (name, value) => {
 };
 
 export const stateItemsCleaning = () => {
-  debugger;
+
   return {
     type: FETCHED_PROJECTS_DATA.DATA_CLEANING,
   }
@@ -67,8 +67,6 @@ let lastKey;
 export const getDataFromServer = (data, queries, projectType) => { // projectType
   // = ideas || grants || events
 
-  console.log(data);
-  debugger;
   let key = Math.random()*100000;
   lastKey = key;
 
@@ -92,10 +90,14 @@ export const getDataFromServer = (data, queries, projectType) => { // projectTyp
 
 
 
-
-
-
-
+// return axios.post(Url, body)
+//   .then(res => {
+//     if (res.code === 'success'){
+//       modal
+//     }
+//   })
+//   .catch( error => console.log(error))
+// };
 
 
 

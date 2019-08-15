@@ -106,7 +106,7 @@ class FormSignIn extends React.Component {
             <button
               type='button'
               className='btn transparent sm-wide fs-16 lh-17 ls-24 fw-600'
-              onClick={ () => this.props.modalOpen('signUnModal', { aaa: 'aaa' }) }
+              onClick={ () => this.props.modalOpen('signUpModal', { aaa: 'aaa' }) }
             >
               Create account
             </button>

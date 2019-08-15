@@ -1,35 +1,51 @@
 
-export default function validationConditionsSignUp(value) {
+export default function validationConditionsSignUp(values) {
 
-  let fieldValidationErrors = {};
-  debugger;
-  if (value.firstName.length < 2 || value.firstName.length > 20) {
-    fieldValidationErrors.firstName = 'between 2 and 20 symbols'
+  let errors = {};
+
+  if(!values.firstName) {
+    errors.firstName = 'Required'
+  } else if (!values.firstName.match(/[A-Za-z0-9]/)) {
+    errors.firstName = 'Accepts only english characters';
+  } else if (values.firstName.length < 2 || values.firstName.length > 20) {
+    errors.firstName = 'between 2 and 20 symbols'
   }
 
-  if (value.lastName.length < 2 || value.lastName.length > 20) {
-    fieldValidationErrors.lastName = 'between 2 and 20 symbols'
+  if(!values.lastName) {
+    errors.lastName = 'Required'
+  } else if (!values.lastName.match(/[A-Za-z0-9]/)) {
+    errors.lastName = 'Accepts only english characters';
+  } else if (values.lastName.length < 2 || values.lastName.length > 20) {
+    errors.lastName = 'between 2 and 20 symbols'
   }
 
-  if (!value.email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) {
-    fieldValidationErrors.email = 'is invalid'
+  if(!values.email) {
+    errors.email = 'Required'
+  } else if (!values.email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) {
+    errors.email = 'is invalid'
   }
 
-  if (value.password.length < 6) {
-    fieldValidationErrors.password = 'min 6 symbols'
+  if(!values.password) {
+    errors.password = 'Required'
+  } else if (values.password.length < 6) {
+    errors.password = 'min 6 symbols'
   }
 
-  if (value.password !== value.passwordConfirm) {
-    fieldValidationErrors.passwordConfirm = 'passwords, you entered is not the same'
+  if(!values.passwordConfirm) {
+    errors.passwordConfirm = 'Required'
+  } else if (values.password !== values.passwordConfirm) {
+    errors.passwordConfirm = 'passwords, you entered is not the same'
   }
 
-  if (this.state.values.role === 'council') {
-    if (value.verCode.length < 6) {
-      fieldValidationErrors.verCode = 'min 6 symbols'
+  if(values.role === 'COMMUNITY_GROUP' ) {
+    if(!values.communityName) {
+      errors.communityName = 'Required'
+    } else if (values.communityName.length < 6) {
+      errors.communityName = 'min 6 symbols'
     }
   }
 
-  return  fieldValidationErrors;
+  return  errors;
 };
 
 

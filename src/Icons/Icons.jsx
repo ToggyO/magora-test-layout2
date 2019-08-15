@@ -58,9 +58,13 @@ function Icons({ iconName, className }) {
       return (
         <SVG src="../img/pagination/arrow.svg" className={className} />
       );
+    case 'hello_icon':
+      return (
+        <SVG src="../img/registration/hello.svg" className={className} />
+      );
     default:
       return (
-        <SVG src="../img/icons/plugIcon.svg" className={className} />
+        <SVG src="../img/registration/hello.svg" className={className} />
       )
 
   }

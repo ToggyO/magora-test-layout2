@@ -81,7 +81,13 @@ module.exports = function(proxy, allowedHost) {
       disableDotRule: true,
     },
     public: allowedHost,
-    proxy,
+    proxy: {
+      '/api/**': {
+        target: 'https://dev.tribus.org/',
+        secure: false,
+        changeOrigin: true
+      },
+    },
     before(app, server) {
       if (fs.existsSync(paths.proxySetup)) {
         // This registers user provided middleware for proxy reasons
