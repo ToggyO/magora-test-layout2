@@ -53,23 +53,15 @@ let AuthForm = props => {
       </h2>
     </div>
     <form
-      onSubmit={handleSubmit}
+      onSubmit={handleSubmit(authRequest)}
       className='form'
     >
 
       <Field
-        placeholder='First name'
-        name="firstName"
-        type='text'
-        label='First Name:'
-        component={ReduxFormTextInput}
-      />
-
-      <Field
-        placeholder='Last name'
-        name="lastName"
-        type='text'
-        label='Last Name:'
+        placeholder='Email'
+        name="email"
+        type='email'
+        label='Email:'
         component={ReduxFormTextInput}
       />
 

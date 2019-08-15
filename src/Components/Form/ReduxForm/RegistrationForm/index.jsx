@@ -159,7 +159,7 @@ let RegistrationForm = props => {
         <button
           type='button'
           className='btn transparent sm-wide fs-16 lh-17 ls-24 fw-600'
-          onClick={ () => props.modalOpen('regSuccess') }
+          onClick={ () => props.modalOpen('signInModal') }
         >
           Log in
         </button>

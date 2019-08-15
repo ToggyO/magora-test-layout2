@@ -3,20 +3,10 @@ export default function validationConditionsSignIn(values) {
 
   let errors = {};
 
-  if(!values.firstName) {
-    errors.firstName = 'Required'
-  } else if (!values.firstName.match(/[A-Za-z0-9]/)) {
-    errors.firstName = 'Accepts only english characters';
-  } else if (values.firstName.length < 2 || values.firstName.length > 20) {
-    errors.firstName = 'between 2 and 20 symbols'
-  }
-
-  if(!values.lastName) {
-    errors.lastName = 'Required'
-  } else if (!values.lastName.match(/[A-Za-z0-9]/)) {
-    errors.lastName = 'Accepts only english characters';
-  } else if (values.lastName.length < 2 || values.lastName.length > 20) {
-    errors.lastName = 'between 2 and 20 symbols'
+  if(!values.email) {
+    errors.email = 'Required'
+  } else if (!values.email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) {
+    errors.email = 'is invalid'
   }
 
   if(!values.password) {
@@ -30,7 +20,29 @@ export default function validationConditionsSignIn(values) {
 
 
 
-
+// export function login(data) {
+//   return dispatch => {
+//     dispatch({ type: LOGIN_REQUEST })
+//
+//     // request в данном случае - https://github.com/KyleAMathews/superagent-bluebird-promise
+//     return request.post(`${API_ROOT_V1}/auth/signin`)
+//       .send(data)
+//       .then(res => {
+//         if (!res.ok) {
+//           dispatch({ type: LOGIN_FAILURE })
+//         } else {
+//           dispatch({
+//             type: LOGIN_SUCCESS,
+//             data: res.body.data,
+//           })
+//           //сохранение токена в localStorage
+//           localStorage.setItem('cks_token', res.body.data)
+//         }
+//       }, err => {
+//         dispatch({ type: LOGIN_FAILURE })
+//       })
+//   }
+// }
 
 
 

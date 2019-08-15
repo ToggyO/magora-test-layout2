@@ -16,7 +16,7 @@ const CardModal = (props) => {
       <div className="cardModal-container d-f fd-c">
         <img className="cardModal-container__image mb-9" src={props.card.url} alt=""/>
         <h3
-          className='cardModal-container__headline fs-30 lh-41 ls-5 fw-700 h2-black'
+          className='cardModal-container__headline fs-30 lh-41 ls-5 fw-700 h2-black t-align-c'
         >
           {props.card.label}
         </h3>
@@ -26,7 +26,7 @@ const CardModal = (props) => {
           business about a particular cause or change.
         </p>
       </div>
-      <div className="cardModal-container__btn">
+      <div className="cardModal-container__btn d-f jc-c">
         <button className='btn green lg fs-18 ls-27 lh-18 fw-600'>Create idea</button>
       </div>
     </div>
