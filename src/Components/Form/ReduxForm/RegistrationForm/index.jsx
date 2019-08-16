@@ -38,7 +38,6 @@ let RegistrationForm = props => {
     let BASE_URL = `http://localhost:3000/api/v0.7/users`;
     return axios.post(BASE_URL, requestBody)
       .then(res => {
-        debugger;
         if (res.data.code === 'success'){
           props.modalOpen('regSuccess');
         }

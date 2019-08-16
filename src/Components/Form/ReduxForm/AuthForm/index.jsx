@@ -7,44 +7,12 @@ import validationConditionsSignIn from "./AuthValidation";
 import {bindActionCreators} from "redux";
 import {modalOpen} from "../../../../Store/Actions/modal/actionModal";
 import {connect} from "react-redux";
-import * as axios from "axios";
+import {authRequest} from "../../../../Store/Actions/Auth/actionAuth";
 
 
 let AuthForm = props => {
 
-  const { handleSubmit, pristine, valid } = props;
-
-  const authRequest = (values) => {
-    let requestBody = {
-      firstName: values.firstName,
-      lastName: values.lastName,
-      address: values.address,
-      email: values.email,
-      password: values.password,
-      // phone: '001174951234567',
-      organizationName: values.communityName ? values.communityName : '',
-      location: {
-        areaName: "7-9 Fullerton Street",
-        stateName: "Woollahra",
-        stateAbbreviation: "NSW"
-      },
-      verifyInfo: {
-        returnUrl: "/"
-      },
-      role: values.role
-    };
-
-    let BASE_URL = `http://localhost:3000/api/v0.7/users`;
-    return axios.post(BASE_URL, requestBody)
-      .then(res => {
-      debugger;
-        if (res.data.code === 'success'){
-          props.modalOpen('regSuccess');
-        }
-      })
-      .catch( error => console.log(error))
-  };
-
+  const { handleSubmit, pristine, valid, authRequest } = props;
 
   return  <div className="main-form">
     <div className="main-form__headline">
@@ -78,17 +46,15 @@ let AuthForm = props => {
           />
 
         </div>
+        <a href="./#" style={ { width: '100%' } }>
+          Forgot Password
+        </a>
       </div>
 
       <p className='form-license t-align-c'>
-        Any personal information you provide will be dealt with in accordance with
-        our
-        <a href="../..#">
-          Privacy Collection Statement
-        </a>
-        . By Creating an account you agree to our
-        <a href="../..#">
-          Terms and Conditions.
+        Business or local council?
+        <a href="./#">
+          Click here.
         </a>
       </p>
 
@@ -124,6 +90,7 @@ AuthForm = reduxForm({
 const mapDispatchToProps = (dispatch) => {
   return {
     modalOpen: bindActionCreators(modalOpen, dispatch),
+    authRequest: bindActionCreators(authRequest, dispatch),
   }
 };
 

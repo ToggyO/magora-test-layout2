@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import './ProjectSearch.sass';
 import FormSearchWrapper from '../../../Components/Form/FormSearchWrapper';
 import SearchButtonsBlock from '../../../Components/SearchButtonsBlock';
@@ -14,13 +14,11 @@ const ProjectSearch = (props) => {
     projectsData,
     optionsData,
     projectsSortValues,
-    parseString,
   } = props;
 
   // useEffect(() => {
   //   // projectsData.history;
   // },[ projectsData.history]);
-
 
   return (
     <div className='projectSearch wrapper'>

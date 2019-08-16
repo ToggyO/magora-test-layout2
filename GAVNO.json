@@ -1,0 +1,53 @@
+{
+  "data": {
+    "authInfo": {
+      "profile": {
+        "user": {
+          "id": "09677d0f-7587-4fb7-b334-ec9703e94340",
+          "lgaId": "5ffd53fc-95fd-4873-97ac-09a7a3616f5d",
+          "resourceId": null,
+          "ageBracketsId": null,
+          "createDate": "2019-08-15T07:22:21.939496",
+          "role": "USER",
+          "address": "7-9 Fullerton Street, Woollahra, NSW 2025",
+          "email": "tribus-test4@mailinator.com",
+          "phone": null,
+          "firstName": "Helg",
+          "lastName": "Tgos",
+          "about": null,
+          "organizationName": "",
+          "updated": false,
+          "website": null,
+          "facebookLink": null,
+          "googlePlusLink": null,
+          "instagramLink": null,
+          "linkedInLink": null,
+          "pinterestLink": null,
+          "twitterLink": null,
+          "youTubeLink": null
+        },
+        "location": {
+          "id": "5ffd53fc-95fd-4873-97ac-09a7a3616f5d",
+          "areaName": "7-9 Fullerton Street",
+          "stateName": "NSW",
+          "stateAbbreviation": "New South Wales"
+        },
+        "resource": null,
+        "ideasCount": 0,
+        "engagementsCount": 0
+      },
+      "userId": "09677d0f-7587-4fb7-b334-ec9703e94340",
+      "displayName": "Helg Tgos",
+      "permissions": [
+        "IDEA_CREATE",
+        "IDEA_SUPPORT",
+        "LOCATION_UPDATE",
+        "GRANT_APPLY"
+      ]
+    },
+    "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjI4ODM5Qjc0Nzg5QURFNEYzNEQ4NjU0MjZCNzRCMzQ3OUU0N0EyREMiLCJ0eXAiOiJKV1QifQ.eyJ0b2tlbl9pZCI6Ijc4MGQ5Y2UzZGEyNTRkZGQ4ZWE4NDg0NzQ3MDUyYjgzIiwidXNlcl9pZCI6IjA5Njc3ZDBmNzU4NzRmYjdiMzM0ZWM5NzAzZTk0MzQwIiwicGVybWlzc2lvbnMiOiJJZGVhQ3JlYXRlLElkZWFTdXBwb3J0LExvY2F0aW9uVXBkYXRlLEdyYW50QXBwbHkiLCJleHAiOjE1NjU4NjQzMDksImlzcyI6Imh0dHA6Ly9kZXYudHJpYnVzLm9yZy9hcGkiLCJhdWQiOiJodHRwOi8vZGV2LnRyaWJ1cy5vcmcifQ.Q096H-anImrW-CzaiwoPQhEXTZE9yhEgamtfLnZYKJPVgXWn2QMyDXykh-c_q0ksxux80b5SQsh8XSnAmQqNdsVPbXNQDluEM_Jsv5oE9D9nUmUbzIn_3uODRmuVl-iqb5LwNQuZOE4sm13NUILgI5weLZC6ffxEpUFPCT1gwC8gCaUPmTfqRGwvV1CZjGA73JItHEL92u202t0X7G-8x5kq3uCmGN-DEHg279wkYdIWgEIHZZRc2bV7MYgHt7k0g5fdTebjvXrAl7TtGpR1m0wfgtrehmqs2R6QtRn4B3xgORYpAEkXTFXXlkhKpnkFxYa-PS1nbG_uVurqGHrImQ",
+    "accessTokenExpire": "2019-08-15T10:18:29.0378168Z",
+    "refreshToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjI4ODM5Qjc0Nzg5QURFNEYzNEQ4NjU0MjZCNzRCMzQ3OUU0N0EyREMiLCJ0eXAiOiJKV1QifQ.eyJ0b2tlbl9pZCI6ImU4NjE4ZWI3MDU4NTQ1MTlhMmFkMzYyYTViODU3Yjc4IiwidXNlcl9pZCI6IjA5Njc3ZDBmNzU4NzRmYjdiMzM0ZWM5NzAzZTk0MzQwIiwiZXhwIjoxNTY4NDUyNzA5LCJpc3MiOiJodHRwOi8vZGV2LnRyaWJ1cy5vcmcvYXBpIiwiYXVkIjoiaHR0cDovL2Rldi50cmlidXMub3JnIn0.TMf9JRSke291GBHXZKTd7DM8HOztL3F8YcZd3NP9tvDWjQf80XSopDhTc_9WxbLEQlE1w7EJ7a-u3ps8Y_2tMGGTMllc_4czHZigZ9T0in1YAFcbsdqH_KIZRoMd-S2DZ4LhHQYGUOW9uKLmbC2SCRLN2aNoVQ2Cg7LGvhF3Eu4BvMZ-NkoRNLkt5TjZCRoCQ6o62eH4fh2GmvmKmEPHMKAO6y-QMt7OnlAyAEOphR8AirsYiuLqUss9-pO8bBAubEZ7xAQSgmKuVTqK7PmFfEgt2pC6CjA-qgPpxSOLOMbcz-1UUhrtLP0uyInSr86qsFGMIHAwVzzgRcnN4DbG5w"
+  },
+  "code": "success"
+}

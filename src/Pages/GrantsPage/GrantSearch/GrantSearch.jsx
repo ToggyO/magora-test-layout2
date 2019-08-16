@@ -13,7 +13,6 @@ const GrantSearch = (props) => {
     grantsData,
     optionsData,
     sortValues,
-    parseString,
   } = props;
 
   return (

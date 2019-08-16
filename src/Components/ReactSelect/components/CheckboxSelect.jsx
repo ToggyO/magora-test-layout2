@@ -11,7 +11,6 @@ const CheckboxSelect = (props) => {
     options,
     placeholder,
     value,
-    defaultValue
   } = props;
 
   return (

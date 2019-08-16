@@ -1,4 +1,4 @@
-import {AxiosInstance as axios} from "axios";
+import * as axios from "axios";
 import {makeRequestString, mergeQueryUrlWithHistory} from "../../../Libs/additionalSortingFunctions";
 
 export const FETCHED_PROJECTS_DATA = {

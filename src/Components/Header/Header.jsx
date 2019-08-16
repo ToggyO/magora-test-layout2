@@ -4,20 +4,21 @@ import LoggedIn from './LoggedIn/Logged';
 import LoggedOut from './LoggedOut/LoggedOut';
 import { NavLink } from 'react-router-dom';
 import Icon from '../../Icons/Icons';
+import {connect} from "react-redux";
 
 
 class Header extends React.Component {
 
-  state = {
-    loggedIn: false
-  };
-
-  SwitchPanel = () => {
-    this.setState({
-        loggedIn: !this.state.loggedIn
-      }
-    );
-  };
+  // state = {
+  //   loggedIn: false
+  // };
+  //
+  // SwitchPanel = () => {
+  //   this.setState({
+  //       loggedIn: !this.state.loggedIn
+  //     }
+  //   );
+  // };
 
   render() {
     return (
@@ -42,15 +43,14 @@ class Header extends React.Component {
                   <button
                     style={{boxShadow: '0 8px 16px 0 rgba(0,0,0,0.18)'}}
                     className="header__nav-create nav-adapt btn green sm fs-18 lh-18 ls-27 fw-600 sh-btn-sm ml-12"
-                    onClick={this.SwitchPanel}
+                    // onClick={this.SwitchPanel}
                   >
                     Create Project
                   </button>
                 </div>
-
               </div>
 
-              { this.state.loggedIn ? <LoggedIn /> : <LoggedOut /> }
+              { this.props.authData.isAuth ? <LoggedIn /> : <LoggedOut /> }
             </div>
           </div>
         </div>
@@ -59,5 +59,6 @@ class Header extends React.Component {
   }
 }
 
+let mapStateToProps = ({authData}) => ({authData});
 
-export default Header;
+export default connect(mapStateToProps)(Header);

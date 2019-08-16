@@ -1,10 +1,8 @@
 import React from 'react';
 import '../FormStyle.sass';
-
 import TextInput from '../TextInput/TextInput';
 import InputPass from "../InputPass/InputPass";
 import formInitialize from '../../../Libs/FormValidation';
-
 import { connect } from "react-redux";
 import { modalOpen } from "../../../Store/Actions/modal/actionModal";
 import { bindActionCreators } from "redux";
@@ -106,7 +104,7 @@ class FormSignIn extends React.Component {
             <button
               type='button'
               className='btn transparent sm-wide fs-16 lh-17 ls-24 fw-600'
-              onClick={ () => this.props.modalOpen('signUpModal', { aaa: 'aaa' }) }
+              onClick={ () => this.props.modalOpen('signUpModal', { aaa: 'aaa' })}
             >
               Create account
             </button>

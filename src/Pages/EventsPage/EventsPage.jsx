@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import './EventsPage.sass';
 import EventSearch from "./EventSearch/EventSearch";
 import EventProjects from "./EventProjects/EventProjects";
-import {parse} from "qs";
 import {
   mapQueryParamsToState, parseQueryString,
 } from "../../Libs/additionalSortingFunctions";

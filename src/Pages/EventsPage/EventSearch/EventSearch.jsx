@@ -14,7 +14,6 @@ const EventSearch = (props) => {
     eventsData,
     optionsData,
     sortValues,
-    parseString,
     datePick,
   } = props;
 
