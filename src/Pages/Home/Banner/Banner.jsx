@@ -20,7 +20,7 @@ const Banner = (props) => {
                   className="search-block__create btn green md fs-18 ls-27 lh-18 fw-600 ml-20 w-25 sh-btn-lg"
                   onClick={ (e) => {
                     e.preventDefault();
-                    props.openModal('signInModal');
+                    // props.openModal('signInModal');
                     }
                   }
                 >

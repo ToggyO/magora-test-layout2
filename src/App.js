@@ -12,10 +12,11 @@ import EventsPage from "./Pages/EventsPage/EventsPage";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {isAuthInit} from "./Store/Actions/Auth/actionAuth";
+import AuthRoute from "./Components/Routes/AuthRoute";
 
 
 function App(props) {
-
+  console.log(props);
   useEffect(() => {
     const initToken = JSON.parse(localStorage.getItem('TOKEN_INFO'));
     if(initToken) {
@@ -30,7 +31,7 @@ function App(props) {
       <>
         <Switch>
           <Route exact path='/' component={Home}/>
-          <Route path='/registration' component={Registration}/>
+          <AuthRoute path='/registration' component={Registration}/>
           <Route path='/projectSearch' component={FindProjects}/>
           <Route path='/grantsSearch' component={GrantsPage}/>
           <Route path='/eventsSearch' component={EventsPage}/>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Field, reduxForm, formValueSelector  } from 'redux-form'
+import {Field, reduxForm, formValueSelector, SubmissionError, reset} from 'redux-form'
 import ReduxFormTextInput from "../ReduxFormTextInput";
 import ReduxFormSelect from '../ReduxFormSelect/Select';
 import ReduxFormPassword from "../ReduxFormPassword";
@@ -13,9 +13,11 @@ import * as axios from "axios";
 
 let RegistrationForm = props => {
 
-  const { handleSubmit, pristine, valid } = props;
+  const { handleSubmit, pristine, valid, error, createRecord, reset } = props;
 
   const regRequest = (values) => {
+
+
     let requestBody = {
       firstName: values.firstName,
       lastName: values.lastName,
@@ -40,9 +42,38 @@ let RegistrationForm = props => {
       .then(res => {
         if (res.data.code === 'success'){
           props.modalOpen('regSuccess');
+          // return (dispatch) => dispatch(reset('registration'));
         }
       })
-      .catch( error => console.log(error))
+      .catch( error => {
+        if (!error) {
+          return null;
+        }
+
+        const errorCodes = {
+          'common.field_min': `Field has symbols less than needed`,
+          'common.field_max': ' Field can’t be empty',
+          'common.field_phone': 'Field has symbols more than needed',
+          'common.field_not_null': 'Field can’n be null',
+          'common.field_not_blank': 'Field can’t be empty',
+        };
+
+        const { data = {} } = error.response;
+        const { errors = {} } = data;
+
+        let errorObj = {};
+        errors.forEach(item => {
+          if (item.field) {
+            let firstLetterToLowerCase = `${item.field[0].toLowerCase()}${item.field.slice(1)}`;
+            errorObj[firstLetterToLowerCase] = errorCodes[item.code];
+          } else if(errorCodes[item.code]) {
+            errorObj._error = errorCodes[item.code];
+          } else {
+            errorObj._error = item.message;
+          }
+        });
+        throw new SubmissionError(errorObj);
+      });
   };
 
 
@@ -56,6 +87,18 @@ let RegistrationForm = props => {
       onSubmit={handleSubmit(regRequest)}
       className='form'
     >
+
+      { error && <div style={{
+        fontSize: '15px',
+        lineHeight: '16px',
+        letterSpacing: '0.04px',
+        fontWeight: 500,
+        color: 'red',
+        textAlign: 'center'
+      }}
+      >
+        {error}
+      </div>}
 
       <div className='form-switchRole'>
         <Field

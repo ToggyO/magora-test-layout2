@@ -12,7 +12,7 @@ import {authRequest} from "../../../../Store/Actions/Auth/actionAuth";
 
 let AuthForm = props => {
 
-  const { handleSubmit, pristine, valid, authRequest } = props;
+  const { handleSubmit, pristine, valid, authRequest, error } = props;
 
   return  <div className="main-form">
     <div className="main-form__headline">
@@ -24,6 +24,18 @@ let AuthForm = props => {
       onSubmit={handleSubmit(authRequest)}
       className='form'
     >
+
+      { error && <div style={{
+        fontSize: '15px',
+        lineHeight: '16px',
+        letterSpacing: '0.04px',
+        fontWeight: 500,
+        color: 'red',
+        textAlign: 'center'
+      }}
+      >
+        {error}
+      </div>}
 
       <Field
         placeholder='Email'

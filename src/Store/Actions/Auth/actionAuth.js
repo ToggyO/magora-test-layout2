@@ -1,4 +1,7 @@
 import * as axios from "axios";
+import { SubmissionError } from 'redux-form';
+import history from '../../../history';
+import {modalClose} from "../modal/actionModal";
 
 export const AUTH = {
   LOGIN_REQUEST: 'LOGIN_REQUEST',
@@ -45,7 +48,6 @@ export const logOut = () => {
 
 
 export const authRequest = (values) => {
-
   return (dispatch) => {
     dispatch(loginRequest());
 
@@ -69,24 +71,67 @@ export const authRequest = (values) => {
       // }
     )
       .then(res => {
-
         if (res.data.code === 'success'){
           dispatch(loginSuccess());
+          dispatch(modalClose());
 
-          let tokenInfo = JSON.stringify({
-            accessToken: res.data.data.accessToken,
-            accessTokenExpire: res.data.data.accessTokenExpire,
-            refreshToken: res.data.data.refreshToken,
-          });
-          let userInfo = JSON.stringify(res.data.data.authInfo.profile);
-          localStorage.setItem('TOKEN_INFO', tokenInfo);
-          localStorage.setItem('USER_INFO', userInfo);
+          const { data = {} } = res.data;
+          const { authInfo = {}, ...tokensInfo} = data;
+          localStorage.setItem('TOKEN_INFO', JSON.stringify(tokensInfo));
+          localStorage.setItem('USER_INFO', JSON.stringify(authInfo.profile));
 
-        } else {
-          dispatch(loginFailure());
+          // history.replace('/');
         }
-
       })
-      .catch( error => console.log(error))
+      .catch( error => {
+        dispatch(loginFailure());
+
+        const errorCodes = {
+          'sec.invalid_auth_data': `User doesn't exist or password is wrong`,
+          'sec.login_should_be_confirmed': 'Please confirm your account',
+          'sec.user_blocked': 'Your account is blocked',
+        };
+
+        const { data = {} } = error.response;
+        const { errors = {} } = data;
+
+        let errorObj = {};
+        errors.forEach(item => {
+          if (item.field) {
+            let firstLetterToLowerCase = `${item.field[0].toLowerCase()}${item.field.slice(1)}`;
+            errorObj[firstLetterToLowerCase] = errorCodes[item.code];
+          } else if(errorCodes[item.code]) {
+            errorObj._error = errorCodes[item.code];
+          } else {
+            errorObj._error = item.message;
+          }
+        });
+      throw new SubmissionError(errorObj);
+    })
   }
 };
+
+
+
+
+
+
+
+
+//  if(item.field === null) {
+//    return errorObj._error = errorCodes.INVALID_AUTH_DATA;
+//  } else {
+//  debugger;
+//    let firstLetterToLowerCase = `${item.field[0].toLowerCase()}${item.field.slice(1)}`;
+//    return errorObj[firstLetterToLowerCase]= `${item.field} invalid`;
+//  }
+// });
+// console.log(errorObj);
+
+
+
+// throw new SubmissionError({
+//   _error: error.response.data.message ,
+//   email: "User doesn't exist or password is wrong",
+//   password: "User doesn't exist or password is wrong"
+// });

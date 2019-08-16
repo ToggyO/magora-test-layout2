@@ -1,10 +1,13 @@
 import React from 'react';
 import './pos-reg.sass'
-
 import HomeBussiness from '../../../../img/possibilities/home-business.svg';
 import {NavLink} from "react-router-dom";
+import {connect} from "react-redux";
 
-const PosReg = () => {
+const PosReg = (props) => {
+
+  const { authData } = props;
+
    return (
      <div className="pos-reg block-adapt d-f pl-35 pr-35">
        <div className="pos-reg__image block-adapt__image d-f">
@@ -19,15 +22,25 @@ const PosReg = () => {
          <p className="reg-text block-adapt__text headlines-pos h2-black fs-25 lh-41 ls-4 fw-500 mt-5 t-align-l">
            Tribus brings people, businesses and councils together to improve local communities. We’re here to help your ideas become a reality.
          </p>
-         <NavLink to='/registration' className="reg-btn block-adapt__btn mt-10">
-           <button className="btn btn green sh-btn-sm xl fs-18 lh-18 ls-27 fw-500 d-f jc-c">
-             Register now!
-           </button>
-         </NavLink>
+
+         { authData.isAuth
+            ? <div className="reg-btn block-adapt__btn mt-10">
+               <button className="btn btn green sh-btn-sm xl fs-18 lh-18 ls-27 fw-500 d-f jc-c">
+                 Create project
+               </button>
+             </div>
+            : <NavLink to='/registration' className="reg-btn block-adapt__btn mt-10">
+               <button className="btn btn green sh-btn-sm xl fs-18 lh-18 ls-27 fw-500 d-f jc-c">
+                 Register now!
+               </button>
+              </NavLink>
+         }
+
         </div>
      </div>
    );
 };
 
+let mapStateToProps = ({authData}) => ({authData});
 
-export default PosReg;
+export default connect(mapStateToProps)(PosReg);
