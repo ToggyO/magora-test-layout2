@@ -16,7 +16,7 @@ import AuthRoute from "./Components/Routes/AuthRoute";
 
 
 function App(props) {
-  console.log(props);
+  
   useEffect(() => {
     const initToken = JSON.parse(localStorage.getItem('TOKEN_INFO'));
     if(initToken) {

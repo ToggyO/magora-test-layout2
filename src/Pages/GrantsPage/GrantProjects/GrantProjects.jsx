@@ -39,7 +39,12 @@ class GrantProjects extends React.Component {
         <div className="grantsProjects-content wrapper-container pl-31 pr-31 pt-13 pb-13 d-f fw-w jc-c">
           {
             grantsData.loading
-              ? <Preloader />
+              ? <Preloader style={{
+                    paddingTop: 30,
+                    display: 'flex',
+                    justifyContent: 'center'
+                  }}
+                />
               : renderingGrants(grantsData.items)
           }
         </div>

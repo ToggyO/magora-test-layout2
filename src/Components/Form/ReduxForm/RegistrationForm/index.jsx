@@ -1,5 +1,5 @@
 import React from 'react'
-import {Field, reduxForm, formValueSelector, SubmissionError, reset} from 'redux-form'
+import {Field, reduxForm, formValueSelector} from 'redux-form';
 import ReduxFormTextInput from "../ReduxFormTextInput";
 import ReduxFormSelect from '../ReduxFormSelect/Select';
 import ReduxFormPassword from "../ReduxFormPassword";
@@ -8,76 +8,26 @@ import {options} from './optionsList';
 import {bindActionCreators} from "redux";
 import {modalOpen} from "../../../../Store/Actions/modal/actionModal";
 import {connect} from "react-redux";
-import * as axios from "axios";
+import {regRequest} from "../../../../Store/Actions/Auth/actionAuth";
+import Preloader from '../../../Preloader/Preloader';
 
 
 let RegistrationForm = props => {
 
-  const { handleSubmit, pristine, valid, error, createRecord, reset } = props;
-
-  const regRequest = (values) => {
-
-
-    let requestBody = {
-      firstName: values.firstName,
-      lastName: values.lastName,
-      address: values.address,
-      email: values.email,
-      password: values.password,
-      // phone: '001174951234567',
-      organizationName: values.communityName ? values.communityName : '',
-      location: {
-        areaName: "7-9 Fullerton Street",
-        stateName: "Woollahra",
-        stateAbbreviation: "NSW"
-      },
-      verifyInfo: {
-        returnUrl: "/"
-      },
-      role: values.role
-    };
-
-    let BASE_URL = `http://localhost:3000/api/v0.7/users`;
-    return axios.post(BASE_URL, requestBody)
-      .then(res => {
-        if (res.data.code === 'success'){
-          props.modalOpen('regSuccess');
-          // return (dispatch) => dispatch(reset('registration'));
-        }
-      })
-      .catch( error => {
-        if (!error) {
-          return null;
-        }
-
-        const errorCodes = {
-          'common.field_min': `Field has symbols less than needed`,
-          'common.field_max': ' Field can’t be empty',
-          'common.field_phone': 'Field has symbols more than needed',
-          'common.field_not_null': 'Field can’n be null',
-          'common.field_not_blank': 'Field can’t be empty',
-        };
-
-        const { data = {} } = error.response;
-        const { errors = {} } = data;
-
-        let errorObj = {};
-        errors.forEach(item => {
-          if (item.field) {
-            let firstLetterToLowerCase = `${item.field[0].toLowerCase()}${item.field.slice(1)}`;
-            errorObj[firstLetterToLowerCase] = errorCodes[item.code];
-          } else if(errorCodes[item.code]) {
-            errorObj._error = errorCodes[item.code];
-          } else {
-            errorObj._error = item.message;
-          }
-        });
-        throw new SubmissionError(errorObj);
-      });
-  };
-
+  const { handleSubmit, pristine, valid, error, regRequest, authData } = props;
 
   return  <div className="main-form">
+
+    {authData.loading 
+      && <Preloader
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}
+        />
+    }
+
     <div className="main-form__headline">
       <h2 className='h2-black fs-24 lh-30 ls-3 fw-700 mb-10 t-align-c'>
         Join the Tribus community
@@ -226,14 +176,15 @@ const selector = formValueSelector('registration');
 const mapStateToProps = (state) => {
   return {
     role: selector(state, 'role'),
+    authData: state.authData
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     modalOpen: bindActionCreators(modalOpen, dispatch),
+    regRequest: bindActionCreators(regRequest, dispatch),
   }
 };
 
 export default connect( mapStateToProps, mapDispatchToProps )(RegistrationForm);
-

@@ -8,13 +8,25 @@ import {bindActionCreators} from "redux";
 import {modalOpen} from "../../../../Store/Actions/modal/actionModal";
 import {connect} from "react-redux";
 import {authRequest} from "../../../../Store/Actions/Auth/actionAuth";
+import Preloader from '../../../Preloader/Preloader';
 
 
 let AuthForm = props => {
 
-  const { handleSubmit, pristine, valid, authRequest, error } = props;
+  const { handleSubmit, pristine, valid, authRequest, error, authData } = props;
 
   return  <div className="main-form">
+
+  {authData.loading
+    && <Preloader
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}
+      />
+  }
+
     <div className="main-form__headline">
       <h2 className='h2-black fs-24 lh-30 ls-3 fw-700 mb-10 t-align-c'>
         Sign in to share ideas and support others
@@ -99,6 +111,7 @@ AuthForm = reduxForm({
   validate: validationConditionsSignIn,
 })(AuthForm);
 
+const mapStateToProps = ({authData}) => ({authData});
 const mapDispatchToProps = (dispatch) => {
   return {
     modalOpen: bindActionCreators(modalOpen, dispatch),
@@ -106,5 +119,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 };
 
-export default connect( null, mapDispatchToProps )(AuthForm);
-
+export default connect( mapStateToProps, mapDispatchToProps )(AuthForm);

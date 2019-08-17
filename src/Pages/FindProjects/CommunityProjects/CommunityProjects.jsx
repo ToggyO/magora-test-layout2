@@ -44,7 +44,12 @@ class CommunityProjects extends React.Component {
         <div className="communityProjects-content wrapper-container pl-31 pr-31 pt-13 pb-13 d-f fw-w jc-c">
           {
             projectsData.loading
-              ? <Preloader />
+              ? <Preloader style={{
+                    paddingTop: 30,
+                    display: 'flex',
+                    justifyContent: 'center'
+                  }}
+                />
               : renderingProjects(projectsData.items)
           }
         </div>
