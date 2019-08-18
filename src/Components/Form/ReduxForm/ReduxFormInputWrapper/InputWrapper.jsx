@@ -1,6 +1,7 @@
 import React from "react";
 import s from './InputWrapper.module.sass';
 import ReduxFormError from "../ReduxFormError/FormError";
+import PropTypes from 'prop-types';
 
 
 const ReduxFormInputWrapper = (props) => {
@@ -26,3 +27,11 @@ const ReduxFormInputWrapper = (props) => {
 
 
 export default ReduxFormInputWrapper;
+
+
+ReduxFormInputWrapper.propTypes = {
+  label: PropTypes.string,
+  error: PropTypes.string,
+  touched: PropTypes.bool,
+  inputId: PropTypes.string,
+}

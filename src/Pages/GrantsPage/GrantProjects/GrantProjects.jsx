@@ -3,6 +3,7 @@ import './GrantProjects.sass';
 import {renderingGrants} from "../../../Libs/additionalSortingFunctions";
 import Preloader from "../../../Components/Preloader/Preloader";
 import Pagination from "../../../Components/Pagination/Pagination";
+import PropTypes from 'prop-types';
 
 
 class GrantProjects extends React.Component {
@@ -61,3 +62,9 @@ class GrantProjects extends React.Component {
 
 
 export default GrantProjects;
+
+
+GrantProjects.propTypes = {
+  grantsData: PropTypes.object,
+  location: PropTypes.object,
+}

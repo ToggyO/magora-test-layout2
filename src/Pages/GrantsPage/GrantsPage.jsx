@@ -17,6 +17,7 @@ import {mapQueryParamsToState, parseQueryString} from "../../Libs/additionalSort
 import GrantSearchEmpty from "./GrantSearch/GrantSearchEmpty";
 import GrantProjectsEmpty from "./GrantProjects/GrantProjectsEmpty";
 import store from "../../Store";
+import PropTypes from 'prop-types';
 
 
 const GrantsPage = (props) => {
@@ -28,7 +29,7 @@ const GrantsPage = (props) => {
     sortValues,
     getCategoriesOptions,
     getBenefitsOptions,
-    history,
+    // history,
     stateItemsCleaning,
     getDataFromServer,
     stateOptionsCleaning,
@@ -67,7 +68,7 @@ const GrantsPage = (props) => {
     return (
       <>
         <GrantSearchEmpty />
-        <GrantProjectsEmpty grantsData={fetchedData}/>
+        <GrantProjectsEmpty />
       </>
     )
   } else {
@@ -78,21 +79,10 @@ const GrantsPage = (props) => {
           optionsData={fetchedProjectsOptions}
           location={location}
           sortValues={sortValues}
-          getCategoriesOptions={getCategoriesOptions}
-          getBenefitsOptions={getBenefitsOptions}
-          history={history}
         />
         <GrantProjects
           grantsData={fetchedData}
-          optionsData={fetchedProjectsOptions}
           location={location}
-          getGrants={getDataFromServer}
-          sortValues={sortValues}
-          getCategoriesOptions={getCategoriesOptions}
-          getBenefitsOptions={getBenefitsOptions}
-          history={history}
-          stateItemsCleaning={stateItemsCleaning}
-          getDataFromServer={getDataFromServer}
         />
       </>
     )
@@ -113,3 +103,16 @@ let mapDispatchToProps = (dispatch) => {
 };
 
 export default connect( mapStateToProps, mapDispatchToProps )(GrantsPage);
+
+
+GrantsPage.propTypes = {
+  fetchedData: PropTypes.object,
+  fetchedProjectsOptions: PropTypes.object,
+  location: PropTypes.object,
+  sortValues: PropTypes.func,
+  getCategoriesOptions: PropTypes.func,
+  getBenefitsOptions: PropTypes.func,
+  stateItemsCleaning: PropTypes.func,
+  getDataFromServer: PropTypes.func,
+  stateOptionsCleaning: PropTypes.func,
+}

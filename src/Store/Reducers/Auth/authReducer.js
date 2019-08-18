@@ -2,7 +2,8 @@ import { AUTH } from '../../Actions/Auth/actionAuth';
 
 
 let InitialState = {
-  loading: false,
+  authLoader: false,
+  regLoader: false,
   isAuth: false,
 };
 
@@ -12,18 +13,18 @@ const authReducer = (state = InitialState, action) => {
     case AUTH.LOGIN_REQUEST:
       return {
         ...state,
-        loading: true
+        authLoader: true
       };
     case AUTH.LOGIN_SUCCESS:
       return {
         ...state,
-        loading: false,
+        authLoader: false,
         isAuth: true
       };
     case AUTH.LOGIN_FAILURE:
       return {
         ...state,
-        loading: false
+        authLoader: false
       };
     case AUTH.IS_AUTH_INIT:
       return {
@@ -34,6 +35,16 @@ const authReducer = (state = InitialState, action) => {
       return {
         ...state,
         isAuth: false
+      };
+    case AUTH.REG_REQUEST:
+      return {
+        ...state,
+        regLoader: true
+      };
+    case AUTH.REG_RESPONSE:
+      return {
+        ...state,
+        regLoader: false
       };
     default:
       return state;

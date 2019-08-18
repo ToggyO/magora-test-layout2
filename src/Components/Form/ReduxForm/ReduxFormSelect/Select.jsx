@@ -2,6 +2,7 @@ import React from 'react';
 import s from './Select.module.sass';
 import Option from './Option/Option';
 import ReduxFormInputWrapper from "../ReduxFormInputWrapper/InputWrapper";
+import PropTypes from 'prop-types';
 
 
 class ReduxFormSelect extends React.Component {
@@ -36,3 +37,11 @@ class ReduxFormSelect extends React.Component {
 };
 
 export default ReduxFormSelect;
+
+
+ReduxFormSelect.propTypes = {
+  input: PropTypes.object,
+  label: PropTypes.string,
+  options: PropTypes.arrayOf(PropTypes.object),
+  meta: PropTypes.object,
+}

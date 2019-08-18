@@ -21,7 +21,7 @@ const SearchButtonsBlock = (props) => {
             className={projectSearchButton.iconClassName}
           />
         </button>
-        <h6 className='h2-white fs-20 lh-27 fw-700 t-align-c'>Projects</h6>
+        <h6 className={projectSearchButton.headerStyle}>Projects</h6>
       </NavLink>
       <NavLink to='/grantsSearch'>
         <button className={grantsSearchButton.className}>
@@ -30,7 +30,7 @@ const SearchButtonsBlock = (props) => {
             className={grantsSearchButton.iconClassName}
           />
         </button>
-        <h6 className='h2-white fs-16 lh-22 fw-700 t-align-c'>Grants</h6>
+        <h6 className={grantsSearchButton.headerStyle}>Grants</h6>
       </NavLink>
       <NavLink to='/eventsSearch'>
         <button className={eventsSearchButton.className}>
@@ -39,7 +39,7 @@ const SearchButtonsBlock = (props) => {
             className={eventsSearchButton.iconClassName}
           />
         </button>
-        <h6 className='h2-white fs-16 lh-22 fw-700 t-align-c'>Events</h6>
+        <h6 className={eventsSearchButton.headerStyle}>Events</h6>
       </NavLink>
     </div>
   )

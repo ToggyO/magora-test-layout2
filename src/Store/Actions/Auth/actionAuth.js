@@ -11,6 +11,8 @@ export const AUTH = {
   LOGIN_FAILURE: 'LOGIN_FAILURE',
   IS_AUTH_INIT: 'IS_AUTH_INIT',
   LOG_OUT: 'LOG_OUT',
+  REG_REQUEST: 'REG_REQUEST',
+  REG_RESPONSE: 'REG_RESPONSE',
 };
 
 
@@ -47,6 +49,21 @@ export const logOut = () => {
     type: AUTH.LOG_OUT
   }
 };
+
+
+const regLoaderTrue = () => {
+  return {
+    type: AUTH.REG_REQUEST,
+  }
+};
+
+
+const regLoaderFalse = () => {
+  return {
+    type: AUTH.REG_RESPONSE,
+  }
+};
+
 
 
 export const authRequest = (values) => {
@@ -110,7 +127,7 @@ export const authRequest = (values) => {
 
 export const regRequest = (values) => {
   return (dispatch) => {
-    dispatch(loginRequest());
+    dispatch(regLoaderTrue());
 
     let requestBody = {
       firstName: values.firstName,
@@ -136,7 +153,7 @@ export const regRequest = (values) => {
       .then(res => {
         if (res.data.code === 'success') {
           dispatch(reset('registration'));
-          dispatch(loginSuccess());
+          dispatch(regLoaderFalse());
           dispatch(modalOpen('regSuccess'));
         }
       })
@@ -145,7 +162,7 @@ export const regRequest = (values) => {
           return null;
         }
 
-        dispatch(loginFailure());
+        dispatch(regLoaderFalse());
         const errorCodes = {
           'common.field_min': `Field has symbols less than needed`,
           'common.field_max': ' Field can’t be empty',

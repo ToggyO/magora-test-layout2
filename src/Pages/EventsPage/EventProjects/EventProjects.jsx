@@ -3,6 +3,7 @@ import './EventProjects.sass';
 import Preloader from "../../../Components/Preloader/Preloader";
 import { renderingEvents} from "../../../Libs/additionalSortingFunctions";
 import Pagination from "../../../Components/Pagination/Pagination";
+import PropTypes from 'prop-types';
 
 
 class EventProjects extends React.Component {
@@ -59,3 +60,9 @@ class EventProjects extends React.Component {
 
 
 export default EventProjects;
+
+
+EventProjects.propTypes = {
+  projectsData: PropTypes.object,
+  location: PropTypes.object,
+}

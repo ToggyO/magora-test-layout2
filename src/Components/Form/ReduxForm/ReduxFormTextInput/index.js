@@ -2,6 +2,7 @@ import React from 'react';
 import s from './style.module.sass';
 import '../../FormComponentsStyle.sass';
 import ReduxFormInputWrapper from "../ReduxFormInputWrapper/InputWrapper";
+import PropTypes from 'prop-types';
 
 
 const ReduxFormTextInput = (props) => {
@@ -16,7 +17,7 @@ const ReduxFormTextInput = (props) => {
   } = props;
 
   const inputId = `input-${input.name}`;
-  // debugger;
+
   return (
     <div className={s.inputBlock}>
       <ReduxFormInputWrapper
@@ -43,3 +44,13 @@ const ReduxFormTextInput = (props) => {
 };
 
 export default ReduxFormTextInput;
+
+
+ReduxFormTextInput.propTypes = {
+  input: PropTypes.object,
+  label: PropTypes.string,
+  type: PropTypes.string,
+  style: PropTypes.object,
+  meta: PropTypes.object,
+  placeholder: PropTypes.string,
+}

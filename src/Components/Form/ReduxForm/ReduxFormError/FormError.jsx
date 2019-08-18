@@ -1,5 +1,6 @@
 import React from 'react';
 import s from './FormError.module.sass';
+import PropTypes from 'prop-types';
 
 
 const ReduxFormError = (props) => {
@@ -17,3 +18,8 @@ const ReduxFormError = (props) => {
 };
 
 export default ReduxFormError;
+
+ReduxFormError.propTypes = {
+  error: PropTypes.string,
+  touched: PropTypes.bool,
+}

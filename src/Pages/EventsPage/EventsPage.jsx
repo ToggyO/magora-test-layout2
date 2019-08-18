@@ -20,6 +20,7 @@ import {
 import EventSearchEmpty from "./EventSearch/EventSearchEmpty";
 import EventProjectsEmpty from "./EventProjects/EventProjectsEmpty";
 import store from "../../Store";
+import PropTypes from 'prop-types';
 
 
 const EventsPage = (props) => {
@@ -30,7 +31,7 @@ const EventsPage = (props) => {
     sortValues,
     getCategoriesOptions,
     getBenefitsOptions,
-    history,
+    // history,
     stateItemsCleaning,
     getDataFromServer,
     datePick,
@@ -83,22 +84,20 @@ const EventsPage = (props) => {
           optionsData={fetchedProjectsOptions}
           location={location}
           sortValues={sortValues}
-          getCategoriesOptions={getCategoriesOptions}
-          getBenefitsOptions={getBenefitsOptions}
-          history={history}
+          // history={history}
           datePick={datePick}
         />
         <EventProjects
           projectsData={fetchedData}
-          optionsData={fetchedProjectsOptions}
+          // optionsData={fetchedProjectsOptions}
           location={location}
-          getProjects={getDataFromServer}
-          sortValues={sortValues}
-          getCategoriesOptions={getCategoriesOptions}
-          getBenefitsOptions={getBenefitsOptions}
-          history={history}
-          stateItemsCleaning={stateItemsCleaning}
-          getDataFromServer={getDataFromServer}
+          // getProjects={getDataFromServer}
+          // sortValues={sortValues}
+          // getCategoriesOptions={getCategoriesOptions}
+          // getBenefitsOptions={getBenefitsOptions}
+          // history={history}
+          // stateItemsCleaning={stateItemsCleaning}
+          // getDataFromServer={getDataFromServer}
         />
       </>
     )
@@ -122,3 +121,17 @@ let mapDispatchToProps = (dispatch) => {
 };
 
 export default connect( mapStateToProps, mapDispatchToProps )(EventsPage);
+
+
+EventsPage.propTypes = {
+  fetchedData: PropTypes.object,
+  fetchedProjectsOptions: PropTypes.object,
+  location: PropTypes.object,
+  sortValues: PropTypes.func,
+  getCategoriesOptions: PropTypes.func,
+  getBenefitsOptions: PropTypes.func,
+  stateItemsCleaning: PropTypes.func,
+  getDataFromServer: PropTypes.func,
+  datePick: PropTypes.func,
+  stateOptionsCleaning: PropTypes.func,
+}

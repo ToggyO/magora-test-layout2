@@ -3,6 +3,7 @@ import s from './style.module.sass';
 import '../../FormComponentsStyle.sass';
 import eye from '../../../../img/main/hide-password.svg'
 import ReduxFormInputWrapper from "../ReduxFormInputWrapper/InputWrapper";
+import PropTypes from 'prop-types';
 
 
 class ReduxFormPassword extends React.Component {
@@ -59,3 +60,12 @@ class ReduxFormPassword extends React.Component {
 
 
 export default ReduxFormPassword;
+
+
+ReduxFormPassword.propTypes = {
+  input: PropTypes.object,
+  label: PropTypes.string,
+  style: PropTypes.object,
+  meta: PropTypes.object,
+  placeholder: PropTypes.string,
+}

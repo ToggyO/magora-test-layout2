@@ -9,6 +9,7 @@ import {modalOpen} from "../../../../Store/Actions/modal/actionModal";
 import {connect} from "react-redux";
 import {authRequest} from "../../../../Store/Actions/Auth/actionAuth";
 import Preloader from '../../../Preloader/Preloader';
+import PropTypes from 'prop-types';
 
 
 let AuthForm = props => {
@@ -17,7 +18,7 @@ let AuthForm = props => {
 
   return  <div className="main-form">
 
-  {authData.loading
+  {authData.authLoader
     && <Preloader
         style={{
           display: 'flex',
@@ -120,3 +121,10 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect( mapStateToProps, mapDispatchToProps )(AuthForm);
+
+
+AuthForm.propTypes = {
+  authRequest: PropTypes.func,
+  error: PropTypes.object,
+  authData: PropTypes.object,
+}

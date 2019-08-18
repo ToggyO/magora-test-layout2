@@ -18,16 +18,19 @@ const EventSearchEmpty = (props) => {
             className: 'btn rounded roundedSmall',
             iconName: 'searchProjectIcon',
             iconClassName: '',
+            headerStyle: 'h2-white fs-16 lh-22 fw-700 t-align-c',
           }}
           grantsSearchButton={{
             className: 'btn rounded roundedSmall',
             iconName: 'searchGrantsIcon',
             iconClassName: '',
+            headerStyle: 'h2-white fs-16 lh-22 fw-700 t-align-c',
           }}
           eventsSearchButton={{
             className: 'btn rounded roundedLarge',
             iconName: 'searchEventsIconLg',
             iconClassName: 'projectSmall',
+            headerStyle: 'h2-white fs-20 lh-27 fw-700 t-align-c',
           }}
         />
 

@@ -18,6 +18,7 @@ import {mapQueryParamsToState, parseQueryString} from "../../Libs/additionalSort
 import CommunityProjectsEmpty from "./CommunityProjects/CommunityProjectsEmpty";
 import ProjectSearchEmpty from "./ProjectSearch/ProjectSearchEmpty";
 import store from "../../Store";
+import PropTypes from 'prop-types';
 
 
 const FindProjects = (props) => {
@@ -26,11 +27,10 @@ const FindProjects = (props) => {
     fetchedData,
     fetchedProjectsOptions,
     location,
-    getProjects,
     sortValues,
     getCategoriesOptions,
     getBenefitsOptions,
-    history,
+    // history,
     stateItemsCleaning,
     getDataFromServer,
     stateOptionsCleaning
@@ -68,7 +68,7 @@ const FindProjects = (props) => {
     return (
       <>
         <ProjectSearchEmpty />
-        <CommunityProjectsEmpty projectsData={fetchedData}/>
+        <CommunityProjectsEmpty />
       </>
     )
   } else {
@@ -80,23 +80,23 @@ const FindProjects = (props) => {
           optionsData={fetchedProjectsOptions}
           location={location}
           projectsSortValues={sortValues}
-          getCategoriesOptions={getCategoriesOptions}
-          getBenefitsOptions={getBenefitsOptions}
-          history={history}
+          // getCategoriesOptions={getCategoriesOptions}
+          // getBenefitsOptions={getBenefitsOptions}
+          // history={history}
           // parseString={parseString}
         />
         <CommunityProjects
           projectsData={fetchedData}
-          optionsData={fetchedProjectsOptions}
+          // optionsData={fetchedProjectsOptions}
           location={location}
-          getProjects={getProjects}
-          sortValues={sortValues}
-          getCategoriesOptions={getCategoriesOptions}
-          getBenefitsOptions={getBenefitsOptions}
-          history={history}
+          // getProjects={getProjects}
+          // sortValues={sortValues}
+          // getCategoriesOptions={getCategoriesOptions}
+          // getBenefitsOptions={getBenefitsOptions}
+          // history={history}
           // parseString={parseString}
-          stateItemsCleaning={stateItemsCleaning}
-          getDataFromServer={getDataFromServer}
+          // stateItemsCleaning={stateItemsCleaning}
+          // getDataFromServer={getDataFromServer}
         />
       </>
     )
@@ -118,6 +118,21 @@ let mapDispatchToProps = (dispatch) => {
 };
 
 export default connect( mapStateToProps, mapDispatchToProps )(FindProjects);
+
+
+FindProjects.propTypes = {
+  fetchedData: PropTypes.object,
+  fetchedProjectsOptions: PropTypes.object,
+  location: PropTypes.object,
+  sortValues: PropTypes.func,
+  getCategoriesOptions: PropTypes.func,
+  getBenefitsOptions: PropTypes.func,
+  stateItemsCleaning: PropTypes.func,
+  getDataFromServer: PropTypes.func,
+  stateOptionsCleaning: PropTypes.func,
+}
+
+
 
 
 

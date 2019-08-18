@@ -5,6 +5,7 @@ import {
 } from "../../../Libs/additionalSortingFunctions";
 import Preloader from "../../../Components/Preloader/Preloader";
 import Pagination from "../../../Components/Pagination/Pagination";
+import PropTypes from 'prop-types';
 
 
 class CommunityProjects extends React.Component {
@@ -73,3 +74,9 @@ class CommunityProjects extends React.Component {
 }
 
 export default CommunityProjects;
+
+
+CommunityProjects.propTypes = {
+  projectsData: PropTypes.object,
+  location: PropTypes.object,
+}

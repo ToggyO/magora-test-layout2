@@ -4,6 +4,7 @@ import SearchButtonsBlock from "../../../Components/SearchButtonsBlock";
 import FormSearchWrapper from "../../../Components/Form/FormSearchWrapper";
 import MySelect from "../../../Components/ReactSelect/components/MySelect";
 import {creatorOptions, sortOptions} from "../../FindProjects/FindProjectOptions";
+import PropTypes from 'prop-types';
 
 
 const GrantSearch = (props) => {
@@ -24,16 +25,19 @@ const GrantSearch = (props) => {
             className: 'btn rounded roundedSmall',
             iconName: 'searchProjectIcon',
             iconClassName: '',
+            headerStyle: 'h2-white fs-16 lh-22 fw-700 t-align-c',
           }}
           grantsSearchButton={{
             className: 'btn rounded roundedLarge',
             iconName: 'searchGrantsIconLg',
             iconClassName: 'projectSmall',
+            headerStyle: 'h2-white fs-20 lh-27 fw-700 t-align-c',
           }}
           eventsSearchButton={{
             className: 'btn rounded roundedSmall',
             iconName: 'searchEventsIcon',
             iconClassName: '',
+            headerStyle: 'h2-white fs-16 lh-22 fw-700 t-align-c',
           }}
         />
         <FormSearchWrapper
@@ -85,6 +89,12 @@ const GrantSearch = (props) => {
 export default GrantSearch;
 
 
+GrantSearch.propTypes = {
+  grantsData: PropTypes.object,
+  location: PropTypes.object,
+  optionsData: PropTypes.object,
+  sortValues: PropTypes.func,
+}
 
 
 

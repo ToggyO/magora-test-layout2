@@ -5,6 +5,7 @@ import SearchButtonsBlock from '../../../Components/SearchButtonsBlock';
 import CheckboxSelect from "../../../Components/ReactSelect/components/CheckboxSelect";
 import {modulesOptions, sortOptions} from "../FindProjectOptions";
 import MySelect from "../../../Components/ReactSelect/components/MySelect";
+import PropTypes from 'prop-types';
 
 
 const ProjectSearch = (props) => {
@@ -29,16 +30,19 @@ const ProjectSearch = (props) => {
             className: 'btn rounded roundedLarge',
             iconName: 'searchProjectIconLg',
             iconClassName: 'projectSmall',
+            headerStyle: 'h2-white fs-20 lh-27 fw-700 t-align-c',
           }}
           grantsSearchButton={{
             className: 'btn rounded roundedSmall',
             iconName: 'searchGrantsIcon',
             iconClassName: '',
+            headerStyle: 'h2-white fs-16 lh-22 fw-700 t-align-c',
           }}
          eventsSearchButton={{
            className: 'btn rounded roundedSmall',
            iconName: 'searchEventsIcon',
            iconClassName: '',
+           headerStyle: 'h2-white fs-16 lh-22 fw-700 t-align-c',
          }}
         />
 
@@ -93,6 +97,13 @@ const ProjectSearch = (props) => {
 
 export default ProjectSearch;
 
+
+ProjectSearch.propTypes = {
+  projectsData: PropTypes.object,
+  location: PropTypes.object,
+  optionsData: PropTypes.object,
+  projectsSortValues: PropTypes.func,
+}
 
 
 
