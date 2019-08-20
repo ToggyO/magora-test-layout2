@@ -9,17 +9,19 @@ import Registration from './Pages/Registration/Registration';
 import FindProjects from "./Pages/FindProjects/FindProjects";
 import GrantsPage from "./Pages/GrantsPage/GrantsPage";
 import EventsPage from "./Pages/EventsPage/EventsPage";
+import UserProfile from "./Pages/UserProfile";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {isAuthInit} from "./Store/Actions/Auth/actionAuth";
 import AuthRoute from "./Components/Routes/AuthRoute";
+import {ROUTES} from './Constants/';
+import {getFromLocalState} from "./Libs/localStorage";
 
 
 function App(props) {
   
   useEffect(() => {
-    const initToken = JSON.parse(localStorage.getItem('TOKEN_INFO'));
-    if(initToken) {
+    if(getFromLocalState('TOKEN_INFO')) {
       props.isAuthInit();
     }
   },[]);
@@ -31,10 +33,12 @@ function App(props) {
       <>
         <Switch>
           <Route exact path='/' component={Home}/>
-          <AuthRoute path='/registration' component={Registration}/>
-          <Route path='/projectSearch' component={FindProjects}/>
-          <Route path='/grantsSearch' component={GrantsPage}/>
-          <Route path='/eventsSearch' component={EventsPage}/>
+          <AuthRoute path={`/${ROUTES.REG_PAGE}`} component={Registration}/>
+          <Route path={`/${ROUTES.PROJECT_SEARCH}`} component={FindProjects}/>
+          <Route path={`/${ROUTES.GRANTS_SEARCH}`} component={GrantsPage}/>
+          <Route path={`/${ROUTES.EVENTS_SEARCH}`} component={EventsPage}/>
+          <Route path={`/${ROUTES.USER_PROFILE}`} component={UserProfile}/>
+          {/*<Route path='/profile/:userId' component={UserProfile}/>*/}
         </Switch>
       </>
       <Footer />

@@ -20,17 +20,12 @@ class CommunityProjects extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.location.search !== prevProps.location.search) {
-      // mapQueryParamsToState(parseQueryString(this.props.location.search), this.props.sortValues, this.props.stateItemsCleaning);
-      // this.props.getDataFromServer(this.props.projectsData.history, parseQueryString(this.props.location.search), 'ideas');
-      // debugger;
       window.scrollTo({
         left: 0,
         top: 550,
         behavior: 'smooth'
       });
-      // mapQueryParamsToState(this.props.parseString, this.props.sortValues);
     }
-    // console.log('update');
   }
 
   render() {
@@ -51,7 +46,7 @@ class CommunityProjects extends React.Component {
                     justifyContent: 'center'
                   }}
                 />
-              : renderingProjects(projectsData.items)
+              : renderingProjects(projectsData.items, 'projects')
           }
         </div>
         <div className='pt-5 pb-5 pl-5 pr-5 d-f jc-c' style={{width: '100%'}}>

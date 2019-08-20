@@ -1,7 +1,7 @@
 import React from 'react';
 import './EventProjects.sass';
 import Preloader from "../../../Components/Preloader/Preloader";
-import { renderingEvents} from "../../../Libs/additionalSortingFunctions";
+import {renderingProjects} from "../../../Libs/additionalSortingFunctions";
 import Pagination from "../../../Components/Pagination/Pagination";
 import PropTypes from 'prop-types';
 
@@ -44,7 +44,7 @@ class EventProjects extends React.Component {
                     justifyContent: 'center'
                   }}
                 />
-              : renderingEvents(projectsData.items)
+              : renderingProjects(projectsData.items, 'events')
           }
         </div>
         <div className='pt-5 pb-5 pl-5 pr-5 d-f jc-c' style={{width: '100%'}}>

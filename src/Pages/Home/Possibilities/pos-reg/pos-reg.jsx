@@ -3,6 +3,7 @@ import './pos-reg.sass'
 import HomeBussiness from '../../../../img/possibilities/home-business.svg';
 import {NavLink} from "react-router-dom";
 import {connect} from "react-redux";
+import {ROUTES} from "../../../../Constants";
 
 const PosReg = (props) => {
 
@@ -29,7 +30,10 @@ const PosReg = (props) => {
                  Create project
                </button>
              </div>
-            : <NavLink to='/registration' className="reg-btn block-adapt__btn mt-10">
+            : <NavLink
+                to={`/${ROUTES.REG_PAGE}`}
+                className="reg-btn block-adapt__btn mt-10"
+              >
                <button className="btn btn green sh-btn-sm xl fs-18 lh-18 ls-27 fw-500 d-f jc-c">
                  Register now!
                </button>

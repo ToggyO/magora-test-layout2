@@ -1,6 +1,6 @@
 import React from 'react';
 import './GrantProjects.sass';
-import {renderingGrants} from "../../../Libs/additionalSortingFunctions";
+import {renderingProjects} from "../../../Libs/additionalSortingFunctions";
 import Preloader from "../../../Components/Preloader/Preloader";
 import Pagination from "../../../Components/Pagination/Pagination";
 import PropTypes from 'prop-types';
@@ -46,7 +46,7 @@ class GrantProjects extends React.Component {
                     justifyContent: 'center'
                   }}
                 />
-              : renderingGrants(grantsData.items)
+              : renderingProjects(grantsData.items, 'grants')
           }
         </div>
         <div className='pt-5 pb-5 pl-5 pr-5 d-f jc-c' style={{width: '100%'}}>

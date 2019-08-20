@@ -134,4 +134,4 @@ EventsPage.propTypes = {
   getDataFromServer: PropTypes.func,
   datePick: PropTypes.func,
   stateOptionsCleaning: PropTypes.func,
-}
+};

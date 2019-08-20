@@ -2,6 +2,7 @@ import React from "react";
 import './style.sass';
 import {NavLink} from "react-router-dom";
 import Icon from "../../Icons/Icons";
+import {ROUTES} from "../../Constants";
 
 
 const SearchButtonsBlock = (props) => {
@@ -14,7 +15,7 @@ const SearchButtonsBlock = (props) => {
 
   return (
     <div className={`switchBtns prS-adapt__switchBtns d-f fd-c ai-c jc-sb `}>
-      <NavLink to='/projectSearch'>
+      <NavLink to={`/${ROUTES.PROJECT_SEARCH}`}>
         <button className={projectSearchButton.className} >
           <Icon
             iconName={projectSearchButton.iconName}
@@ -23,7 +24,7 @@ const SearchButtonsBlock = (props) => {
         </button>
         <h6 className={projectSearchButton.headerStyle}>Projects</h6>
       </NavLink>
-      <NavLink to='/grantsSearch'>
+      <NavLink to={`/${ROUTES.GRANTS_SEARCH}`}>
         <button className={grantsSearchButton.className}>
           <Icon
             iconName={grantsSearchButton.iconName}
@@ -32,7 +33,7 @@ const SearchButtonsBlock = (props) => {
         </button>
         <h6 className={grantsSearchButton.headerStyle}>Grants</h6>
       </NavLink>
-      <NavLink to='/eventsSearch'>
+      <NavLink to={`/${ROUTES.EVENTS_SEARCH}`}>
         <button className={eventsSearchButton.className}>
           <Icon
             iconName={eventsSearchButton.iconName}

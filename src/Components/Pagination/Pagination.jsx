@@ -28,6 +28,7 @@ class Pagination extends React.Component {
     // const { location = {} } = history;
     // const { search = '', pathname } = location;
     const { location,  } = this.props;
+
     const queries = parse(location.search, { ignoreQueryPrefix: true }) || {};
     queries.page = selectedPage + 1;
     history.push(`${location.pathname}?${stringify(queries)}`);

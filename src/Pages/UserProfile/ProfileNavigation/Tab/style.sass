@@ -1,0 +1,39 @@
+@import '../../../../Styles/bin/variables'
+@import '../../../../Styles/bin/mixins'
+@import "../../../../../node_modules/rfs/sass"
+
+
+.navigation-list
+  margin: 0 auto
+
+  &__item
+    padding: 30px
+    cursor: pointer
+
+  &__item:hover
+    background-color: lighten($seaWaveFont, 40%)
+    border-bottom: 5px solid $seaWaveFont
+
+  &__link
+    display: flex
+
+  &__article
+    display: flex
+    position: relative
+
+  &__count
+    display: flex
+    justify-content: center
+    align-items: center
+    width: 25px
+    height: 20px
+    background-color: lighten($seaWaveFont, 30%)
+    border-radius: 50%
+    position: relative
+    margin-top: -10px
+
+
+.activeTab
+  background-color: lighten($seaWaveFont, 40%)
+  border-bottom: 5px solid $seaWaveFont
+

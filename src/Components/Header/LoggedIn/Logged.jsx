@@ -4,14 +4,15 @@ import avatar from '../../../img/avatar.jpg';
 import {bindActionCreators} from "redux";
 import {logOut} from "../../../Store/Actions/Auth/actionAuth";
 import {connect} from "react-redux";
+import {clearLocalState} from "../../../Libs/localStorage";
 
 
 const LoggedIn = (props) => {
 
   const isAuthFalse = () => {
     return () => {
-      localStorage.removeItem('TOKEN_INFO');
-      localStorage.removeItem('USER_INFO');
+      clearLocalState('TOKEN_INFO');
+      clearLocalState('USER_INFO');
       props.logOut();
     };
   };

@@ -20,40 +20,25 @@ export const  makeQueryString = (obj) => {
 };
 
 
-export const renderingProjects = (data) => {
+export const renderingProjects = (data, component) => {
   if (!(data.length === 0)) {
-    return data.map((item, i) => <ProjectCard key={item.idea.id} item={item}/>);
+    return data.map((item, i) => {
+     switch(component) {
+        case 'projects':
+          return <ProjectCard key={item.idea.id} item={item}/>;
+        case 'grants':
+          return <GrantCard key={item.grant.id} item={item}/>;
+        case 'events':
+          return <EventCard key={item.event.id} item={item}/>;
+        default:
+          return null;
+     }
+    });
   } else {
     return <h1
       style={style}
     >
       Projects not found
-    </h1>
-  }
-};
-
-
-export const renderingGrants = (data) => {
-  if (!(data.length === 0)) {
-    return data.map((item, i) => <GrantCard key={item.grant.id} item={item}/>);
-  } else {
-    return <h1
-      style={style}
-    >
-      Grants not found
-    </h1>
-  }
-};
-
-
-export const renderingEvents = (data) => {
-  if (!(data.length === 0)) {
-    return data.map((item, i) => <EventCard key={item.event.id} item={item}/>);
-  } else {
-    return <h1
-      style={style}
-    >
-      Events not found
     </h1>
   }
 };
@@ -78,7 +63,6 @@ export const makeRequestString = (obj) => {
       return reqString;
     }
   });
-  // console.log(reqString);
   return reqString;
 };
 
@@ -92,7 +76,6 @@ export const mergeQueryUrlWithHistory = (data, queries) => {
       obj[key] = data[key];
     }
   });
-  // console.log(obj);
   return obj;
 };
 
@@ -101,6 +84,13 @@ export const parseQueryString = (location) => {
   // debugger;
   return parse(location, { ignoreQueryPrefix: true });
 };
+
+
+export const parseRouteString = (location) => {
+  let routeString = location.slice(1).split('/');
+  return routeString[1];
+};
+
 
 
 //Projects Not Found Style

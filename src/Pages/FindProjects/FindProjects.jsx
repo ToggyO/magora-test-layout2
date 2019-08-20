@@ -45,12 +45,10 @@ const FindProjects = (props) => {
     mapQueryParamsToState(parseQueryString(location.search), sortValues);
     const currentState = store.getState();
     getDataFromServer(currentState.fetchedData.history, parseQueryString(location.search), 'ideas');
-    console.log('mount');
 
     return () => {
       stateItemsCleaning();
       stateOptionsCleaning();
-      console.log('unmount');
     };
   },[location.search]);
 

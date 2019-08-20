@@ -1,8 +1,9 @@
 import * as axios from "axios";
 import { SubmissionError } from 'redux-form';
-// import history from '../../../history';
 import {modalClose, modalOpen} from "../modal/actionModal";
 import {reset} from 'redux-form';
+import {REQUEST_ULR} from "../../../Constants";
+import {writeToLocalState} from "../../../Libs/localStorage";
 
 
 export const AUTH = {
@@ -79,9 +80,8 @@ export const authRequest = (values) => {
         platform: "string"
       }
     };
-    let BASE_URL = `http://localhost:3000/api/v0.7/auth/token`;
 
-    return axios.post(BASE_URL, requestBody,
+    return axios.post(`${REQUEST_ULR.BASE_URL}/${REQUEST_ULR.AUTH_TOKEN}`, requestBody,
     )
       .then(res => {
         if (res.data.code === 'success'){
@@ -90,10 +90,9 @@ export const authRequest = (values) => {
 
           const { data = {} } = res.data;
           const { authInfo = {}, ...tokensInfo} = data;
-          localStorage.setItem('TOKEN_INFO', JSON.stringify(tokensInfo));
-          localStorage.setItem('USER_INFO', JSON.stringify(authInfo.profile));
 
-          // history.replace('/');
+          writeToLocalState('TOKEN_INFO', tokensInfo);
+          writeToLocalState('USER_INFO', authInfo.profile);
         }
       })
       .catch( error => {
@@ -148,8 +147,7 @@ export const regRequest = (values) => {
       role: values.role
     };
 
-    let BASE_URL = `http://localhost:3000/api/v0.7/users`;
-    return axios.post(BASE_URL, requestBody)
+    return axios.post(`${REQUEST_ULR.CORS_BASE_URL}/${REQUEST_ULR.USERS}`, requestBody)
       .then(res => {
         if (res.data.code === 'success') {
           dispatch(reset('registration'));
