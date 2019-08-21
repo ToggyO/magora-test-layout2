@@ -13,12 +13,13 @@ import ProfileNavigationEmpty from './ProfileNavigation/Empty';
 import {
   parseQueryString,
   parseRouteString,
-  renderingProjects
 } from "../../Libs/additionalSortingFunctions";
 import ErrorWrapper from "../../Components/ErrorWrapper";
 import Preloader from "../../Components/Preloader/Preloader";
-import {KEYWORD} from '../../Constants';
+import {KEYWORD, ROUTES} from '../../Constants';
 import ProfileCardsContainer from "./ProfileCardsContainer";
+import {Route, Switch} from "react-router-dom";
+import AboutProfile from "./AboutProfile";
 
 
 
@@ -52,7 +53,7 @@ const UserProfile = (props) => {
     (userProfileData.userInfoDataIs &&
       userProfileData.ideasDataIs &&
       userProfileData.engagementsDataIs &&
-      userProfileData.eventsDataIs) && setInitialize(true)
+      userProfileData.eventsDataIs) && setInitialize(true);
   }, [
     userProfileData.userInfoDataIs,
     userProfileData.ideasDataIs,
@@ -83,6 +84,7 @@ const UserProfile = (props) => {
            </ErrorWrapper>
   }
 
+
   return <ErrorWrapper error={userProfileData.error}>
           <ProfileHeader
             userInfo={userProfileData.userInfo}
@@ -91,12 +93,40 @@ const UserProfile = (props) => {
             userProfileData={userProfileData}
             location={location}
           />
-          <div className='user-profile__tabs wrapper' style={{minHeight: 600}}>
-            <ProfileCardsContainer
-              userProfileData={userProfileData}
-              getUserDataProfile={getUserDataProfile}
-              location={location}
-            />
+          <div className='user-profile__tabs wrapper'>
+            <Switch>
+              <Route
+                path={`/${ROUTES.USER_PROFILE}/${parseRouteString(location.pathname)}?${`tab=about`}`}
+                component={AboutProfile}
+              />
+              <Route
+                exact path={`/${ROUTES.USER_PROFILE}/${parseRouteString(location.pathname)}?tab=${KEYWORD.IDEAS}`}
+                render={() => <ProfileCardsContainer
+                  userProfileData={userProfileData}
+                  getUserDataProfile={getUserDataProfile}
+                  location={location}
+                  projectType={KEYWORD.IDEAS}
+                />}
+              />
+              <Route
+                exact path={`/${ROUTES.USER_PROFILE}/${parseRouteString(location.pathname)}?tab=${KEYWORD.ENGAGEMENT}`}
+                render={() => <ProfileCardsContainer
+                  userProfileData={userProfileData}
+                  getUserDataProfile={getUserDataProfile}
+                  location={location}
+                  projectType={KEYWORD.ENGAGEMENT}
+                />}
+              />
+              <Route
+                exact path={`/${ROUTES.USER_PROFILE}/${parseRouteString(location.pathname)}?tab=${KEYWORD.EVENTS}`}
+                render={() => <ProfileCardsContainer
+                  userProfileData={userProfileData}
+                  getUserDataProfile={getUserDataProfile}
+                  location={location}
+                  projectType={KEYWORD.EVENTS}
+                />}
+              />
+            </Switch>
           </div>
 
          </ErrorWrapper>

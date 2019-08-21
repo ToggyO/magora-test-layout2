@@ -14,14 +14,16 @@ const ProfileCardsContainer = (props) => {
   const {
     userProfileData,
     getUserDataProfile,
-    location
+    location,
+    projectType
   } = props;
 
 
   useEffect(() => {
     getUserDataProfile(
       parseRouteString(location.pathname),
-      KEYWORD.IDEAS, userProfileData.ideas,
+      projectType,
+      userProfileData[projectType],
       parseQueryString(location.search)
     );
     window.scrollTo(0, 0);
@@ -39,11 +41,11 @@ const ProfileCardsContainer = (props) => {
                   />
                 : <>
                     <div className="user-profile__tabs-content wrapper-container pl-31 pr-31 pt-13 pb-13 d-f fw-w jc-c">
-                          {renderingProjects(userProfileData[KEYWORD.IDEAS].items, KEYWORD.IDEAS)}
+                          {renderingProjects(userProfileData[projectType].items, projectType)}
                     </div>
                     <div className='pt-5 pb-5 pl-5 pr-5 d-f jc-c' style={{width: '100%'}}>
                       <ProfilePagination
-                        data={userProfileData[KEYWORD.IDEAS]}
+                        data={userProfileData[projectType]}
                         location={location}
                       />
                     </div>
