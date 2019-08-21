@@ -1,12 +1,15 @@
-import { USER_PROFILE } from '../../Actions/users/users';
+import { USER_PROFILE } from '../../Actions/users/actionUsers';
 
 let InitialState = {
   userInfo: {},
-  projects: [],
-  grants: [],
-  events: [],
+  ideas: {},
+  engagements: {},
+  events: {},
   loading: false,
-  isUserData: false,
+  userInfoDataIs: false,
+  ideasDataIs: false,
+  engagementsDataIs: false,
+  eventsDataIs: false,
   error: false
 };
 
@@ -23,8 +26,8 @@ const userProfileReducer = (state = InitialState, action) => {
       return {
         ...state,
         loading: false,
-        userInfo: action.payload,
-        isUserData: true,
+        [action.payload.key]: action.payload.data,
+        [`${action.payload.key}DataIs`]: true,
       };
     case USER_PROFILE.REQUEST_USER_FAILURE:
       return {
@@ -35,9 +38,9 @@ const userProfileReducer = (state = InitialState, action) => {
     case USER_PROFILE.STATE_PROFILE_CLEANING:
       return {
         userInfo: {},
-        projects: [],
-        grants: [],
-        events: [],
+        ideas: {},
+        engagements: {},
+        events: {},
         loading: false,
         isUserData: false,
         error: false

@@ -3,6 +3,7 @@ import React from "react";
 import GrantCard from "../Components/GrantCard/GrantCard";
 import EventCard from "../Components/EventCard/EventCard";
 import {parse} from 'qs';
+import {KEYWORD} from "../Constants";
 
 
 export const  makeQueryString = (obj) => {
@@ -24,11 +25,11 @@ export const renderingProjects = (data, component) => {
   if (!(data.length === 0)) {
     return data.map((item, i) => {
      switch(component) {
-        case 'projects':
+        case KEYWORD.IDEAS:
           return <ProjectCard key={item.idea.id} item={item}/>;
-        case 'grants':
+        case KEYWORD.GRANTS:
           return <GrantCard key={item.grant.id} item={item}/>;
-        case 'events':
+        case KEYWORD.EVENTS:
           return <EventCard key={item.event.id} item={item}/>;
         default:
           return null;
@@ -63,6 +64,7 @@ export const makeRequestString = (obj) => {
       return reqString;
     }
   });
+  console.log(reqString);
   return reqString;
 };
 
@@ -76,6 +78,7 @@ export const mergeQueryUrlWithHistory = (data, queries) => {
       obj[key] = data[key];
     }
   });
+  console.log(obj);
   return obj;
 };
 

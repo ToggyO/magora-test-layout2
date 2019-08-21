@@ -1,10 +1,7 @@
 import React from 'react';
 import './style.sass';
-// import {NavLink} from "react-router-dom";
-import {tabTitles} from "./tabsInfo";
 import history from "../../../../history";
-import {makeQueryString} from "../../../../Libs/additionalSortingFunctions";
-import {stringify} from "qs";
+import {parse, stringify} from "qs";
 
 
 const Tab = (props) => {
@@ -12,18 +9,23 @@ const Tab = (props) => {
   const {
     keyNumber,
     title,
+    value,
     toggleActive,
     active,
     span,
     location
   } = props;
 
+  const onTabChange = (tab) => {
+    toggleActive(keyNumber);
+    const queries = parse(location.search, { ignoreQueryPrefix: true }) || {};
+    queries.tab = tab;
+    history.push(`${location.pathname}?${stringify(queries)}`);
+  };
+
   return <li
     className={`navigation-list__item ${active === keyNumber ? 'activeTab' : ''}`}
-    onClick={() => {
-      toggleActive(keyNumber);
-      // history.push(`${location.pathname}?${stringify(queries)}`);
-    }}
+    onClick={() => onTabChange(value)}
   >
     <div
       className='navigation-list__link'
@@ -31,7 +33,7 @@ const Tab = (props) => {
       <div className='navigation-list__article'>
         <span className='h2-black fs-18 lh-22 ls-4 fw-600'>{title}</span>
       </div>
-      {!(keyNumber === 0) && !(keyNumber ===  tabTitles.length-1) ? span : null}
+      {!(keyNumber === 0) ? span : null}
     </div>
   </li>
 };

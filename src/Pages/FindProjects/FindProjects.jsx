@@ -19,6 +19,7 @@ import CommunityProjectsEmpty from "./CommunityProjects/CommunityProjectsEmpty";
 import ProjectSearchEmpty from "./ProjectSearch/ProjectSearchEmpty";
 import store from "../../Store";
 import PropTypes from 'prop-types';
+import {KEYWORD} from "../../Constants";
 
 
 const FindProjects = (props) => {
@@ -44,7 +45,7 @@ const FindProjects = (props) => {
     getBenefitsOptions();
     mapQueryParamsToState(parseQueryString(location.search), sortValues);
     const currentState = store.getState();
-    getDataFromServer(currentState.fetchedData.history, parseQueryString(location.search), 'ideas');
+    getDataFromServer(currentState.fetchedData.history, parseQueryString(location.search), KEYWORD.IDEAS);
 
     return () => {
       stateItemsCleaning();
@@ -78,23 +79,10 @@ const FindProjects = (props) => {
           optionsData={fetchedProjectsOptions}
           location={location}
           projectsSortValues={sortValues}
-          // getCategoriesOptions={getCategoriesOptions}
-          // getBenefitsOptions={getBenefitsOptions}
-          // history={history}
-          // parseString={parseString}
         />
         <CommunityProjects
           projectsData={fetchedData}
-          // optionsData={fetchedProjectsOptions}
           location={location}
-          // getProjects={getProjects}
-          // sortValues={sortValues}
-          // getCategoriesOptions={getCategoriesOptions}
-          // getBenefitsOptions={getBenefitsOptions}
-          // history={history}
-          // parseString={parseString}
-          // stateItemsCleaning={stateItemsCleaning}
-          // getDataFromServer={getDataFromServer}
         />
       </>
     )

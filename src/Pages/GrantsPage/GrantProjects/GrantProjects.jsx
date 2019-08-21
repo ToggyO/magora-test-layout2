@@ -4,6 +4,7 @@ import {renderingProjects} from "../../../Libs/additionalSortingFunctions";
 import Preloader from "../../../Components/Preloader/Preloader";
 import Pagination from "../../../Components/Pagination/Pagination";
 import PropTypes from 'prop-types';
+import {KEYWORD} from "../../../Constants";
 
 
 class GrantProjects extends React.Component {
@@ -46,7 +47,7 @@ class GrantProjects extends React.Component {
                     justifyContent: 'center'
                   }}
                 />
-              : renderingProjects(grantsData.items, 'grants')
+              : renderingProjects(grantsData.items, KEYWORD.GRANTS)
           }
         </div>
         <div className='pt-5 pb-5 pl-5 pr-5 d-f jc-c' style={{width: '100%'}}>

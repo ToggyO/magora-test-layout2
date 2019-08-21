@@ -1,7 +1,8 @@
 export const tabTitles = [
-  'About',
-  'Projects',
-  'Projects',
-  'Events',
-  'Drafts'
+  {title: 'About', value: 'about'},
+  {title: 'Projects', value: 'ideas'},
+  {title: 'Engagement', value: 'engagements'},
+  {title: 'Events', value: 'events'}
 ];
+
+
