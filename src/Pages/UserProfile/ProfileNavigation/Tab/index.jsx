@@ -1,10 +1,7 @@
 import React from 'react';
 import './style.sass';
-import history from "../../../../history";
-import {parse, stringify} from "qs";
 import {NavLink} from "react-router-dom";
-import {KEYWORD, ROUTES} from "../../../../Constants";
-import {parseRouteString} from "../../../../Libs/additionalSortingFunctions";
+import {ROUTES} from "../../../../Constants";
 
 
 const Tab = (props) => {
@@ -16,7 +13,7 @@ const Tab = (props) => {
     toggleActive,
     active,
     span,
-    location
+    userId
   } = props;
 
   const onTabChange = (tab) => {
@@ -25,13 +22,13 @@ const Tab = (props) => {
     // queries.tab = tab;
     // history.push(`${location.pathname}?${stringify(queries)}`);
   };
-  console.log(`/${ROUTES.USER_PROFILE}/${parseRouteString(location.pathname)}?tab=${value}`);
+
   return <li
     className={`navigation-list__item ${active === keyNumber ? 'activeTab' : ''}`}
     onClick={() => onTabChange(value)}
   >
     <NavLink
-      to={`/${ROUTES.USER_PROFILE}/${parseRouteString(location.pathname)}?tab=${value}`}
+      to={`/${ROUTES.USER_PROFILE}/${userId}${value !== 'about' ? `/${value}` : ''}`}
       className='navigation-list__link'
     >
       <div className='navigation-list__article'>

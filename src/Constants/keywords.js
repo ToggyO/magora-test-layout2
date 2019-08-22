@@ -4,4 +4,5 @@ export const KEYWORD = {
   ENGAGEMENT: 'engagements',
   GRANTS: 'grants',
   EVENTS: 'events',
+  ABOUT: 'about',
 };

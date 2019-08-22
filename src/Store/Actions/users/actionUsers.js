@@ -2,10 +2,6 @@ import {REQUEST_ULR} from "../../../Constants";
 import * as axios from "axios";
 import {getFromLocalState} from "../../../Libs/localStorage";
 import {KEYWORD} from "../../../Constants";
-import {
-  makeRequestString,
-  mergeQueryUrlWithHistory
-} from "../../../Libs/additionalSortingFunctions";
 
 
 export const USER_PROFILE = {
@@ -52,7 +48,7 @@ export const getUserDataProfile = (userId, projectType, data, queries) => {
   return dispatch => {
     dispatch(requestUserById());
 
-    let URL = `${REQUEST_ULR.CORS_BASE_URL}/${REQUEST_ULR.USERS}/${userId}${projectType ? `/${queries.tab || projectType}?PageSize=9&Page=${queries.page || 1}` : ''}`;
+    let URL = `${REQUEST_ULR.CORS_BASE_URL}/${REQUEST_ULR.USERS}/${userId}${projectType && queries.tab !== KEYWORD.ABOUT ? `/${queries.tab || projectType}?PageSize=9&Page=${queries.page || 1}` : ''}`;
 
     return axios
       .get( URL,{

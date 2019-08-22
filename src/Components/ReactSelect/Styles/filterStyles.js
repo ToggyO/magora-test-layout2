@@ -69,6 +69,7 @@ export const styles = {
 
     return {
     ...provided,
+      paddingBottom: 5,
       transition: 'all .2s ease',
       transform: state.selectProps.menuIsOpen ? 'rotate(-180deg)' : null
     }

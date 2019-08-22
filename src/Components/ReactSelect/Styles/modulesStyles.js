@@ -107,7 +107,7 @@ export const moduleStyles = {
   dropdownIndicator: (provided, state) => {
     return {
     ...provided,
-      // padding: '8px 8px 10px 8px',
+      paddingBottom: 5,
       transition: 'all .2s ease',
       transform: state.selectProps.menuIsOpen ? 'rotate(180deg)' : null
     }

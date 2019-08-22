@@ -6,7 +6,7 @@ import {tabTitles} from './Tab/tabsInfo';
 
 const ProfileNavigation = (props) => {
 
-  const { location, userProfileData } = props;
+  const { userProfileData, userId } = props;
 
   const [ active, toggleActive ] = useState(0);
 
@@ -21,7 +21,7 @@ const ProfileNavigation = (props) => {
             active={active}
             toggleActive={toggleActive}
             tabTitles={tabTitles}
-            location={location}
+            userId={userId}
             span={<div className='navigation-list__count'>
               <span className='h2-black fs-12 lh-3 fw-500'>
                 {item.value !== 'about' ? userProfileData[item.value].total : 0 }
@@ -36,3 +36,21 @@ const ProfileNavigation = (props) => {
 
 
 export default ProfileNavigation;
+
+
+// {tabTitles.map((item, i) => <Tab
+//     key={i}
+//     keyNumber={i}
+//     title={item.title}
+//     value={item.value}
+//     active={active}
+//     toggleActive={toggleActive}
+//     tabTitles={tabTitles}
+//     location={location}
+//     span={<div className='navigation-list__count'>
+//               <span className='h2-black fs-12 lh-3 fw-500'>
+//                 {item.value !== 'about' ? userProfileData[item.value].total : 0 }
+//               </span>
+//     </div>}
+//   />
+// )}

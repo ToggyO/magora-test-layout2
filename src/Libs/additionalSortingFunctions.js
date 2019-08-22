@@ -31,6 +31,8 @@ export const renderingProjects = (data, component) => {
           return <GrantCard key={item.grant.id} item={item}/>;
         case KEYWORD.EVENTS:
           return <EventCard key={item.event.id} item={item}/>;
+       case KEYWORD.ENGAGEMENT:
+         return <ProjectCard key={item.idea.id} item={item}/>;
         default:
           return null;
      }
@@ -64,7 +66,6 @@ export const makeRequestString = (obj) => {
       return reqString;
     }
   });
-  console.log(reqString);
   return reqString;
 };
 
@@ -78,7 +79,6 @@ export const mergeQueryUrlWithHistory = (data, queries) => {
       obj[key] = data[key];
     }
   });
-  console.log(obj);
   return obj;
 };
 

@@ -1,7 +1,9 @@
 import React from 'react';
 import '../ProjectCard/ProjectCard.sass';
 import '../GrantCard/GrantCard.sass';
-const path = 'img/community';
+import Icon from "../../Icons/Icons";
+
+
 const placeholderImage = 'img/placeholder-image.jpg';
 const placeholderAvatar = 'img/avatar-placeholder.png';
 
@@ -33,7 +35,12 @@ const GrantCard = (props) => {
             $ {grant.amount}
           </h3>
           <div className="projectCard-info__location info-location d-f ai-c jc-c mt-2">
-            <img className="mr-1" src={`${path}/Location.svg`} alt=""/>
+            <div>
+              <Icon
+                iconName='location_icon'
+                className='mr-1'
+              />
+            </div>
             <h6 className="h3-lightGrey fs-14 lh-22 ls-4 fw-500 als-c">
               {location.areaName}
             </h6>

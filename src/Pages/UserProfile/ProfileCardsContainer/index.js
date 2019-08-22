@@ -5,7 +5,6 @@ import {
   parseRouteString,
   renderingProjects
 } from "../../../Libs/additionalSortingFunctions";
-import {KEYWORD} from "../../../Constants";
 import ProfilePagination from "../../../Components/Pagination/ProfilePagination";
 
 
@@ -19,6 +18,8 @@ const ProfileCardsContainer = (props) => {
   } = props;
 
 
+
+
   useEffect(() => {
     getUserDataProfile(
       parseRouteString(location.pathname),
@@ -27,7 +28,7 @@ const ProfileCardsContainer = (props) => {
       parseQueryString(location.search)
     );
     window.scrollTo(0, 0);
-  },[location.search]);
+  },[location.search, location.pathname]);
 
 
   return  <>

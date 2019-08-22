@@ -12,7 +12,7 @@ const placeholderAvatar = '/img/avatar-placeholder.png';
 const ProfileHeader = (props) => {
 
   const {
-    about,
+    // about,
     address,
     createDate,
     firstName,
@@ -43,13 +43,15 @@ const ProfileHeader = (props) => {
           </div>
           <div className='profile-header__name h2-black fs-24 lh-22 ls-5 fw-600'>{`${firstName} ${lastName}`}</div>
           <div className='profile-header__location h6-skyFont fs-16 lh-22 ls-5 fw-500'>
-            <span className='mr-3'>
+            <div>
+              <span className='mr-3'>
               <Icon
                 iconName='location_icon'
                 className='mr-1'
               />
             </span>
-            {address}
+              {address}
+            </div>
           </div>
           <NavLink
             to='./#'

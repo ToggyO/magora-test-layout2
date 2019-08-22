@@ -21,18 +21,29 @@ const ProjectCard = (props) => {
         {/*    <img className="pl-7" src={image.status} alt=""/>*/}
         {/*  </div>*/}
         {/*</div>*/}
-        <img
-          className="projectCard-image"
-          onError={(e) => e.target.src = placeholderImage}
-          src={resource !== null ? resource.formatUrls.small : placeholderImage }
-          alt="loc"/>
+        { resource !== null
+          ? <img
+              className="projectCard-image"
+              // onError={(e) => e.target.src = placeholderImage}
+              src={resource.formatUrls.small}
+              alt="loc"
+            />
+          : <Icon iconName='placeholder_image' />
+        }
+
+
         <div className="projectCard-avatar pCard-adapt__avatar d-f jc-c">
           <span className="projectCard-avatar__container">
-            <img
-              onError={(e) => e.target.src = placeholderAvatar}
-              src={publisher.avatar !== null ? publisher.avatar.originalUrl : placeholderAvatar }
-              alt="small"
-            />
+
+            { publisher.avatar !== null
+              ?  <img
+                  // onError={(e) => e.target.src = placeholderAvatar}
+                  src={publisher.avatar.originalUrl}
+                  alt="small"
+                />
+              : <Icon iconName='avatar_placeholder' />
+            }
+
           </span>
         </div>
         <div className="projectCard-info mb-2 pCard-adapt__info">
@@ -40,10 +51,12 @@ const ProjectCard = (props) => {
             {idea.title}
           </h3>
           <div className="projectCard-info__location info-location d-f ai-c jc-c mt-2">
-            <Icon
-              iconName='location_icon'
-              className='mr-1'
-            />
+            <div>
+              <Icon
+                iconName='location_icon'
+                className='location_icon mr-1'
+              />
+            </div>
             {/*<img className="mr-1" src={`${path}/Location.svg`} alt="Loc!"/>*/}
             <h6 className="h3-lightGrey fs-14 lh-22 ls-4 fw-500 als-c">
               {idea.address}

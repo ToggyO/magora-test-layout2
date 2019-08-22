@@ -12,7 +12,6 @@ import ProfileHeaderEmpty from './ProfileHeader/Empty';
 import ProfileNavigationEmpty from './ProfileNavigation/Empty';
 import {
   parseQueryString,
-  parseRouteString,
 } from "../../Libs/additionalSortingFunctions";
 import ErrorWrapper from "../../Components/ErrorWrapper";
 import Preloader from "../../Components/Preloader/Preloader";
@@ -30,13 +29,14 @@ const UserProfile = (props) => {
     getUserDataProfile,
     location,
     stateProfileCleaning,
+    match
   } = props;
 
   const [initialize, setInitialize] = useState(false);
 
 
   useEffect(() => {
-    let queries = parseRouteString(location.pathname);
+    let queries = match.params.userId;
     getUserDataProfile(queries, null, null, null);
     getUserDataProfile(queries, KEYWORD.IDEAS, userProfileData.ideas, parseQueryString(location.search));
     getUserDataProfile(queries, KEYWORD.ENGAGEMENT, userProfileData.engagements, parseQueryString(location.search));
@@ -92,15 +92,18 @@ const UserProfile = (props) => {
           <ProfileNavigation
             userProfileData={userProfileData}
             location={location}
+            userId={match.params.userId}
           />
           <div className='user-profile__tabs wrapper'>
             <Switch>
               <Route
-                path={`/${ROUTES.USER_PROFILE}/${parseRouteString(location.pathname)}?${`tab=about`}`}
+                exact
+                path={`/${ROUTES.USER_PROFILE}/${match.params.userId}`}
                 component={AboutProfile}
               />
               <Route
-                exact path={`/${ROUTES.USER_PROFILE}/${parseRouteString(location.pathname)}?tab=${KEYWORD.IDEAS}`}
+
+                path={`/${ROUTES.USER_PROFILE}/${match.params.userId}/${KEYWORD.IDEAS}`}
                 render={() => <ProfileCardsContainer
                   userProfileData={userProfileData}
                   getUserDataProfile={getUserDataProfile}
@@ -109,7 +112,8 @@ const UserProfile = (props) => {
                 />}
               />
               <Route
-                exact path={`/${ROUTES.USER_PROFILE}/${parseRouteString(location.pathname)}?tab=${KEYWORD.ENGAGEMENT}`}
+
+                path={`/${ROUTES.USER_PROFILE}/${match.params.userId}/${KEYWORD.ENGAGEMENT}`}
                 render={() => <ProfileCardsContainer
                   userProfileData={userProfileData}
                   getUserDataProfile={getUserDataProfile}
@@ -118,7 +122,8 @@ const UserProfile = (props) => {
                 />}
               />
               <Route
-                exact path={`/${ROUTES.USER_PROFILE}/${parseRouteString(location.pathname)}?tab=${KEYWORD.EVENTS}`}
+
+                path={`/${ROUTES.USER_PROFILE}/${match.params.userId}/${KEYWORD.EVENTS}`}
                 render={() => <ProfileCardsContainer
                   userProfileData={userProfileData}
                   getUserDataProfile={getUserDataProfile}

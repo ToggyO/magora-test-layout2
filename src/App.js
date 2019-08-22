@@ -37,7 +37,7 @@ function App(props) {
           <Route path={`/${ROUTES.PROJECT_SEARCH}`} component={FindProjects}/>
           <Route path={`/${ROUTES.GRANTS_SEARCH}`} component={GrantsPage}/>
           <Route path={`/${ROUTES.EVENTS_SEARCH}`} component={EventsPage}/>
-          <Route path={`/${ROUTES.USER_PROFILE}`} component={UserProfile}/>
+          <Route path={`/${ROUTES.USER_PROFILE}/:userId`} component={UserProfile}/>
           {/*<Route path='/profile/:userId' component={UserProfile}/>*/}
         </Switch>
       </>
