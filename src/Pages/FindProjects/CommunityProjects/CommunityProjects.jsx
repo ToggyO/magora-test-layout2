@@ -23,7 +23,7 @@ class CommunityProjects extends React.Component {
     if (this.props.location.search !== prevProps.location.search) {
       window.scrollTo({
         left: 0,
-        top: 550,
+        top: 0,
         behavior: 'smooth'
       });
     }

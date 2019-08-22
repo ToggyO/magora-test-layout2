@@ -91,7 +91,9 @@ export const parseQueryString = (location) => {
 
 export const parseRouteString = (location) => {
   let routeString = location.slice(1).split('/');
-  return routeString[1];
+  for (let i = 0; i < routeString.length; i++) {
+    return routeString[routeString.length - 1];
+  }
 };
 
 

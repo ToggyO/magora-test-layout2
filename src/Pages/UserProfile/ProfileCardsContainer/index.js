@@ -1,8 +1,6 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import Preloader from "../../../Components/Preloader/Preloader";
 import {
-  parseQueryString,
-  parseRouteString,
   renderingProjects
 } from "../../../Libs/additionalSortingFunctions";
 import ProfilePagination from "../../../Components/Pagination/ProfilePagination";
@@ -12,23 +10,9 @@ const ProfileCardsContainer = (props) => {
 
   const {
     userProfileData,
-    getUserDataProfile,
     location,
-    projectType
+    projectType,
   } = props;
-
-
-
-
-  useEffect(() => {
-    getUserDataProfile(
-      parseRouteString(location.pathname),
-      projectType,
-      userProfileData[projectType],
-      parseQueryString(location.search)
-    );
-    window.scrollTo(0, 0);
-  },[location.search, location.pathname]);
 
 
   return  <>

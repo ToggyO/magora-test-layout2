@@ -44,11 +44,11 @@ export const stateProfileCleaning = () => {
 };
 
 
-export const getUserDataProfile = (userId, projectType, data, queries) => {
+export const getUserDataProfile = (userId, path, projectType, pathname, queries) => {
   return dispatch => {
     dispatch(requestUserById());
 
-    let URL = `${REQUEST_ULR.CORS_BASE_URL}/${REQUEST_ULR.USERS}/${userId}${projectType && queries.tab !== KEYWORD.ABOUT ? `/${queries.tab || projectType}?PageSize=9&Page=${queries.page || 1}` : ''}`;
+    let URL = `${REQUEST_ULR.CORS_BASE_URL}/${path}/${userId}${projectType && projectType !== KEYWORD.ABOUT ? `/${projectType}?PageSize=9&Page=${pathname === projectType ? queries.page || 1 : 1}` : ''}`;
 
     return axios
       .get( URL,{

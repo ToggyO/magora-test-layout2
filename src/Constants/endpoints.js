@@ -3,4 +3,5 @@ export const REQUEST_ULR = {
   CORS_BASE_URL: 'http://localhost:3000/api/v0.7',
   AUTH_TOKEN: 'auth/token',
   USERS: 'users',
+  PROFILES: 'profiles',
 };

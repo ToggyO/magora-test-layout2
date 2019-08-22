@@ -4,10 +4,6 @@ import '../GrantCard/GrantCard.sass';
 import Icon from "../../Icons/Icons";
 
 
-const placeholderImage = 'img/placeholder-image.jpg';
-const placeholderAvatar = 'img/avatar-placeholder.png';
-
-
 const GrantCard = (props) => {
 
   const { grant, publisher, resource, location } = props.item;
@@ -21,10 +17,27 @@ const GrantCard = (props) => {
         {/*    <img className="pl-7" src={image.status} alt=""/>*/}
         {/*  </div>*/}
         {/*</div>*/}
-        <img className="projectCard-image" onError={(e) => e.target.src = placeholderImage} src={resource !== null ? resource.formatUrls.small : placeholderImage } alt="loc"/>
+        { resource !== null
+          ? <img
+            className="projectCard-image"
+            // onError={(e) => e.target.src = placeholderImage}
+            src={resource.formatUrls.small}
+            alt="loc"
+          />
+          : <Icon iconName='placeholder_image' />
+        }
         <div className="projectCard-avatar pCard-adapt__avatar d-f jc-c">
           <span className="projectCard-avatar__container">
-            <img src={publisher.avatar !== null ? publisher.avatar.originalUrl : placeholderAvatar } alt="small"/>
+
+            { publisher.avatar !== null
+              ?  <img
+                // onError={(e) => e.target.src = placeholderAvatar}
+                src={publisher.avatar.originalUrl}
+                alt="small"
+              />
+              : <Icon iconName='avatar_placeholder' />
+            }
+
           </span>
         </div>
         <div className="projectCard-info mb-2 pCard-adapt__info">

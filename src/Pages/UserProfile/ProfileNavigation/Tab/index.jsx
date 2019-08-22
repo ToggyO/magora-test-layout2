@@ -16,27 +16,24 @@ const Tab = (props) => {
     userId
   } = props;
 
-  const onTabChange = (tab) => {
-    toggleActive(keyNumber);
-    // const queries = parse(location.search, { ignoreQueryPrefix: true }) || {};
-    // queries.tab = tab;
-    // history.push(`${location.pathname}?${stringify(queries)}`);
+  const onTabChange = (value) => {
+    toggleActive(value);
   };
 
-  return <li
-    className={`navigation-list__item ${active === keyNumber ? 'activeTab' : ''}`}
-    onClick={() => onTabChange(value)}
-  >
-    <NavLink
-      to={`/${ROUTES.USER_PROFILE}/${userId}${value !== 'about' ? `/${value}` : ''}`}
+  return <NavLink
+      to={`/${ROUTES.USER_PROFILE}/${userId}/${value}`}
+      className={`navigation-list__item ${active === value ? 'activeTab' : ''}`}
+      onClick={() => onTabChange(value)}
+    >
+    <div
       className='navigation-list__link'
     >
       <div className='navigation-list__article'>
         <span className='h2-black fs-18 lh-22 ls-4 fw-600'>{title}</span>
       </div>
       {!(keyNumber === 0) ? span : null}
-    </NavLink>
-  </li>
+    </div>
+  </NavLink>
 };
 
 export default Tab;

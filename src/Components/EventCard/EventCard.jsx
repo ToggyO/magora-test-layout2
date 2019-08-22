@@ -3,8 +3,6 @@ import '../ProjectCard/ProjectCard.sass';
 import './EventCard.sass';
 import Icon from "../../Icons/Icons";
 
-const placeholderImage = 'img/placeholder-image.jpg';
-
 
 const EventCard = (props) => {
 

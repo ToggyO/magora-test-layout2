@@ -15,16 +15,16 @@ class EventProjects extends React.Component {
       left: 0,
       top: 0,
       behavior: 'smooth'
-    })
+    });
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.location.search !== prevProps.location.search) {
       window.scrollTo({
         left: 0,
-        top: 550,
+        top: 0,
         behavior: 'smooth'
-      })
+      });
     }
   }
 

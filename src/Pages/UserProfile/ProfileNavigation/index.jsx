@@ -2,16 +2,19 @@ import React, {useState} from 'react';
 import './style.sass';
 import Tab from "./Tab";
 import {tabTitles} from './Tab/tabsInfo';
+import {parseRouteString} from "../../../Libs/additionalSortingFunctions";
 
 
 const ProfileNavigation = (props) => {
 
-  const { userProfileData, userId } = props;
+  const { userProfileData, userId, location } = props;
 
-  const [ active, toggleActive ] = useState(0);
+  const queries = parseRouteString(location.pathname) || {};
+
+  const [ active, toggleActive ] = useState(queries);
 
   return <div className='profile-navigation wrapper'>
-      <ul className='profile-navigation__list navigation-list d-f jc-c'>
+      <div className='profile-navigation__list navigation-list d-f jc-c'>
 
         {tabTitles.map((item, i) => <Tab
             key={i}
@@ -30,7 +33,7 @@ const ProfileNavigation = (props) => {
           />
         )}
 
-      </ul>
+      </div>
   </div>
 };
 

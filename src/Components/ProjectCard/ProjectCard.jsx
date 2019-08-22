@@ -3,9 +3,7 @@ import './ProjectCard.sass';
 import {NavLink} from "react-router-dom";
 import {ROUTES} from "../../Constants/";
 import Icon from '../../Icons/Icons';
-
-const placeholderImage = 'img/placeholder-image.jpg';
-const placeholderAvatar = 'img/avatar-placeholder.png';
+import {KEYWORD} from '../../Constants';
 
 
 const ProjectCard = (props) => {
@@ -63,7 +61,7 @@ const ProjectCard = (props) => {
             </h6>
           </div>
           <NavLink
-            to={`/${ROUTES.USER_PROFILE}/${publisher.id}`}
+            to={`/${ROUTES.USER_PROFILE}/${publisher.id}/${KEYWORD.ABOUT}`}
             className="projectCard-info__owner info-owner fs-14 lh-22 ls-4 fw-500 blueFont mt-1 t-align-c"
           >
             Project by {publisher.name}

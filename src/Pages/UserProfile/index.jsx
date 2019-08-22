@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import './style.sass';
 import ProfileHeader from './ProfileHeader';
 import ProfileNavigation from './ProfileNavigation';
@@ -11,7 +11,7 @@ import {connect} from 'react-redux';
 import ProfileHeaderEmpty from './ProfileHeader/Empty';
 import ProfileNavigationEmpty from './ProfileNavigation/Empty';
 import {
-  parseQueryString,
+  parseQueryString, parseRouteString,
 } from "../../Libs/additionalSortingFunctions";
 import ErrorWrapper from "../../Components/ErrorWrapper";
 import Preloader from "../../Components/Preloader/Preloader";
@@ -19,6 +19,7 @@ import {KEYWORD, ROUTES} from '../../Constants';
 import ProfileCardsContainer from "./ProfileCardsContainer";
 import {Route, Switch} from "react-router-dom";
 import AboutProfile from "./AboutProfile";
+import {REQUEST_ULR} from '../../Constants';
 
 
 
@@ -34,13 +35,14 @@ const UserProfile = (props) => {
 
   const [initialize, setInitialize] = useState(false);
 
+  const isUpdated = useRef();
 
   useEffect(() => {
-    let queries = match.params.userId;
-    getUserDataProfile(queries, null, null, null);
-    getUserDataProfile(queries, KEYWORD.IDEAS, userProfileData.ideas, parseQueryString(location.search));
-    getUserDataProfile(queries, KEYWORD.ENGAGEMENT, userProfileData.engagements, parseQueryString(location.search));
-    getUserDataProfile(queries, KEYWORD.EVENTS, userProfileData.events, parseQueryString(location.search));
+    let userId = match.params.userId;
+    getUserDataProfile(userId, REQUEST_ULR.PROFILES,  null, null, null);
+    getUserDataProfile(userId, REQUEST_ULR.USERS, KEYWORD.IDEAS, parseRouteString(location.pathname), parseQueryString(location.search),);
+    getUserDataProfile(userId, REQUEST_ULR.USERS, KEYWORD.ENGAGEMENT, parseRouteString(location.pathname), parseQueryString(location.search));
+    getUserDataProfile(userId, REQUEST_ULR.USERS, KEYWORD.EVENTS, parseRouteString(location.pathname), parseQueryString(location.search));
     window.scrollTo(0, 0);
 
     return () => {
@@ -60,6 +62,44 @@ const UserProfile = (props) => {
     userProfileData.engagementsDataIs,
     userProfileData.eventsDataIs
   ]);
+
+
+  // const [currentTab, changeCurrentTab] = useState(match.params.tab);
+  // useEffect(() => {
+  //   changeCurrentTab(match.params.tab);
+  // },[match.params.tab]);
+  //
+  // useEffect(() => {
+  //   if (currentTab !== match.params.tab) return;
+  //   getUserDataProfile(
+  //     match.params.userId,
+  //     match.params.tab,
+  //     parseQueryString(location.search)
+  //   );
+  //   window.scrollTo({
+  //     left: 0,
+  //     top: 0,
+  //     behavior: 'smooth'
+  //   });
+  // },[location.search]);
+
+  useEffect(() => {
+   getUserDataProfile(
+      match.params.userId,
+      REQUEST_ULR.USERS,
+      match.params.tab,
+      parseRouteString(location.pathname),
+      parseQueryString(location.search)
+    );
+
+    // isUpdated.current = changePage;
+
+    window.scrollTo({
+      left: 0,
+      top: 0,
+      behavior: 'smooth'
+    });
+  },[location.search]);
 
 
   if(!initialize) {
@@ -98,8 +138,8 @@ const UserProfile = (props) => {
             <Switch>
               <Route
                 exact
-                path={`/${ROUTES.USER_PROFILE}/${match.params.userId}`}
-                component={AboutProfile}
+                path={`/${ROUTES.USER_PROFILE}/${match.params.userId}/${KEYWORD.ABOUT}`}
+                render={() => <AboutProfile userInfo={userProfileData.userInfo.user}/>}
               />
               <Route
 
@@ -109,6 +149,7 @@ const UserProfile = (props) => {
                   getUserDataProfile={getUserDataProfile}
                   location={location}
                   projectType={KEYWORD.IDEAS}
+                  userId={match.params.userId}
                 />}
               />
               <Route
@@ -119,6 +160,7 @@ const UserProfile = (props) => {
                   getUserDataProfile={getUserDataProfile}
                   location={location}
                   projectType={KEYWORD.ENGAGEMENT}
+                  userId={match.params.userId}
                 />}
               />
               <Route
@@ -129,6 +171,7 @@ const UserProfile = (props) => {
                   getUserDataProfile={getUserDataProfile}
                   location={location}
                   projectType={KEYWORD.EVENTS}
+                  userId={match.params.userId}
                 />}
               />
             </Switch>
