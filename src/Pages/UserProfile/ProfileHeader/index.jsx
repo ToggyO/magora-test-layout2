@@ -43,13 +43,11 @@ const ProfileHeader = (props) => {
           </div>
           <div className='profile-header__name h2-black fs-24 lh-22 ls-5 fw-600'>{`${firstName} ${lastName}`}</div>
           <div className='profile-header__location h6-skyFont fs-16 lh-22 ls-5 fw-500'>
-            <div>
-              <span className='mr-3'>
-              <Icon
-                iconName='location_icon'
-                className='mr-1'
-              />
-            </span>
+            <Icon
+              iconName='location_icon'
+              className='location_icon mr-3'
+            />
+            <div className='profile-header__location-text'>
               {address}
             </div>
           </div>
