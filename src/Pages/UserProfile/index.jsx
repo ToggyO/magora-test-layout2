@@ -35,7 +35,7 @@ const UserProfile = (props) => {
 
   const [initialize, setInitialize] = useState(false);
 
-  const isUpdated = useRef();
+  const flag = useRef(false);
 
   useEffect(() => {
     let userId = match.params.userId;
@@ -44,6 +44,8 @@ const UserProfile = (props) => {
     getUserDataProfile(userId, REQUEST_ULR.USERS, KEYWORD.ENGAGEMENT, parseRouteString(location.pathname), parseQueryString(location.search));
     getUserDataProfile(userId, REQUEST_ULR.USERS, KEYWORD.EVENTS, parseRouteString(location.pathname), parseQueryString(location.search));
     window.scrollTo(0, 0);
+    flag.current = true;
+    console.log(flag);
 
     return () => {
       stateProfileCleaning();
@@ -64,26 +66,16 @@ const UserProfile = (props) => {
   ]);
 
 
-  // const [currentTab, changeCurrentTab] = useState(match.params.tab);
-  // useEffect(() => {
-  //   changeCurrentTab(match.params.tab);
-  // },[match.params.tab]);
-  //
-  // useEffect(() => {
-  //   if (currentTab !== match.params.tab) return;
-  //   getUserDataProfile(
-  //     match.params.userId,
-  //     match.params.tab,
-  //     parseQueryString(location.search)
-  //   );
-  //   window.scrollTo({
-  //     left: 0,
-  //     top: 0,
-  //     behavior: 'smooth'
-  //   });
-  // },[location.search]);
+  const [currentTab, changeCurrentTab] = useState(match.params.tab);
+  useEffect(() => {
+    changeCurrentTab(match.params.tab);
+  },[match.params.tab]);
+
 
   useEffect(() => {
+    console.log(flag);
+   if(flag) return;
+   if (currentTab !== match.params.tab) return;
    getUserDataProfile(
       match.params.userId,
       REQUEST_ULR.USERS,
@@ -92,14 +84,26 @@ const UserProfile = (props) => {
       parseQueryString(location.search)
     );
 
-    // isUpdated.current = changePage;
-
     window.scrollTo({
       left: 0,
       top: 0,
-      behavior: 'smooth'
+      // behavior: 'smooth'
     });
-  },[location.search]);
+  },[location.search, flag]);
+
+
+  useEffect(() => {
+    flag.current = false;
+    console.log(flag);
+  },[]);
+
+
+  const [tabQuery, pushTabQuery] = useState({
+    about: '',
+    ideas: '',
+    engagements: '',
+    events: ''
+  });
 
 
   if(!initialize) {
@@ -133,6 +137,8 @@ const UserProfile = (props) => {
             userProfileData={userProfileData}
             location={location}
             userId={match.params.userId}
+            tabQuery={tabQuery}
+            pushTabQuery={pushTabQuery}
           />
           <div className='user-profile__tabs wrapper'>
             <Switch>
@@ -190,3 +196,35 @@ let mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserProfile);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const [currentTab, changeCurrentTab] = useState(match.params.tab);
+// useEffect(() => {
+//   changeCurrentTab(match.params.tab);
+// },[match.params.tab]);
+//
+// useEffect(() => {
+//   if (currentTab !== match.params.tab) return;
+//   getUserDataProfile(
+//     match.params.userId,
+//     match.params.tab,
+//     parseQueryString(location.search)
+//   );
+//   window.scrollTo({
+//     left: 0,
+//     top: 0,
+//     behavior: 'smooth'
+//   });
+// },[location.search]);

@@ -97,7 +97,6 @@ export const parseRouteString = (location) => {
 };
 
 
-
 //Projects Not Found Style
 const style = {
   display: 'flex',

@@ -21,6 +21,7 @@ const AboutProfile = (props) => {
     youTubeLink,
   } = props.userInfo;
 
+
   return <div className='about-profile wrapper'>
     <div className='about-profile__container wrapper-container pt-15 pb-15'>
 

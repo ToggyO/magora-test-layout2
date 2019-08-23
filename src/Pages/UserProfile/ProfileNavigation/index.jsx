@@ -7,11 +7,12 @@ import {parseRouteString} from "../../../Libs/additionalSortingFunctions";
 
 const ProfileNavigation = (props) => {
 
-  const { userProfileData, userId, location } = props;
+  const { userProfileData, userId, location, tabQuery , pushTabQuery } = props;
 
   const queries = parseRouteString(location.pathname) || {};
 
   const [ active, toggleActive ] = useState(queries);
+
 
   return <div className='profile-navigation wrapper'>
       <div className='profile-navigation__list navigation-list d-f jc-c'>
@@ -25,6 +26,9 @@ const ProfileNavigation = (props) => {
             toggleActive={toggleActive}
             tabTitles={tabTitles}
             userId={userId}
+            tabQuery={tabQuery}
+            pushTabQuery={pushTabQuery}
+            location={location}
             span={<div className='navigation-list__count'>
               <span className='h2-black fs-12 lh-3 fw-500'>
                 {item.value !== 'about' ? userProfileData[item.value].total : 0 }

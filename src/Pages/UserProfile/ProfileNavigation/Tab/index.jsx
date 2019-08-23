@@ -2,6 +2,7 @@ import React from 'react';
 import './style.sass';
 import {NavLink} from "react-router-dom";
 import {ROUTES} from "../../../../Constants";
+import {parseRouteString} from "../../../../Libs/additionalSortingFunctions";
 
 
 const Tab = (props) => {
@@ -13,15 +14,27 @@ const Tab = (props) => {
     toggleActive,
     active,
     span,
-    userId
+    userId,
+    tabQuery,
+    pushTabQuery,
+    location
   } = props;
 
-  const onTabChange = (value) => {
-    toggleActive(value);
+
+  const setLocationSearchToState = (location, key) => {
+    pushTabQuery( tabQuery => ({...tabQuery, [key]: location}))
   };
 
+
+  const onTabChange = (value,) => {
+    toggleActive(value);
+    setLocationSearchToState(location.search, parseRouteString(location.pathname));
+    console.log(tabQuery);
+  };
+
+
   return <NavLink
-      to={`/${ROUTES.USER_PROFILE}/${userId}/${value}`}
+      to={`/${ROUTES.USER_PROFILE}/${userId}/${value}${tabQuery && tabQuery[value]}`}
       className={`navigation-list__item ${active === value ? 'activeTab' : ''}`}
       onClick={() => onTabChange(value)}
     >
@@ -35,5 +48,6 @@ const Tab = (props) => {
     </div>
   </NavLink>
 };
+
 
 export default Tab;
