@@ -35,7 +35,6 @@ const UserProfile = (props) => {
 
   const [initialize, setInitialize] = useState(false);
 
-  const flag = useRef(false);
 
   useEffect(() => {
     let userId = match.params.userId;
@@ -44,8 +43,7 @@ const UserProfile = (props) => {
     getUserDataProfile(userId, REQUEST_ULR.USERS, KEYWORD.ENGAGEMENT, parseRouteString(location.pathname), parseQueryString(location.search));
     getUserDataProfile(userId, REQUEST_ULR.USERS, KEYWORD.EVENTS, parseRouteString(location.pathname), parseQueryString(location.search));
     window.scrollTo(0, 0);
-    flag.current = true;
-    console.log(flag);
+
 
     return () => {
       stateProfileCleaning();
@@ -72,9 +70,8 @@ const UserProfile = (props) => {
   },[match.params.tab]);
 
 
+
   useEffect(() => {
-    console.log(flag);
-   if(flag) return;
    if (currentTab !== match.params.tab) return;
    getUserDataProfile(
       match.params.userId,
@@ -89,13 +86,7 @@ const UserProfile = (props) => {
       top: 0,
       // behavior: 'smooth'
     });
-  },[location.search, flag]);
-
-
-  useEffect(() => {
-    flag.current = false;
-    console.log(flag);
-  },[]);
+  },[location.search]);
 
 
   const [tabQuery, pushTabQuery] = useState({
