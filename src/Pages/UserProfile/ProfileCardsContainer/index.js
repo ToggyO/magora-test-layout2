@@ -22,8 +22,7 @@ const ProfileCardsContainer = (props) => {
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
-                  position: 'absolute',
-                  height: '100vh'
+                  position: 'fixed',
                 }}
               />
             }
