@@ -18,15 +18,14 @@ const ProfileCardsContainer = (props) => {
   return  <>
             {userProfileData.loading &&
               <Preloader style={{
-                  // paddingTop: 30,
+                  paddingTop: 100,
                   display: 'flex',
                   justifyContent: 'center',
-                  alignItems: 'center',
-                  position: 'fixed',
                 }}
               />
             }
            <>
+
               <div className="user-profile__tabs-content wrapper-container pl-31 pr-31 pt-13 pb-13 d-f fw-w jc-c">
                     {renderingProjects(userProfileData[projectType].items, projectType)}
               </div>

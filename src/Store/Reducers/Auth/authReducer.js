@@ -5,6 +5,7 @@ let InitialState = {
   authLoader: false,
   regLoader: false,
   isAuth: false,
+  me: {}
 };
 
 

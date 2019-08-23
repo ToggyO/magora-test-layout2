@@ -3,6 +3,7 @@ import './style.sass';
 import {NavLink} from "react-router-dom";
 import Icon from "../../../Icons/Icons";
 import moment from 'moment';
+import {getFromLocalState} from "../../../Libs/localStorage";
 
 
 const ProfileHeader = (props) => {
@@ -11,6 +12,8 @@ const ProfileHeader = (props) => {
     user,
     resource,
   } = props.userInfo;
+
+  const { authData } = props;
 
   const registrationDate = moment(user.createDate).format('MMM YYYY').toString();
 
@@ -25,7 +28,7 @@ const ProfileHeader = (props) => {
               src={resource.originalUrl}
               alt="small"
             />
-            : <Icon iconName='avatar_placeholder' />
+            : <Icon iconName='avatar' className='avatar_profile' />
           }
         </div>
         <div className='profile-header__info ml-6 d-f fd-c jc-sb'>
@@ -47,17 +50,20 @@ const ProfileHeader = (props) => {
               {user.address}
             </div>
           </div>
-          <NavLink
-            to='./#'
-            className='profile-header__edit h2-black fs-16 lh-22 ls-5 fw-500'
-          >
-            Edit profile
-          </NavLink>
+          {authData.isAuth && user.id === getFromLocalState('USER_INFO').user.id &&
+            <NavLink
+              to='./#'
+              className='profile-header__edit h2-black fs-16 lh-22 ls-5 fw-500'
+            >
+              Edit profile
+            </NavLink>
+          }
         </div>
       </div>
     </div>
   </div>
 };
+
 
 
 export default ProfileHeader;

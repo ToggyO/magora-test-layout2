@@ -29,7 +29,6 @@ const Tab = (props) => {
   const onTabChange = (value,) => {
     toggleActive(value);
     setLocationSearchToState(location.search, parseRouteString(location.pathname));
-    console.log(tabQuery);
   };
 
 

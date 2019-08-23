@@ -16,6 +16,8 @@ import {isAuthInit} from "./Store/Actions/Auth/actionAuth";
 import AuthRoute from "./Components/Routes/AuthRoute";
 import {ROUTES} from './Constants/';
 import {getFromLocalState} from "./Libs/localStorage";
+import { hot } from 'react-hot-loader';
+
 
 
 function App(props) {
@@ -38,7 +40,6 @@ function App(props) {
           <Route path={`/${ROUTES.GRANTS_SEARCH}`} component={GrantsPage}/>
           <Route path={`/${ROUTES.EVENTS_SEARCH}`} component={EventsPage}/>
           <Route path={`/${ROUTES.USER_PROFILE}/:userId/:tab`} component={UserProfile}/>
-          {/*<Route path='/profile/:userId' component={UserProfile}/>*/}
         </Switch>
       </>
       <Footer />
@@ -46,10 +47,12 @@ function App(props) {
   );
 }
 
+
+
 const mapDispatchToProps = (dispatch) => {
   return {
     isAuthInit: bindActionCreators(isAuthInit, dispatch),
   }
 };
 
-export default connect(null, mapDispatchToProps)(App);
+export default hot(module)(connect(null, mapDispatchToProps)(App));

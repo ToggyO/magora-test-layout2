@@ -81,7 +81,7 @@ export const authRequest = (values) => {
       }
     };
 
-    return axios.post(`${REQUEST_ULR.BASE_URL}/${REQUEST_ULR.AUTH_TOKEN}`, requestBody,
+    return axios.post(`${REQUEST_ULR.CORS_BASE_URL}/${REQUEST_ULR.AUTH_TOKEN}`, requestBody,
     )
       .then(res => {
         if (res.data.code === 'success'){
@@ -97,7 +97,7 @@ export const authRequest = (values) => {
       })
       .catch( error => {
         dispatch(loginFailure());
-
+        debugger;
         const errorCodes = {
           'sec.invalid_auth_data': `User doesn't exist or password is wrong`,
           'sec.login_should_be_confirmed': 'Please confirm your account',
@@ -156,6 +156,7 @@ export const regRequest = (values) => {
         }
       })
       .catch( error => {
+        // debugger;
         if (!error) {
           return null;
         }

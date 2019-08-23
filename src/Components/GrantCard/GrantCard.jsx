@@ -35,7 +35,7 @@ const GrantCard = (props) => {
                 src={publisher.avatar.originalUrl}
                 alt="small"
               />
-              : <Icon iconName='avatar_placeholder' />
+              : <Icon iconName='avatar' className='avatar_card'/>
             }
 
           </span>

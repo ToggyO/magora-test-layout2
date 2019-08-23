@@ -30,7 +30,8 @@ const UserProfile = (props) => {
     getUserDataProfile,
     location,
     stateProfileCleaning,
-    match
+    match,
+    authData
   } = props;
 
   const [initialize, setInitialize] = useState(false);
@@ -123,6 +124,7 @@ const UserProfile = (props) => {
   return <ErrorWrapper error={userProfileData.error}>
           <ProfileHeader
             userInfo={userProfileData.userInfo}
+            authData={authData}
           />
           <ProfileNavigation
             userProfileData={userProfileData}
@@ -178,7 +180,7 @@ const UserProfile = (props) => {
 };
 
 
-let mapStateToProps = ({ userProfileData, }) => ({ userProfileData, });
+let mapStateToProps = ({ userProfileData, authData }) => ({ userProfileData, authData });
 let mapDispatchToProps = (dispatch) => {
   return {
     getUserDataProfile: bindActionCreators(getUserDataProfile, dispatch),
