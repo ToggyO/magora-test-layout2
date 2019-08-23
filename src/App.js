@@ -21,10 +21,13 @@ import { hot } from 'react-hot-loader';
 
 
 function App(props) {
-  
+
   useEffect(() => {
-    if(getFromLocalState('TOKEN_INFO')) {
-      props.isAuthInit();
+    let tokens = getFromLocalState('TOKEN_INFO');
+    let user = getFromLocalState('USER_INFO');
+    console.log(tokens, user);
+    if(tokens && user) {
+      props.isAuthInit(tokens, user);
     }
   },[]);
 
@@ -47,7 +50,7 @@ function App(props) {
   );
 }
 
-
+const mapStateToProps = ({authData}) => ({authData});
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -55,4 +58,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 };
 
-export default hot(module)(connect(null, mapDispatchToProps)(App));
+export default hot(module)(connect(mapStateToProps, mapDispatchToProps)(App));

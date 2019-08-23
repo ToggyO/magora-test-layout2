@@ -24,9 +24,13 @@ const loginRequest = () => {
 };
 
 
-const loginSuccess = () => {
+const loginSuccess = (tokens, user) => {
   return {
     type: AUTH.LOGIN_SUCCESS,
+    payload: {
+      tokens,
+      user
+    }
   }
 };
 
@@ -38,9 +42,13 @@ const loginFailure = () => {
 };
 
 
-export const isAuthInit = () => {
+export const isAuthInit = (tokens, user) => {
   return {
-    type: AUTH.IS_AUTH_INIT
+    type: AUTH.IS_AUTH_INIT,
+    payload: {
+      tokens,
+      user
+    }
   }
 };
 
@@ -85,7 +93,6 @@ export const authRequest = (values) => {
     )
       .then(res => {
         if (res.data.code === 'success'){
-          dispatch(loginSuccess());
           dispatch(modalClose());
 
           const { data = {} } = res.data;
@@ -93,6 +100,7 @@ export const authRequest = (values) => {
 
           writeToLocalState('TOKEN_INFO', tokensInfo);
           writeToLocalState('USER_INFO', authInfo.profile);
+          dispatch(loginSuccess(tokensInfo, authInfo.profile));
         }
       })
       .catch( error => {

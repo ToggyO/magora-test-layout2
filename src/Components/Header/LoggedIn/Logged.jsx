@@ -1,13 +1,17 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './Logged.sass'
-import avatar from '../../../img/avatar.jpg';
 import {bindActionCreators} from "redux";
 import {logOut} from "../../../Store/Actions/Auth/actionAuth";
 import {connect} from "react-redux";
 import {clearLocalState} from "../../../Libs/localStorage";
+import Icon from "../../../Icons/Icons";
+import Dropdown from "../../Dropdown";
+import {profileOptionsDropdown} from "./list";
 
 
 const LoggedIn = (props) => {
+
+  const { authData } = props;
 
   const isAuthFalse = () => {
     return () => {
@@ -17,10 +21,31 @@ const LoggedIn = (props) => {
     };
   };
 
+
+  const [ opened, toggleOpen ] = useState(false);
+
+
   return (
     <div className="header-changeGroup d-f">
-      <div className="header-changeGroup__items">
-        <img className="changeGroup__btn sh-avatar" src={avatar} alt="user"/>
+      <div className="header-changeGroup__items" onClick={() => toggleOpen(!opened)}>
+        {authData.me.resource !== null
+          ?  <img
+              className="changeGroup__btn sh-avatar"
+              // onError={(e) => e.target.src = placeholderAvatar}
+              src={authData.me.resource.originalUrl}
+              alt="small"
+             />
+          : <Icon
+              iconName='avatar'
+              className='avatar_profile changeGroup__btn sh-avatar'
+            />
+        }
+        <div className='header-changeGroup__dropdown'>
+          <Dropdown
+            list={profileOptionsDropdown}
+            opened={opened}
+          />
+        </div>
       </div>
       <div>
         <button
@@ -34,6 +59,7 @@ const LoggedIn = (props) => {
   );
 };
 
+const mapStateToProps = ({authData}) => ({authData});
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -41,4 +67,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 };
 
-export default connect(null, mapDispatchToProps)(LoggedIn);
+export default connect(mapStateToProps, mapDispatchToProps)(LoggedIn);

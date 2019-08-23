@@ -40,7 +40,7 @@ class Header extends React.Component {
                 </div>
               </div>
 
-              { this.props.authData.isAuth ? <LoggedIn /> : <LoggedOut /> }
+              { !this.props.authData.isAuth ? <LoggedOut /> : <LoggedIn /> }
             </div>
           </div>
         </div>
