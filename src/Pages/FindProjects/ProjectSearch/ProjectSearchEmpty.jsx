@@ -51,7 +51,7 @@ const ProjectSearchEmpty = (props) => {
           >
 
           <div className={`filterBlock__headlines prS-adapt__headlines h2-white fs-55 lh-75 fw-600 pb-9 ${ opened ? 'isOpen' : null }-headlines`}>
-            !!!!<span className='h2-white fs-30 lh-41 fw-600 ml-4'>that matter to you</span>
+            Find Projects<span className='h2-white fs-30 lh-41 fw-600 ml-4'>that matter to you</span>
           </div>
           <div className={`filterBlock__search k prS-adapt__search pt-7 pb-7 ${ opened ? 'isOpen' : null }-search`}>
             <div

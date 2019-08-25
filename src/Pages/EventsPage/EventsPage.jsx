@@ -21,6 +21,7 @@ import EventSearchEmpty from "./EventSearch/EventSearchEmpty";
 import EventProjectsEmpty from "./EventProjects/EventProjectsEmpty";
 import store from "../../Store";
 import PropTypes from 'prop-types';
+import {KEYWORD} from '../../Constants';
 
 
 const EventsPage = (props) => {
@@ -46,13 +47,11 @@ const EventsPage = (props) => {
     getBenefitsOptions();
     mapQueryParamsToState(parseQueryString(location.search), sortValues);
     const currentState = store.getState();
-    getDataFromServer(currentState.fetchedData.history, parseQueryString(location.search), 'events');
-    console.log('mount');
+    getDataFromServer(currentState.fetchedData.history, parseQueryString(location.search), KEYWORD.EVENTS);
 
     return () => {
       stateItemsCleaning();
       stateOptionsCleaning();
-      console.log('unmount');
     };
   },[location.search]);
 
@@ -134,4 +133,4 @@ EventsPage.propTypes = {
   getDataFromServer: PropTypes.func,
   datePick: PropTypes.func,
   stateOptionsCleaning: PropTypes.func,
-}
+};

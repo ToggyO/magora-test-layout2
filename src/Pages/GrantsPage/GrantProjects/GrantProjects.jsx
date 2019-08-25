@@ -1,9 +1,10 @@
 import React from 'react';
 import './GrantProjects.sass';
-import {renderingGrants} from "../../../Libs/additionalSortingFunctions";
+import {renderingProjects} from "../../../Libs/additionalSortingFunctions";
 import Preloader from "../../../Components/Preloader/Preloader";
 import Pagination from "../../../Components/Pagination/Pagination";
 import PropTypes from 'prop-types';
+import {KEYWORD} from "../../../Constants";
 
 
 class GrantProjects extends React.Component {
@@ -13,7 +14,7 @@ class GrantProjects extends React.Component {
       left: 0,
       top: 0,
       behavior: 'smooth'
-    })
+    });
 
   }
 
@@ -21,9 +22,9 @@ class GrantProjects extends React.Component {
     if (this.props.location.search !== prevProps.location.search) {
       window.scrollTo({
         left: 0,
-        top: 550,
+        top: 0,
         behavior: 'smooth'
-      })
+      });
     }
     console.log('update');
   }
@@ -46,7 +47,7 @@ class GrantProjects extends React.Component {
                     justifyContent: 'center'
                   }}
                 />
-              : renderingGrants(grantsData.items)
+              : renderingProjects(grantsData.items, KEYWORD.GRANTS)
           }
         </div>
         <div className='pt-5 pb-5 pl-5 pr-5 d-f jc-c' style={{width: '100%'}}>

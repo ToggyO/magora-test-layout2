@@ -5,6 +5,8 @@ let InitialState = {
   authLoader: false,
   regLoader: false,
   isAuth: false,
+  me: {},
+  tokens: {}
 };
 
 
@@ -19,7 +21,9 @@ const authReducer = (state = InitialState, action) => {
       return {
         ...state,
         authLoader: false,
-        isAuth: true
+        isAuth: true,
+        me: action.payload.user,
+        tokens: action.payload.tokens
       };
     case AUTH.LOGIN_FAILURE:
       return {
@@ -29,7 +33,9 @@ const authReducer = (state = InitialState, action) => {
     case AUTH.IS_AUTH_INIT:
       return {
         ...state,
-        isAuth: true
+        isAuth: true,
+        me: action.payload.user,
+        tokens: action.payload.tokens
       };
     case AUTH.LOG_OUT:
       return {

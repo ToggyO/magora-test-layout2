@@ -39,9 +39,12 @@
 
     &__container
       border: 1px solid $skyFont
-      max-width: 87px
-      max-height: 87px
+      width: 87px
+      height: 87px
       background-color: #fff
+      display: flex
+      justify-content: center
+      align-items: center
 
       img
         border: 4px solid #fff
@@ -79,14 +82,14 @@
         -o-line-clamp: 1
 
     &__owner
-      background: none
-      width: 100%
+      display: block
       padding: 0 20px
 
     &__description
       height: 70px
       overflow: hidden
       text-overflow: ellipsis
+      word-wrap: break-word
       display: -webkit-box
       -webkit-box-orient: vertical
       -moz-box-orient: vertical

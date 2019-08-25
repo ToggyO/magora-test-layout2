@@ -1,9 +1,7 @@
 import React from 'react';
 import '../ProjectCard/ProjectCard.sass';
 import './EventCard.sass';
-
-const path = 'img/community';
-const placeholderImage = 'img/placeholder-image.jpg';
+import Icon from "../../Icons/Icons";
 
 
 const EventCard = (props) => {
@@ -19,13 +17,31 @@ const EventCard = (props) => {
         {/*    <img className="pl-7" src={image.status} alt=""/>*/}
         {/*  </div>*/}
         {/*</div>*/}
-        <img className="projectCard-image" onError={(e) => e.target.src = placeholderImage} src={resource.formatUrls.small } alt="loc"/>
+        {/*<img*/}
+        {/*  className="projectCard-image"*/}
+        {/*  onError={(e) => e.target.src = placeholderImage}*/}
+        {/*  src={resource.formatUrls.small } alt="loc"*/}
+        {/*/>*/}
+        { resource !== null
+          ? <img
+            className="projectCard-image"
+            // onError={(e) => e.target.src = placeholderImage}
+            src={resource.formatUrls.small}
+            alt="loc"
+          />
+          : <Icon iconName='placeholder_image' />
+        }
         <div className="projectCard-info mb-2 pCard-adapt__info">
           <h3 className="projectCard-info__headline info-headline h2-black fs-24 ls-5 lh-22 fw-600 mt-2 t-align-c">
             {event.title}
           </h3>
           <div className="projectCard-info__location info-location d-f ai-c jc-c mt-2">
-            <img className="mr-1" src={`${path}/Location.svg`} alt="Loc1"/>
+            <div>
+              <Icon
+                iconName='location_icon'
+                className='mr-1'
+              />
+            </div>
             <h6 className="h3-lightGrey fs-12 lh-22 ls-4 fw-500 als-c">
               {event.address}
             </h6>

@@ -3,6 +3,8 @@ import './LoggedOut.sass'
 import { NavLink } from 'react-router-dom';
 import { modalOpen } from "../../../Store/Actions/modal/actionModal";
 import { connect } from 'react-redux';
+import {ROUTES} from '../../../Constants/';
+
 
 const LoggedOut = (props) => {
   return (
@@ -14,7 +16,7 @@ const LoggedOut = (props) => {
         >
           Sign In
         </button>
-        <NavLink to='/registration' className="header-changeGroup__join">
+        <NavLink to={`/${ROUTES.REG_PAGE}`} className="header-changeGroup__join">
           <button
             className="changeGroup-item__btn btn blue sm fs-18 lh-18 ls-27 fw-600 sh-btn-sm ml-12"
           >

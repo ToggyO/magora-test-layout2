@@ -1,9 +1,11 @@
 import React from 'react';
 import './EventProjects.sass';
 import Preloader from "../../../Components/Preloader/Preloader";
-import { renderingEvents} from "../../../Libs/additionalSortingFunctions";
+import {renderingProjects} from "../../../Libs/additionalSortingFunctions";
 import Pagination from "../../../Components/Pagination/Pagination";
 import PropTypes from 'prop-types';
+import {KEYWORD} from '../../../Constants';
+
 
 
 class EventProjects extends React.Component {
@@ -13,16 +15,16 @@ class EventProjects extends React.Component {
       left: 0,
       top: 0,
       behavior: 'smooth'
-    })
+    });
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.location.search !== prevProps.location.search) {
       window.scrollTo({
         left: 0,
-        top: 550,
+        top: 0,
         behavior: 'smooth'
-      })
+      });
     }
   }
 
@@ -44,7 +46,7 @@ class EventProjects extends React.Component {
                     justifyContent: 'center'
                   }}
                 />
-              : renderingEvents(projectsData.items)
+              : renderingProjects(projectsData.items, KEYWORD.EVENTS)
           }
         </div>
         <div className='pt-5 pb-5 pl-5 pr-5 d-f jc-c' style={{width: '100%'}}>

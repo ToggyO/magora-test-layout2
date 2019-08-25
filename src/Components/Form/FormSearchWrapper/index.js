@@ -71,7 +71,7 @@ const FormSearchWrapper = (props) => {
             <button
               type='submit'
               className='btn blue sm sh-btn-sm'
-              style={{minWidth: '240px'}}
+
               onClick={ () => {
                   toggleOpen(!opened);
                 }

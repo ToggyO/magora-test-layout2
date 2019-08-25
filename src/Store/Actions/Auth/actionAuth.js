@@ -1,8 +1,9 @@
 import * as axios from "axios";
 import { SubmissionError } from 'redux-form';
-// import history from '../../../history';
 import {modalClose, modalOpen} from "../modal/actionModal";
 import {reset} from 'redux-form';
+import {REQUEST_ULR} from "../../../Constants";
+import {writeToLocalState} from "../../../Libs/localStorage";
 
 
 export const AUTH = {
@@ -23,9 +24,13 @@ const loginRequest = () => {
 };
 
 
-const loginSuccess = () => {
+const loginSuccess = (tokens, user) => {
   return {
     type: AUTH.LOGIN_SUCCESS,
+    payload: {
+      tokens,
+      user
+    }
   }
 };
 
@@ -37,9 +42,13 @@ const loginFailure = () => {
 };
 
 
-export const isAuthInit = () => {
+export const isAuthInit = (tokens, user) => {
   return {
-    type: AUTH.IS_AUTH_INIT
+    type: AUTH.IS_AUTH_INIT,
+    payload: {
+      tokens,
+      user
+    }
   }
 };
 
@@ -79,26 +88,24 @@ export const authRequest = (values) => {
         platform: "string"
       }
     };
-    let BASE_URL = `http://localhost:3000/api/v0.7/auth/token`;
 
-    return axios.post(BASE_URL, requestBody,
+    return axios.post(`${REQUEST_ULR.CORS_BASE_URL}/${REQUEST_ULR.AUTH_TOKEN}`, requestBody,
     )
       .then(res => {
         if (res.data.code === 'success'){
-          dispatch(loginSuccess());
           dispatch(modalClose());
 
           const { data = {} } = res.data;
           const { authInfo = {}, ...tokensInfo} = data;
-          localStorage.setItem('TOKEN_INFO', JSON.stringify(tokensInfo));
-          localStorage.setItem('USER_INFO', JSON.stringify(authInfo.profile));
 
-          // history.replace('/');
+          writeToLocalState('TOKEN_INFO', tokensInfo);
+          writeToLocalState('USER_INFO', authInfo.profile);
+          dispatch(loginSuccess(tokensInfo, authInfo.profile));
         }
       })
       .catch( error => {
         dispatch(loginFailure());
-
+        debugger;
         const errorCodes = {
           'sec.invalid_auth_data': `User doesn't exist or password is wrong`,
           'sec.login_should_be_confirmed': 'Please confirm your account',
@@ -148,8 +155,7 @@ export const regRequest = (values) => {
       role: values.role
     };
 
-    let BASE_URL = `http://localhost:3000/api/v0.7/users`;
-    return axios.post(BASE_URL, requestBody)
+    return axios.post(`${REQUEST_ULR.CORS_BASE_URL}/${REQUEST_ULR.USERS}`, requestBody)
       .then(res => {
         if (res.data.code === 'success') {
           dispatch(reset('registration'));
@@ -158,6 +164,7 @@ export const regRequest = (values) => {
         }
       })
       .catch( error => {
+        // debugger;
         if (!error) {
           return null;
         }

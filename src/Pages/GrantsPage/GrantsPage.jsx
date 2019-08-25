@@ -14,10 +14,11 @@ import {
 } from '../../Store/Actions/fetchedData/actionGetSortOptions';
 import {connect} from "react-redux";
 import {mapQueryParamsToState, parseQueryString} from "../../Libs/additionalSortingFunctions";
-import GrantSearchEmpty from "./GrantSearch/GrantSearchEmpty";
-import GrantProjectsEmpty from "./GrantProjects/GrantProjectsEmpty";
-import store from "../../Store";
+import GrantSearchEmpty from './GrantSearch/GrantSearchEmpty';
+import GrantProjectsEmpty from './GrantProjects/GrantProjectsEmpty';
+import store from '../../Store';
 import PropTypes from 'prop-types';
+import {KEYWORD} from '../../Constants';
 
 
 const GrantsPage = (props) => {
@@ -43,13 +44,11 @@ const GrantsPage = (props) => {
     getBenefitsOptions();
     mapQueryParamsToState(parseQueryString(location.search), sortValues);
     const currentState = store.getState();
-    getDataFromServer(currentState.fetchedData.history, parseQueryString(location.search), 'grants');
-    console.log('mount');
+    getDataFromServer(currentState.fetchedData.history, parseQueryString(location.search), KEYWORD.GRANTS);
 
     return () => {
       stateItemsCleaning();
       stateOptionsCleaning();
-      console.log('unmount');
     };
   },[location.search]);
 

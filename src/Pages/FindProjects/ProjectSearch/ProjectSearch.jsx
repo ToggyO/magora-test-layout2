@@ -103,7 +103,7 @@ ProjectSearch.propTypes = {
   location: PropTypes.object,
   optionsData: PropTypes.object,
   projectsSortValues: PropTypes.func,
-}
+};
 
 
 

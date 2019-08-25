@@ -6,6 +6,7 @@ import {
 import Preloader from "../../../Components/Preloader/Preloader";
 import Pagination from "../../../Components/Pagination/Pagination";
 import PropTypes from 'prop-types';
+import {KEYWORD} from "../../../Constants";
 
 
 class CommunityProjects extends React.Component {
@@ -20,17 +21,12 @@ class CommunityProjects extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.location.search !== prevProps.location.search) {
-      // mapQueryParamsToState(parseQueryString(this.props.location.search), this.props.sortValues, this.props.stateItemsCleaning);
-      // this.props.getDataFromServer(this.props.projectsData.history, parseQueryString(this.props.location.search), 'ideas');
-      // debugger;
       window.scrollTo({
         left: 0,
-        top: 550,
+        top: 0,
         behavior: 'smooth'
       });
-      // mapQueryParamsToState(this.props.parseString, this.props.sortValues);
     }
-    // console.log('update');
   }
 
   render() {
@@ -51,7 +47,7 @@ class CommunityProjects extends React.Component {
                     justifyContent: 'center'
                   }}
                 />
-              : renderingProjects(projectsData.items)
+              : renderingProjects(projectsData.items, KEYWORD.IDEAS)
           }
         </div>
         <div className='pt-5 pb-5 pl-5 pr-5 d-f jc-c' style={{width: '100%'}}>
