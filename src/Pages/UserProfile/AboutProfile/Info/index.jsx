@@ -1,5 +1,5 @@
 import React from 'react';
-// import './style.module.sass';
+// import './style.sass';
 
 
 const Info = (props) => {

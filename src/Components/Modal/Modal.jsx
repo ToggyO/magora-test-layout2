@@ -1,7 +1,5 @@
 import React from 'react';
 import s from './Modal.module.sass';
-// import FormSignIn from '../Form/FormSignIn/FormSignIn';
-// import FormSignUp from '../Form/FormSignUp/FormSignUp';
 import CardModal from "./CardModal/CardModal";
 import { connect } from "react-redux";
 import { modalClose } from "../../Store/Actions/modal/actionModal";

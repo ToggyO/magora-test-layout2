@@ -25,7 +25,7 @@ function App(props) {
   useEffect(() => {
     let tokens = getFromLocalState('TOKEN_INFO');
     let user = getFromLocalState('USER_INFO');
-    console.log(tokens, user);
+
     if(tokens && user) {
       props.isAuthInit(tokens, user);
     }
