@@ -49,7 +49,7 @@ const UserProfile = (props) => {
     return () => {
       stateProfileCleaning();
     };
-  }, []);
+  }, [match.params.userId]);
 
 
   useEffect(() => {

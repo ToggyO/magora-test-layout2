@@ -6,7 +6,8 @@ import {connect} from "react-redux";
 import {clearLocalState} from "../../../Libs/localStorage";
 import Icon from "../../../Icons/Icons";
 import {Dropdown} from "../../Dropdown";
-import {NavLink} from "react-router-dom";
+import {Link} from "react-router-dom";
+import {KEYWORD, ROUTES} from "../../../Constants";
 
 
 const LoggedIn = (props) => {
@@ -23,16 +24,16 @@ const LoggedIn = (props) => {
 
   const getDropdownList = () => {
     return [
-      <NavLink
-        to='#'
+      <Link
+        to={`/${ROUTES.USER_PROFILE}/${authData.me.user.id}/${KEYWORD.ABOUT}`}
         className='h2-black fs-18 lh-48 fw-600'>
         Go to profile
-      </NavLink>,
-      <NavLink to='#' className='h2-black fs-18 lh-48 fw-600'>
-        Settings
-      </NavLink>,
+      </Link>,
+      <Link to='#' className='h2-black fs-18 lh-48 fw-600'>
+        Edit Profile
+      </Link>,
       <div onClick={isAuthFalse()} className='h2-black fs-18 lh-48 fw-600'>
-        Log Out
+        Sign Out
       </div>,
     ];
   };
