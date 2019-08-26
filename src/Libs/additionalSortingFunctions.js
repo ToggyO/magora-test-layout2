@@ -97,6 +97,14 @@ export const parseRouteString = (location) => {
 };
 
 
+export const isEmpty = (obj) => {
+  for (let key in obj) {
+    return false;
+  }
+  return true;
+};
+
+
 //Projects Not Found Style
 const style = {
   display: 'flex',

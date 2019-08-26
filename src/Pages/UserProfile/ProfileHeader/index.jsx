@@ -8,12 +8,12 @@ import {getFromLocalState} from "../../../Libs/localStorage";
 
 const ProfileHeader = (props) => {
 
-  const {
-    user,
-    resource,
-  } = props.userInfo;
+  const { authData = {}, userInfo = {} } = props;
 
-  const { authData } = props;
+  const {
+    user = {},
+    resource = {},
+  } = userInfo;
 
   const registrationDate = moment(user.createDate).format('MMM YYYY').toString();
 

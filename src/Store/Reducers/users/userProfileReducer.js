@@ -6,10 +6,6 @@ let InitialState = {
   engagements: {},
   events: {},
   loading: false,
-  userInfoDataIs: false,
-  ideasDataIs: false,
-  engagementsDataIs: false,
-  eventsDataIs: false,
   error: false
 };
 
@@ -23,11 +19,12 @@ const userProfileReducer = (state = InitialState, action) => {
         error: false
       };
     case USER_PROFILE.RECEIVE_USER:
+      debugger;
       return {
         ...state,
         loading: false,
         [action.payload.key]: action.payload.data,
-        [`${action.payload.key}DataIs`]: true,
+        // [`${action.payload.key}DataIs`]: true,
       };
     case USER_PROFILE.REQUEST_USER_FAILURE:
       return {
@@ -37,13 +34,7 @@ const userProfileReducer = (state = InitialState, action) => {
       };
     case USER_PROFILE.STATE_PROFILE_CLEANING:
       return {
-        userInfo: {},
-        ideas: {},
-        engagements: {},
-        events: {},
-        loading: false,
-        isUserData: false,
-        error: false
+        ...InitialState
       };
     default:
       return state;

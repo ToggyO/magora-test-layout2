@@ -26,13 +26,13 @@ const LoggedIn = (props) => {
     return [
       <Link
         to={`/${ROUTES.USER_PROFILE}/${authData.me.user.id}/${KEYWORD.ABOUT}`}
-        className='h2-black fs-18 lh-48 fw-600'>
+        className='dropdown-list-element-style h2-black fs-18 lh-48 fw-600'>
         Go to profile
       </Link>,
-      <Link to='#' className='h2-black fs-18 lh-48 fw-600'>
+      <Link to='#' className='dropdown-list-element-style h2-black fs-18 lh-48 fw-600'>
         Edit Profile
       </Link>,
-      <div onClick={isAuthFalse()} className='h2-black fs-18 lh-48 fw-600'>
+      <div onClick={isAuthFalse()} className='dropdown-list-element-style h2-black fs-18 lh-48 fw-600'>
         Sign Out
       </div>,
     ];

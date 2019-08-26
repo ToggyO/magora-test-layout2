@@ -11,7 +11,9 @@ import {connect} from 'react-redux';
 import ProfileHeaderEmpty from './ProfileHeader/Empty';
 import ProfileNavigationEmpty from './ProfileNavigation/Empty';
 import {
-  parseQueryString, parseRouteString,
+  isEmpty,
+  parseQueryString,
+  parseRouteString,
 } from "../../Libs/additionalSortingFunctions";
 import ErrorWrapper from "../../Components/ErrorWrapper";
 import Preloader from "../../Components/Preloader/Preloader";
@@ -20,7 +22,6 @@ import ProfileCardsContainer from "./ProfileCardsContainer";
 import {Route, Switch} from "react-router-dom";
 import AboutProfile from "./AboutProfile";
 import {REQUEST_ULR} from '../../Constants';
-
 
 
 const UserProfile = (props) => {
@@ -33,8 +34,6 @@ const UserProfile = (props) => {
     match,
     authData
   } = props;
-
-  const [initialize, setInitialize] = useState(false);
 
 
   useEffect(() => {
@@ -52,25 +51,10 @@ const UserProfile = (props) => {
   }, [match.params.userId]);
 
 
-  useEffect(() => {
-    (userProfileData.userInfoDataIs &&
-      userProfileData.ideasDataIs &&
-      userProfileData.engagementsDataIs &&
-      userProfileData.eventsDataIs) && setInitialize(true);
-  }, [
-    userProfileData.userInfoDataIs,
-    userProfileData.ideasDataIs,
-    userProfileData.engagementsDataIs,
-    userProfileData.eventsDataIs
-  ]);
-
-
   const [currentTab, changeCurrentTab] = useState(match.params.tab);
   useEffect(() => {
     changeCurrentTab(match.params.tab);
   },[match.params.tab]);
-
-
 
   useEffect(() => {
    if (currentTab !== match.params.tab) return;
@@ -98,26 +82,25 @@ const UserProfile = (props) => {
   });
 
 
-  if(!initialize) {
+  if (isEmpty(userProfileData.userInfo) || isEmpty(userProfileData.ideas) || isEmpty(userProfileData.engagements) || isEmpty(userProfileData.events)) {
     return <ErrorWrapper error={userProfileData.error}>
-            <Preloader style={{
-                position: 'fixed',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center'
-              }}
-            />
-            <ProfileHeaderEmpty/>
-            <ProfileNavigationEmpty
-              userProfileData={userProfileData}
-              location={location}
-            />
-            <div className='user-profile__tabs wrapper'>
-              <div className="user-profile__tabs-content wrapper-container pl-31 pr-31 pt-13 pb-13 d-f fw-w jc-c">
-
-              </div>
-            </div>
-           </ErrorWrapper>
+      <Preloader style={{
+        position: 'fixed',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
+      }}
+      />
+      <ProfileHeaderEmpty/>
+      <ProfileNavigationEmpty
+        userProfileData={userProfileData}
+        location={location}
+      />
+      <div className='user-profile__tabs wrapper'>
+        <div className="user-profile__tabs-content wrapper-container pl-31 pr-31 pt-13 pb-13 d-f fw-w jc-c">
+        </div>
+      </div>
+    </ErrorWrapper>
   }
 
 
