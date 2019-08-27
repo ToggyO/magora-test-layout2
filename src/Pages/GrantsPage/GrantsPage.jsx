@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, {useEffect, useState} from 'react';
 import './GrantsPage.sass';
 import GrantSearch from "./GrantSearch/GrantSearch";

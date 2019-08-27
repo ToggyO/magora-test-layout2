@@ -10,4 +10,4 @@ export const ROUTES = {
 export const PATH = {
   PLACEHOLDER_AVATAR: '/img/avatar-placeholder.png',
   PLACEHOLDER_IMAGE: '/img/placeholder-image.jpg',
-}
+};

@@ -53,7 +53,7 @@ export const getUserDataProfile = (userId, path, projectType, pathname, queries)
     return axios
       .get( URL,{
         headers: {
-          Authorization: "Bearer " + getFromLocalState('TOKEN_INFO')
+          Authorization: "Bearer" + getFromLocalState('TOKEN_INFO')
         }
       })
       .then(res => {

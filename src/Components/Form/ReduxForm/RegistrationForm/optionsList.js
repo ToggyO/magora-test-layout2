@@ -1,10 +1,10 @@
 export const options = [
   {
     title: 'Individual',
-    value: 'USER'
+    value: 'USER',
   },
   {
     title: 'Council',
-    value: 'COMMUNITY_GROUP'
-  }
+    value: 'COMMUNITY_GROUP',
+  },
 ];

@@ -1,10 +1,8 @@
-import React, {useState} from "react";
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 
-
 const DateStyledWrapper = (props) => {
-
   const [focused, toggleFocus] = useState(false);
 
   return (
@@ -21,10 +19,9 @@ const DateStyledWrapper = (props) => {
 export default DateStyledWrapper;
 
 
-
 const DateWrapper = styled.div`
   background-color: #fff;
-  border: ${props => props.focus ? '1px solid #35D0DE' : '1px solid #fff' };
+  border: ${(props) => (props.focus ? '1px solid #35D0DE' : '1px solid #fff')};
   border-radius: 24px;
   margin-left: 56px;
   display: flex;

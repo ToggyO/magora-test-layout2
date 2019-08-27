@@ -1,7 +1,7 @@
-import Select from "react-select";
-import {DropdownIndicator} from "./custom_components";
-import {styles} from "../Styles/filterStyles";
-import React from "react";
+import React from 'react';
+import Select from 'react-select';
+import { DropdownIndicator } from './custom_components';
+import { styles } from '../Styles/filterStyles';
 
 
 const MySelect = (props) => {
@@ -11,21 +11,21 @@ const MySelect = (props) => {
     defaultValue,
     sortValues,
     name,
-    value
+    value,
   } = props;
 
   return (
     <Select
-      components={{DropdownIndicator}}
+      components={{ DropdownIndicator }}
       styles={styles}
       options={options}
       placeholder={placeholder}
       inputValue=''
-      onChange={value => sortValues(value.value, name)}
+      onChange={(v) => sortValues(v.value, name)}
       defaultValue={defaultValue}
       value={value}
     />
-  )
+  );
 };
 
 export default MySelect;

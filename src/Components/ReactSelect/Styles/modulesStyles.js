@@ -1,5 +1,4 @@
-
-
+/* eslint-disable */
 export const moduleStyles = {
   menu: (provided, state) => ({
     ...provided,

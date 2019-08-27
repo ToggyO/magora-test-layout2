@@ -1,16 +1,15 @@
-import React from "react";
-import DatePicker from "react-datepicker";
+import React from 'react';
+import DatePicker from 'react-datepicker';
 import moment from 'moment';
-import "./react-datepicker_custom.css";
-import DateStyledWrapper from "./DateStyledWrapper";
+import './react-datepicker_custom.css';
+import DateStyledWrapper from './DateStyledWrapper';
 import Icon from '../../Icons/Icons';
 
 
 export default class DatePickerStart extends React.Component {
   render() {
-
-    let startDateFromState = this.props.startDate && moment(this.props.startDate).toDate();
-    let endDateFromState = this.props.endDate && moment(this.props.endDate).toDate();
+    const startDateFromState = this.props.startDate && moment(this.props.startDate).toDate();
+    const endDateFromState = this.props.endDate && moment(this.props.endDate).toDate();
 
     return (
       <>
@@ -25,7 +24,7 @@ export default class DatePickerStart extends React.Component {
             onSelect={(date) => this.props.datePick(moment(date).toISOString(), 'startDate')}
           />
           <div
-            className='datepicker-custom__calendar'
+            className="datepicker-custom__calendar"
             style={
               {
                 alignSelf: 'center',
@@ -37,7 +36,7 @@ export default class DatePickerStart extends React.Component {
             }
             onChange={this.handleChange}
           >
-            <Icon iconName='calendar' />
+            <Icon iconName="calendar" />
           </div>
         </DateStyledWrapper>
         <DateStyledWrapper>
@@ -52,7 +51,7 @@ export default class DatePickerStart extends React.Component {
             onSelect={(date) => this.props.datePick(moment(date).toISOString(), 'endDate')}
           />
           <div
-            className='datepicker-custom__calendar'
+            className="datepicker-custom__calendar"
             style={
               {
                 alignSelf: 'center',
@@ -64,27 +63,13 @@ export default class DatePickerStart extends React.Component {
             }
             onChange={this.handleChange}
           >
-            <Icon iconName='calendar' />
+            <Icon iconName="calendar" />
           </div>
       </DateStyledWrapper>
     </>
     );
   }
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
 
 // constructor(props) {
 //   super(props);

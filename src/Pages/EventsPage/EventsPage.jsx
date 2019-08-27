@@ -1,27 +1,30 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import './EventsPage.sass';
-import EventSearch from "./EventSearch/EventSearch";
-import EventProjects from "./EventProjects/EventProjects";
+import EventSearch from './EventSearch/EventSearch';
+import EventProjects from './EventProjects/EventProjects';
 import {
   mapQueryParamsToState, parseQueryString,
-} from "../../Libs/additionalSortingFunctions";
-import {bindActionCreators} from "redux";
+} from '../../Libs/additionalSortingFunctions';
+
 import {
   getBenefitsOptions,
-  getCategoriesOptions, stateOptionsCleaning
-} from "../../Store/Actions/fetchedData/actionGetSortOptions";
-import {connect} from "react-redux";
+  getCategoriesOptions, stateOptionsCleaning,
+} from '../../Store/Actions/fetchedData/actionGetSortOptions';
+
 import {
   sortValues,
   stateItemsCleaning,
   datePick,
-  getDataFromServer
-} from "../../Store/Actions/fetchedData/actionFetchProjectsData";
-import EventSearchEmpty from "./EventSearch/EventSearchEmpty";
-import EventProjectsEmpty from "./EventProjects/EventProjectsEmpty";
-import store from "../../Store";
-import PropTypes from 'prop-types';
-import {KEYWORD} from '../../Constants';
+  getDataFromServer,
+} from '../../Store/Actions/fetchedData/actionFetchProjectsData';
+import EventSearchEmpty from './EventSearch/EventSearchEmpty';
+import EventProjectsEmpty from './EventProjects/EventProjectsEmpty';
+import store from '../../Store';
+
+import { KEYWORD } from '../../Constants';
 
 
 const EventsPage = (props) => {
@@ -29,108 +32,104 @@ const EventsPage = (props) => {
     fetchedData,
     fetchedProjectsOptions,
     location,
-    sortValues,
-    getCategoriesOptions,
-    getBenefitsOptions,
+    valueSort,
+    getCategories,
+    getBenefits,
     // history,
-    stateItemsCleaning,
-    getDataFromServer,
-    datePick,
-    stateOptionsCleaning
+    stateCleaning,
+    getData,
+    pickDate,
+    optionsCleaning,
   } = props;
 
   const [initialize, setInitialize] = useState(false);
 
-  useEffect( () => {
-    stateItemsCleaning();
-    getCategoriesOptions();
-    getBenefitsOptions();
-    mapQueryParamsToState(parseQueryString(location.search), sortValues);
+  useEffect(() => {
+    stateCleaning();
+    getCategories();
+    getBenefits();
+    mapQueryParamsToState(parseQueryString(location.search), valueSort);
     const currentState = store.getState();
-    getDataFromServer(currentState.fetchedData.history, parseQueryString(location.search), KEYWORD.EVENTS);
+    getData(
+      currentState.fetchedData.history,
+      parseQueryString(location.search),
+      KEYWORD.EVENTS,
+    );
 
     return () => {
-      stateItemsCleaning();
-      stateOptionsCleaning();
+      stateCleaning();
+      optionsCleaning();
     };
-  },[location.search]);
+  }, [location.search]);
 
-
-  useEffect( () => {
-    (fetchedData.isData &&
-      fetchedProjectsOptions.isCategories &&
-      fetchedProjectsOptions.isBenefits ) && setInitialize(true);
-  },[
+  /* eslint-disable */
+  useEffect(() => {
+    fetchedData.isData
+    && fetchedProjectsOptions.isCategories
+    && fetchedProjectsOptions.isBenefits
+    && setInitialize(true);
+  }, [
     fetchedData.isData,
     fetchedProjectsOptions.isCategories,
-    fetchedProjectsOptions.isBenefits
+    fetchedProjectsOptions.isBenefits,
   ]);
+  /* eslint-enable */
 
-
-  if(!initialize) {
+  if (!initialize) {
     return (
       <>
-        <EventSearchEmpty />
+        <EventSearchEmpty/>
         <EventProjectsEmpty eventsData={fetchedData}/>
       </>
-    )
-  } else {
-    return (
-
-      <>
-        <EventSearch
-          eventsData={fetchedData}
-          optionsData={fetchedProjectsOptions}
-          location={location}
-          sortValues={sortValues}
-          // history={history}
-          datePick={datePick}
-        />
-        <EventProjects
-          projectsData={fetchedData}
-          // optionsData={fetchedProjectsOptions}
-          location={location}
-          // getProjects={getDataFromServer}
-          // sortValues={sortValues}
-          // getCategoriesOptions={getCategoriesOptions}
-          // getBenefitsOptions={getBenefitsOptions}
-          // history={history}
-          // stateItemsCleaning={stateItemsCleaning}
-          // getDataFromServer={getDataFromServer}
-        />
-      </>
-    )
+    );
   }
+  return (
 
+    <>
+      <EventSearch
+        eventsData={fetchedData}
+        optionsData={fetchedProjectsOptions}
+        location={location}
+        sortValues={valueSort}
+        // history={history}
+        datePick={pickDate}
+      />
+      <EventProjects
+        projectsData={fetchedData}
+        location={location}
+      />
+    </>
+  );
 };
 
 
-let mapStateToProps = ({ fetchedData, fetchedProjectsOptions, }) => ({ fetchedData, fetchedProjectsOptions, });
-let mapDispatchToProps = (dispatch) => {
-  return {
-    getDataFromServer: bindActionCreators(getDataFromServer, dispatch),
-    sortValues: bindActionCreators(sortValues, dispatch),
-    getCategoriesOptions: bindActionCreators(getCategoriesOptions, dispatch),
-    getBenefitsOptions: bindActionCreators(getBenefitsOptions, dispatch),
-    stateItemsCleaning: bindActionCreators(stateItemsCleaning, dispatch),
-    stateOptionsCleaning: bindActionCreators(stateOptionsCleaning, dispatch),
-    datePick: bindActionCreators(datePick, dispatch),
+const mapStateToProps = ({ fetchedData, fetchedProjectsOptions }) => ({
+  fetchedData,
+  fetchedProjectsOptions,
+});
+const mapDispatchToProps = (dispatch) => ({
+  getData: bindActionCreators(getDataFromServer, dispatch),
+  valueSort: bindActionCreators(sortValues, dispatch),
+  getCategories: bindActionCreators(getCategoriesOptions, dispatch),
+  getBenefits: bindActionCreators(getBenefitsOptions, dispatch),
+  stateCleaning: bindActionCreators(stateItemsCleaning, dispatch),
+  optionsCleaning: bindActionCreators(stateOptionsCleaning, dispatch),
+  pickDate: bindActionCreators(datePick, dispatch),
 
-  }
-};
+});
 
-export default connect( mapStateToProps, mapDispatchToProps )(EventsPage);
+export default connect(mapStateToProps, mapDispatchToProps)(EventsPage);
 
 
 EventsPage.propTypes = {
   fetchedData: PropTypes.object,
   fetchedProjectsOptions: PropTypes.object,
   location: PropTypes.object,
-  sortValues: PropTypes.func,
-  getCategoriesOptions: PropTypes.func,
-  getBenefitsOptions: PropTypes.func,
-  stateItemsCleaning: PropTypes.func,
-  getDataFromServer: PropTypes.func,
+  valueSort: PropTypes.func,
+  getCategories: PropTypes.func,
+  getBenefits: PropTypes.func,
+  stateItems: PropTypes.func,
+  getData: PropTypes.func,
   datePick: PropTypes.func,
   stateOptionsCleaning: PropTypes.func,
 };

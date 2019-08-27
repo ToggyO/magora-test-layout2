@@ -1,52 +1,61 @@
-import React, {useEffect, useState, useRef} from 'react';
+import React, { useEffect, useState } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { Route, Switch } from 'react-router-dom';
 import './style.sass';
 import ProfileHeader from './ProfileHeader';
 import ProfileNavigation from './ProfileNavigation';
 import {
   getUserDataProfile,
-  stateProfileCleaning
-} from "../../Store/Actions/users/actionUsers";
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
+  stateProfileCleaning,
+} from '../../Store/Actions/users/actionUsers';
+
 import ProfileHeaderEmpty from './ProfileHeader/Empty';
 import ProfileNavigationEmpty from './ProfileNavigation/Empty';
 import {
   isEmpty,
   parseQueryString,
   parseRouteString,
-} from "../../Libs/additionalSortingFunctions";
-import ErrorWrapper from "../../Components/ErrorWrapper";
-import Preloader from "../../Components/Preloader/Preloader";
-import {KEYWORD, ROUTES} from '../../Constants';
-import ProfileCardsContainer from "./ProfileCardsContainer";
-import {Route, Switch} from "react-router-dom";
-import AboutProfile from "./AboutProfile";
-import {REQUEST_ULR} from '../../Constants';
+} from '../../Libs/additionalSortingFunctions';
+import ErrorWrapper from '../../Components/ErrorWrapper';
+import Preloader from '../../Components/Preloader/Preloader';
+import { KEYWORD, ROUTES, REQUEST_ULR } from '../../Constants';
+import ProfileCardsContainer from './ProfileCardsContainer';
+
+import AboutProfile from './AboutProfile';
 
 
 const UserProfile = (props) => {
-
   const {
     userProfileData,
-    getUserDataProfile,
+    getUser,
     location,
-    stateProfileCleaning,
+    profileCleaning,
     match,
-    authData
+    authData,
   } = props;
 
 
   useEffect(() => {
-    let userId = match.params.userId;
-    getUserDataProfile(userId, REQUEST_ULR.PROFILES,  null, null, null);
-    getUserDataProfile(userId, REQUEST_ULR.USERS, KEYWORD.IDEAS, parseRouteString(location.pathname), parseQueryString(location.search),);
-    getUserDataProfile(userId, REQUEST_ULR.USERS, KEYWORD.ENGAGEMENT, parseRouteString(location.pathname), parseQueryString(location.search));
-    getUserDataProfile(userId, REQUEST_ULR.USERS, KEYWORD.EVENTS, parseRouteString(location.pathname), parseQueryString(location.search));
+    const { userId } = match.params;
+    getUser(userId, REQUEST_ULR.PROFILES, null, null, null);
+    getUser(userId,
+      REQUEST_ULR.USERS,
+      KEYWORD.IDEAS, parseRouteString(location.pathname),
+      parseQueryString(location.search));
+    getUser(userId,
+      REQUEST_ULR.USERS, KEYWORD.ENGAGEMENT,
+      parseRouteString(location.pathname),
+      parseQueryString(location.search));
+    getUser(userId,
+      REQUEST_ULR.USERS, KEYWORD.EVENTS,
+      parseRouteString(location.pathname),
+      parseQueryString(location.search));
     window.scrollTo(0, 0);
 
 
     return () => {
-      stateProfileCleaning();
+      profileCleaning();
     };
   }, [match.params.userId]);
 
@@ -54,16 +63,16 @@ const UserProfile = (props) => {
   const [currentTab, changeCurrentTab] = useState(match.params.tab);
   useEffect(() => {
     changeCurrentTab(match.params.tab);
-  },[match.params.tab]);
+  }, [match.params.tab]);
 
   useEffect(() => {
-   if (currentTab !== match.params.tab) return;
-   getUserDataProfile(
+    if (currentTab !== match.params.tab) return;
+    getUser(
       match.params.userId,
       REQUEST_ULR.USERS,
       match.params.tab,
       parseRouteString(location.pathname),
-      parseQueryString(location.search)
+      parseQueryString(location.search),
     );
 
     window.scrollTo({
@@ -71,24 +80,27 @@ const UserProfile = (props) => {
       top: 0,
       // behavior: 'smooth'
     });
-  },[location.search]);
+  }, [location.search]);
 
 
   const [tabQuery, pushTabQuery] = useState({
     about: '',
     ideas: '',
     engagements: '',
-    events: ''
+    events: '',
   });
 
 
-  if (isEmpty(userProfileData.userInfo) || isEmpty(userProfileData.ideas) || isEmpty(userProfileData.engagements) || isEmpty(userProfileData.events)) {
+  if (isEmpty(userProfileData.userInfo)
+    || isEmpty(userProfileData.ideas)
+    || isEmpty(userProfileData.engagements)
+    || isEmpty(userProfileData.events)) {
     return <ErrorWrapper error={userProfileData.error}>
       <Preloader style={{
         position: 'fixed',
         display: 'flex',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
       }}
       />
       <ProfileHeaderEmpty/>
@@ -97,10 +109,10 @@ const UserProfile = (props) => {
         location={location}
       />
       <div className='user-profile__tabs wrapper'>
-        <div className="user-profile__tabs-content wrapper-container pl-31 pr-31 pt-13 pb-13 d-f fw-w jc-c">
+        <div className='user-profile__tabs-content wrapper-container pl-31 pr-31 pt-13 pb-13 d-f fw-w jc-c'>
         </div>
       </div>
-    </ErrorWrapper>
+    </ErrorWrapper>;
   }
 
 
@@ -128,7 +140,7 @@ const UserProfile = (props) => {
                 path={`/${ROUTES.USER_PROFILE}/${match.params.userId}/${KEYWORD.IDEAS}`}
                 render={() => <ProfileCardsContainer
                   userProfileData={userProfileData}
-                  getUserDataProfile={getUserDataProfile}
+                  getUserDataProfile={getUser}
                   location={location}
                   projectType={KEYWORD.IDEAS}
                   userId={match.params.userId}
@@ -139,7 +151,7 @@ const UserProfile = (props) => {
                 path={`/${ROUTES.USER_PROFILE}/${match.params.userId}/${KEYWORD.ENGAGEMENT}`}
                 render={() => <ProfileCardsContainer
                   userProfileData={userProfileData}
-                  getUserDataProfile={getUserDataProfile}
+                  getUserDataProfile={getUser}
                   location={location}
                   projectType={KEYWORD.ENGAGEMENT}
                   userId={match.params.userId}
@@ -150,7 +162,7 @@ const UserProfile = (props) => {
                 path={`/${ROUTES.USER_PROFILE}/${match.params.userId}/${KEYWORD.EVENTS}`}
                 render={() => <ProfileCardsContainer
                   userProfileData={userProfileData}
-                  getUserDataProfile={getUserDataProfile}
+                  getUserDataProfile={getUser}
                   location={location}
                   projectType={KEYWORD.EVENTS}
                   userId={match.params.userId}
@@ -159,48 +171,14 @@ const UserProfile = (props) => {
             </Switch>
           </div>
 
-         </ErrorWrapper>
+         </ErrorWrapper>;
 };
 
 
-let mapStateToProps = ({ userProfileData, authData }) => ({ userProfileData, authData });
-let mapDispatchToProps = (dispatch) => {
-  return {
-    getUserDataProfile: bindActionCreators(getUserDataProfile, dispatch),
-    stateProfileCleaning: bindActionCreators(stateProfileCleaning, dispatch),
-  }
-};
+const mapStateToProps = ({ userProfileData, authData }) => ({ userProfileData, authData });
+const mapDispatchToProps = (dispatch) => ({
+  getUser: bindActionCreators(getUserDataProfile, dispatch),
+  profileCleaning: bindActionCreators(stateProfileCleaning, dispatch),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserProfile);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const [currentTab, changeCurrentTab] = useState(match.params.tab);
-// useEffect(() => {
-//   changeCurrentTab(match.params.tab);
-// },[match.params.tab]);
-//
-// useEffect(() => {
-//   if (currentTab !== match.params.tab) return;
-//   getUserDataProfile(
-//     match.params.userId,
-//     match.params.tab,
-//     parseQueryString(location.search)
-//   );
-//   window.scrollTo({
-//     left: 0,
-//     top: 0,
-//     behavior: 'smooth'
-//   });
-// },[location.search]);

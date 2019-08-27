@@ -1,41 +1,42 @@
-import React, {useEffect} from 'react';
-import {Route, Switch} from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Route, Switch } from 'react-router-dom';
 import './App.sass';
-import Header from './Components/Header/Header';
-import Footer from './Components/Footer/Footer';
-import Modal from './Components/Modal/Modal';
-import Home from './Pages/Home/Home';
-import Registration from './Pages/Registration/Registration';
-import FindProjects from "./Pages/FindProjects/FindProjects";
-import GrantsPage from "./Pages/GrantsPage/GrantsPage";
-import EventsPage from "./Pages/EventsPage/EventsPage";
-import UserProfile from "./Pages/UserProfile";
-import {connect} from "react-redux";
-import {bindActionCreators} from "redux";
-import {isAuthInit} from "./Store/Actions/Auth/actionAuth";
-import AuthRoute from "./Components/Routes/AuthRoute";
-import {ROUTES} from './Constants/';
-import {getFromLocalState} from "./Libs/localStorage";
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { hot } from 'react-hot-loader';
-import MyProfileEdit from "./Pages/MyProfileEdit";
+import Header from './Components/Header/Header.jsx';
+import Footer from './Components/Footer/Footer.jsx';
+import Modal from './Components/Modal/Modal.jsx';
+import Home from './Pages/Home/Home.jsx';
+import Registration from './Pages/Registration/Registration.jsx';
+import FindProjects from './Pages/FindProjects/FindProjects.jsx';
+import GrantsPage from './Pages/GrantsPage/GrantsPage.jsx';
+import EventsPage from './Pages/EventsPage/EventsPage.jsx';
+import UserProfile from './Pages/UserProfile/index.jsx';
 
+import { isAuthInit } from './Store/Actions/Auth/actionAuth';
+import AuthRoute from './Components/Routes/AuthRoute.jsx';
+import { ROUTES } from './Constants';
+import { getFromLocalState } from './Libs/localStorage';
+
+import MyProfileEdit from './Pages/MyProfileEdit/index.jsx';
 
 
 function App(props) {
 
   useEffect(() => {
-    let tokens = getFromLocalState('TOKEN_INFO');
-    let user = getFromLocalState('USER_INFO');
+    const tokens = getFromLocalState('TOKEN_INFO');
+    const user = getFromLocalState('USER_INFO');
 
-    if(tokens && user) {
+    if (tokens && user) {
       props.isAuthInit(tokens, user);
     }
-  },[]);
+  }, []);
 
   return (
-    <div className="App">
-      <Modal />
-      <Header />
+    <div className='App'>
+      <Modal/>
+      <Header/>
       <>
         <Switch>
           <Route exact path='/' component={Home}/>
@@ -47,17 +48,15 @@ function App(props) {
           <Route path={`/${ROUTES.USER_PROFILE}/:userId/:tab`} component={UserProfile}/>
         </Switch>
       </>
-      <Footer />
+      <Footer/>
     </div>
   );
 }
 
-const mapStateToProps = ({authData}) => ({authData});
+const mapStateToProps = ({ authData }) => ({ authData });
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    isAuthInit: bindActionCreators(isAuthInit, dispatch),
-  }
-};
+const mapDispatchToProps = (dispatch) => ({
+  isAuthInit: bindActionCreators(isAuthInit, dispatch),
+});
 
 export default hot(module)(connect(mapStateToProps, mapDispatchToProps)(App));

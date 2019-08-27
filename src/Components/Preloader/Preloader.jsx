@@ -1,10 +1,9 @@
-import React from "react";
+import React from 'react';
 import Icon from '../../Icons/Icons';
 import s from './style.module.sass';
 
 
 const Preloader = (props) => {
-
   const { style } = props;
 
   return <div
@@ -12,7 +11,7 @@ const Preloader = (props) => {
     style={style}
   >
     <Icon iconName='preloader'/>
-  </div>
+  </div>;
 };
 
 export default Preloader;
