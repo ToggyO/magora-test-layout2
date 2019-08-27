@@ -5,3 +5,9 @@ export const ROUTES = {
   EVENTS_SEARCH: 'eventsSearch',
   USER_PROFILE: 'profile',
 };
+
+
+export const PATH = {
+  PLACEHOLDER_AVATAR: '/img/avatar-placeholder.png',
+  PLACEHOLDER_IMAGE: '/img/placeholder-image.jpg',
+}

@@ -4,12 +4,15 @@
 
 
 .projectCard
-  width: 33%
+  width: 100%
+  min-width: 300px
+  max-width: 380px
 
   &-container
     position: relative
     border: 1px solid $cardBorderGrey
     height: 600px
+
 
   &-iconBlock
     position: absolute
@@ -166,8 +169,8 @@
       margin-top: -55px
 
     img
-      +r(xl)
-       width: 70px
+      //+r(xl)
+      // width: 70px
       +r(lg)
         width: 105px
       +r(xs)
@@ -196,6 +199,10 @@
     .info-description
 
     .info-join
+      +r(xl)
+        margin-top: 30px
+
+
 
   &__btn
     +r(xl)

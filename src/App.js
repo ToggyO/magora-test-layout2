@@ -17,6 +17,7 @@ import AuthRoute from "./Components/Routes/AuthRoute";
 import {ROUTES} from './Constants/';
 import {getFromLocalState} from "./Libs/localStorage";
 import { hot } from 'react-hot-loader';
+import MyProfileEdit from "./Pages/MyProfileEdit";
 
 
 
@@ -42,6 +43,7 @@ function App(props) {
           <Route path={`/${ROUTES.PROJECT_SEARCH}`} component={FindProjects}/>
           <Route path={`/${ROUTES.GRANTS_SEARCH}`} component={GrantsPage}/>
           <Route path={`/${ROUTES.EVENTS_SEARCH}`} component={EventsPage}/>
+          <Route path={`/${ROUTES.USER_PROFILE}/:userId/edit`} component={MyProfileEdit}/>
           <Route path={`/${ROUTES.USER_PROFILE}/:userId/:tab`} component={UserProfile}/>
         </Switch>
       </>

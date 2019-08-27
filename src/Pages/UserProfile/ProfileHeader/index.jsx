@@ -3,7 +3,7 @@ import './style.sass';
 import {NavLink} from "react-router-dom";
 import Icon from "../../../Icons/Icons";
 import moment from 'moment';
-import {getFromLocalState} from "../../../Libs/localStorage";
+import {PATH, ROUTES} from "../../../Constants";
 
 
 const ProfileHeader = (props) => {
@@ -17,21 +17,17 @@ const ProfileHeader = (props) => {
 
   const registrationDate = moment(user.createDate).format('MMM YYYY').toString();
 
-  return <div className='profile-header wrapper'>
-    <div className="profile-header__container wrapper-container pb-10 pt-10">
-      <div className='profile-header__content d-f jc-c'>
-        <div className='profile-header__avatar'>
-
-          { resource !== null
-            ?  <img
-              // onError={(e) => e.target.src = placeholderAvatar}
-              src={resource.originalUrl}
+  return <div className='profile-header wrapper profile-adapt'>
+    <div className="profile-header__container wrapper-container profile-adapt__container pb-10 pt-10">
+      <div className='profile-header__content profile-adapt__content d-f jc-c'>
+        <div className='profile-header__avatar profile-adapt__avatar'>
+            <img
+              onError={(e) => e.target.src = PATH.PLACEHOLDER_AVATAR}
+              src={resource !== null ? resource.originalUrl : PATH.PLACEHOLDER_AVATAR}
               alt="small"
             />
-            : <Icon iconName='avatar' className='avatar_profile' />
-          }
         </div>
-        <div className='profile-header__info ml-6 d-f fd-c jc-sb'>
+        <div className='profile-header__info profile-adapt__info ml-6 d-f fd-c jc-sb'>
           <span
             className='profile-header__join h6-skyFont fs-14 lh-18 ls-4 fw-500'
           >
@@ -50,9 +46,9 @@ const ProfileHeader = (props) => {
               {user.address}
             </div>
           </div>
-          {authData.isAuth && user.id === getFromLocalState('USER_INFO').user.id &&
+          {authData.isAuth && user.id === authData.me.user.id &&
             <NavLink
-              to='./#'
+              to={`/${ROUTES.USER_PROFILE}/${user.id}/edit`}
               className='profile-header__edit h2-black fs-16 lh-22 ls-5 fw-500'
             >
               Edit profile
@@ -63,7 +59,6 @@ const ProfileHeader = (props) => {
     </div>
   </div>
 };
-
 
 
 export default ProfileHeader;

@@ -3,6 +3,7 @@ import './style.sass';
 import Tab from "./Tab";
 import {tabTitles} from './Tab/tabsInfo';
 import {parseRouteString} from "../../../Libs/additionalSortingFunctions";
+import SimpleSlider from "../../../Components/ReactSlider";
 
 
 const ProfileNavigation = (props) => {
@@ -38,6 +39,7 @@ const ProfileNavigation = (props) => {
         )}
 
       </div>
+    {/*<SimpleSlider />*/}
   </div>
 };
 

@@ -2,6 +2,7 @@ import React from 'react';
 import '../ProjectCard/ProjectCard.sass';
 import '../GrantCard/GrantCard.sass';
 import Icon from "../../Icons/Icons";
+import {PATH} from "../../Constants";
 
 
 const GrantCard = (props) => {
@@ -17,26 +18,36 @@ const GrantCard = (props) => {
         {/*    <img className="pl-7" src={image.status} alt=""/>*/}
         {/*  </div>*/}
         {/*</div>*/}
-        { resource !== null
-          ? <img
-            className="projectCard-image"
-            // onError={(e) => e.target.src = placeholderImage}
-            src={resource.formatUrls.small}
-            alt="loc"
-          />
-          : <Icon iconName='placeholder_image' />
-        }
+        {/*{ resource !== null*/}
+        {/*  ? <img*/}
+        {/*    className="projectCard-image"*/}
+        {/*    // onError={(e) => e.target.src = placeholderImage}*/}
+        {/*    src={resource.formatUrls.small}*/}
+        {/*    alt="loc"*/}
+        {/*  />*/}
+        {/*  : <Icon iconName='placeholder_image' />*/}
+        {/*}*/}
+        <img className="projectCard-image"
+             onError={(e) => e.target.src = PATH.PLACEHOLDER_IMAGE}
+             src={resource !== null ? resource.formatUrls.small : PATH.PLACEHOLDER_IMAGE }
+             alt="loc"
+        />
         <div className="projectCard-avatar pCard-adapt__avatar d-f jc-c">
           <span className="projectCard-avatar__container">
 
-            { publisher.avatar !== null
-              ?  <img
-                // onError={(e) => e.target.src = placeholderAvatar}
-                src={publisher.avatar.originalUrl}
-                alt="small"
-              />
-              : <Icon iconName='avatar' className='avatar_card'/>
-            }
+            {/*{ publisher.avatar !== null*/}
+            {/*  ?  <img*/}
+            {/*    // onError={(e) => e.target.src = placeholderAvatar}*/}
+            {/*    src={publisher.avatar.originalUrl}*/}
+            {/*    alt="small"*/}
+            {/*  />*/}
+            {/*  : <Icon iconName='avatar' className='avatar_card'/>*/}
+            {/*}*/}
+            <img
+              onError={(e) => e.target.src = PATH.PLACEHOLDER_AVATAR }
+              src={publisher.avatar !== null ? publisher.avatar.originalUrl : PATH.PLACEHOLDER_AVATAR }
+              alt="small"
+            />
 
           </span>
         </div>

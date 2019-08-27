@@ -2,6 +2,7 @@ import React from 'react';
 import '../ProjectCard/ProjectCard.sass';
 import './EventCard.sass';
 import Icon from "../../Icons/Icons";
+import {PATH} from '../../Constants';
 
 
 const EventCard = (props) => {
@@ -22,15 +23,20 @@ const EventCard = (props) => {
         {/*  onError={(e) => e.target.src = placeholderImage}*/}
         {/*  src={resource.formatUrls.small } alt="loc"*/}
         {/*/>*/}
-        { resource !== null
-          ? <img
-            className="projectCard-image"
-            // onError={(e) => e.target.src = placeholderImage}
-            src={resource.formatUrls.small}
-            alt="loc"
-          />
-          : <Icon iconName='placeholder_image' />
-        }
+        {/*{ resource !== null*/}
+        {/*  ? <img*/}
+        {/*    className="projectCard-image"*/}
+        {/*    // onError={(e) => e.target.src = placeholderImage}*/}
+        {/*    src={resource.formatUrls.small}*/}
+        {/*    alt="loc"*/}
+        {/*  />*/}
+        {/*  : <Icon iconName='placeholder_image' />*/}
+        {/*}*/}
+        <img className="projectCard-image"
+             onError={(e) => e.target.src = PATH.PLACEHOLDER_IMAGE}
+             src={resource !== null ? resource.formatUrls.small : PATH.PLACEHOLDER_IMAGE }
+             alt="loc"
+        />
         <div className="projectCard-info mb-2 pCard-adapt__info">
           <h3 className="projectCard-info__headline info-headline h2-black fs-24 ls-5 lh-22 fw-600 mt-2 t-align-c">
             {event.title}
