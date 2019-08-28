@@ -28,6 +28,7 @@ let EditProfileForm = props => {
           label="First Name"
           isRequired={true}
           component={ReduxFormTextInput}
+          styleInput={{ fontWeight: 600 }}
         />
 
         <Field
@@ -36,6 +37,7 @@ let EditProfileForm = props => {
           label="Last Name"
           isRequired={true}
           component={ReduxFormTextInput}
+          styleInput={{ fontWeight: 600 }}
         />
 
         <Field
@@ -44,6 +46,7 @@ let EditProfileForm = props => {
           label="Contact Email"
           isRequired={true}
           component={ReduxFormTextInput}
+          styleInput={{ fontWeight: 600 }}
         />
 
         <Field
@@ -51,6 +54,7 @@ let EditProfileForm = props => {
           type="tel"
           label="Phone number"
           component={ReduxFormTextInput}
+          styleInput={{ fontWeight: 600 }}
         />
       </LabelWrapper>
     </div>
@@ -69,6 +73,7 @@ let EditProfileForm = props => {
 
 EditProfileForm = reduxForm({
   form: 'editProfileForm',
+  enableReinitialize: true
 })(EditProfileForm);
 
 

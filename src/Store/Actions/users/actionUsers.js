@@ -9,6 +9,7 @@ export const USER_PROFILE = {
   REQUEST_USER_FAILURE: 'REQUEST_USER_FAILURE',
   STATE_PROFILE_CLEANING: 'STATE_PROFILE_CLEANING',
   PROFILE_ERROR_CLEANING: 'PROFILE_ERROR_CLEANING',
+  USER_PROFILE_EDIT: 'USER_PROFILE_EDIT',
 };
 
 
@@ -41,6 +42,12 @@ export const profileErrorCleaning = () => ({
 });
 
 
+export const userProfileEdit = (payload) => ({
+  type: USER_PROFILE.USER_PROFILE_EDIT,
+  payload,
+});
+
+
 export const getUserDataProfile = (userId, path, projectType, pathname, queries) => (
   dispatch => {
     dispatch(requestUserById());
@@ -50,7 +57,7 @@ export const getUserDataProfile = (userId, path, projectType, pathname, queries)
     return axios
       .get(URL, {
         headers: {
-          Authorization: `Bearer ${getFromLocalState('TOKEN_INFO')}`,
+          Authorization: `Bearer ${getFromLocalState('TOKEN_INFO').accessToken}`,
         },
       })
       .then(res => {
@@ -65,6 +72,30 @@ export const getUserDataProfile = (userId, path, projectType, pathname, queries)
   }
 );
 
+
+export const getUserDataProfileForEdit = (key) => (
+  dispatch => {
+    dispatch(requestUserById());
+
+    const URL = `${REQUEST_ULR.CORS_BASE_URL}/profiles/me`;
+
+    return axios
+      .get(URL, {
+        headers: {
+          Authorization: `Bearer ${getFromLocalState('TOKEN_INFO').accessToken}`,
+        },
+      })
+      .then(res => {
+        const { data = {} } = res;
+        if (data && data.code === 'success') {
+          dispatch(receiveUserById(data.data, key));
+        }
+      })
+      .catch(() => {
+        dispatch(requestUserFailure());
+      });
+  }
+);
 
 // https://dev.tribus.org/api/v0.7/users/1e2d1cce-42a8-48fe-a59d-084f387b09ac
 // https://dev.tribus.org/api/v0.7/users/fefa53cb-faf0-4d6d-b0c2-84001c077efb/ideas
