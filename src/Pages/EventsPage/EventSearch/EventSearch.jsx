@@ -9,7 +9,6 @@ import FormSearchWrapper from '../../../Components/Form/FormSearchWrapper';
 
 
 const EventSearch = (props) => {
-  console.log(props);
   const {
     location,
     eventsData,

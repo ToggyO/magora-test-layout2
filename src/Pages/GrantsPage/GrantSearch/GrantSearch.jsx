@@ -14,7 +14,7 @@ const GrantSearch = (props) => {
     optionsData,
     sortValues,
   } = props;
-  debugger;
+
   return (
     <div className="grantSearch wrapper">
       <div className="grantSearch-container wrapper-container prS-adapt d-f pl-35 pr-35 pt-25 pb-25">

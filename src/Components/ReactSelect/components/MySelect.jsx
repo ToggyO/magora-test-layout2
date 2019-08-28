@@ -13,7 +13,6 @@ const MySelect = (props) => {
     name,
     value,
   } = props;
-  debugger;
   return (
     <Select
       components={{ DropdownIndicator }}

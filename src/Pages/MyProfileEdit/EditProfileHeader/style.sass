@@ -1,0 +1,37 @@
+@import '../../../Styles/bin/variables'
+@import '../../../Styles/bin/mixins'
+@import "../../../../node_modules/rfs/sass"
+
+
+.edit-profile-header
+  background-color: #fff
+
+  &__container
+    padding: 50px 100px
+    flex-direction: row-reverse
+    justify-content: flex-end
+    +r(sm)
+      padding: 25px 50px
+    +r(xxs)
+      padding: 25px 10px
+
+
+
+  &__account
+    width: 70%
+    text-align: center
+
+    h6
+      +r(sm)
+        font-size: 20px
+
+  &__back
+    width: 15%
+    display: flex
+    min-width: 160px
+    +r(lg)
+      min-width: 45px
+
+    span
+      +r(lg)
+        display: none

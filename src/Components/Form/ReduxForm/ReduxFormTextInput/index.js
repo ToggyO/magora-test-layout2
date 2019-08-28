@@ -12,7 +12,9 @@ const ReduxFormTextInput = (props) => {
     type,
     placeholder,
     meta,
-    style,
+    styleWrapper,
+    styleInput,
+    isRequired,
   } = props;
 
   const inputId = `input-${input.name}`;
@@ -24,6 +26,8 @@ const ReduxFormTextInput = (props) => {
         error={meta.error}
         touched={meta.touched}
         inputId={inputId}
+        isRequired={isRequired}
+        style={styleWrapper}
       >
         <div className={`${s.inputBlock_texInput} ${meta.error && meta.touched ? 'error' : null}`}>
           <input
@@ -34,7 +38,7 @@ const ReduxFormTextInput = (props) => {
             name={input.name}
             onChange={input.onChange}
             onBlur={input.onBlur}
-            style={style}
+            style={styleInput}
           />
         </div>
       </ReduxFormInputWrapper>

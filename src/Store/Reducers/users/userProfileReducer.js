@@ -35,6 +35,11 @@ const userProfileReducer = (state = InitialState, action) => {
       return {
         ...InitialState,
       };
+    case USER_PROFILE.PROFILE_ERROR_CLEANING:
+      return {
+        ...state,
+        error: false,
+      };
     default:
       return state;
   }

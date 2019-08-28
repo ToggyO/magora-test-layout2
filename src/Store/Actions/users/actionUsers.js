@@ -8,6 +8,7 @@ export const USER_PROFILE = {
   RECEIVE_USER: 'RECEIVE_USER',
   REQUEST_USER_FAILURE: 'REQUEST_USER_FAILURE',
   STATE_PROFILE_CLEANING: 'STATE_PROFILE_CLEANING',
+  PROFILE_ERROR_CLEANING: 'PROFILE_ERROR_CLEANING',
 };
 
 
@@ -32,6 +33,11 @@ const requestUserFailure = () => ({
 
 export const stateProfileCleaning = () => ({
   type: USER_PROFILE.STATE_PROFILE_CLEANING,
+});
+
+
+export const profileErrorCleaning = () => ({
+  type: USER_PROFILE.PROFILE_ERROR_CLEANING,
 });
 
 
