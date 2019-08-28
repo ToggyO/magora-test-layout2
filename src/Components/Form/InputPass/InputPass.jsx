@@ -1,20 +1,18 @@
 import React from 'react';
 import s from './InputPass.module.sass';
 import '../FormComponentsStyle.sass';
-import eye from '../../../img/main/hide-password.svg'
-
+import eye from '../../../img/main/hide-password.svg';
 import InputWrapper from '../InputWrapper/InputWrapper';
 
 
 class InputPass extends React.Component {
-
   state = {
-    isPwShown: false
+    isPwShown: false,
   };
 
   showHidePw = () => {
     this.setState({
-      isPwShown: !this.state.isPwShown
+      isPwShown: !this.state.isPwShown,
     });
   };
 
@@ -22,14 +20,23 @@ class InputPass extends React.Component {
 
 
   render() {
-
-    const { style, label, placeholder, name, onChange, onBlur, error, visited, value } = this.props;
+    const {
+      style,
+      label,
+      placeholder,
+      name,
+      onChange,
+      onBlur,
+      error,
+      visited,
+      value,
+    } = this.props;
     const { isPwShown } = this.state;
 
     return (
       <div className={s.inputPass} style={style}>
         <InputWrapper label={label} error={error} visited={visited} inputId={this.inputId}>
-          <div className={`${s.container} ${ error && visited ? 'error' : null }`}>
+          <div className={`${s.container} ${error && visited ? 'error' : null}`}>
             <input
               id={this.inputId}
               type={isPwShown ? 'text' : 'password'}
@@ -49,7 +56,7 @@ class InputPass extends React.Component {
           </div>
         </InputWrapper>
       </div>
-    )
+    );
   }
 }
 

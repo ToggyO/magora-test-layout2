@@ -1,25 +1,23 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import s from './style.module.sass';
 import '../../FormComponentsStyle.sass';
-import eye from '../../../../img/main/hide-password.svg'
-import ReduxFormInputWrapper from "../ReduxFormInputWrapper/InputWrapper";
-import PropTypes from 'prop-types';
+import eye from '../../../../img/main/hide-password.svg';
+import ReduxFormInputWrapper from '../ReduxFormInputWrapper/InputWrapper';
 
 
 class ReduxFormPassword extends React.Component {
-
   state = {
-    isPwShown: false
+    isPwShown: false,
   };
 
   showHidePw = () => {
     this.setState({
-      isPwShown: !this.state.isPwShown
+      isPwShown: !this.state.isPwShown,
     });
   };
 
   render() {
-
     const {
       input,
       style,
@@ -33,8 +31,12 @@ class ReduxFormPassword extends React.Component {
 
     return (
       <div className={s.inputPass} style={style}>
-        <ReduxFormInputWrapper label={label} error={meta.error} touched={meta.touched} inputId={inputId}>
-          <div className={`${s.container} ${ meta.error && meta.touched ? 'error' : null }`}>
+        <ReduxFormInputWrapper
+          label={label}
+          error={meta.error}
+          touched={meta.touched}
+          inputId={inputId}>
+          <div className={`${s.container} ${meta.error && meta.touched ? 'error' : null}`}>
             <input
               id={this.inputId}
               type={isPwShown ? 'text' : 'password'}
@@ -54,7 +56,7 @@ class ReduxFormPassword extends React.Component {
           </div>
         </ReduxFormInputWrapper>
       </div>
-    )
+    );
   }
 }
 
@@ -68,4 +70,4 @@ ReduxFormPassword.propTypes = {
   style: PropTypes.object,
   meta: PropTypes.object,
   placeholder: PropTypes.string,
-}
+};

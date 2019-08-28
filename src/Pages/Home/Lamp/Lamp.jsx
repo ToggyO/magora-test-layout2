@@ -1,9 +1,9 @@
 import React from 'react';
-import './Lamp.sass'
+import './Lamp.sass';
 
 
+/* eslint-disable class-methods-use-this */
 class Lamp extends React.Component {
-
   render() {
     return (
       <div className="lamp wrapper">
@@ -33,9 +33,9 @@ class Lamp extends React.Component {
           </div>
         </div>
       </div>
-    )
-  };
-};
+    );
+  }
+}
 
 
 export default Lamp;

@@ -1,11 +1,12 @@
-import {applyMiddleware, createStore} from "redux";
-import { reducers } from './Reducers/reducers';
-import thunkMiddleware from 'redux-thunk';
-// import { logger } from 'redux-logger';
+/* eslint-disable */
+import { applyMiddleware, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import thunkMiddleware from 'redux-thunk';
+import { reducers } from './Reducers/reducers';
+// import { logger } from 'redux-logger';
 
 
-let store = createStore(
+const store = createStore(
   reducers,
   composeWithDevTools(applyMiddleware(thunkMiddleware)),
 );

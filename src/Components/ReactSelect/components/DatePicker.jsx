@@ -1,10 +1,9 @@
-// @flow
+/* eslint-disable */
 /** @jsx jsx */
 import { Component } from 'react';
 import { jsx } from '@emotion/core';
 import moment from 'moment';
 import chrono from 'chrono-node';
-
 import Select from 'react-select';
 import { components as SelectComponents } from 'react-select';
 

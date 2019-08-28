@@ -1,29 +1,23 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './ProjectSearch.sass';
 import FormSearchWrapper from '../../../Components/Form/FormSearchWrapper';
 import SearchButtonsBlock from '../../../Components/SearchButtonsBlock';
-import CheckboxSelect from "../../../Components/ReactSelect/components/CheckboxSelect";
-import {modulesOptions, sortOptions} from "../FindProjectOptions";
-import MySelect from "../../../Components/ReactSelect/components/MySelect";
-import PropTypes from 'prop-types';
+import CheckboxSelect from '../../../Components/ReactSelect/components/CheckboxSelect';
+import { modulesOptions, sortOptions } from '../FindProjectOptions';
+import MySelect from '../../../Components/ReactSelect/components/MySelect';
 
 
 const ProjectSearch = (props) => {
-
   const {
     location,
     projectsData,
     optionsData,
     projectsSortValues,
   } = props;
-
-  // useEffect(() => {
-  //   // projectsData.history;
-  // },[ projectsData.history]);
-
   return (
-    <div className='projectSearch wrapper'>
-      <div className={`projectSearch-container wrapper-container prS-adapt d-f pl-35 pr-35 pt-25 pb-25  `}>
+    <div className="projectSearch wrapper">
+      <div className='projectSearch-container wrapper-container prS-adapt d-f pl-35 pr-35 pt-25 pb-25'>
 
         <SearchButtonsBlock
           projectSearchButton={{
@@ -50,49 +44,50 @@ const ProjectSearch = (props) => {
           projectsData={projectsData}
           location={location}
         >
-          <div className='filters-sort__sortBy'>
+          <div className="filters-sort__sortBy">
             <MySelect
               options={sortOptions}
-              placeholder='Sort By...'
+              placeholder="Sort By..."
               sortValues={projectsSortValues}
               // defaultValue={sortOptions.filter(item => item.value === parseString.sort)}
-              name='sort'
+              name="sort"
               value={sortOptions.filter(item => item.value === projectsData.history.sort)}
             />
             <CheckboxSelect
               options={modulesOptions}
-              placeholder='Active modules'
+              placeholder="Active modules"
               // value={[modulesOptions[0]]}
               value={modulesOptions.filter(item => projectsData.history[item.value])}
               // defaultValue={modulesOptions.filter(item => parseString[item.value])}
             />
           </div>
-          <div className='filters-sort__category prS-adapt__category ml-16'>
+          <div className="filters-sort__category prS-adapt__category ml-16">
             <MySelect
               options={optionsData.categories}
-              placeholder='Choose category'
+              placeholder="Choose category"
               sortValues={projectsSortValues}
-              // defaultValue={optionsData.categories.filter(item => item.value === parseString.category)}
-              name='category'
-              value={optionsData.categories.filter(item => item.value === projectsData.history.category)}
+              name="category"
+              value={optionsData
+                .categories
+                .filter(item => item.value === projectsData.history.category)}
             />
           </div>
-          <div className='filters-sort__benefits prS-adapt__benefits ml-16'>
+          <div className="filters-sort__benefits prS-adapt__benefits ml-16">
             <MySelect
               options={optionsData.benefits}
-              placeholder='Choose benefits'
+              placeholder="Choose benefits"
               sortValues={projectsSortValues}
-              // defaultValue={optionsData.benefits.filter(item => item.value === parseString.benefit)}
-              name='benefit'
-              value={optionsData.benefits.filter(item => item.value === projectsData.history.benefit
-              )}
+              name="benefit"
+              value={optionsData
+                .benefits
+                .filter(item => item.value === projectsData.history.benefit)}
             />
           </div>
         </FormSearchWrapper>
 
       </div>
     </div>
-  )
+  );
 };
 
 export default ProjectSearch;
@@ -104,19 +99,6 @@ ProjectSearch.propTypes = {
   optionsData: PropTypes.object,
   projectsSortValues: PropTypes.func,
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //

@@ -1,12 +1,22 @@
 import React from 'react';
 import s from './TextInput.module.sass';
 import '../FormComponentsStyle.sass';
-import InputWrapper from "../InputWrapper/InputWrapper";
+import InputWrapper from '../InputWrapper/InputWrapper';
 
 
 const TextInput = (props) => {
-
-  const { label, type, placeholder, name, onChange, onBlur, error, visited, style, value } = props;
+  const {
+    label,
+    type,
+    placeholder,
+    name,
+    onChange,
+    onBlur,
+    error,
+    visited,
+    style,
+    value,
+  } = props;
 
   const inputId = `input-${name}`;
 
@@ -27,7 +37,7 @@ const TextInput = (props) => {
         </div>
       </InputWrapper>
     </div>
-  )
+  );
 };
 
 

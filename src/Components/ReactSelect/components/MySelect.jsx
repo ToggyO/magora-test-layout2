@@ -3,7 +3,7 @@ import Select from 'react-select';
 import { DropdownIndicator } from './custom_components';
 import { styles } from '../Styles/filterStyles';
 
-
+/* eslint-disable no-shadow */
 const MySelect = (props) => {
   const {
     options,
@@ -13,7 +13,7 @@ const MySelect = (props) => {
     name,
     value,
   } = props;
-
+  debugger;
   return (
     <Select
       components={{ DropdownIndicator }}
@@ -21,7 +21,7 @@ const MySelect = (props) => {
       options={options}
       placeholder={placeholder}
       inputValue=''
-      onChange={(v) => sortValues(v.value, name)}
+      onChange={(value) => sortValues(value.value, name)}
       defaultValue={defaultValue}
       value={value}
     />

@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form';
 import modalReducer from './modal/modalReducer';
 import fetchedDataReducer from './fetchedData/fetchDataReducer';
 import fetchedOptionsReducer from './fetchedData/fetchOptionsReducer';
-import { reducer as formReducer } from 'redux-form'
-import authReducer from "./Auth/authReducer";
-import userProfileReducer from "./users/userProfileReducer";
+import authReducer from './Auth/authReducer';
+import userProfileReducer from './users/userProfileReducer';
 
 
 export const reducers = combineReducers({
@@ -13,5 +13,5 @@ export const reducers = combineReducers({
   fetchedProjectsOptions: fetchedOptionsReducer,
   form: formReducer,
   authData: authReducer,
-  userProfileData: userProfileReducer
+  userProfileData: userProfileReducer,
 });

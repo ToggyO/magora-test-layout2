@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { LOCAL_STORAGE_PREFIX } from '../Constants';
 
 export function writeToLocalState(key, state) {

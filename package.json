@@ -54,7 +54,10 @@
       }
     },
     "rules": {
-      "import/prefer-default-export": "off"
+      "import/prefer-default-export": "off",
+      "arrow-parens": "off",
+      "no-plusplus": "off",
+      "no-debugger": "off"
     }
   },
   "browserslist": {

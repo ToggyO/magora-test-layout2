@@ -1,43 +1,48 @@
-import React from 'react'
-import {Field, reduxForm, formValueSelector} from 'redux-form';
-import ReduxFormTextInput from "../ReduxFormTextInput";
-import ReduxFormSelect from '../ReduxFormSelect/Select';
-import ReduxFormPassword from "../ReduxFormPassword";
-import validationConditionsSignUp from "./RegistrationValidation";
-import {options} from './optionsList';
-import {bindActionCreators} from "redux";
-import {modalOpen} from "../../../../Store/Actions/modal/actionModal";
-import {connect} from "react-redux";
-import {regRequest} from "../../../../Store/Actions/Auth/actionAuth";
-import Preloader from '../../../Preloader/Preloader';
+import React from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { Field, reduxForm, formValueSelector } from 'redux-form';
 import PropTypes from 'prop-types';
-
+import ReduxFormTextInput from '../ReduxFormTextInput';
+import ReduxFormSelect from '../ReduxFormSelect/Select';
+import ReduxFormPassword from '../ReduxFormPassword';
+import validationConditionsSignUp from './RegistrationValidation';
+import { options } from './optionsList';
+import { modalOpen } from '../../../../Store/Actions/modal/actionModal';
+import { regRequest } from '../../../../Store/Actions/Auth/actionAuth';
+import Preloader from '../../../Preloader/Preloader';
 
 
 let RegistrationForm = props => {
+  const {
+    handleSubmit,
+    pristine,
+    valid,
+    error,
+    registrationRequest,
+    authData,
+  } = props;
 
-  const { handleSubmit, pristine, valid, error, regRequest, authData } = props;
-
-  return  <div className="main-form">
+  return <div className="main-form">
 
     {authData.regLoader
       && <Preloader
           style={{
             display: 'flex',
             justifyContent: 'center',
-            alignItems: 'center'
+            alignItems: 'center',
           }}
         />
     }
 
     <div className="main-form__headline">
-      <h2 className='h2-black fs-24 lh-30 ls-3 fw-700 mb-10 t-align-c'>
+      <h2 className="h2-black fs-24 lh-30 ls-3 fw-700 mb-10 t-align-c">
         Join the Tribus community
       </h2>
     </div>
     <form
-      onSubmit={handleSubmit(regRequest)}
-      className='form'
+      onSubmit={handleSubmit(registrationRequest)}
+      className="form"
     >
 
       { error && <div style={{
@@ -46,80 +51,80 @@ let RegistrationForm = props => {
         letterSpacing: '0.04px',
         fontWeight: 500,
         color: 'red',
-        textAlign: 'center'
+        textAlign: 'center',
       }}
       >
         {error}
       </div>}
 
-      <div className='form-switchRole'>
+      <div className="form-switchRole">
         <Field
           component={ReduxFormSelect}
-          name='role'
-          label=''
+          name="role"
+          label=""
           options={options}
         />
 
-        {props.role === 'COMMUNITY_GROUP' &&
-          <Field
-            placeholder='Community group name'
-            name="communityName"
-            type='text'
-            label=''
-            component={ReduxFormTextInput}
-          />
+        {props.role === 'COMMUNITY_GROUP'
+          && <Field
+              placeholder="Community group name"
+              name="communityName"
+              type="text"
+              label=""
+              component={ReduxFormTextInput}
+            />
         }
       </div>
 
       <Field
-        placeholder='First name'
+        placeholder="First name"
         name="firstName"
-        type='text'
-        label='First Name:'
+        type="text"
+        label="First Name:"
         component={ReduxFormTextInput}
       />
 
       <Field
-        placeholder='Last name'
+        placeholder="Last name"
         name="lastName"
-        type='text'
-        label='Last Name:'
+        type="text"
+        label="Last Name:"
         component={ReduxFormTextInput}
       />
 
       <Field
-        placeholder='Email'
+        placeholder="Email"
         name="email"
-        type='email'
-        label='Contact information:'
+        type="email"
+        label="Contact information:"
         component={ReduxFormTextInput}
       />
 
       <Field
-        placeholder='Address'
+        placeholder="Address"
         name="address"
-        type='text'
-        label='Enter Address:'
+        type="text"
+        label="Enter Address:"
         initialValues
         component={ReduxFormTextInput}
         disabled={true}
       />
 
-      <div className='form-password'>
-        <div className='form-password__block' id="form-password__block">
+      <div className="form-password">
+        <div className="form-password__block" id="form-password__block">
 
           <Field
-            placeholder={'Enter password'}
+            placeholder="Enter password"
             name="password"
-            type='password'
-            label={'Password:'}
+            type="password"
+            label="Password:"
             component={ReduxFormPassword}
           />
 
           <Field
-            placeholder={'Confirm password'}
+            placeholder="Confirm password"
             name="passwordConfirm"
-            type='password'
+            type="password"
             label="&nbsp;"
             component={ReduxFormPassword}
           />
@@ -127,7 +132,7 @@ let RegistrationForm = props => {
         </div>
       </div>
 
-      <p className='form-license t-align-c'>
+      <p className="form-license t-align-c">
         Any personal information you provide will be dealt with in accordance with
         our
         <a href="..#">
@@ -139,20 +144,20 @@ let RegistrationForm = props => {
         </a>
       </p>
 
-      <div className='fBtn-adapt form-button__create'>
+      <div className="fBtn-adapt form-button__create">
         <button
-          type='submit'
-          className='btn green sm-wide fs-16 lh-22 ls-24 fw-700'
+          type="submit"
+          className="btn green sm-wide fs-16 lh-22 ls-24 fw-700"
           disabled={pristine || !valid}
         >
           Create
         </button>
       </div>
 
-      <div className='fBtn-adapt form-button__login'>
+      <div className="fBtn-adapt form-button__login">
         <button
-          type='button'
-          className='btn transparent sm-wide fs-16 lh-17 ls-24 fw-600'
+          type="button"
+          className="btn transparent sm-wide fs-16 lh-17 ls-24 fw-600"
           onClick={ () => props.modalOpen('signInModal') }
         >
           Log in
@@ -160,7 +165,7 @@ let RegistrationForm = props => {
       </div>
 
     </form>
-  </div>
+  </div>;
 };
 
 RegistrationForm = reduxForm({
@@ -170,30 +175,26 @@ RegistrationForm = reduxForm({
     address: '7-9 Fullerton Street, Woollahra, NSW 2025',
     // address: '78 Canberra Avenue, Griffith, ACT 2603',
     role: 'USER',
-  }
+  },
 })(RegistrationForm);
 
 
 const selector = formValueSelector('registration');
-const mapStateToProps = (state) => {
-  return {
-    role: selector(state, 'role'),
-    authData: state.authData
-  };
-};
+const mapStateToProps = (state) => ({
+  role: selector(state, 'role'),
+  authData: state.authData,
+});
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    modalOpen: bindActionCreators(modalOpen, dispatch),
-    regRequest: bindActionCreators(regRequest, dispatch),
-  }
-};
+const mapDispatchToProps = (dispatch) => ({
+  modalOpen: bindActionCreators(modalOpen, dispatch),
+  registrationRequest: bindActionCreators(regRequest, dispatch),
+});
 
-export default connect( mapStateToProps, mapDispatchToProps )(RegistrationForm);
+export default connect(mapStateToProps, mapDispatchToProps)(RegistrationForm);
 
 
 RegistrationForm.propTypes = {
-  regRequest: PropTypes.func,
+  registrationRequest: PropTypes.func,
   error: PropTypes.object,
   authData: PropTypes.object,
-}
+};

@@ -1,2 +1,1 @@
 export const LOCAL_STORAGE_PREFIX = 'CLONE_TRIBUS';
-

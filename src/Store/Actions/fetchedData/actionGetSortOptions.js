@@ -1,4 +1,4 @@
-import * as axios from "axios";
+import * as axios from 'axios';
 
 
 export const SORT_OPTIONS = {
@@ -21,40 +21,34 @@ export const SORT_OPTIONS = {
 //   }
 // };
 
-const  receiveCategoriesOptions = (categories) => {
-  return {
-    type: SORT_OPTIONS.RECEIVE_CATEGORIES_OPTIONS,
-    payload: categories.data.data,
-  }
-};
+const receiveCategoriesOptions = (categories) => ({
+  type: SORT_OPTIONS.RECEIVE_CATEGORIES_OPTIONS,
+  payload: categories.data.data,
+});
 
-const  receiveBenefitsOptions = (benefits) => {
-  return {
-    type: SORT_OPTIONS.RECEIVE_BENEFITS_OPTIONS,
-    payload: benefits.data.data
-  }
-};
 
-export const stateOptionsCleaning = () => {
-  // debugger;
-  return {
-    type: SORT_OPTIONS.STATE_OPTIONS_CLEANING,
-  }
-};
+const receiveBenefitsOptions = (benefits) => ({
+  type: SORT_OPTIONS.RECEIVE_BENEFITS_OPTIONS,
+  payload: benefits.data.data,
+});
 
-export const getCategoriesOptions = () => {
-  // debugger;
-  return (dispatch) => {
 
-     axios.get('https://dev.tribus.org/api/v0.7/categories')
+export const stateOptionsCleaning = () => ({
+  type: SORT_OPTIONS.STATE_OPTIONS_CLEANING,
+});
+
+
+export const getCategoriesOptions = () => (
+  (dispatch) => {
+    axios.get('https://dev.tribus.org/api/v0.7/categories')
       .then(res => dispatch(receiveCategoriesOptions(res)));
   }
-};
+);
 
-export const getBenefitsOptions = () => {
-  return (dispatch) => {
 
-     axios.get('https://dev.tribus.org/api/v0.7/benefits')
+export const getBenefitsOptions = () => (
+  (dispatch) => {
+    axios.get('https://dev.tribus.org/api/v0.7/benefits')
       .then(res => dispatch(receiveBenefitsOptions(res)));
   }
-};
+);

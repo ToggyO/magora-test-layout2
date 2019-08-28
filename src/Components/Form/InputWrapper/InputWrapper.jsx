@@ -1,17 +1,21 @@
-import React from "react";
-import FormError from "../FormError/FormError";
+import React from 'react';
+import FormError from '../FormError/FormError';
 import s from './InputWrapper.module.sass';
 
 
 const InputWrapper = (props) => {
-
-  const { label, error, visited, inputId } = props;
+  const {
+    label,
+    error,
+    visited,
+    inputId,
+  } = props;
 
   return (
     <div className={s.inputWrapper}>
       <label
         htmlFor={inputId}
-        className={`${s.inputWrapper_label} ${ error && visited ? 'error-label' : null }`}
+        className={`${s.inputWrapper_label} ${error && visited ? 'error-label' : null}`}
       >
         {label}
       </label>

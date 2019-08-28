@@ -1,11 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import './Banner.sass';
-import {modalOpen} from "../../../Store/Actions/modal/actionModal";
-import {connect} from "react-redux";
+import { modalOpen } from '../../../Store/Actions/modal/actionModal';
 
 
-const Banner = (props) => {
-  return (
+const Banner = () => (
       <div className="banner wrapper">
         <div className="banner-container wrapper-container d-f jc-c ai-c">
           <div className="banner-container-content pl-25 pr-25 d-f fd-c">
@@ -18,11 +17,7 @@ const Banner = (props) => {
                 <input className="search-block__input sh-inputLarge input-lg h6-skyFont fs-16 w-75 pl-10" type="text" placeholder="Describe your idea"/>
                 <button
                   className="search-block__create btn green md fs-18 ls-27 lh-18 fw-600 ml-20 w-25 sh-btn-lg"
-                  onClick={ (e) => {
-                    e.preventDefault();
-                    // props.openModal('signInModal');
-                    }
-                  }
+                  onClick={ (e) => e.preventDefault()}
                 >
                   Create project
                 </button>
@@ -31,17 +26,14 @@ const Banner = (props) => {
           </div>
         </div>
       </div>
-  );
-};
+);
 
 
-let mapDispatchToProps = (dispatch) => {
-  return {
-    openModal: (modalKey) => {
-      dispatch( modalOpen(modalKey) );
-    }
-  }
-};
+const mapDispatchToProps = (dispatch) => ({
+  openModal: (modalKey) => {
+    dispatch(modalOpen(modalKey));
+  },
+});
 
 
-export default connect( null, mapDispatchToProps )(Banner);
+export default connect(null, mapDispatchToProps)(Banner);

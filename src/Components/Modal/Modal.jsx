@@ -1,39 +1,38 @@
 import React from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import s from './Modal.module.sass';
-import CardModal from "./CardModal/CardModal";
-import { connect } from "react-redux";
-import { modalClose } from "../../Store/Actions/modal/actionModal";
-import { bindActionCreators } from "redux";
-import RegistrationForm from "../Form/ReduxForm/RegistrationForm/";
-import AuthForm from "../Form/ReduxForm/AuthForm";
-import {RegistrationSuccess} from "./RegistrationSuccess";
+import CardModal from './CardModal/CardModal';
+import { modalClose } from '../../Store/Actions/modal/actionModal';
+import RegistrationForm from '../Form/ReduxForm/RegistrationForm';
+import AuthForm from '../Form/ReduxForm/AuthForm';
+import { RegistrationSuccess } from './RegistrationSuccess';
 
 
+/* eslint-disable */
 class Modal extends React.Component {
-
   componentDidUpdate(prevProps) {
     if (this.props.modalState.modalKey !== prevProps.modalState.modalKey) {
 
       if (this.props.modalState.modalKey) {
         document.body.style.overflow = 'hidden';
-        document.body.style.paddingRight = '17px'
+        document.body.style.paddingRight = '17px';
       } else {
         document.body.style.overflow = 'auto';
-        document.body.style.paddingRight = '0'
+        document.body.style.paddingRight = '0';
       }
-
     }
-  };
+  }
 
   onClickEnvironmentModalClose = (e) => {
     const _id = e.target.id;
-    if (_id && _id  === "modal-overlay" ) {
+    if (_id && _id === 'modal-overlay') {
       this.props.modalClose();
     }
   };
 
   onRenderModalContent = () => {
-    let { modalKey, options } = this.props.modalState;
+    const { modalKey, options } = this.props.modalState;
     switch (modalKey) {
       case 'signInModal':
         return <AuthForm />;
@@ -49,7 +48,6 @@ class Modal extends React.Component {
   };
 
   render() {
-
     const { modalKey } = this.props.modalState;
 
     if (!modalKey) return null;
@@ -62,16 +60,14 @@ class Modal extends React.Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
-let mapStateToProps = ({ modalState }) => ( {modalState,} );
+const mapStateToProps = ({ modalState }) => ({ modalState });
 
-let mapDispatchToProps = (dispatch) => {
-  return {
-    modalClose: bindActionCreators(modalClose, dispatch)
-  }
-};
+const mapDispatchToProps = (dispatch) => ({
+  modalClose: bindActionCreators(modalClose, dispatch),
+});
 
-export default connect( mapStateToProps, mapDispatchToProps )(Modal);
+export default connect(mapStateToProps, mapDispatchToProps)(Modal);

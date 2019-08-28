@@ -1,11 +1,11 @@
 import React from 'react';
-import './Community.sass'
+import './Community.sass';
 import ProjectCard from '../../../Components/ProjectCard/ProjectCard';
 import { projectCard } from './projectCardsInfo';
 
-
+/* eslint-disable class-methods-use-this */
 class Community extends React.Component {
-  render () {
+  render() {
     return (
       <div className="com wrapper">
         <div className="com-container wrapper-container">
@@ -16,7 +16,7 @@ class Community extends React.Component {
                 <h3 className="fs-22 lh-22 fs-500 h3-lightGrey t-align-l">3 Featured projects showing, 2 most viewed and least supported idea.</h3>
               </div>
               <div className="com-block__projectCards com-adapt__projectCards d-f fw-w jc-c">
-                {projectCard.map( (card, i) => <ProjectCard key={i} card={card}/>)}
+                {projectCard.map((card, i) => <ProjectCard key={i} card={card}/>)}
               </div>
             </div>
             <div className="com-block__btn com-adapt__btn pt-19 pb-46">
@@ -27,9 +27,8 @@ class Community extends React.Component {
 
         </div>
       </div>
-    )
-  };
-};
-
+    );
+  }
+}
 
 export default Community;

@@ -1,15 +1,15 @@
 import React from 'react';
-import './EventSearch.sass';
-import DatePicker from "../../../Components/ReactDatePicker/DatePicker";
-import SearchButtonsBlock from "../../../Components/SearchButtonsBlock";
-import MySelect from "../../../Components/ReactSelect/components/MySelect";
-import {sortOptions, eventTypeOptions} from "../../FindProjects/FindProjectOptions";
-import FormSearchWrapper from "../../../Components/Form/FormSearchWrapper";
 import PropTypes from 'prop-types';
+import './EventSearch.sass';
+import DatePicker from '../../../Components/ReactDatePicker/DatePicker';
+import SearchButtonsBlock from '../../../Components/SearchButtonsBlock';
+import MySelect from '../../../Components/ReactSelect/components/MySelect';
+import { sortOptions, eventTypeOptions } from '../../FindProjects/FindProjectOptions';
+import FormSearchWrapper from '../../../Components/Form/FormSearchWrapper';
 
 
 const EventSearch = (props) => {
-
+  console.log(props);
   const {
     location,
     eventsData,
@@ -17,10 +17,10 @@ const EventSearch = (props) => {
     sortValues,
     datePick,
   } = props;
-
+  debugger;
   return (
-    <div className='eventSearch wrapper'>
-      <div className={`eventSearch-container wrapper-container prS-adapt d-f pl-35 pr-35 pt-25 pb-25`}>
+    <div className="eventSearch wrapper">
+      <div className="eventSearch-container wrapper-container prS-adapt d-f pl-35 pr-35 pt-25 pb-25">
 
         <SearchButtonsBlock
           projectSearchButton={{
@@ -47,48 +47,56 @@ const EventSearch = (props) => {
           projectsData={eventsData}
           location={location}
         >
-          <div className='filters-sort__eventsSortBy prS-adapt__eventsSortBy'>
+          <div className="filters-sort__eventsSortBy prS-adapt__eventsSortBy">
             <MySelect
               options={sortOptions}
-              placeholder='Sort By...'
+              placeholder="Sort By..."
               sortValues={sortValues}
               value={sortOptions.filter(item => item.value === eventsData.history.sort)}
-              name='sort'
+              name="sort"
             />
             <MySelect
               options={eventTypeOptions}
-              placeholder='Choose grant creator'
+              placeholder="Choose grant creator"
               sortValues={sortValues}
               value={eventTypeOptions.filter(item => item.value === eventsData.history.type)}
-              name='type'
+              name="type"
             />
           </div>
 
-          <div className='filters-sort__dateContainer'>
-            <div className={`filters-sort__datePicker prS-adapt__date-picker d-f jc-sb`}>
+          <div className="filters-sort__dateContainer">
+            <div className="filters-sort__datePicker prS-adapt__date-picker d-f jc-sb">
               <DatePicker
                 startDate={eventsData.history.startDate}
                 endDate={eventsData.history.endDate}
                 datePick={datePick}
               />
             </div>
-            <div className='filters-sort__catBen mt-6 d-f'>
-              <div className='filters-sort__category prS-adapt__eventsCategory ml-14'>
+            <div className="filters-sort__catBen mt-6 d-f">
+              <div className="filters-sort__category prS-adapt__eventsCategory ml-14">
                 <MySelect
                   options={optionsData.categories}
-                  placeholder='Choose category'
+                  placeholder="Choose category"
                   sortValues={sortValues}
-                  value={optionsData.categories.filter(item => item.value === eventsData.history.category)}
-                  name='category'
+                  value={
+                    optionsData
+                      .categories
+                      .filter(item => item.value === eventsData.history.category)
+                  }
+                  name="category"
                 />
               </div>
-              <div className='filters-sort__benefits prS-adapt__eventsBenefits ml-14'>
+              <div className="filters-sort__benefits prS-adapt__eventsBenefits ml-14">
                 <MySelect
                   options={optionsData.benefits}
-                  placeholder='Choose benefits'
+                  placeholder="Choose benefits"
                   sortValues={sortValues}
-                  value={optionsData.benefits.filter(item => item.value === eventsData.history.benefit)}
-                  name='benefit'
+                  value={
+                    optionsData
+                      .benefits
+                      .filter(item => item.value === eventsData.history.benefit)
+                  }
+                  name="benefit"
                 />
               </div>
             </div>
@@ -99,7 +107,7 @@ const EventSearch = (props) => {
 
       </div>
     </div>
-  )
+  );
 };
 
 
@@ -112,14 +120,7 @@ EventSearch.propTypes = {
   optionsData: PropTypes.object,
   sortValues: PropTypes.func,
   datePick: PropTypes.func,
-}
-
-
-
-
-
-
-
+};
 
 
 //

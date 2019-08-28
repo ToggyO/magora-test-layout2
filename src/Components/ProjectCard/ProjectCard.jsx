@@ -1,32 +1,23 @@
 import React from 'react';
 import './ProjectCard.sass';
-import {NavLink} from "react-router-dom";
-import {PATH, ROUTES, KEYWORD} from "../../Constants/";
+import { NavLink } from 'react-router-dom';
+import { PATH, ROUTES, KEYWORD } from '../../Constants';
 import Icon from '../../Icons/Icons';
 
 
+/* eslint-disable */
 const ProjectCard = (props) => {
-
-  const { idea, publisher, resource, supportersCount, supported } = props.item;
+  const {
+    idea,
+    publisher,
+    resource,
+    supportersCount,
+    supported,
+  } = props.item;
 
   return (
     <div className="projectCard pCard-adapt pl-10 pr-10 pt-5 pb-5 d-f fd-c">
       <div className="projectCard-container pCard-adapt__container">
-        {/*<div className="projectCard-iconBlock pCard-adapt__iconBlock d-f ai-c">*/}
-        {/*  <img className="iconBlock-icon" src={formatUrls.small} alt="small"/>*/}
-        {/*  <div className="iconBlock-status d-f ai-c">*/}
-        {/*    <img className="pl-7" src={image.status} alt=""/>*/}
-        {/*  </div>*/}
-        {/*</div>*/}
-        {/*{ resource !== null*/}
-        {/*  ? <img*/}
-        {/*      className="projectCard-image"*/}
-        {/*      // onError={(e) => e.target.src = placeholderImage}*/}
-        {/*      src={resource.formatUrls.small}*/}
-        {/*      alt="loc"*/}
-        {/*    />*/}
-        {/*  : <Icon iconName='placeholder_image' />*/}
-        {/*}*/}
         <img className="projectCard-image"
              onError={(e) => e.target.src = PATH.PLACEHOLDER_IMAGE}
              src={resource !== null ? resource.formatUrls.small : PATH.PLACEHOLDER_IMAGE }
@@ -34,18 +25,11 @@ const ProjectCard = (props) => {
         />
         <div className="projectCard-avatar pCard-adapt__avatar d-f jc-c">
           <span className="projectCard-avatar__container">
-
-            {/*{ publisher.avatar !== null*/}
-            {/*  ?  <img*/}
-            {/*      // onError={(e) => e.target.src = placeholderAvatar}*/}
-            {/*      src={publisher.avatar.originalUrl}*/}
-            {/*      alt="small"*/}
-            {/*    />*/}
-            {/*  : <Icon iconName='avatar' className='avatar_card'/>*/}
-            {/*}*/}
             <img
               onError={(e) => e.target.src = PATH.PLACEHOLDER_AVATAR}
-              src={publisher.avatar !== null ? publisher.avatar.originalUrl : PATH.PLACEHOLDER_AVATAR }
+              src={publisher.avatar !== null
+                ? publisher.avatar.originalUrl
+                : PATH.PLACEHOLDER_AVATAR }
               alt="small"
             />
           </span>
@@ -57,11 +41,10 @@ const ProjectCard = (props) => {
           <div className="projectCard-info__location info-location d-f ai-c jc-c mt-2">
             <div>
               <Icon
-                iconName='location_icon'
-                className='location_icon mr-1'
+                iconName="location_icon"
+                className="location_icon mr-1"
               />
             </div>
-            {/*<img className="mr-1" src={`${path}/Location.svg`} alt="Loc!"/>*/}
             <h6 className="h3-lightGrey fs-14 lh-22 ls-4 fw-500 als-c">
               {idea.address}
             </h6>
@@ -75,7 +58,7 @@ const ProjectCard = (props) => {
           <p className="projectCard-info__description info-description mt-2 pl-5 pr-5 fs-15 lh-22 ls-5 fs-500 h6-greyFont t-align-l">
             {idea.description}
           </p>
-          <a href='./#' className="projectCard-info__join info-join fs-16 lh-22 ls-5 fw-500 blueFont mt-12 t-align-c">
+          <a href="./#" className="projectCard-info__join info-join fs-16 lh-22 ls-5 fw-500 blueFont mt-12 t-align-c">
             Join the discussion
           </a>
         </div>
@@ -86,12 +69,12 @@ const ProjectCard = (props) => {
               {supported ? 'Supported' : 'Support' }
          </button>
         </div>
-        <a href='./#' className="projectCard-supporters d-f jc-fs als-fs">
+        <a href="./#" className="projectCard-supporters d-f jc-fs als-fs">
           <span className="fs-14 lh-22 ls-4 fw-500 h6-lightBlue t-align-l">{supportersCount} supporters</span>
         </a>
       </div>
     </div>
   );
-}
+};
 
 export default ProjectCard;

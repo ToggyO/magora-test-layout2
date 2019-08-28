@@ -1,15 +1,13 @@
 import React from 'react';
 import './GrantSearch.sass';
-import SearchButtonsBlock from "../../../Components/SearchButtonsBlock";
-import FormSearchWrapper from "../../../Components/Form/FormSearchWrapper";
-import MySelect from "../../../Components/ReactSelect/components/MySelect";
+import SearchButtonsBlock from '../../../Components/SearchButtonsBlock';
+import FormSearchWrapper from '../../../Components/Form/FormSearchWrapper';
+import MySelect from '../../../Components/ReactSelect/components/MySelect';
 
 
-const GrantSearchEmpty = (props) => {
-
-  return (
+const GrantSearchEmpty = () => (
     <div className='grantSearch wrapper'>
-      <div className={`grantSearch-container wrapper-container prS-adapt d-f pl-35 pr-35 pt-25 pb-25 `}>
+      <div className="grantSearch-container wrapper-container prS-adapt d-f pl-35 pr-35 pt-25 pb-25">
         <SearchButtonsBlock
           projectSearchButton={{
             className: 'btn rounded roundedSmall',
@@ -57,40 +55,7 @@ const GrantSearchEmpty = (props) => {
 
       </div>
     </div>
-  )
-};
-
+);
 
 
 export default GrantSearchEmpty;
-
-
-
-
-
-
-
-
-
-
-
-
-
-//
-// import React, { type ElementConfig } from 'react';
-// import Select, {components} from 'react-select'
-// import './EventSearch.sass';
-// import {NavLink} from "react-router-dom";
-// import Icon from  '../../../Icons/Icons';
-// import { styles } from  './selectStyles';
-//
-//
-// const DropdownIndicator = (
-//   props: ElementConfig<typeof components.DropdownIndicator>
-// ) => {
-//   return (
-//     <components.DropdownIndicator {...props}>
-//       <Icon iconName='dropdownCircle' />
-//     </components.DropdownIndicator>
-//   );
-// };

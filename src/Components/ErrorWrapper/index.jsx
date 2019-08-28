@@ -3,7 +3,6 @@ import './style.sass';
 
 
 const ErrorWrapper = (props) => {
-
   const { error } = props;
 
   return <div>
@@ -11,7 +10,7 @@ const ErrorWrapper = (props) => {
       ? <button>Something wrong</button>
       : props.children
     }
-  </div>
+  </div>;
 };
 
 

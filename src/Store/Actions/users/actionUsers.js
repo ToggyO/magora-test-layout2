@@ -1,7 +1,6 @@
-import {REQUEST_ULR} from "../../../Constants";
-import * as axios from "axios";
-import {getFromLocalState} from "../../../Libs/localStorage";
-import {KEYWORD} from "../../../Constants";
+import * as axios from 'axios';
+import { REQUEST_ULR, KEYWORD } from '../../../Constants';
+import { getFromLocalState } from '../../../Libs/localStorage';
 
 
 export const USER_PROFILE = {
@@ -12,52 +11,43 @@ export const USER_PROFILE = {
 };
 
 
-const requestUserById = () => {
-  return {
-    type: USER_PROFILE.REQUEST_USER
-  }
-};
+const requestUserById = () => ({
+  type: USER_PROFILE.REQUEST_USER,
+});
 
 
-const receiveUserById = (data, key) => {
-  return {
-    type: USER_PROFILE.RECEIVE_USER,
-    payload: {
-      data,
-      key
-    }
-  }
-};
+const receiveUserById = (data, key) => ({
+  type: USER_PROFILE.RECEIVE_USER,
+  payload: {
+    data,
+    key,
+  },
+});
 
 
-const requestUserFailure = () => {
-  return {
-    type: USER_PROFILE.REQUEST_USER_FAILURE
-  }
-};
+const requestUserFailure = () => ({
+  type: USER_PROFILE.REQUEST_USER_FAILURE,
+});
 
 
-export const stateProfileCleaning = () => {
-  return {
-    type: USER_PROFILE.STATE_PROFILE_CLEANING
-  }
-};
+export const stateProfileCleaning = () => ({
+  type: USER_PROFILE.STATE_PROFILE_CLEANING,
+});
 
 
-export const getUserDataProfile = (userId, path, projectType, pathname, queries) => {
-  return dispatch => {
+export const getUserDataProfile = (userId, path, projectType, pathname, queries) => (
+  dispatch => {
     dispatch(requestUserById());
 
-    let URL = `${REQUEST_ULR.CORS_BASE_URL}/${path}/${userId}${projectType && projectType !== KEYWORD.ABOUT ? `/${projectType}?PageSize=9&Page=${pathname === projectType ? queries.page || 1 : 1}` : ''}`;
+    const URL = `${REQUEST_ULR.CORS_BASE_URL}/${path}/${userId}${projectType && projectType !== KEYWORD.ABOUT ? `/${projectType}?PageSize=9&Page=${pathname === projectType ? queries.page || 1 : 1}` : ''}`;
 
     return axios
-      .get( URL,{
+      .get(URL, {
         headers: {
-          Authorization: "Bearer" + getFromLocalState('TOKEN_INFO')
-        }
+          Authorization: `Bearer ${getFromLocalState('TOKEN_INFO')}`,
+        },
       })
       .then(res => {
-
         const { data = {} } = res;
         if (data && data.code === 'success') {
           dispatch(receiveUserById(data.data, projectType || KEYWORD.USER_INFO));
@@ -65,9 +55,9 @@ export const getUserDataProfile = (userId, path, projectType, pathname, queries)
       })
       .catch(() => {
         dispatch(requestUserFailure());
-      })
+      });
   }
-};
+);
 
 
 // https://dev.tribus.org/api/v0.7/users/1e2d1cce-42a8-48fe-a59d-084f387b09ac

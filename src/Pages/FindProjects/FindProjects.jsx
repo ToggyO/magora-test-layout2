@@ -86,7 +86,7 @@ const FindProjects = (props) => {
         projectsData={fetchedData}
         optionsData={fetchedProjectsOptions}
         location={location}
-        projectsvalueSort={valueSort}
+        projectsSortValues={valueSort}
       />
       <CommunityProjects
         projectsData={fetchedData}

@@ -1,12 +1,11 @@
-import {DropdownIndicator} from "./custom_components";
-import Option from "./checkbox";
-import {moduleStyles} from "../Styles/modulesStyles";
-import Select from "react-select";
-import React from "react";
+import Select from 'react-select';
+import React from 'react';
+import { DropdownIndicator } from './custom_components';
+import Option from './checkbox';
+import { moduleStyles } from '../Styles/modulesStyles';
 
 
 const CheckboxSelect = (props) => {
-
   const {
     options,
     placeholder,
@@ -15,7 +14,7 @@ const CheckboxSelect = (props) => {
 
   return (
     <Select
-      components={{DropdownIndicator, Option}}
+      components={{ DropdownIndicator, Option }}
       isMulti
       closeMenuOnSelect={false}
       hideSelectedOptions={false}
@@ -27,7 +26,7 @@ const CheckboxSelect = (props) => {
       // defaultValue={defaultValue}
       value={value}
     />
-  )
+  );
 };
 
 

@@ -1,22 +1,22 @@
 import { USER_PROFILE } from '../../Actions/users/actionUsers';
 
-let InitialState = {
+const InitialState = {
   userInfo: {},
   ideas: {},
   engagements: {},
   events: {},
   loading: false,
-  error: false
+  error: false,
 };
 
 
 const userProfileReducer = (state = InitialState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case USER_PROFILE.REQUEST_USER:
       return {
         ...state,
         loading: true,
-        error: false
+        error: false,
       };
     case USER_PROFILE.RECEIVE_USER:
       return {
@@ -29,11 +29,11 @@ const userProfileReducer = (state = InitialState, action) => {
       return {
         ...state,
         loading: false,
-        error: true
+        error: true,
       };
     case USER_PROFILE.STATE_PROFILE_CLEANING:
       return {
-        ...InitialState
+        ...InitialState,
       };
     default:
       return state;

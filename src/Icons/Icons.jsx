@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import SVG from 'react-inlinesvg';
 import './iconsStyle.sass';
 
-
+/* eslint-disable */
 function Icons({ iconName, className }) {
   switch (iconName) {
     case 'shape':

@@ -1,21 +1,21 @@
 import { AUTH } from '../../Actions/Auth/actionAuth';
 
 
-let InitialState = {
+const InitialState = {
   authLoader: false,
   regLoader: false,
   isAuth: false,
   me: {},
-  tokens: {}
+  tokens: {},
 };
 
 
 const authReducer = (state = InitialState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case AUTH.LOGIN_REQUEST:
       return {
         ...state,
-        authLoader: true
+        authLoader: true,
       };
     case AUTH.LOGIN_SUCCESS:
       return {
@@ -23,34 +23,34 @@ const authReducer = (state = InitialState, action) => {
         authLoader: false,
         isAuth: true,
         me: action.payload.user,
-        tokens: action.payload.tokens
+        tokens: action.payload.tokens,
       };
     case AUTH.LOGIN_FAILURE:
       return {
         ...state,
-        authLoader: false
+        authLoader: false,
       };
     case AUTH.IS_AUTH_INIT:
       return {
         ...state,
         isAuth: true,
         me: action.payload.user,
-        tokens: action.payload.tokens
+        tokens: action.payload.tokens,
       };
     case AUTH.LOG_OUT:
       return {
         ...state,
-        isAuth: false
+        isAuth: false,
       };
     case AUTH.REG_REQUEST:
       return {
         ...state,
-        regLoader: true
+        regLoader: true,
       };
     case AUTH.REG_RESPONSE:
       return {
         ...state,
-        regLoader: false
+        regLoader: false,
       };
     default:
       return state;
