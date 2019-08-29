@@ -8,9 +8,9 @@ import ErrorWrapper from '../ErrorWrapper';
 const ErrorWrappedRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
-    render={(props) => <ErrorWrapper error={rest.userProfileData.error}>
-        <Component {...props}/>
-      </ErrorWrapper>
+    render={(props) => <ErrorWrapper error={rest.errorWrapper.error}>
+                          <Component {...props}/>
+                       </ErrorWrapper>
     }
   />
 );
@@ -19,6 +19,6 @@ ErrorWrappedRoute.propTypes = {
   component: PropTypes.elementType.isRequired,
 };
 
-const mapStateToProps = ({ userProfileData }) => ({ userProfileData });
+const mapStateToProps = ({ errorWrapper }) => ({ errorWrapper });
 
 export default connect(mapStateToProps)(ErrorWrappedRoute);

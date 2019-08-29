@@ -1,6 +1,8 @@
 import * as axios from 'axios';
+// import { SubmissionError } from 'redux-form';
 import { REQUEST_ULR, KEYWORD } from '../../../Constants';
 import { getFromLocalState } from '../../../Libs/localStorage';
+import { errorWrapperTrue } from '../error/actionError';
 
 
 export const USER_PROFILE = {
@@ -27,9 +29,9 @@ const receiveUserById = (data, key) => ({
 });
 
 
-const requestUserFailure = () => ({
-  type: USER_PROFILE.REQUEST_USER_FAILURE,
-});
+// const requestUserFailure = () => ({
+//   type: USER_PROFILE.REQUEST_USER_FAILURE,
+// });
 
 
 export const stateProfileCleaning = () => ({
@@ -44,12 +46,17 @@ export const profileErrorCleaning = () => ({
 
 export const getUserDataProfile = (userId, path, projectType, pathname, queries) => (
   dispatch => {
-    dispatch(requestUserById());
+    // dispatch(requestUserById());
 
     const URL = `${REQUEST_ULR.CORS_BASE_URL}/${path}/${userId}${projectType && projectType !== KEYWORD.ABOUT ? `/${projectType}?PageSize=9&Page=${pathname === projectType ? queries.page || 1 : 1}` : ''}`;
+    const token = getFromLocalState('TOKEN_INFO') && getFromLocalState('TOKEN_INFO').accessToken;
 
     return axios
-      .get(URL)
+      .get(URL, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then(res => {
         const { data = {} } = res;
         if (data && data.code === 'success') {
@@ -57,7 +64,7 @@ export const getUserDataProfile = (userId, path, projectType, pathname, queries)
         }
       })
       .catch(() => {
-        dispatch(requestUserFailure());
+        dispatch(errorWrapperTrue());
       });
   }
 );
@@ -65,7 +72,7 @@ export const getUserDataProfile = (userId, path, projectType, pathname, queries)
 
 export const getUserDataProfileForEdit = (key) => (
   dispatch => {
-    dispatch(requestUserById());
+    // dispatch(requestUserById());
 
     const URL = `${REQUEST_ULR.CORS_BASE_URL}/profiles/me`;
 
@@ -82,7 +89,89 @@ export const getUserDataProfileForEdit = (key) => (
         }
       })
       .catch(() => {
-        dispatch(requestUserFailure());
+        dispatch(errorWrapperTrue());
+      });
+  }
+);
+
+/* eslint-disable */
+export const putUserData = (body) => (
+  dispatch => {
+    dispatch(requestUserById());
+
+    // const parseAddress = body.address.split(',');
+    const requestBody = {
+      resourceId: null,
+      ageBracketsId: null,
+      location: {
+        areaName: '7-9 Fullerton Street',
+        stateName: 'Woollahra',
+        stateAbbreviation: 'NSW',
+      },
+      firstName: body.firstName,
+      lastName: body.lastName,
+      address: body.address,
+      email: body.email,
+      phone: body.phone,
+      website: null,
+      facebookLink: null,
+      googlePlusLink: null,
+      instagramLink: null,
+      linkedInLink: null,
+      pinterestLink: null,
+      twitterLink: null,
+      youTubeLink: null,
+      about: null,
+      organizationName: null,
+    };
+    // console.log(requestBody);
+
+    const URL = `${REQUEST_ULR.CORS_BASE_URL}/${REQUEST_ULR.USERS}`;
+    const token = getFromLocalState('TOKEN_INFO').accessToken;
+
+    return axios
+      .put(URL, requestBody, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then(res => {
+        const { data = {} } = res;
+        if (data && data.code === 'success') {
+          console.log('Successfully updated');
+          console.log(res);
+        }
+      })
+      .catch(error => {
+        console.log(error);
+        //   if (!error) {
+      //     return null;
+      //   }
+      //
+      //   // dispatch(regLoaderFalse());
+      //   const errorCodes = {
+      //     'common.field_min': 'Field has symbols less than needed',
+      //     'common.field_max': ' Field can’t be empty',
+      //     'common.field_phone': 'Field has symbols more than needed',
+      //     'common.field_not_null': 'Field can’n be null',
+      //     'common.field_not_blank': 'Field can’t be empty',
+      //   };
+      //
+      //   const { data = {} } = error.response;
+      //   const { errors = {} } = data;
+      //
+      //   const errorObj = {};
+      //   errors.forEach(item => {
+      //     if (item.field) {
+      //       const firstLetterToLowerCase = `${item.field[0].toLowerCase()}${item.field.slice(1)}`;
+      //       errorObj[firstLetterToLowerCase] = errorCodes[item.code];
+      //     } else if (errorCodes[item.code]) {
+      //       errorObj._error = errorCodes[item.code];
+      //     } else {
+      //       errorObj._error = item.message;
+      //     }
+      //   });
+      //   throw new SubmissionError(errorObj);
       });
   }
 );

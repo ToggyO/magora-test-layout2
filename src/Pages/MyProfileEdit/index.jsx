@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
 import './style.sass';
 import EditProfileHeader from './EditProfileHeader';
 import EditProfileForm from '../../Components/Form/ReduxForm/EditProfileForm';
@@ -11,8 +12,19 @@ import Preloader from '../../Components/Preloader/Preloader';
 
 
 class MyProfileEdit extends React.Component {
+  static propTypes = {
+    userProfileData: PropTypes.object,
+    editInfo: PropTypes.object,
+    user: PropTypes.object,
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    email: PropTypes.string,
+    areaName: PropTypes.string,
+    stateName: PropTypes.string,
+    stateAbbreviation: PropTypes.string,
+  };
+
   componentDidMount() {
-    // if (this.props.)
     this.props.getUser(KEYWORD.EDIT_INFO);
     window.scrollTo(0, 0);
   }
@@ -20,7 +32,18 @@ class MyProfileEdit extends React.Component {
   render() {
     const { userProfileData = {} } = this.props;
     const { editInfo = {} } = userProfileData;
-    const { user = {} } = editInfo;
+    const { user = {}, location = {} } = editInfo;
+    const {
+      firstName,
+      lastName,
+      email,
+      phone,
+    } = user;
+    const {
+      areaName,
+      stateName,
+      stateAbbreviation,
+    } = location;
 
     return (
       <>
@@ -37,10 +60,11 @@ class MyProfileEdit extends React.Component {
             <EditProfileHeader user={user}/>
             <div className="edit-profile__container wrapper-container">
               <EditProfileForm initialValues={{
-                firstName: user.firstName,
-                lastName: user.lastName,
-                email: user.email,
-                phoneNumber: user.phone,
+                firstName: firstName || null,
+                lastName: lastName || null,
+                email: email || null,
+                phone: phone || null,
+                address: `${areaName}, ${stateAbbreviation}, ${stateName}` || null,
               }}/>
             </div>
           </div>

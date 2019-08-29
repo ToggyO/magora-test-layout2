@@ -54,16 +54,27 @@ function App(props) {
             redirect={`${ROUTES.HOME_PAGE}`}
             component={Registration}
           />
-          <ErrorWrappedRoute path={`/${ROUTES.PROJECT_SEARCH}`} component={FindProjects}/>
-          {/* <Route path={`/${ROUTES.PROJECT_SEARCH}`} component={FindProjects}/> */}
-          <Route path={`/${ROUTES.GRANTS_SEARCH}`} component={GrantsPage}/>
-          <Route path={`/${ROUTES.EVENTS_SEARCH}`} component={EventsPage}/>
+          <ErrorWrappedRoute
+            path={`/${ROUTES.PROJECT_SEARCH}`}
+            component={FindProjects}
+          />
+          <ErrorWrappedRoute
+            path={`/${ROUTES.GRANTS_SEARCH}`}
+            component={GrantsPage}
+          />
+          <ErrorWrappedRoute
+            path={`/${ROUTES.EVENTS_SEARCH}`}
+            component={EventsPage}
+          />
           <UnAuthRoute
             path={`/${ROUTES.USER_PROFILE}/:userId/edit`}
             redirect={`${ROUTES.HOME_PAGE}`}
             component={MyProfileEdit}
           />
-          <Route path={`/${ROUTES.USER_PROFILE}/:userId/:tab`} component={UserProfile}/>
+          <ErrorWrappedRoute
+            path={`/${ROUTES.USER_PROFILE}/:userId/:tab`}
+            component={UserProfile}
+          />
         </Switch>
       </>
       <Footer/>

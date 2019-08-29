@@ -11,7 +11,9 @@ import { KEYWORD, ROUTES } from '../../../Constants';
 
 
 const LoggedIn = (props) => {
-  const { authData } = props;
+  const { authData = {} } = props;
+  const { me = {} } = authData;
+  const { user = {} } = me;
 
   const isAuthFalse = () => (
     () => {
@@ -24,11 +26,14 @@ const LoggedIn = (props) => {
   const getDropdownList = () => (
     [
       <Link
-        to={`/${ROUTES.USER_PROFILE}/${authData.me.user.id}/${KEYWORD.ABOUT}`}
+        to={`/${ROUTES.USER_PROFILE}/${user.id}/${KEYWORD.ABOUT}`}
         className="dropdown-list-element-style h2-black fs-18 lh-48 fw-600">
         Go to profile
       </Link>,
-      <Link to="#" className="dropdown-list-element-style h2-black fs-18 lh-48 fw-600">
+      <Link
+        to={`/${ROUTES.USER_PROFILE}/${user.id}/edit`}
+        className="dropdown-list-element-style h2-black fs-18 lh-48 fw-600"
+      >
         Edit Profile
       </Link>,
       <div onClick={isAuthFalse()} className="dropdown-list-element-style h2-black fs-18 lh-48 fw-600">

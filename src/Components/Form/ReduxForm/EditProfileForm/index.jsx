@@ -1,8 +1,13 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import './style.sass';
 import LabelWrapper from '../../../LabelWrapper';
 import ReduxFormTextInput from '../ReduxFormTextInput';
+import validationEditForm from './validationEditForm';
+import { putUserData } from '../../../../Store/Actions/users/actionUsers';
+
 
 /* eslint-disable */
 let EditProfileForm = props => {
@@ -11,15 +16,29 @@ let EditProfileForm = props => {
     pristine,
     valid,
     error,
+    putUser
   } = props;
 
-  return <form className="form-edit" onSubmit={handleSubmit}>
+  return <form className="form-edit" onSubmit={handleSubmit(putUser)}>
     <div className="form-edit__header">
       <h4 className="fs-24 fw-600 mb-4">Your Tribus Account details</h4>
       <p className="fs-18 lh-25">Make sure your information is up to date.
         You can change your password on this page as well as update your relevant information.
       </p>
     </div>
+
+    { error && <div style={{
+      fontSize: '15px',
+      lineHeight: '16px',
+      letterSpacing: '0.04px',
+      fontWeight: 500,
+      color: 'red',
+      textAlign: 'center',
+    }}
+    >
+      {error}
+    </div>}
+
     <div className="form-edit__profile">
       <LabelWrapper label="Profile">
         <Field
@@ -50,9 +69,22 @@ let EditProfileForm = props => {
         />
 
         <Field
-          name="phoneNumber"
+          name="phone"
           type="tel"
           label="Phone number"
+          component={ReduxFormTextInput}
+          styleInput={{ fontWeight: 600 }}
+        />
+      </LabelWrapper>
+      <LabelWrapper
+        label="Address"
+        description="Please enter your address so that we can match you with your local community."
+      >
+        <Field
+          name="address"
+          type="text"
+          label="Address"
+          isRequired={true}
           component={ReduxFormTextInput}
           styleInput={{ fontWeight: 600 }}
         />
@@ -62,7 +94,7 @@ let EditProfileForm = props => {
       <button
         type="submit"
         className="btn green sm-wide fs-16 lh-22 ls-24 fw-700 sh-btn-lg"
-        disabled={pristine || !valid}
+        disabled={!valid}
       >
         Save Information
       </button>
@@ -73,8 +105,12 @@ let EditProfileForm = props => {
 
 EditProfileForm = reduxForm({
   form: 'editProfileForm',
-  enableReinitialize: true
+  enableReinitialize: true,
+  validate: validationEditForm,
 })(EditProfileForm);
 
+const mapDispatchToProps = (dispatch) => ({
+  putUser: bindActionCreators(putUserData, dispatch),
+});
 
-export default EditProfileForm;
+export default connect(null, mapDispatchToProps)(EditProfileForm);

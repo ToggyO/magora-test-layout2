@@ -1,5 +1,5 @@
 import { FETCHED_PROJECTS_DATA } from '../../Actions/fetchedData/actionFetchProjectsData';
-import {USER_PROFILE} from '../../Actions/users/actionUsers';
+
 
 const InitialState = {
   items: [],
@@ -21,7 +21,6 @@ const InitialState = {
     volunteering: false,
     petition: false,
   },
-  error: false,
 };
 
 
@@ -71,11 +70,6 @@ const fetchedDataReducer = (state = InitialState, action) => {
           ...state.history,
           [action.payload.name]: action.payload.date,
         },
-      };
-    case FETCHED_PROJECTS_DATA.PROJECT_ERROR_CLEANING:
-      return {
-        ...state,
-        error: false,
       };
     default:
       return state;

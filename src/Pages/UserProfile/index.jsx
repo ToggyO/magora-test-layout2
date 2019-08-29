@@ -17,7 +17,6 @@ import {
   parseQueryString,
   parseRouteString,
 } from '../../Libs/additionalSortingFunctions';
-import ErrorWrapper from '../../Components/ErrorWrapper';
 import Preloader from '../../Components/Preloader/Preloader';
 import { KEYWORD, ROUTES, REQUEST_ULR } from '../../Constants';
 import ProfileCardsContainer from './ProfileCardsContainer';
@@ -94,7 +93,7 @@ const UserProfile = (props) => {
     || isEmpty(userProfileData.ideas)
     || isEmpty(userProfileData.engagements)
     || isEmpty(userProfileData.events)) {
-    return <ErrorWrapper error={userProfileData.error}>
+    return <>
       <Preloader style={{
         display: 'flex',
         justifyContent: 'center',
@@ -110,11 +109,11 @@ const UserProfile = (props) => {
         <div className='user-profile__tabs-content wrapper-container pl-31 pr-31 pt-13 pb-13 d-f fw-w jc-c'>
         </div>
       </div>
-    </ErrorWrapper>;
+    </>;
   }
 
 
-  return <ErrorWrapper error={userProfileData.error}>
+  return <>
           <ProfileHeader
             userInfo={userProfileData.userInfo}
             authData={authData}
@@ -168,8 +167,7 @@ const UserProfile = (props) => {
               />
             </Switch>
           </div>
-
-         </ErrorWrapper>;
+         </>;
 };
 
 
