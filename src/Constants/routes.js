@@ -1,4 +1,5 @@
 export const ROUTES = {
+  HOME_PAGE: '/',
   REG_PAGE: 'registration',
   PROJECT_SEARCH: 'projectSearch',
   GRANTS_SEARCH: 'grantsSearch',

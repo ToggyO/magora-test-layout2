@@ -42,12 +42,6 @@ export const profileErrorCleaning = () => ({
 });
 
 
-export const userProfileEdit = (payload) => ({
-  type: USER_PROFILE.USER_PROFILE_EDIT,
-  payload,
-});
-
-
 export const getUserDataProfile = (userId, path, projectType, pathname, queries) => (
   dispatch => {
     dispatch(requestUserById());
@@ -55,11 +49,7 @@ export const getUserDataProfile = (userId, path, projectType, pathname, queries)
     const URL = `${REQUEST_ULR.CORS_BASE_URL}/${path}/${userId}${projectType && projectType !== KEYWORD.ABOUT ? `/${projectType}?PageSize=9&Page=${pathname === projectType ? queries.page || 1 : 1}` : ''}`;
 
     return axios
-      .get(URL, {
-        headers: {
-          Authorization: `Bearer ${getFromLocalState('TOKEN_INFO').accessToken}`,
-        },
-      })
+      .get(URL)
       .then(res => {
         const { data = {} } = res;
         if (data && data.code === 'success') {

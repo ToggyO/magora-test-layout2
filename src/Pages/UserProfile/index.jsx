@@ -21,7 +21,6 @@ import ErrorWrapper from '../../Components/ErrorWrapper';
 import Preloader from '../../Components/Preloader/Preloader';
 import { KEYWORD, ROUTES, REQUEST_ULR } from '../../Constants';
 import ProfileCardsContainer from './ProfileCardsContainer';
-
 import AboutProfile from './AboutProfile';
 
 
@@ -97,7 +96,6 @@ const UserProfile = (props) => {
     || isEmpty(userProfileData.events)) {
     return <ErrorWrapper error={userProfileData.error}>
       <Preloader style={{
-        position: 'fixed',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',

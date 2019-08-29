@@ -11,6 +11,7 @@ export const FETCHED_PROJECTS_DATA = {
   PROJECT_SORT_CHECKBOX_VALUES: 'PROJECT_SORT_CHECKBOX_VALUES',
   DATA_CLEANING: 'DATA_CLEANING',
   DATE_PICK: 'DATE_PICK',
+  PROJECT_ERROR_CLEANING: 'PROJECT_ERROR_CLEANING',
 };
 
 const requestData = () => ({
@@ -56,6 +57,11 @@ export const datePick = (date, name) => ({
 });
 
 
+export const projectErrorCleaning = () => ({
+  type: FETCHED_PROJECTS_DATA.PROJECT_ERROR_CLEANING,
+});
+
+
 let lastKey;
 
 export const getDataFromServer = (data, queries, projectType) => { // projectType
@@ -77,7 +83,9 @@ export const getDataFromServer = (data, queries, projectType) => { // projectTyp
           dispatch(receiveData(res));
         }
       })
-      .catch(error => console.log(error));
+      .catch(() => {
+        dispatch(requestUserFailure());
+      });
   };
 };
 

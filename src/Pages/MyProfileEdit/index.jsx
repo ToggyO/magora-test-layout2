@@ -9,7 +9,7 @@ import { KEYWORD } from '../../Constants';
 import { isEmpty } from '../../Libs/additionalSortingFunctions';
 import Preloader from '../../Components/Preloader/Preloader';
 
-/* eslint-disable class-methods-use-this */
+
 class MyProfileEdit extends React.Component {
   componentDidMount() {
     // if (this.props.)
@@ -21,49 +21,28 @@ class MyProfileEdit extends React.Component {
     const { userProfileData = {} } = this.props;
     const { editInfo = {} } = userProfileData;
     const { user = {} } = editInfo;
-    // debugger;
-    // console.log(isEmpty(editInfo));
-    // if (isEmpty(editInfo)) {
-    //   return (
-    //     <>
-    //       <Preloader style={{
-    //         position: 'fixed',
-    //         display: 'flex',
-    //         justifyContent: 'center',
-    //         alignItems: 'center',
-    //       }}
-    //       />
-    //       <div className="edit-profile wrapper">
-    //         <EditProfileHeader />
-    //         <div className="edit-profile__container wrapper-container">
-    //           <EditProfileForm initialValues={{
-    //             firstName: '1232',
-    //           }}/>
-    //         </div>
-    //       </div>
-    //     </>
-    //   );
-    // }
+
     return (
       <>
-        {isEmpty(editInfo)
-          && <Preloader style={{
-            position: 'fixed',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-          />
-        }
         <div className="edit-profile wrapper">
-          <EditProfileHeader />
-          <div className="edit-profile__container wrapper-container">
-            <EditProfileForm initialValues={{
-              firstName: user.firstName,
-              lastName: user.lastName,
-              email: user.email,
-              phoneNumber: user.phone,
-            }}/>
+          <div className="edit-profile__loader">
+            {isEmpty(editInfo)
+            && <Preloader style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+            />
+            }
+            <EditProfileHeader user={user}/>
+            <div className="edit-profile__container wrapper-container">
+              <EditProfileForm initialValues={{
+                firstName: user.firstName,
+                lastName: user.lastName,
+                email: user.email,
+                phoneNumber: user.phone,
+              }}/>
+            </div>
           </div>
         </div>
       </>

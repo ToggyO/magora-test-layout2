@@ -4,13 +4,15 @@ import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 
-const AuthRoute = ({ component: Component, ...rest }) => (
+const AuthRoute = ({ component: Component, redirect, ...rest }) => (
   <Route
     {...rest}
-    render={(props) => (rest.authData.isAuth
-      ? <Redirect to='/' />
-      : <Component {...props}/>
-    )}
+    render={(props) => {
+      if (rest.authData.isAuth) {
+        return <Redirect to={`${redirect}`} />;
+      }
+      return <Component {...props}/>;
+    }}
   />
 );
 

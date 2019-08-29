@@ -1,4 +1,5 @@
 import { FETCHED_PROJECTS_DATA } from '../../Actions/fetchedData/actionFetchProjectsData';
+import {USER_PROFILE} from '../../Actions/users/actionUsers';
 
 const InitialState = {
   items: [],
@@ -20,6 +21,7 @@ const InitialState = {
     volunteering: false,
     petition: false,
   },
+  error: false,
 };
 
 
@@ -60,20 +62,7 @@ const fetchedDataReducer = (state = InitialState, action) => {
       };
     case FETCHED_PROJECTS_DATA.DATA_CLEANING:
       return {
-        ...state,
-        history: {
-          page: 1,
-          sort: null,
-          category: null,
-          benefit: null,
-          creator: null,
-          type: null,
-          startDate: null,
-          endDate: null,
-          crowdfunding: false,
-          volunteering: false,
-          petition: false,
-        },
+        ...InitialState,
       };
     case FETCHED_PROJECTS_DATA.DATE_PICK:
       return {
@@ -82,6 +71,11 @@ const fetchedDataReducer = (state = InitialState, action) => {
           ...state.history,
           [action.payload.name]: action.payload.date,
         },
+      };
+    case FETCHED_PROJECTS_DATA.PROJECT_ERROR_CLEANING:
+      return {
+        ...state,
+        error: false,
       };
     default:
       return state;
