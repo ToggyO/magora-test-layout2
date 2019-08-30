@@ -5,6 +5,11 @@ import ProjectCard from '../Components/ProjectCard/ProjectCard';
 import GrantCard from '../Components/GrantCard/GrantCard';
 import EventCard from '../Components/EventCard/EventCard';
 import { KEYWORD } from '../Constants';
+import { clearLocalState } from './localStorage';
+/* eslint-disable import/no-cycle */
+import { logOut } from '../Store/Actions/Auth/actionAuth';
+/* eslint-enable import/no-cycle */
+import { modalOpen } from '../Store/Actions/modal/actionModal';
 
 
 /* eslint-disable */
@@ -105,27 +110,47 @@ export const isEmpty = (obj) => {
 
 
 export const responseError = (res, errorCodes) => {
-  const { data = {} } = res;
-  const { errors = {} } = data;
+  return dispatch => {
+    const { data = {} } = res;
+    const { errors = {} } = data;
 
-  const errorObj = {};
-  errors.forEach(item => {
-    if (item.field) {
-      let firstLetterToLowerCase = `${item.field[0].toLowerCase()}${item.field.slice(1)}`;
-      if (firstLetterToLowerCase === 'location.areaName'
-        || 'location.stateName'
-        || 'location.stateAbbreviation') {
-        firstLetterToLowerCase = 'address';
+    const errorObj = {};
+    errors.forEach(item => {
+      if (item.field) {
+        debugger;
+        let firstLetterToLowerCase = `${item.field[0].toLowerCase()}${item.field.slice(1)}`;
+        if (firstLetterToLowerCase === 'location.areaName'
+          || 'location.stateName'
+          || 'location.stateAbbreviation') {
+          firstLetterToLowerCase = 'address';
+        }
+        errorObj[firstLetterToLowerCase] = errorCodes[item.code];
+      } else if (errorCodes[item.code]) {
+        debugger;
+        if (errorCodes[item.code] === 'sec.access_token_invalid') {
+          debugger;
+          isAuthFalse();
+          dispatch(modalOpen('signInModal'));
+        }
+        errorObj._error = errorCodes[item.code];
+      } else {
+        debugger;
+        errorObj._error = item.message;
       }
-      errorObj[firstLetterToLowerCase] = errorCodes[item.code];
-    } else if (errorCodes[item.code]) {
-      errorObj._error = errorCodes[item.code];
-    } else {
-      errorObj._error = item.message;
-    }
-  });
-  throw new SubmissionError(errorObj);
+    });
+    throw new SubmissionError(errorObj);
+  }
+
 };
+
+
+export const isAuthFalse = () => (
+  (dispatch) => {
+    clearLocalState('TOKEN_INFO');
+    clearLocalState('USER_INFO');
+    dispatch(logOut());
+  }
+);
 
 
 // Projects Not Found Style

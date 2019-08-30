@@ -2,12 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './Logged.sass';
-import { bindActionCreators } from 'redux';
-import { logOut } from '../../../Store/Actions/Auth/actionAuth';
-import { clearLocalState } from '../../../Libs/localStorage';
+// import { bindActionCreators } from 'redux';
+// import { logOut } from '../../../Store/Actions/Auth/actionAuth';
+// import { clearLocalState } from '../../../Libs/localStorage';
 import Icon from '../../../Icons/Icons';
 import { Dropdown } from '../../Dropdown';
 import { KEYWORD, ROUTES } from '../../../Constants';
+import { isAuthFalse } from '../../../Libs/HelperFunctions';
 
 
 const LoggedIn = (props) => {
@@ -15,13 +16,13 @@ const LoggedIn = (props) => {
   const { me = {} } = authData;
   const { user = {}, resource } = me;
 
-  const isAuthFalse = () => (
-    () => {
-      clearLocalState('TOKEN_INFO');
-      clearLocalState('USER_INFO');
-      props.logOut();
-    }
-  );
+  // const isAuthFalse = () => (
+  //   () => {
+  //     clearLocalState('TOKEN_INFO');
+  //     clearLocalState('USER_INFO');
+  //     props.logOut();
+  //   }
+  // );
 
   const getDropdownList = () => (
     [
@@ -36,7 +37,7 @@ const LoggedIn = (props) => {
       >
         Edit Profile
       </Link>,
-      <div onClick={isAuthFalse()} className="dropdown-list-element-style h2-black fs-18 lh-48 fw-600">
+      <div onClick={isAuthFalse} className="dropdown-list-element-style h2-black fs-18 lh-48 fw-600">
         Sign Out
       </div>,
     ]
@@ -70,8 +71,8 @@ const LoggedIn = (props) => {
 
 const mapStateToProps = ({ authData, userProfileData }) => ({ authData, userProfileData });
 
-const mapDispatchToProps = (dispatch) => ({
-  logOut: bindActionCreators(logOut, dispatch),
-});
+// const mapDispatchToProps = (dispatch) => ({
+//   logOut: bindActionCreators(logOut, dispatch),
+// });
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoggedIn);
+export default connect(mapStateToProps, null)(LoggedIn);

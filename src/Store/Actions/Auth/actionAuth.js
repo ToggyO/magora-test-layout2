@@ -3,7 +3,9 @@ import * as axios from 'axios';
 import { modalClose, modalOpen } from '../modal/actionModal';
 import { ERROR_CODES, REQUEST_ULR } from '../../../Constants';
 import { writeToLocalState } from '../../../Libs/localStorage';
+/* eslint-disable import/no-cycle */
 import { responseError } from '../../../Libs/HelperFunctions';
+/* eslint-enable import/no-cycle */
 
 
 export const AUTH = {
