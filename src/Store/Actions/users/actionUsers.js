@@ -2,8 +2,9 @@ import * as axios from 'axios';
 import { REQUEST_ULR, KEYWORD, ERROR_CODES } from '../../../Constants';
 import { getFromLocalState, writeToLocalState } from '../../../Libs/localStorage';
 import { errorWrapperTrue } from '../error/actionError';
-import { updateUIWithUsersInfo } from '../Auth/actionAuth';
+import {logOut, updateUIWithUsersInfo} from '../Auth/actionAuth';
 import { responseError } from '../../../Libs/HelperFunctions';
+import {modalOpen} from '../modal/actionModal';
 
 
 export const USER_PROFILE = {
@@ -85,8 +86,14 @@ export const getUserDataProfileForEdit = (key) => (
           writeToLocalState('USER_INFO', data.data);
         }
       })
-      .catch(() => {
-        dispatch(errorWrapperTrue());
+      .catch(error => {
+        if (!error) {
+          return null;
+        }
+        dispatch(logOut());
+        dispatch(modalOpen('signInModal'));
+        return responseError(error.response, ERROR_CODES);
+        // dispatch(errorWrapperTrue());
       });
   }
 );
