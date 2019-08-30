@@ -1,8 +1,9 @@
 import * as axios from 'axios';
-// import { SubmissionError } from 'redux-form';
-import { REQUEST_ULR, KEYWORD } from '../../../Constants';
-import { getFromLocalState } from '../../../Libs/localStorage';
+import { REQUEST_ULR, KEYWORD, ERROR_CODES } from '../../../Constants';
+import { getFromLocalState, writeToLocalState } from '../../../Libs/localStorage';
 import { errorWrapperTrue } from '../error/actionError';
+import { updateUIWithUsersInfo } from '../Auth/actionAuth';
+import { responseError } from '../../../Libs/HelperFunctions';
 
 
 export const USER_PROFILE = {
@@ -12,6 +13,7 @@ export const USER_PROFILE = {
   STATE_PROFILE_CLEANING: 'STATE_PROFILE_CLEANING',
   PROFILE_ERROR_CLEANING: 'PROFILE_ERROR_CLEANING',
   USER_PROFILE_EDIT: 'USER_PROFILE_EDIT',
+  PROFILE_LOADER_FALSE: 'PROFILE_LOADER_FALSE',
 };
 
 
@@ -29,18 +31,13 @@ const receiveUserById = (data, key) => ({
 });
 
 
-// const requestUserFailure = () => ({
-//   type: USER_PROFILE.REQUEST_USER_FAILURE,
-// });
-
-
 export const stateProfileCleaning = () => ({
   type: USER_PROFILE.STATE_PROFILE_CLEANING,
 });
 
 
-export const profileErrorCleaning = () => ({
-  type: USER_PROFILE.PROFILE_ERROR_CLEANING,
+const profileLoaderFalse = () => ({
+  type: USER_PROFILE.PROFILE_LOADER_FALSE,
 });
 
 
@@ -72,8 +69,6 @@ export const getUserDataProfile = (userId, path, projectType, pathname, queries)
 
 export const getUserDataProfileForEdit = (key) => (
   dispatch => {
-    // dispatch(requestUserById());
-
     const URL = `${REQUEST_ULR.CORS_BASE_URL}/profiles/me`;
 
     return axios
@@ -86,6 +81,8 @@ export const getUserDataProfileForEdit = (key) => (
         const { data = {} } = res;
         if (data && data.code === 'success') {
           dispatch(receiveUserById(data.data, key));
+          dispatch(updateUIWithUsersInfo(data.data));
+          writeToLocalState('USER_INFO', data.data);
         }
       })
       .catch(() => {
@@ -94,23 +91,28 @@ export const getUserDataProfileForEdit = (key) => (
   }
 );
 
-/* eslint-disable */
+
 export const putUserData = (body) => (
   dispatch => {
     dispatch(requestUserById());
 
-    // const parseAddress = body.address.split(',');
+    const parseAddress = body.address.replace(/\s/g, '');
+    const parseAddressToLocation = parseAddress.split(',');
+
     const requestBody = {
       resourceId: null,
       ageBracketsId: null,
       location: {
-        areaName: '7-9 Fullerton Street',
-        stateName: 'Woollahra',
-        stateAbbreviation: 'NSW',
+        areaName: parseAddressToLocation[0],
+        stateName: parseAddressToLocation[1],
+        stateAbbreviation: parseAddressToLocation[2],
+        // areaName: '7-9 Fullerton Street',
+        // stateName: 'Woollahra', New South Wales
+        // stateAbbreviation: 'NSW',
       },
       firstName: body.firstName,
       lastName: body.lastName,
-      address: body.address,
+      address: parseAddress,
       email: body.email,
       phone: body.phone,
       website: null,
@@ -124,7 +126,6 @@ export const putUserData = (body) => (
       about: null,
       organizationName: null,
     };
-    // console.log(requestBody);
 
     const URL = `${REQUEST_ULR.CORS_BASE_URL}/${REQUEST_ULR.USERS}`;
     const token = getFromLocalState('TOKEN_INFO').accessToken;
@@ -139,39 +140,16 @@ export const putUserData = (body) => (
         const { data = {} } = res;
         if (data && data.code === 'success') {
           console.log('Successfully updated');
-          console.log(res);
+          dispatch(getUserDataProfileForEdit(KEYWORD.EDIT_INFO));
+          dispatch(profileLoaderFalse());
         }
       })
       .catch(error => {
-        console.log(error);
-        //   if (!error) {
-      //     return null;
-      //   }
-      //
-      //   // dispatch(regLoaderFalse());
-      //   const errorCodes = {
-      //     'common.field_min': 'Field has symbols less than needed',
-      //     'common.field_max': ' Field can’t be empty',
-      //     'common.field_phone': 'Field has symbols more than needed',
-      //     'common.field_not_null': 'Field can’n be null',
-      //     'common.field_not_blank': 'Field can’t be empty',
-      //   };
-      //
-      //   const { data = {} } = error.response;
-      //   const { errors = {} } = data;
-      //
-      //   const errorObj = {};
-      //   errors.forEach(item => {
-      //     if (item.field) {
-      //       const firstLetterToLowerCase = `${item.field[0].toLowerCase()}${item.field.slice(1)}`;
-      //       errorObj[firstLetterToLowerCase] = errorCodes[item.code];
-      //     } else if (errorCodes[item.code]) {
-      //       errorObj._error = errorCodes[item.code];
-      //     } else {
-      //       errorObj._error = item.message;
-      //     }
-      //   });
-      //   throw new SubmissionError(errorObj);
+        if (!error) {
+          return null;
+        }
+        dispatch(profileLoaderFalse());
+        return responseError(error.response, ERROR_CODES);
       });
   }
 );

@@ -7,7 +7,7 @@ import EventSearch from './EventSearch/EventSearch';
 import EventProjects from './EventProjects/EventProjects';
 import {
   mapQueryParamsToState, parseQueryString,
-} from '../../Libs/additionalSortingFunctions';
+} from '../../Libs/HelperFunctions';
 
 import {
   getBenefitsOptions,

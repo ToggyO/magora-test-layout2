@@ -13,7 +13,7 @@ import { KEYWORD, ROUTES } from '../../../Constants';
 const LoggedIn = (props) => {
   const { authData = {} } = props;
   const { me = {} } = authData;
-  const { user = {} } = me;
+  const { user = {}, resource } = me;
 
   const isAuthFalse = () => (
     () => {
@@ -50,11 +50,11 @@ const LoggedIn = (props) => {
         elementClassName="headerDropdownList__element"
       >
         <div className="header-changeGroup__items" >
-          {authData.me.resource !== null
+          {resource !== null
             ? <img
               className="changeGroup__btn sh-avatar"
               // onError={(e) => e.target.src = placeholderAvatar}
-              src={authData.me.resource.originalUrl}
+              src={resource.formatUrls.small}
               alt="small"
             />
             : <Icon
@@ -68,7 +68,7 @@ const LoggedIn = (props) => {
   );
 };
 
-const mapStateToProps = ({ authData }) => ({ authData });
+const mapStateToProps = ({ authData, userProfileData }) => ({ authData, userProfileData });
 
 const mapDispatchToProps = (dispatch) => ({
   logOut: bindActionCreators(logOut, dispatch),

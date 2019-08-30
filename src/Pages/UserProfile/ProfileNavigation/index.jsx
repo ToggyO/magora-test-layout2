@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './style.sass';
 import Tab from './Tab';
 import { tabTitles } from './Tab/tabsInfo';
-import { parseRouteString } from '../../../Libs/additionalSortingFunctions';
+import { parseRouteString } from '../../../Libs/HelperFunctions';
 
 
 const ProfileNavigation = (props) => {

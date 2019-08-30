@@ -7,7 +7,7 @@ import EditProfileHeader from './EditProfileHeader';
 import EditProfileForm from '../../Components/Form/ReduxForm/EditProfileForm';
 import { getUserDataProfileForEdit } from '../../Store/Actions/users/actionUsers';
 import { KEYWORD } from '../../Constants';
-import { isEmpty } from '../../Libs/additionalSortingFunctions';
+import { isEmpty } from '../../Libs/HelperFunctions';
 import Preloader from '../../Components/Preloader/Preloader';
 
 
@@ -49,7 +49,7 @@ class MyProfileEdit extends React.Component {
       <>
         <div className="edit-profile wrapper">
           <div className="edit-profile__loader">
-            {isEmpty(editInfo)
+            {(isEmpty(editInfo) || userProfileData.loading)
             && <Preloader style={{
               display: 'flex',
               justifyContent: 'center',

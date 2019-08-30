@@ -1,5 +1,5 @@
 import * as axios from 'axios';
-import { makeRequestString, mergeQueryUrlWithHistory } from '../../../Libs/additionalSortingFunctions';
+import { makeRequestString, mergeQueryUrlWithHistory } from '../../../Libs/HelperFunctions';
 import { REQUEST_ULR } from '../../../Constants';
 import { errorWrapperTrue } from '../error/actionError';
 

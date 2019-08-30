@@ -1,6 +1,6 @@
 import React from 'react';
 import Preloader from '../../../Components/Preloader/Preloader';
-import { renderingProjects } from '../../../Libs/additionalSortingFunctions';
+import { renderingProjects } from '../../../Libs/HelperFunctions';
 import ProfilePagination from '../../../Components/Pagination/ProfilePagination';
 
 

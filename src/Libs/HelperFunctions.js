@@ -1,4 +1,5 @@
 import React from 'react';
+import { SubmissionError } from 'redux-form';
 import { parse } from 'qs';
 import ProjectCard from '../Components/ProjectCard/ProjectCard';
 import GrantCard from '../Components/GrantCard/GrantCard';
@@ -100,6 +101,30 @@ export const isEmpty = (obj) => {
     return false;
   }
   return true;
+};
+
+
+export const responseError = (res, errorCodes) => {
+  const { data = {} } = res;
+  const { errors = {} } = data;
+
+  const errorObj = {};
+  errors.forEach(item => {
+    if (item.field) {
+      let firstLetterToLowerCase = `${item.field[0].toLowerCase()}${item.field.slice(1)}`;
+      if (firstLetterToLowerCase === 'location.areaName'
+        || 'location.stateName'
+        || 'location.stateAbbreviation') {
+        firstLetterToLowerCase = 'address';
+      }
+      errorObj[firstLetterToLowerCase] = errorCodes[item.code];
+    } else if (errorCodes[item.code]) {
+      errorObj._error = errorCodes[item.code];
+    } else {
+      errorObj._error = item.message;
+    }
+  });
+  throw new SubmissionError(errorObj);
 };
 
 

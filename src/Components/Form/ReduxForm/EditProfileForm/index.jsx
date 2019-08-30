@@ -27,18 +27,6 @@ let EditProfileForm = props => {
       </p>
     </div>
 
-    { error && <div style={{
-      fontSize: '15px',
-      lineHeight: '16px',
-      letterSpacing: '0.04px',
-      fontWeight: 500,
-      color: 'red',
-      textAlign: 'center',
-    }}
-    >
-      {error}
-    </div>}
-
     <div className="form-edit__profile">
       <LabelWrapper label="Profile">
         <Field
@@ -90,6 +78,17 @@ let EditProfileForm = props => {
         />
       </LabelWrapper>
     </div>
+    { error && <div style={{
+      fontSize: '15px',
+      lineHeight: '16px',
+      letterSpacing: '0.04px',
+      fontWeight: 500,
+      color: 'red',
+      textAlign: 'center',
+    }}
+    >
+      {error}
+    </div>}
     <div className="form-edit__submit d-f jc-c">
       <button
         type="submit"

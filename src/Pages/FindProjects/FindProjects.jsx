@@ -16,7 +16,7 @@ import {
   stateOptionsCleaning,
 } from '../../Store/Actions/fetchedData/actionGetSortOptions';
 
-import { mapQueryParamsToState, parseQueryString } from '../../Libs/additionalSortingFunctions';
+import { mapQueryParamsToState, parseQueryString } from '../../Libs/HelperFunctions';
 import CommunityProjectsEmpty from './CommunityProjects/CommunityProjectsEmpty';
 import ProjectSearchEmpty from './ProjectSearch/ProjectSearchEmpty';
 import store from '../../Store';

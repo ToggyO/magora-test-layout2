@@ -16,7 +16,7 @@ import {
   isEmpty,
   parseQueryString,
   parseRouteString,
-} from '../../Libs/additionalSortingFunctions';
+} from '../../Libs/HelperFunctions';
 import Preloader from '../../Components/Preloader/Preloader';
 import { KEYWORD, ROUTES, REQUEST_ULR } from '../../Constants';
 import ProfileCardsContainer from './ProfileCardsContainer';

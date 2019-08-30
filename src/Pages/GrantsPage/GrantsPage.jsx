@@ -15,7 +15,7 @@ import {
   getCategoriesOptions,
   stateOptionsCleaning,
 } from '../../Store/Actions/fetchedData/actionGetSortOptions';
-import { mapQueryParamsToState, parseQueryString } from '../../Libs/additionalSortingFunctions';
+import { mapQueryParamsToState, parseQueryString } from '../../Libs/HelperFunctions';
 import GrantSearchEmpty from './GrantSearch/GrantSearchEmpty';
 import GrantProjectsEmpty from './GrantProjects/GrantProjectsEmpty';
 import store from '../../Store';

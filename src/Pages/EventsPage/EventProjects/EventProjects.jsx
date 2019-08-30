@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './EventProjects.sass';
 import Preloader from '../../../Components/Preloader/Preloader';
-import { renderingProjects } from '../../../Libs/additionalSortingFunctions';
+import { renderingProjects } from '../../../Libs/HelperFunctions';
 import Pagination from '../../../Components/Pagination/Pagination';
 import { KEYWORD } from '../../../Constants';
 

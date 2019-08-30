@@ -2,7 +2,7 @@ import React from 'react';
 import './style.sass';
 import { NavLink } from 'react-router-dom';
 import { ROUTES } from '../../../../Constants';
-import { parseRouteString } from '../../../../Libs/additionalSortingFunctions';
+import { parseRouteString } from '../../../../Libs/HelperFunctions';
 
 
 const Tab = (props) => {

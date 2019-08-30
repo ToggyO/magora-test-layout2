@@ -6,7 +6,6 @@ const InitialState = {
   engagements: {},
   events: {},
   loading: false,
-  error: false,
   editInfo: {},
 };
 
@@ -41,10 +40,10 @@ const userProfileReducer = (state = InitialState, action) => {
         ...state,
         error: false,
       };
-    case USER_PROFILE.USER_PROFILE_EDIT:
+    case USER_PROFILE.PROFILE_LOADER_FALSE:
       return {
         ...state,
-        editInfo: action.payload,
+        loading: false,
       };
     default:
       return state;

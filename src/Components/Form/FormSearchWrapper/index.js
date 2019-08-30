@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import history from '../../../history';
 import {
   makeQueryString,
-} from '../../../Libs/additionalSortingFunctions';
+} from '../../../Libs/HelperFunctions';
 import Icon from '../../../Icons/Icons';
 import './style.sass';
 
