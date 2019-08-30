@@ -2,11 +2,12 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { putUserData } from '../../../../Store/Actions/users/actionUsers';
 import './style.sass';
 import LabelWrapper from '../../../LabelWrapper';
 import ReduxFormTextInput from '../ReduxFormTextInput';
 import validationEditForm from './validationEditForm';
-import { putUserData } from '../../../../Store/Actions/users/actionUsers';
+import ReduxFormFileInput from '../ReduxFormFileInput';
 
 
 /* eslint-disable */
@@ -74,6 +75,17 @@ let EditProfileForm = props => {
           label="Address"
           isRequired={true}
           component={ReduxFormTextInput}
+          styleInput={{ fontWeight: 600 }}
+        />
+      </LabelWrapper>
+      <LabelWrapper
+        label="Add your Profile image"
+        description="Stand out from the crowd and be recognised."
+      >
+        <Field
+          name="image"
+          label="Profile image"
+          component={ReduxFormFileInput}
           styleInput={{ fontWeight: 600 }}
         />
       </LabelWrapper>

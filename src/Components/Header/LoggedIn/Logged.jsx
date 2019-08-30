@@ -14,14 +14,6 @@ const LoggedIn = (props) => {
   const { me = {} } = authData;
   const { user = {}, resource } = me;
 
-  // const isAuthFalse = () => (
-  //   () => {
-  //     clearLocalState('TOKEN_INFO');
-  //     clearLocalState('USER_INFO');
-  //     props.logOut();
-  //   }
-  // );
-
   const getDropdownList = () => (
     [
       <Link
