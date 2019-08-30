@@ -9,7 +9,6 @@ import { clearLocalState } from './localStorage';
 /* eslint-disable import/no-cycle */
 import { logOut } from '../Store/Actions/Auth/actionAuth';
 /* eslint-enable import/no-cycle */
-import { modalOpen } from '../Store/Actions/modal/actionModal';
 
 
 /* eslint-disable */
@@ -110,14 +109,12 @@ export const isEmpty = (obj) => {
 
 
 export const responseError = (res, errorCodes) => {
-  return dispatch => {
     const { data = {} } = res;
     const { errors = {} } = data;
 
     const errorObj = {};
     errors.forEach(item => {
       if (item.field) {
-        debugger;
         let firstLetterToLowerCase = `${item.field[0].toLowerCase()}${item.field.slice(1)}`;
         if (firstLetterToLowerCase === 'location.areaName'
           || 'location.stateName'
@@ -126,21 +123,12 @@ export const responseError = (res, errorCodes) => {
         }
         errorObj[firstLetterToLowerCase] = errorCodes[item.code];
       } else if (errorCodes[item.code]) {
-        debugger;
-        if (errorCodes[item.code] === 'sec.access_token_invalid') {
-          debugger;
-          isAuthFalse();
-          dispatch(modalOpen('signInModal'));
-        }
         errorObj._error = errorCodes[item.code];
       } else {
-        debugger;
         errorObj._error = item.message;
       }
     });
     throw new SubmissionError(errorObj);
-  }
-
 };
 
 

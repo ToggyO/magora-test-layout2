@@ -99,7 +99,7 @@ export const authRequest = (values) => (
       })
       .catch(error => {
         dispatch(loginFailure());
-        responseError(error.response, ERROR_CODES);
+        dispatch(responseError(error.response, ERROR_CODES));
       });
   }
 );
@@ -142,7 +142,7 @@ export const regRequest = (values) => (
         }
 
         dispatch(regLoaderFalse());
-        responseError(error.response, ERROR_CODES);
+        dispatch(responseError(error.response, ERROR_CODES));
       });
   }
 );

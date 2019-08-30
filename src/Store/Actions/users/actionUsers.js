@@ -3,9 +3,12 @@ import { REQUEST_ULR, KEYWORD, ERROR_CODES } from '../../../Constants';
 import { getFromLocalState, writeToLocalState } from '../../../Libs/localStorage';
 import { errorWrapperTrue } from '../error/actionError';
 import { updateUIWithUsersInfo } from '../Auth/actionAuth';
-import { responseError } from '../../../Libs/HelperFunctions';
+import { isAuthFalse, responseError } from '../../../Libs/HelperFunctions';
+import { modalOpen } from '../modal/actionModal';
+import history from '../../../history';
 
 
+/* eslint-disable */
 export const USER_PROFILE = {
   REQUEST_USER: 'REQUEST_USER',
   RECEIVE_USER: 'RECEIVE_USER',
@@ -89,9 +92,15 @@ export const getUserDataProfileForEdit = (key) => (
         if (!error) {
           return null;
         }
-        // dispatch(logOut());
-        return responseError(error.response, ERROR_CODES);
-        // dispatch(errorWrapperTrue());
+        const { data = {} } = error.response;
+        const { errors = {} } = data;
+        errors.forEach(item => {
+          if (item.code === 'sec.access_token_invalid') {
+            dispatch(isAuthFalse());
+            history.push('/');
+            dispatch(modalOpen('signInModal'));
+          }
+        });
       });
   }
 );
@@ -154,7 +163,7 @@ export const putUserData = (body) => (
           return null;
         }
         dispatch(profileLoaderFalse());
-        return responseError(error.response, ERROR_CODES);
+        return dispatch(responseError(error.response, ERROR_CODES));
       });
   }
 );
