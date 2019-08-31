@@ -1,12 +1,11 @@
 import React from 'react';
 import './style.sass';
-import {NavLink} from "react-router-dom";
-import {ROUTES} from "../../../../Constants";
-import {parseRouteString} from "../../../../Libs/additionalSortingFunctions";
+import { NavLink } from 'react-router-dom';
+import { ROUTES } from '../../../../Constants';
+import { parseRouteString } from '../../../../Libs/HelperFunctions';
 
 
 const Tab = (props) => {
-
   const {
     keyNumber,
     title,
@@ -17,16 +16,15 @@ const Tab = (props) => {
     userId,
     tabQuery,
     pushTabQuery,
-    location
+    location,
   } = props;
-
-
+  /* eslint-disable no-shadow */
   const setLocationSearchToState = (location, key) => {
-    pushTabQuery( tabQuery => ({...tabQuery, [key]: location}))
+    pushTabQuery(tabQuery => ({ ...tabQuery, [key]: location }));
   };
 
 
-  const onTabChange = (value,) => {
+  const onTabChange = (value) => {
     toggleActive(value);
     setLocationSearchToState(location.search, parseRouteString(location.pathname));
   };
@@ -45,7 +43,7 @@ const Tab = (props) => {
       </div>
       {!(keyNumber === 0) ? span : null}
     </div>
-  </NavLink>
+  </NavLink>;
 };
 
 

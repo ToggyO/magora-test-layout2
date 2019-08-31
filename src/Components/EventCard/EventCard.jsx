@@ -1,36 +1,22 @@
+/* eslint-disable */
 import React from 'react';
 import '../ProjectCard/ProjectCard.sass';
 import './EventCard.sass';
-import Icon from "../../Icons/Icons";
+import Icon from '../../Icons/Icons';
+import { PATH } from '../../Constants';
 
 
 const EventCard = (props) => {
-
-  const { event, isGuest, resource, } = props.item;
+  const { event, isGuest, resource } = props.item;
 
   return (
     <div className="projectCard pCard-adapt pl-10 pr-10 pt-5 pb-5">
       <div className="eventCard-container pCard-adapt__container">
-        {/*<div className="eventCard-iconBlock eVcard-adapt__iconBlock d-f ai-c">*/}
-        {/*  <img className="iconBlock-icon" src={image.icon} alt=""/>*/}
-        {/*  <div className="iconBlock-status d-f ai-c">*/}
-        {/*    <img className="pl-7" src={image.status} alt=""/>*/}
-        {/*  </div>*/}
-        {/*</div>*/}
-        {/*<img*/}
-        {/*  className="projectCard-image"*/}
-        {/*  onError={(e) => e.target.src = placeholderImage}*/}
-        {/*  src={resource.formatUrls.small } alt="loc"*/}
-        {/*/>*/}
-        { resource !== null
-          ? <img
-            className="projectCard-image"
-            // onError={(e) => e.target.src = placeholderImage}
-            src={resource.formatUrls.small}
-            alt="loc"
-          />
-          : <Icon iconName='placeholder_image' />
-        }
+        <img className="projectCard-image"
+             onError={e => e.target.src = PATH.PLACEHOLDER_IMAGE}
+             src={resource !== null ? resource.formatUrls.small : PATH.PLACEHOLDER_IMAGE }
+             alt="loc"
+        />
         <div className="projectCard-info mb-2 pCard-adapt__info">
           <h3 className="projectCard-info__headline info-headline h2-black fs-24 ls-5 lh-22 fw-600 mt-2 t-align-c">
             {event.title}

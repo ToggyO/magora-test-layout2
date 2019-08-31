@@ -1,21 +1,28 @@
-import ProjectCard from "../Components/ProjectCard/ProjectCard";
-import React from "react";
-import GrantCard from "../Components/GrantCard/GrantCard";
-import EventCard from "../Components/EventCard/EventCard";
-import {parse} from 'qs';
-import {KEYWORD} from "../Constants";
+import React from 'react';
+import { SubmissionError } from 'redux-form';
+import { parse } from 'qs';
+import ProjectCard from '../Components/ProjectCard/ProjectCard';
+import GrantCard from '../Components/GrantCard/GrantCard';
+import EventCard from '../Components/EventCard/EventCard';
+import { KEYWORD } from '../Constants';
+import { clearLocalState } from './localStorage';
+/* eslint-disable import/no-cycle */
+import { logOut } from '../Store/Actions/Auth/actionAuth';
+/* eslint-enable import/no-cycle */
 
 
-export const  makeQueryString = (obj) => {
+/* eslint-disable */
+export const makeQueryString = (obj) => {
   let queryString = '';
   Object.keys(obj).forEach(key => {
     if (key === 'page') {
-      return queryString += `&${key}=1`;
+      queryString += `&${key}=1`;
     } else if (obj[key]) {
-      return queryString += `&${key}=${obj[key]}`;
+      queryString += `&${key}=${obj[key]}`;
     } else {
-      return queryString
+      return queryString;
     }
+    return queryString;
   });
   return `?${queryString.slice(1)}`;
 };
@@ -23,32 +30,30 @@ export const  makeQueryString = (obj) => {
 
 export const renderingProjects = (data, component) => {
   if (!(data.length === 0)) {
-    return data.map((item, i) => {
-     switch(component) {
+    return data.map(item => {
+      switch (component) {
         case KEYWORD.IDEAS:
           return <ProjectCard key={item.idea.id} item={item}/>;
         case KEYWORD.GRANTS:
           return <GrantCard key={item.grant.id} item={item}/>;
         case KEYWORD.EVENTS:
           return <EventCard key={item.event.id} item={item}/>;
-       case KEYWORD.ENGAGEMENT:
-         return <ProjectCard key={item.idea.id} item={item}/>;
+        case KEYWORD.ENGAGEMENT:
+          return <ProjectCard key={item.idea.id} item={item}/>;
         default:
           return null;
-     }
+      }
     });
-  } else {
-    return <h1
-      style={style}
-    >
-      Projects not found
-    </h1>
   }
+  return <h1
+    style={style}
+  >
+    Projects not found
+  </h1>;
 };
 
 
 export const mapQueryParamsToState = (string, func) => {
-  // actionClean();
   Object.keys(string).forEach(key => {
     if (string[key]) {
       return func(string[key], key);
@@ -61,18 +66,17 @@ export const makeRequestString = (obj) => {
   let reqString = '';
   Object.keys(obj).forEach(key => {
     if (obj[key]) {
-      return reqString+=`&${key[0].toUpperCase()}${key.slice(1)}=${obj[key]}`;
-    } else {
-      return reqString;
+      reqString += `&${key[0].toUpperCase()}${key.slice(1)}=${obj[key]}`;
     }
+    return reqString;
   });
   return reqString;
 };
 
 
 export const mergeQueryUrlWithHistory = (data, queries) => {
-  let obj = {};
-  Object.keys(data).forEach( key => {
+  const obj = {};
+  Object.keys(data).forEach(key => {
     if (queries[key]) {
       obj[key] = queries[key];
     } else {
@@ -84,20 +88,60 @@ export const mergeQueryUrlWithHistory = (data, queries) => {
 
 
 export const parseQueryString = (location) => {
-  // debugger;
   return parse(location, { ignoreQueryPrefix: true });
 };
 
 
 export const parseRouteString = (location) => {
-  let routeString = location.slice(1).split('/');
+  const routeString = location.slice(1).split('/');
   for (let i = 0; i < routeString.length; i++) {
     return routeString[routeString.length - 1];
   }
 };
 
 
-//Projects Not Found Style
+export const isEmpty = (obj) => {
+  for (let key in obj) {
+    return false;
+  }
+  return true;
+};
+
+
+export const responseError = (res, errorCodes) => {
+    const { data = {} } = res;
+    const { errors = {} } = data;
+
+    const errorObj = {};
+    errors.forEach(item => {
+      if (item.field) {
+        let firstLetterToLowerCase = `${item.field[0].toLowerCase()}${item.field.slice(1)}`;
+        if (firstLetterToLowerCase === 'location.areaName'
+          || 'location.stateName'
+          || 'location.stateAbbreviation') {
+          firstLetterToLowerCase = 'address';
+        }
+        errorObj[firstLetterToLowerCase] = errorCodes[item.code];
+      } else if (errorCodes[item.code]) {
+        errorObj._error = errorCodes[item.code];
+      } else {
+        errorObj._error = item.message;
+      }
+    });
+    throw new SubmissionError(errorObj);
+};
+
+
+export const isAuthFalse = () => (
+  (dispatch) => {
+    clearLocalState('TOKEN_INFO');
+    clearLocalState('USER_INFO');
+    dispatch(logOut());
+  }
+);
+
+
+// Projects Not Found Style
 const style = {
   display: 'flex',
   justifyContent: 'center',
@@ -109,36 +153,8 @@ const style = {
   fontSize: 28,
   color: '#313131',
   fontWeight: '700',
-  borderBottom: '2px solid #808080'
+  borderBottom: '2px solid #808080',
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // export const receivingProjectsData = (location, asyncActionCreator, data) => {

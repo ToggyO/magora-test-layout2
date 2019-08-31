@@ -1,13 +1,11 @@
 import React from 'react';
-import './Footer.sass'
-
-
+import './Footer.sass';
 import logo from '../../img/footer/logo-green.svg';
 
 
+/* eslint-disable class-methods-use-this */
 class Footer extends React.Component {
-
-  render () {
+  render() {
     return (
       <footer className="footer wrapper">
 
@@ -47,9 +45,9 @@ class Footer extends React.Component {
 
         </div>
       </footer>
-    )
-  };
-};
+    );
+  }
+}
 
 
 export default Footer;

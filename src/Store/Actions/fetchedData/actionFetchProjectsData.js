@@ -1,6 +1,7 @@
-import * as axios from "axios";
-import {makeRequestString, mergeQueryUrlWithHistory} from "../../../Libs/additionalSortingFunctions";
-import {REQUEST_ULR} from "../../../Constants";
+import * as axios from 'axios';
+import { makeRequestString, mergeQueryUrlWithHistory } from '../../../Libs/HelperFunctions';
+import { REQUEST_ULR } from '../../../Constants';
+import { errorWrapperTrue } from '../error/actionError';
 
 
 export const FETCHED_PROJECTS_DATA = {
@@ -13,55 +14,47 @@ export const FETCHED_PROJECTS_DATA = {
   DATE_PICK: 'DATE_PICK',
 };
 
-const requestData = () => {
-  return {
-    type: FETCHED_PROJECTS_DATA.REQUEST_PROJECTS,
-  }
-};
+const requestData = () => ({
+  type: FETCHED_PROJECTS_DATA.REQUEST_PROJECTS,
+});
 
-const receiveData = (projects) => {
-  return {
-    type: FETCHED_PROJECTS_DATA.RECEIVE_PROJECTS,
-    payload: projects.data.data,
-  }
-};
 
-export const sortValues = (value, name) => {
-  return {
-    type: FETCHED_PROJECTS_DATA.PROJECT_SORT_VALUES,
-    payload: {
-      value,
-      name
-    }
-  }
-};
+const receiveData = (projects) => ({
+  type: FETCHED_PROJECTS_DATA.RECEIVE_PROJECTS,
+  payload: projects.data.data,
+});
 
-export const projectsSortCheckboxValues = (name, value) => {
-  return {
-    type: FETCHED_PROJECTS_DATA.PROJECT_SORT_CHECKBOX_VALUES,
-    payload: {
-      name,
-      value
-    }
-  }
-};
 
-export const stateItemsCleaning = () => {
+export const sortValues = (value, name) => ({
+  type: FETCHED_PROJECTS_DATA.PROJECT_SORT_VALUES,
+  payload: {
+    value,
+    name,
+  },
+});
 
-  return {
-    type: FETCHED_PROJECTS_DATA.DATA_CLEANING,
-  }
-};
 
-export const datePick = (date, name) => {
-  return {
-    type: FETCHED_PROJECTS_DATA.DATE_PICK,
-    payload: {
-      date,
-      name
-    }
-  }
-};
+export const projectsSortCheckboxValues = (name, value) => ({
+  type: FETCHED_PROJECTS_DATA.PROJECT_SORT_CHECKBOX_VALUES,
+  payload: {
+    name,
+    value,
+  },
+});
+
+
+export const stateItemsCleaning = () => ({
+  type: FETCHED_PROJECTS_DATA.DATA_CLEANING,
+});
+
+
+export const datePick = (date, name) => ({
+  type: FETCHED_PROJECTS_DATA.DATE_PICK,
+  payload: {
+    date,
+    name,
+  },
+});
 
 
 let lastKey;
@@ -69,31 +62,27 @@ let lastKey;
 export const getDataFromServer = (data, queries, projectType) => { // projectType
   // = ideas || grants || events
 
-  let key = Math.random()*100000;
+  const key = Math.random() * 100000;
   lastKey = key;
 
   return (dispatch) => {
     dispatch(requestData());
 
-    let requestString = makeRequestString(mergeQueryUrlWithHistory(data, queries));
+    const requestString = makeRequestString(mergeQueryUrlWithHistory(data, queries));
 
-    let Url = `${REQUEST_ULR.BASE_URL}/${projectType}?&PageSize=9${requestString}`;
+    const Url = `${REQUEST_ULR.BASE_URL}/${projectType}?&PageSize=9${requestString}`;
 
     return axios.get(Url)
       .then(res => {
         if (lastKey === key) {
-          dispatch(receiveData(res))
+          dispatch(receiveData(res));
         }
       })
-      .catch( error => console.log(error))
+      .catch(() => {
+        dispatch(errorWrapperTrue());
+      });
   };
 };
-
-
-
-
-
-
 
 
 // https://dev.tribus.org/api/v0.7/ideas?Page=1&PageSize=9&Benefit=18a2be21-93e8-40b0-ba05-2bf236e4bceb&Category=18a2be21-93e8-40b0-ba05-2bf236e4bceb&sort=createDate

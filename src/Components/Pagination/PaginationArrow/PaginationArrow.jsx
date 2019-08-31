@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 import Icon from '../../../Icons/Icons';
 
 
-const PaginationArrow = () => {
-  return <div>
+const PaginationArrow = () => (
+  <div>
     <Icon iconName='paginationArrow'/>
   </div>
-};
+);
 
 export default PaginationArrow;

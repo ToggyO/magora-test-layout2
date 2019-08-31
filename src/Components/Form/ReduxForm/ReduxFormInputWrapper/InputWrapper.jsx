@@ -1,20 +1,27 @@
-import React from "react";
-import s from './InputWrapper.module.sass';
-import ReduxFormError from "../ReduxFormError/FormError";
+import React from 'react';
 import PropTypes from 'prop-types';
+import s from './InputWrapper.module.sass';
+import ReduxFormError from '../ReduxFormError/FormError';
 
 
 const ReduxFormInputWrapper = (props) => {
+  const {
+    label,
+    error,
+    touched,
+    inputId,
+    isRequired,
+    style,
+  } = props;
 
-  const { label, error, touched, inputId } = props;
-// debugger;
   return (
-    <div className={s.inputWrapper}>
+    <div className={s.inputWrapper} style={style}>
       <label
         htmlFor={inputId}
-        className={`${s.inputWrapper_label} ${ error && touched ? 'error-label' : null }`}
+        className={`${s.inputWrapper_label} ${error && touched ? 'error-label' : null}`}
       >
         {label}
+        {isRequired && <span className={s.requireStar}></span>}
       </label>
       {props.children}
       <ReduxFormError
@@ -34,4 +41,4 @@ ReduxFormInputWrapper.propTypes = {
   error: PropTypes.string,
   touched: PropTypes.bool,
   inputId: PropTypes.string,
-}
+};

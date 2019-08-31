@@ -1,13 +1,12 @@
 import React from 'react';
-import './LoggedOut.sass'
-import { NavLink } from 'react-router-dom';
-import { modalOpen } from "../../../Store/Actions/modal/actionModal";
 import { connect } from 'react-redux';
-import {ROUTES} from '../../../Constants/';
+import './LoggedOut.sass';
+import { NavLink } from 'react-router-dom';
+import { modalOpen } from '../../../Store/Actions/modal/actionModal';
+import { ROUTES } from '../../../Constants';
 
 
-const LoggedOut = (props) => {
-  return (
+const LoggedOut = (props) => (
     <div className="header-changeGroup d-f jc-fe">
       <div className="header-changeGroup__items d-f">
         <button
@@ -25,15 +24,12 @@ const LoggedOut = (props) => {
         </NavLink>
       </div>
     </div>
-  );
-};
+);
 
-let mapDispatchToProps = (dispatch) => {
-  return {
-    openModal: (modalKey) => {
-      dispatch( modalOpen(modalKey) );
-    }
-  }
-};
+const mapDispatchToProps = (dispatch) => ({
+  openModal: (modalKey) => {
+    dispatch(modalOpen(modalKey));
+  },
+});
 
-export default connect( null, mapDispatchToProps )(LoggedOut);
+export default connect(null, mapDispatchToProps)(LoggedOut);

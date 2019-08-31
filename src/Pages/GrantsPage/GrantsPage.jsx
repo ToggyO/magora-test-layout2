@@ -1,107 +1,109 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import './GrantsPage.sass';
-import GrantSearch from "./GrantSearch/GrantSearch";
-import GrantProjects from "./GrantProjects/GrantProjects";
-import {bindActionCreators} from "redux";
+import GrantSearch from './GrantSearch/GrantSearch';
+import GrantProjects from './GrantProjects/GrantProjects';
 import {
   sortValues,
   stateItemsCleaning,
-  getDataFromServer
-} from "../../Store/Actions/fetchedData/actionFetchProjectsData";
+  getDataFromServer,
+} from '../../Store/Actions/fetchedData/actionFetchProjectsData';
 import {
   getBenefitsOptions,
-  getCategoriesOptions, stateOptionsCleaning
+  getCategoriesOptions,
+  stateOptionsCleaning,
 } from '../../Store/Actions/fetchedData/actionGetSortOptions';
-import {connect} from "react-redux";
-import {mapQueryParamsToState, parseQueryString} from "../../Libs/additionalSortingFunctions";
+import { mapQueryParamsToState, parseQueryString } from '../../Libs/HelperFunctions';
 import GrantSearchEmpty from './GrantSearch/GrantSearchEmpty';
 import GrantProjectsEmpty from './GrantProjects/GrantProjectsEmpty';
 import store from '../../Store';
-import PropTypes from 'prop-types';
-import {KEYWORD} from '../../Constants';
+import { KEYWORD } from '../../Constants';
 
 
 const GrantsPage = (props) => {
-
   const {
     fetchedData,
     fetchedProjectsOptions,
     location,
-    sortValues,
-    getCategoriesOptions,
-    getBenefitsOptions,
+    valueSort,
+    getCategories,
+    getBenefits,
     // history,
-    stateItemsCleaning,
-    getDataFromServer,
-    stateOptionsCleaning,
+    stateCleaning,
+    getData,
+    optionsCleaning,
   } = props;
 
   const [initialize, setInitialize] = useState(false);
 
-  useEffect( () => {
-    stateItemsCleaning();
-    getCategoriesOptions();
-    getBenefitsOptions();
-    mapQueryParamsToState(parseQueryString(location.search), sortValues);
+  useEffect(() => {
+    stateCleaning();
+    getCategories();
+    getBenefits();
+    mapQueryParamsToState(parseQueryString(location.search), valueSort);
     const currentState = store.getState();
-    getDataFromServer(currentState.fetchedData.history, parseQueryString(location.search), KEYWORD.GRANTS);
+    getData(currentState.fetchedData.history, parseQueryString(location.search), KEYWORD.GRANTS);
 
     return () => {
-      stateItemsCleaning();
-      stateOptionsCleaning();
+      stateCleaning();
+      optionsCleaning();
     };
-  },[location.search]);
-
+  }, [location.search]);
+  /* eslint-disable */
   useEffect( () => {
-    (fetchedData.isData &&
-      fetchedProjectsOptions.isCategories &&
+    (fetchedData.isData
+      && fetchedProjectsOptions.isCategories &&
       fetchedProjectsOptions.isBenefits ) && setInitialize(true);
   },[
     fetchedData.isData,
     fetchedProjectsOptions.isCategories,
     fetchedProjectsOptions.isBenefits
   ]);
+  /* eslint-enable */
 
 
-  if(!initialize) {
+  if (!initialize) {
     return (
       <>
         <GrantSearchEmpty />
         <GrantProjectsEmpty />
       </>
-    )
-  } else {
-    return (
-      <>
-        <GrantSearch
-          grantsData={fetchedData}
-          optionsData={fetchedProjectsOptions}
-          location={location}
-          sortValues={sortValues}
-        />
-        <GrantProjects
-          grantsData={fetchedData}
-          location={location}
-        />
-      </>
-    )
+    );
   }
+  return (
+    <>
+      <GrantSearch
+        grantsData={fetchedData}
+        optionsData={fetchedProjectsOptions}
+        location={location}
+        sortValues={valueSort}
+      />
+      <GrantProjects
+        grantsData={fetchedData}
+        location={location}
+      />
+    </>
+  );
 };
 
 
-let mapStateToProps = ({ fetchedData, fetchedProjectsOptions, }) => ({ fetchedData, fetchedProjectsOptions, });
-let mapDispatchToProps = (dispatch) => {
-  return {
-    getDataFromServer: bindActionCreators(getDataFromServer, dispatch),
-    sortValues: bindActionCreators(sortValues, dispatch),
-    getCategoriesOptions: bindActionCreators(getCategoriesOptions, dispatch),
-    getBenefitsOptions: bindActionCreators(getBenefitsOptions, dispatch),
-    stateItemsCleaning: bindActionCreators(stateItemsCleaning, dispatch),
-    stateOptionsCleaning: bindActionCreators(stateOptionsCleaning, dispatch),
-  }
-};
+const mapStateToProps = ({ fetchedData, fetchedProjectsOptions }) => ({
+  fetchedData,
+  fetchedProjectsOptions,
+});
 
-export default connect( mapStateToProps, mapDispatchToProps )(GrantsPage);
+const mapDispatchToProps = (dispatch) => ({
+  getData: bindActionCreators(getDataFromServer, dispatch),
+  valueSort: bindActionCreators(sortValues, dispatch),
+  getCategories: bindActionCreators(getCategoriesOptions, dispatch),
+  getBenefits: bindActionCreators(getBenefitsOptions, dispatch),
+  stateCleaning: bindActionCreators(stateItemsCleaning, dispatch),
+  optionsCleaning: bindActionCreators(stateOptionsCleaning, dispatch),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(GrantsPage);
 
 
 GrantsPage.propTypes = {
@@ -109,9 +111,9 @@ GrantsPage.propTypes = {
   fetchedProjectsOptions: PropTypes.object,
   location: PropTypes.object,
   sortValues: PropTypes.func,
-  getCategoriesOptions: PropTypes.func,
-  getBenefitsOptions: PropTypes.func,
-  stateItemsCleaning: PropTypes.func,
-  getDataFromServer: PropTypes.func,
-  stateOptionsCleaning: PropTypes.func,
-}
+  getCategories: PropTypes.func,
+  getBenefits: PropTypes.func,
+  stateCleaning: PropTypes.func,
+  getData: PropTypes.func,
+  optionsCleaning: PropTypes.func,
+};

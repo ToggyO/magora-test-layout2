@@ -1,9 +1,9 @@
-import Select from "react-select";
-import {DropdownIndicator} from "./custom_components";
-import {styles} from "../Styles/filterStyles";
-import React from "react";
+import React from 'react';
+import Select from 'react-select';
+import { DropdownIndicator } from './custom_components';
+import { styles } from '../Styles/filterStyles';
 
-
+/* eslint-disable no-shadow */
 const MySelect = (props) => {
   const {
     options,
@@ -11,21 +11,20 @@ const MySelect = (props) => {
     defaultValue,
     sortValues,
     name,
-    value
+    value,
   } = props;
-
   return (
     <Select
-      components={{DropdownIndicator}}
+      components={{ DropdownIndicator }}
       styles={styles}
       options={options}
       placeholder={placeholder}
       inputValue=''
-      onChange={value => sortValues(value.value, name)}
+      onChange={(value) => sortValues(value.value, name)}
       defaultValue={defaultValue}
       value={value}
     />
-  )
+  );
 };
 
 export default MySelect;

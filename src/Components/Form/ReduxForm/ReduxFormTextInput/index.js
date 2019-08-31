@@ -1,19 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import s from './style.module.sass';
 import '../../FormComponentsStyle.sass';
-import ReduxFormInputWrapper from "../ReduxFormInputWrapper/InputWrapper";
-import PropTypes from 'prop-types';
+import ReduxFormInputWrapper from '../ReduxFormInputWrapper/InputWrapper';
 
 
 const ReduxFormTextInput = (props) => {
-
   const {
     input,
     label,
     type,
     placeholder,
     meta,
-    style
+    styleWrapper,
+    styleInput,
+    isRequired,
   } = props;
 
   const inputId = `input-${input.name}`;
@@ -25,6 +26,8 @@ const ReduxFormTextInput = (props) => {
         error={meta.error}
         touched={meta.touched}
         inputId={inputId}
+        isRequired={isRequired}
+        style={styleWrapper}
       >
         <div className={`${s.inputBlock_texInput} ${meta.error && meta.touched ? 'error' : null}`}>
           <input
@@ -35,12 +38,12 @@ const ReduxFormTextInput = (props) => {
             name={input.name}
             onChange={input.onChange}
             onBlur={input.onBlur}
-            style={style}
+            style={styleInput}
           />
         </div>
       </ReduxFormInputWrapper>
     </div>
-  )
+  );
 };
 
 export default ReduxFormTextInput;
@@ -53,4 +56,4 @@ ReduxFormTextInput.propTypes = {
   style: PropTypes.object,
   meta: PropTypes.object,
   placeholder: PropTypes.string,
-}
+};

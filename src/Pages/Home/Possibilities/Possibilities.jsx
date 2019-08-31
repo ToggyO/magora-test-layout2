@@ -1,14 +1,13 @@
 import React from 'react';
-import './Possibilities.sass'
+import './Possibilities.sass';
 import PosSearch from './pos-search/pos-search';
 import PosReg from './pos-reg/pos-reg';
 import PosTools from './pos-tools/pos-tools';
 
-
+/* eslint-disable class-methods-use-this */
 class Possibilities extends React.Component {
-
- render() {
-   return (
+  render() {
+    return (
      <div className="pos wrapper">
        <div className="pos-container wrapper-container">
          <PosSearch />
@@ -16,9 +15,9 @@ class Possibilities extends React.Component {
          <PosTools />
        </div>
      </div>
-   );
- }
-};
+    );
+  }
+}
 
 
 export default Possibilities;

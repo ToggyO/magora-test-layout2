@@ -1,70 +1,68 @@
-import React, {useState} from 'react';
-import './Logged.sass'
-import {bindActionCreators} from "redux";
-import {logOut} from "../../../Store/Actions/Auth/actionAuth";
-import {connect} from "react-redux";
-import {clearLocalState} from "../../../Libs/localStorage";
-import Icon from "../../../Icons/Icons";
-import Dropdown from "../../Dropdown";
-import {profileOptionsDropdown} from "./list";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import './Logged.sass';
+import { bindActionCreators } from 'redux';
+import Icon from '../../../Icons/Icons';
+import { Dropdown } from '../../Dropdown';
+import { KEYWORD, ROUTES } from '../../../Constants';
+import { isAuthFalse } from '../../../Libs/HelperFunctions';
 
 
 const LoggedIn = (props) => {
+  const { authData = {}, logOut } = props;
+  const { me = {} } = authData;
+  const { user = {}, resource } = me;
 
-  const { authData } = props;
-
-  const isAuthFalse = () => {
-    return () => {
-      clearLocalState('TOKEN_INFO');
-      clearLocalState('USER_INFO');
-      props.logOut();
-    };
-  };
-
-
-  const [ opened, toggleOpen ] = useState(false);
-
+  const getDropdownList = () => (
+    [
+      <Link
+        to={`/${ROUTES.USER_PROFILE}/${user.id}/${KEYWORD.ABOUT}`}
+        className="dropdown-list-element-style h2-black fs-18 lh-48 fw-600">
+        Go to profile
+      </Link>,
+      <Link
+        to={`/${ROUTES.USER_PROFILE}/${user.id}/edit`}
+        className="dropdown-list-element-style h2-black fs-18 lh-48 fw-600"
+      >
+        Edit Profile
+      </Link>,
+      <div onClick={logOut} className="dropdown-list-element-style h2-black fs-18 lh-48 fw-600">
+        Sign Out
+      </div>,
+    ]
+  );
 
   return (
     <div className="header-changeGroup d-f">
-      <div className="header-changeGroup__items" onClick={() => toggleOpen(!opened)}>
-        {authData.me.resource !== null
-          ?  <img
+      <Dropdown
+        list={getDropdownList()}
+        listClassName="headerDropdownList"
+        elementClassName="headerDropdownList__element"
+      >
+        <div className="header-changeGroup__items" >
+          {resource !== null
+            ? <img
               className="changeGroup__btn sh-avatar"
               // onError={(e) => e.target.src = placeholderAvatar}
-              src={authData.me.resource.originalUrl}
+              src={resource.formatUrls.small}
               alt="small"
-             />
-          : <Icon
-              iconName='avatar'
-              className='avatar_profile changeGroup__btn sh-avatar'
             />
-        }
-        <div className='header-changeGroup__dropdown'>
-          <Dropdown
-            list={profileOptionsDropdown}
-            opened={opened}
-          />
+            : <Icon
+              iconName="avatar"
+              className="avatar_profile changeGroup__btn sh-avatar"
+            />
+          }
         </div>
-      </div>
-      <div>
-        <button
-          type='button'
-          onClick={isAuthFalse()}
-        >
-          Log Out
-        </button>
-      </div>
+      </Dropdown>
     </div>
   );
 };
 
-const mapStateToProps = ({authData}) => ({authData});
+const mapStateToProps = ({ authData, userProfileData }) => ({ authData, userProfileData });
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    logOut: bindActionCreators(logOut, dispatch),
-  }
-};
+const mapDispatchToProps = (dispatch) => ({
+  logOut: bindActionCreators(isAuthFalse, dispatch),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoggedIn);

@@ -1,13 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import './CardModal.sass';
-import {modalOpen} from "../../../Store/Actions/modal/actionModal";
-import {connect} from "react-redux";
+import { modalOpen } from '../../../Store/Actions/modal/actionModal';
 
 
 const CardModal = (props) => {
-
   const onCardOpenModal = (modalKey) => {
-    let options = props.card;
+    const options = props.card;
     props.openModal(modalKey, options);
   };
 
@@ -16,7 +15,7 @@ const CardModal = (props) => {
       <div className="cardModal-container d-f fd-c">
         <img className="cardModal-container__image mb-9" src={props.card.url} alt=""/>
         <h3
-          className='cardModal-container__headline fs-30 lh-41 ls-5 fw-700 h2-black t-align-c'
+          className="cardModal-container__headline fs-30 lh-41 ls-5 fw-700 h2-black t-align-c"
         >
           {props.card.label}
         </h3>
@@ -27,22 +26,18 @@ const CardModal = (props) => {
         </p>
       </div>
       <div className="cardModal-container__btn d-f jc-c">
-        <button className='btn green lg fs-18 ls-27 lh-18 fw-600'>Create idea</button>
+        <button className="btn green lg fs-18 ls-27 lh-18 fw-600">Create idea</button>
       </div>
     </div>
   );
 };
 
-let mapStateToProps = ( {modalState} ) => ( {modalState,} ) ;
+const mapStateToProps = ({ modalState }) => ({ modalState });
 
-let mapDispatchToProps = (dispatch) => {
-  return {
-    openModal: (modalKey, options) => {
-      dispatch( modalOpen(modalKey, options) );
-    }
-  }
-};
+const mapDispatchToProps = (dispatch) => ({
+  openModal: (modalKey, options) => {
+    dispatch(modalOpen(modalKey, options));
+  },
+});
 
-export default connect( mapStateToProps, mapDispatchToProps )(CardModal);
-
-
+export default connect(mapStateToProps, mapDispatchToProps)(CardModal);

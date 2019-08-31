@@ -1,13 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import './Card.sass';
-import {modalOpen} from "../../../../../Store/Actions/modal/actionModal";
-import {connect} from "react-redux";
+import { modalOpen } from '../../../../../Store/Actions/modal/actionModal';
 
 
 const Card = (props) => {
-
   const onCardOpenModal = (modalKey) => {
-    let options = props.card;
+    const options = props.card;
     props.openModal(modalKey, options);
   };
 
@@ -16,7 +15,7 @@ const Card = (props) => {
       <div className="card-container d-f fd-c">
         <img className="card-container__image mb-9" src={props.card.url} alt=""/>
         <h3
-          className='card-container__headline fs-30 lh-41 ls-5 fw-700 h3-seaWave t-align-c'
+          className="card-container__headline fs-30 lh-41 ls-5 fw-700 h3-seaWave t-align-c"
         >
           {props.card.label}
         </h3>
@@ -25,14 +24,10 @@ const Card = (props) => {
   );
 };
 
-let mapDispatchToProps = (dispatch) => {
-  return {
-    openModal: (modalKey, options) => {
-      dispatch( modalOpen(modalKey, options) );
-    }
-  }
-};
+const mapDispatchToProps = (dispatch) => ({
+  openModal: (modalKey, options) => {
+    dispatch(modalOpen(modalKey, options));
+  },
+});
 
-export default connect( null, mapDispatchToProps )(Card);
-
-
+export default connect(null, mapDispatchToProps)(Card);

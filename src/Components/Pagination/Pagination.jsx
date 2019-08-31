@@ -3,11 +3,10 @@ import ReactPaginate from 'react-paginate';
 import { parse, stringify } from 'qs';
 import './Pagination.scss';
 import history from '../../history';
-import PaginationArrow from "./PaginationArrow/PaginationArrow";
+import PaginationArrow from './PaginationArrow/PaginationArrow';
 // import PropTypes from 'prop-types';
 
 class Pagination extends React.Component {
-
   // static propTypes = {
   //   totalCardsCount: PropTypes.number,
   //   pageSize: PropTypes.number,
@@ -27,7 +26,7 @@ class Pagination extends React.Component {
     // }
     // const { location = {} } = history;
     // const { search = '', pathname } = location;
-    const { location,  } = this.props;
+    const { location } = this.props;
 
     const queries = parse(location.search, { ignoreQueryPrefix: true }) || {};
     queries.page = selectedPage + 1;
@@ -36,7 +35,6 @@ class Pagination extends React.Component {
 
 
   render() {
-
     const { location, projectsData } = this.props;
 
     // const { location = {} } = history;

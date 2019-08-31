@@ -1,9 +1,8 @@
 import React from 'react';
-// import './style.module.sass';
+// import './style.sass';
 
 
 const Info = (props) => {
-
   const { title, value } = props;
 
   return <div className='mt-5'>
@@ -13,7 +12,7 @@ const Info = (props) => {
           <div className='about-profile__link '>
             <a href='#' className='h2-black fs-16 lh-24 ls-2 fw-500'>{value}</a>
           </div>
-        </div>
+        </div>;
 };
 
 

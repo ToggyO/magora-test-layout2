@@ -1,128 +1,129 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import './FindProjects.sass';
-import ProjectSearch from "./ProjectSearch/ProjectSearch";
-import CommunityProjects from "./CommunityProjects/CommunityProjects";
-import {bindActionCreators} from "redux";
+import PropTypes from 'prop-types';
+import ProjectSearch from './ProjectSearch/ProjectSearch';
+import CommunityProjects from './CommunityProjects/CommunityProjects';
 import {
   getDataFromServer,
   sortValues,
-  stateItemsCleaning
-} from "../../Store/Actions/fetchedData/actionFetchProjectsData";
+  stateItemsCleaning,
+} from '../../Store/Actions/fetchedData/actionFetchProjectsData';
 import {
   getBenefitsOptions,
   getCategoriesOptions,
-  stateOptionsCleaning
-} from "../../Store/Actions/fetchedData/actionGetSortOptions";
-import {connect} from "react-redux";
-import {mapQueryParamsToState, parseQueryString} from "../../Libs/additionalSortingFunctions";
-import CommunityProjectsEmpty from "./CommunityProjects/CommunityProjectsEmpty";
-import ProjectSearchEmpty from "./ProjectSearch/ProjectSearchEmpty";
-import store from "../../Store";
-import PropTypes from 'prop-types';
-import {KEYWORD} from "../../Constants";
+  stateOptionsCleaning,
+} from '../../Store/Actions/fetchedData/actionGetSortOptions';
+
+import { mapQueryParamsToState, parseQueryString } from '../../Libs/HelperFunctions';
+import CommunityProjectsEmpty from './CommunityProjects/CommunityProjectsEmpty';
+import ProjectSearchEmpty from './ProjectSearch/ProjectSearchEmpty';
+import store from '../../Store';
+
+import { KEYWORD } from '../../Constants';
 
 
 const FindProjects = (props) => {
-
   const {
     fetchedData,
     fetchedProjectsOptions,
     location,
-    sortValues,
-    getCategoriesOptions,
-    getBenefitsOptions,
+    valueSort,
+    getCategories,
+    getBenefits,
     // history,
-    stateItemsCleaning,
-    getDataFromServer,
-    stateOptionsCleaning
+    stateCleaning,
+    getData,
+    optionsCleaning,
   } = props;
 
   const [initialize, setInitialize] = useState(false);
 
-  useEffect( () => {
-    stateItemsCleaning();
-    getCategoriesOptions();
-    getBenefitsOptions();
-    mapQueryParamsToState(parseQueryString(location.search), sortValues);
+  useEffect(() => {
+    stateCleaning();
+    getCategories();
+    getBenefits();
+    mapQueryParamsToState(parseQueryString(location.search), valueSort);
     const currentState = store.getState();
-    getDataFromServer(currentState.fetchedData.history, parseQueryString(location.search), KEYWORD.IDEAS);
+    getData(
+      currentState.fetchedData.history,
+      parseQueryString(location.search),
+      KEYWORD.IDEAS,
+    );
 
     return () => {
-      stateItemsCleaning();
-      stateOptionsCleaning();
+      stateCleaning();
+      optionsCleaning();
     };
-  },[location.search]);
+  }, [location.search]);
 
-  useEffect( () => {
-    (fetchedData.isData &&
-      fetchedProjectsOptions.isCategories &&
-      fetchedProjectsOptions.isBenefits ) && setInitialize(true);
-  },[
+  /* eslint-disable */
+  useEffect(() => {
+    fetchedData.isData
+    && fetchedProjectsOptions.isCategories
+    && fetchedProjectsOptions.isBenefits
+    && setInitialize(true);
+  }, [
     fetchedData.isData,
     fetchedProjectsOptions.isCategories,
     fetchedProjectsOptions.isBenefits
   ]);
+  /* eslint-enable */
 
-  if(!initialize) {
+  if (!initialize) {
     return (
       <>
         <ProjectSearchEmpty />
         <CommunityProjectsEmpty />
       </>
-    )
-  } else {
-    return (
-
-      <>
-        <ProjectSearch
-          projectsData={fetchedData}
-          optionsData={fetchedProjectsOptions}
-          location={location}
-          projectsSortValues={sortValues}
-        />
-        <CommunityProjects
-          projectsData={fetchedData}
-          location={location}
-        />
-      </>
-    )
+    );
   }
+  return (
 
+    <>
+      <ProjectSearch
+        projectsData={fetchedData}
+        optionsData={fetchedProjectsOptions}
+        location={location}
+        projectsSortValues={valueSort}
+      />
+      <CommunityProjects
+        projectsData={fetchedData}
+        location={location}
+      />
+    </>
+  );
 };
 
 
-let mapStateToProps = ({ fetchedData, fetchedProjectsOptions, }) => ({ fetchedData, fetchedProjectsOptions, });
-let mapDispatchToProps = (dispatch) => {
-  return {
-    getDataFromServer: bindActionCreators(getDataFromServer, dispatch),
-    sortValues: bindActionCreators(sortValues, dispatch),
-    getCategoriesOptions: bindActionCreators(getCategoriesOptions, dispatch),
-    getBenefitsOptions: bindActionCreators(getBenefitsOptions, dispatch),
-    stateItemsCleaning: bindActionCreators(stateItemsCleaning, dispatch),
-    stateOptionsCleaning: bindActionCreators(stateOptionsCleaning, dispatch),
-  }
-};
+const mapStateToProps = ({ fetchedData, fetchedProjectsOptions }) => ({
+  fetchedData, fetchedProjectsOptions,
+});
 
-export default connect( mapStateToProps, mapDispatchToProps )(FindProjects);
+const mapDispatchToProps = (dispatch) => ({
+  getData: bindActionCreators(getDataFromServer, dispatch),
+  valueSort: bindActionCreators(sortValues, dispatch),
+  getCategories: bindActionCreators(getCategoriesOptions, dispatch),
+  getBenefits: bindActionCreators(getBenefitsOptions, dispatch),
+  stateCleaning: bindActionCreators(stateItemsCleaning, dispatch),
+  optionsCleaning: bindActionCreators(stateOptionsCleaning, dispatch),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(FindProjects);
 
 
 FindProjects.propTypes = {
   fetchedData: PropTypes.object,
   fetchedProjectsOptions: PropTypes.object,
   location: PropTypes.object,
-  sortValues: PropTypes.func,
-  getCategoriesOptions: PropTypes.func,
-  getBenefitsOptions: PropTypes.func,
-  stateItemsCleaning: PropTypes.func,
-  getDataFromServer: PropTypes.func,
-  stateOptionsCleaning: PropTypes.func,
-}
-
-
-
-
-
-
+  valueSort: PropTypes.func,
+  getCategories: PropTypes.func,
+  getBenefits: PropTypes.func,
+  stateCleaning: PropTypes.func,
+  getData: PropTypes.func,
+  optionsCleaning: PropTypes.func,
+};
 
 // componentDidMount() {
 //   this.state = {

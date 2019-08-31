@@ -3,8 +3,8 @@ import './Registration.sass';
 import Main from './Main/Main';
 
 
+/* eslint-disable class-methods-use-this */
 class Registration extends React.Component {
-
   componentDidMount() {
     window.scrollTo(0, 0);
   }
@@ -16,7 +16,7 @@ class Registration extends React.Component {
       </>
     );
   }
-};
+}
 
 
 export default Registration;

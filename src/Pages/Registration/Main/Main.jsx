@@ -1,9 +1,10 @@
 import React from 'react';
 import './Main.sass';
-import RegistrationForm from "../../../Components/Form/ReduxForm/RegistrationForm/";
+import RegistrationForm from '../../../Components/Form/ReduxForm/RegistrationForm';
 // import Form from '../../../Components/Form/FormSignUp/FormSignUp';
 
 
+/* eslint-disable */
 class Main extends React.Component {
   render() {
     return (
@@ -17,7 +18,7 @@ class Main extends React.Component {
       </div>
     );
   };
-};
+}
 
 
 export default Main;

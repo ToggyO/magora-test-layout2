@@ -1,14 +1,13 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './style.sass';
-import Tab from "./Tab";
-import {tabTitles} from './Tab/tabsInfo';
+import Tab from './Tab';
+import { tabTitles } from './Tab/tabsInfo';
 
 
 const ProfileNavigationEmpty = (props) => {
-
   const { location } = props;
 
-  const [ active, toggleActive ] = useState(0);
+  const [active, toggleActive] = useState(0);
 
   // let tabs = [];
   // for(let i = 0; i < tabTitles.length; i++) {
@@ -42,13 +41,11 @@ const ProfileNavigationEmpty = (props) => {
               span={<div className='navigation-list__count'>
                 <span className='h2-black fs-12 lh-3 fw-500'>0</span>
               </div>}
-            />
-        )}
-        {/*{tabs}*/}
-
+            />)
+        }
       </ul>
     </div>
-  </div>
+  </div>;
 };
 
 

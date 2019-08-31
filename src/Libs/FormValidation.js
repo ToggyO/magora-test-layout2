@@ -1,4 +1,4 @@
-
+/* eslint-disable */
 //Form Validation
 export default function formInitialize(fieldArray, validationConditions) {
 
@@ -18,7 +18,7 @@ export default function formInitialize(fieldArray, validationConditions) {
     formValid: false,
   };
 
-  fieldArray.forEach(({fieldName, initValue}) => {
+  fieldArray.forEach(({ fieldName, initValue }) => {
     this.state.values = {
       ...this.state.values,
       [fieldName]: initValue,
@@ -67,7 +67,7 @@ export default function formInitialize(fieldArray, validationConditions) {
 
     let formValid = true;
     let keys = Object.keys(fieldValidationErrors);
-    keys.forEach((fieldName, i) => {
+    keys.forEach((fieldName) => {
       if (fieldValidationErrors[fieldName]) {
         formValid = false;
       }
@@ -75,12 +75,12 @@ export default function formInitialize(fieldArray, validationConditions) {
 
     this.setState({
       formErrors: fieldValidationErrors,
-      formValid: formValid
+      formValid,
     });
   }
 
   function handleBlur(e) {
-    const {target: {name}} = e;
+    const { target: { name } } = e;
 
     this.setState({
       visited: {
@@ -100,8 +100,7 @@ export default function formInitialize(fieldArray, validationConditions) {
       visited: this.state.visited[fieldName],
     };
   }
-};
-
+}
 
 
 // //Form Validation
@@ -201,12 +200,3 @@ export default function formInitialize(fieldArray, validationConditions) {
 //     });
 //   }
 // };
-
-
-
-
-
-
-
-
-

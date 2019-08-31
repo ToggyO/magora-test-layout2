@@ -1,12 +1,11 @@
-import React from "react";
+import React from 'react';
 import './style.sass';
-import {NavLink} from "react-router-dom";
-import Icon from "../../Icons/Icons";
-import {ROUTES} from "../../Constants";
+import { NavLink } from 'react-router-dom';
+import Icon from '../../Icons/Icons';
+import { ROUTES } from '../../Constants';
 
 
 const SearchButtonsBlock = (props) => {
-
   const {
     projectSearchButton,
     grantsSearchButton,
@@ -14,7 +13,7 @@ const SearchButtonsBlock = (props) => {
   } = props;
 
   return (
-    <div className={`switchBtns prS-adapt__switchBtns d-f fd-c ai-c jc-sb `}>
+    <div className="switchBtns prS-adapt__switchBtns d-f fd-c ai-c jc-sb">
       <NavLink to={`/${ROUTES.PROJECT_SEARCH}`}>
         <button className={projectSearchButton.className} >
           <Icon
@@ -43,7 +42,7 @@ const SearchButtonsBlock = (props) => {
         <h6 className={eventsSearchButton.headerStyle}>Events</h6>
       </NavLink>
     </div>
-  )
+  );
 };
 
 export default SearchButtonsBlock;
