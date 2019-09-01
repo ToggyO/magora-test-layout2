@@ -1,13 +1,17 @@
 import React from 'react';
 import { SubmissionError } from 'redux-form';
 import { parse } from 'qs';
+import * as axios from 'axios';
 import ProjectCard from '../Components/ProjectCard/ProjectCard';
 import GrantCard from '../Components/GrantCard/GrantCard';
 import EventCard from '../Components/EventCard/EventCard';
-import { KEYWORD } from '../Constants';
-import { clearLocalState } from './localStorage';
+import { KEYWORD, REQUEST_ULR } from '../Constants';
+import { clearLocalState, writeToLocalState } from './localStorage';
 /* eslint-disable import/no-cycle */
 import { logOut } from '../Store/Actions/Auth/actionAuth';
+import { errorWrapperTrue } from '../Store/Actions/error/actionError';
+import history from '../history';
+import { modalOpen } from '../Store/Actions/modal/actionModal';
 /* eslint-enable import/no-cycle */
 
 
@@ -139,6 +143,41 @@ export const isAuthFalse = () => (
     dispatch(logOut());
   }
 );
+
+
+export const refreshTokenData = (refreshToken) => {
+  const URL = `${REQUEST_ULR.CORS_BASE_URL}/${REQUEST_ULR.AUTH_TOKEN}/${REQUEST_ULR.USERS}`;
+
+  return axios
+      .put(URL, {refreshToken: refreshToken})
+      .then(res => {
+        const { data = {} } = res;
+        if (data && data.code === 'success') {
+          writeToLocalState('TOKEN_INFO', data.data);
+          debugger;
+        }
+      })
+      .catch((error) => {
+        if (!error) {
+          return null;
+        }
+        const { data = {} } = error.response;
+        const { errors = {} } = data;
+
+        errors.forEach(item => {
+          if (item.code === 'sec.access_token_invalid') {
+            dispatch(isAuthFalse());
+            history.push('/');
+            dispatch(modalOpen('signInModal'));
+            debugger;
+          } else {
+            dispatch(errorWrapperTrue());
+            debugger;
+          }
+        });
+      });
+
+};
 
 
 // Projects Not Found Style

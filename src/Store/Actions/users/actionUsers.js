@@ -3,9 +3,9 @@ import { REQUEST_ULR, KEYWORD, ERROR_CODES } from '../../../Constants';
 import { getFromLocalState, writeToLocalState } from '../../../Libs/localStorage';
 import { errorWrapperTrue } from '../error/actionError';
 import { updateUIWithUsersInfo } from '../Auth/actionAuth';
-import { isAuthFalse, responseError } from '../../../Libs/HelperFunctions';
-import { modalOpen } from '../modal/actionModal';
-import history from '../../../history';
+// import { modalOpen } from '../modal/actionModal';
+import { refreshTokenData, responseError } from '../../../Libs/HelperFunctions';
+// import history from '../../../history';
 
 
 /* eslint-disable */
@@ -73,6 +73,15 @@ export const getUserDataProfile = (userId, path, projectType, pathname, queries)
 export const getUserDataProfileForEdit = (key) => (
   dispatch => {
     const URL = `${REQUEST_ULR.CORS_BASE_URL}/profiles/me`;
+    const token = getFromLocalState('TOKEN_INFO');
+    if (token) {
+      debugger;
+      const dateNow = new Date().toISOString();
+      if (token.accessTokenExpire <= dateNow) {
+        debugger;
+        refreshTokenData(token.refreshToken)
+      }
+    }
 
     return axios
       .get(URL, {
@@ -92,15 +101,7 @@ export const getUserDataProfileForEdit = (key) => (
         if (!error) {
           return null;
         }
-        const { data = {} } = error.response;
-        const { errors = {} } = data;
-        errors.forEach(item => {
-          if (item.code === 'sec.access_token_invalid') {
-            dispatch(isAuthFalse());
-            history.push('/');
-            dispatch(modalOpen('signInModal'));
-          }
-        });
+        dispatch(errorWrapperTrue());
       });
   }
 );
