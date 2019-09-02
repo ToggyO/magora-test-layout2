@@ -149,35 +149,38 @@ export const refreshTokenData = (tokenData) => {
   const URL = `${REQUEST_ULR.CORS_BASE_URL}/${REQUEST_ULR.AUTH_TOKEN}`;
   const dateNow = new Date().toISOString();
 
-  if (tokenData && tokenData.accessTokenExpire <= dateNow) {
-    return axios
-      .put(URL, {refreshToken: tokenData.refreshToken})
-      .then(res => {
-        const { data = {} } = res;
-        if (data && data.code === 'success') {
-          return writeToLocalState('TOKEN_INFO', data.data);
-        }
-      })
-      .catch((error) => {
-        if (!error) {
-          return null;
-        }
-        const { data = {} } = error.response;
-        const { errors = {} } = data;
-
-        errors.forEach(item => {
-          if (item.code === 'sec.access_token_invalid') {
-            dispatch(isAuthFalse());
-            history.push('/');
-            dispatch(modalOpen('signInModal'));
-          } else {
-            dispatch(errorWrapperTrue());
+  return new Promise((resolve) => {
+    if (tokenData && tokenData.accessTokenExpire <= dateNow) {
+      axios
+        .put(URL, {refreshToken: tokenData.refreshToken})
+        .then(res => {
+          const { data = {} } = res;
+          if (data && data.code === 'success') {
+            writeToLocalState('TOKEN_INFO', data.data);
+            resolve(data.data);
           }
+        })
+        .catch((error) => {
+          if (!error) {
+            return null;
+          }
+          const { data = {} } = error.response;
+          const { errors = {} } = data;
+
+          errors.forEach(item => {
+            if (item.code === 'sec.access_token_invalid') {
+              dispatch(isAuthFalse());
+              history.push('/');
+              dispatch(modalOpen('signInModal'));
+            } else {
+              dispatch(errorWrapperTrue());
+            }
+          });
         });
-      });
-  } else {
-    return null;
-  }
+    } else {
+      resolve(tokenData);
+    }
+  });
 };
 
 
