@@ -145,16 +145,17 @@ export const isAuthFalse = () => (
 );
 
 
-export const refreshTokenData = (refreshToken) => {
-  const URL = `${REQUEST_ULR.CORS_BASE_URL}/${REQUEST_ULR.AUTH_TOKEN}/${REQUEST_ULR.USERS}`;
+export const refreshTokenData = (tokenData) => {
+  const URL = `${REQUEST_ULR.CORS_BASE_URL}/${REQUEST_ULR.AUTH_TOKEN}`;
+  const dateNow = new Date().toISOString();
 
-  return axios
-      .put(URL, {refreshToken: refreshToken})
+  if (tokenData && tokenData.accessTokenExpire <= dateNow) {
+    return axios
+      .put(URL, {refreshToken: tokenData.refreshToken})
       .then(res => {
         const { data = {} } = res;
         if (data && data.code === 'success') {
-          writeToLocalState('TOKEN_INFO', data.data);
-          debugger;
+          return writeToLocalState('TOKEN_INFO', data.data);
         }
       })
       .catch((error) => {
@@ -169,14 +170,14 @@ export const refreshTokenData = (refreshToken) => {
             dispatch(isAuthFalse());
             history.push('/');
             dispatch(modalOpen('signInModal'));
-            debugger;
           } else {
             dispatch(errorWrapperTrue());
-            debugger;
           }
         });
       });
-
+  } else {
+    return null;
+  }
 };
 
 

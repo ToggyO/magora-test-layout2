@@ -73,15 +73,8 @@ export const getUserDataProfile = (userId, path, projectType, pathname, queries)
 export const getUserDataProfileForEdit = (key) => (
   dispatch => {
     const URL = `${REQUEST_ULR.CORS_BASE_URL}/profiles/me`;
-    const token = getFromLocalState('TOKEN_INFO');
-    if (token) {
-      debugger;
-      const dateNow = new Date().toISOString();
-      if (token.accessTokenExpire <= dateNow) {
-        debugger;
-        refreshTokenData(token.refreshToken)
-      }
-    }
+    const tokenData = getFromLocalState('TOKEN_INFO');
+    refreshTokenData(tokenData);
 
     return axios
       .get(URL, {
@@ -143,12 +136,13 @@ export const putUserData = (body) => (
     };
 
     const URL = `${REQUEST_ULR.CORS_BASE_URL}/${REQUEST_ULR.USERS}`;
-    const token = getFromLocalState('TOKEN_INFO').accessToken;
+    const tokenData = getFromLocalState('TOKEN_INFO');
+    refreshTokenData(tokenData);
 
     return axios
       .put(URL, requestBody, {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${getFromLocalState('TOKEN_INFO').accessToken}`,
         },
       })
       .then(res => {

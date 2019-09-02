@@ -53,7 +53,7 @@ class MyProfileEdit extends React.Component {
             && <Preloader style={{
               display: 'flex',
               justifyContent: 'center',
-              alignItems: 'center',
+              paddingTop: '300px',
             }}
             />
             }
