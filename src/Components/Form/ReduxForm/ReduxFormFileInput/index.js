@@ -35,6 +35,7 @@ const ReduxFormFileInput = (props) => {
         style={styleWrapper}
       >
         <div className={`${s.inputBlock_texInput} ${meta.error && meta.touched ? 'error' : null}`}>
+          <label className={s.inputBlock_label} htmlFor={inputId}></label>
           <input
             id={inputId}
             type="file"
