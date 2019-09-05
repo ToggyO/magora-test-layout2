@@ -16,6 +16,8 @@ class MyProfileEdit extends React.Component {
     userProfileData: PropTypes.object,
     editInfo: PropTypes.object,
     user: PropTypes.object,
+    location: PropTypes.object,
+    resource: PropTypes.object,
     firstName: PropTypes.string,
     lastName: PropTypes.string,
     email: PropTypes.string,
@@ -61,7 +63,6 @@ class MyProfileEdit extends React.Component {
       stateName,
       stateAbbreviation,
     } = location;
-    const { formatUrls = {} } = resource;
 
     return (
       <>
@@ -93,7 +94,7 @@ class MyProfileEdit extends React.Component {
                 twitterLink: twitterLink || null,
                 youTubeLink: youTubeLink || null,
               }}
-               loadedImage={formatUrls.small || null}
+               loadedImage={!isEmpty(resource) && resource.formatUrls.small}
               />
             </div>
           </div>

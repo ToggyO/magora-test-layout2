@@ -46,6 +46,8 @@ const ReduxFormFileInput = (props) => {
 
   const clearInput = () => {
     fileInput.current.value = '';
+    // input.onChange(null);
+    // input.value = null;
     setAvatar(null);
   };
 
@@ -88,7 +90,7 @@ const ReduxFormFileInput = (props) => {
             id={inputId}
             type="file"
             placeholder={placeholder}
-            value={input.onChange(resourceId)}
+            value={input.onChange(() => (avatar !== null ? resourceId : null))}
             name={input.name}
             onChange={fileChange}
             onBlur={input.onBlur}

@@ -92,7 +92,7 @@ let AuthForm = props => {
       <div className="fBtn-adapt form-button__create">
         <button
           type="submit"
-          className="btn green sm-wide fs-16 lh-22 ls-24 fw-700"
+          className="btn green sm-wide fs-16 lh-22 ls-24 fw-700 sh-btn-lg"
           disabled={pristine || !valid}
         >
           Login in
