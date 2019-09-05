@@ -12,6 +12,7 @@ const ReduxFormInputWrapper = (props) => {
     inputId,
     isRequired,
     style,
+    styleLabel,
   } = props;
 
   return (
@@ -19,6 +20,7 @@ const ReduxFormInputWrapper = (props) => {
       <label
         htmlFor={inputId}
         className={`${s.inputWrapper_label} ${error && touched ? 'error-label' : null}`}
+        style={styleLabel}
       >
         {label}
         {isRequired && <span className={s.requireStar}></span>}

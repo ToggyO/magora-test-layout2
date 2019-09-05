@@ -21,7 +21,15 @@ class MyProfileEdit extends React.Component {
     email: PropTypes.string,
     areaName: PropTypes.string,
     stateName: PropTypes.string,
-    stateAbbreviation: PropTypes.string,
+    about: PropTypes.string,
+    website: PropTypes.string,
+    facebookLink: PropTypes.string,
+    googlePlusLink: PropTypes.string,
+    instagramLink: PropTypes.string,
+    linkedInLink: PropTypes.string,
+    pinterestLink: PropTypes.string,
+    twitterLink: PropTypes.string,
+    youTubeLink: PropTypes.string,
   };
 
   componentDidMount() {
@@ -38,6 +46,15 @@ class MyProfileEdit extends React.Component {
       lastName,
       email,
       phone,
+      about,
+      website,
+      facebookLink,
+      googlePlusLink,
+      instagramLink,
+      linkedInLink,
+      pinterestLink,
+      twitterLink,
+      youTubeLink,
     } = user;
     const {
       areaName,
@@ -66,6 +83,15 @@ class MyProfileEdit extends React.Component {
                 email: email || null,
                 phone: phone || null,
                 address: `${areaName}, ${stateAbbreviation}, ${stateName}` || null,
+                about: about || null,
+                website: website || null,
+                facebookLink: facebookLink || null,
+                googlePlusLink: googlePlusLink || null,
+                instagramLink: instagramLink || null,
+                linkedInLink: linkedInLink || null,
+                pinterestLink: pinterestLink || null,
+                twitterLink: twitterLink || null,
+                youTubeLink: youTubeLink || null,
               }}
                loadedImage={formatUrls.small || null}
               />

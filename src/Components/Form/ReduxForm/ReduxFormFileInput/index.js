@@ -22,10 +22,8 @@ const ReduxFormFileInput = (props) => {
   const [avatar, setAvatar] = useState(null);
 
   useEffect(() => {
-    debugger;
     if (loadedImage) {
       setAvatar(loadedImage);
-      debugger;
     }
   }, [loadedImage]);
 

@@ -131,26 +131,26 @@ export const putUserData = (body) => (
         // stateName: 'Woollahra', New South Wales
         // stateAbbreviation: 'NSW',
       },
-      firstName: body.firstName,
-      lastName: body.lastName,
-      address: parseAddress,
-      email: body.email,
-      phone: body.phone,
-      website: null,
-      facebookLink: null,
-      googlePlusLink: null,
-      instagramLink: null,
-      linkedInLink: null,
-      pinterestLink: null,
-      twitterLink: null,
-      youTubeLink: null,
-      about: null,
+      firstName: body.firstName || null,
+      lastName: body.lastName || null,
+      address: parseAddress || null,
+      email: body.email || null,
+      phone: body.phone || null,
+      website: body.website || null,
+      facebookLink: body.facebookLink || null,
+      googlePlusLink: body.googlePlusLink || null,
+      instagramLink: body.instagramLink || null,
+      linkedInLink: body.linkedInLink || null,
+      pinterestLink: body.pinterestLink || null,
+      twitterLink: body.twitterLink || null,
+      youTubeLink: body.youTubeLink || null,
+      about: body.about || null,
       organizationName: null,
     };
 
     const URL = `${REQUEST_ULR.CORS_BASE_URL}/${REQUEST_ULR.USERS}`;
-    const tokenData = getFromLocalState('TOKEN_INFO');
-    refreshTokenData(tokenData);
+    // const tokenData = getFromLocalState('TOKEN_INFO');
+    // refreshTokenData(tokenData);
 
     return axios
       .put(URL, requestBody, {

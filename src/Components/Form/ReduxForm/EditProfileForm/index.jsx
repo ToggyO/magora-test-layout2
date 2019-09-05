@@ -8,6 +8,7 @@ import LabelWrapper from '../../../LabelWrapper';
 import ReduxFormTextInput from '../ReduxFormTextInput';
 import validationEditForm from './validationEditForm';
 import ReduxFormFileInput from '../ReduxFormFileInput';
+import ReduxFormTextarea from '../ReduxFormTextarea';
 
 
 /* eslint-disable */
@@ -82,6 +83,7 @@ let EditProfileForm = props => {
           styleInput={{ fontWeight: 600 }}
         />
       </LabelWrapper>
+
       <LabelWrapper
         label="Add your Profile image"
         description="Stand out from the crowd and be recognised."
@@ -96,6 +98,120 @@ let EditProfileForm = props => {
           loadedImage={loadedImage}
           resourceId={user.resourceId}
         />
+      </LabelWrapper>
+
+      <LabelWrapper
+        label="About"
+        description="Please, write about you."
+      >
+        <Field
+          name="about"
+          label=""
+          maxLength="250"
+          component={ReduxFormTextarea}
+          styleTextarea={{ fontWeight: 600 }}
+        />
+        <h4 className="h2-black fw-600 fs-24 mb-4 mt-4">Website</h4>
+        <Field
+          name="website"
+          label="Website"
+          component={ReduxFormTextInput}
+          styleInput={{fontWeight: 600, minWidth: 400}}
+          styleWrapper={{display: 'flex', maxHeight: 50}}
+          styleLabel={{
+            lineHeight: '60px',
+            fontSize: '18px',
+            fontWeight: 600,
+          }}
+        />
+
+        <h4 className="h2-black fw-600 fs-24 mb-4 mt-4">Social Links</h4>
+        <Field
+          name="facebookLink"
+          label="Facebook"
+          component={ReduxFormTextInput}
+          styleInput={{fontWeight: 600, minWidth: 400}}
+          styleWrapper={{display: 'flex', maxHeight: 50}}
+          styleLabel={{
+            lineHeight: '60px',
+            fontSize: '18px',
+            fontWeight: 600,
+          }}
+        />
+        <Field
+          name="googlePlusLink"
+          label="Google+"
+          component={ReduxFormTextInput}
+          styleInput={{fontWeight: 600, minWidth: 400}}
+          styleWrapper={{display: 'flex', maxHeight: 50}}
+          styleLabel={{
+            lineHeight: '60px',
+            fontSize: '18px',
+            fontWeight: 600,
+          }}
+        />
+        <Field
+          name="instagramLink"
+          label="Instagram"
+          component={ReduxFormTextInput}
+          styleInput={{fontWeight: 600, minWidth: 400}}
+          styleWrapper={{display: 'flex', maxHeight: 50}}
+          styleLabel={{
+            lineHeight: '60px',
+            fontSize: '18px',
+            fontWeight: 600,
+          }}
+        />
+        <Field
+          name="linkedInLink"
+          label="LinkedIn"
+          component={ReduxFormTextInput}
+          styleInput={{fontWeight: 600, minWidth: 400}}
+          styleWrapper={{display: 'flex', maxHeight: 50}}
+          styleLabel={{
+            lineHeight: '60px',
+            fontSize: '18px',
+            fontWeight: 600,
+          }}
+        />
+        <Field
+          name="pinterestLink"
+          label="Pinterest"
+          component={ReduxFormTextInput}
+          styleInput={{fontWeight: 600, minWidth: 400}}
+          styleWrapper={{display: 'flex', maxHeight: 50}}
+          styleLabel={{
+            lineHeight: '60px',
+            fontSize: '18px',
+            fontWeight: 600,
+          }}
+        />
+        <Field
+          name="twitterLink"
+          label="Twitter"
+          component={ReduxFormTextInput}
+          styleInput={{fontWeight: 600, minWidth: 400}}
+          styleWrapper={{display: 'flex', maxHeight: 50}}
+          styleLabel={{
+            lineHeight: '60px',
+            fontSize: '18px',
+            fontWeight: 600,
+          }}
+        />
+        <Field
+          name="youTubeLink"
+          label="YouTube"
+          component={ReduxFormTextInput}
+          styleInput={{fontWeight: 600, minWidth: 400}}
+          styleWrapper={{display: 'flex', maxHeight: 50}}
+          styleLabel={{
+            lineHeight: '60px',
+            fontSize: '18px',
+            fontWeight: 600,
+          }}
+        />
+
+
       </LabelWrapper>
     </div>
     { error && <div style={{
