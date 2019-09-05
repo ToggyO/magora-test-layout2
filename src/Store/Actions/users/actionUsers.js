@@ -1,4 +1,4 @@
-import * as axios from 'axios';
+import axios from 'axios';
 import { REQUEST_ULR, KEYWORD, ERROR_CODES } from '../../../Constants';
 import { getFromLocalState, writeToLocalState } from '../../../Libs/localStorage';
 import { errorWrapperTrue } from '../error/actionError';
@@ -17,6 +17,7 @@ export const USER_PROFILE = {
   PROFILE_ERROR_CLEANING: 'PROFILE_ERROR_CLEANING',
   USER_PROFILE_EDIT: 'USER_PROFILE_EDIT',
   PROFILE_LOADER_FALSE: 'PROFILE_LOADER_FALSE',
+  UPDATE_USER_AVATAR: 'UPDATE_USER_AVATAR',
 };
 
 
@@ -41,6 +42,12 @@ export const stateProfileCleaning = () => ({
 
 const profileLoaderFalse = () => ({
   type: USER_PROFILE.PROFILE_LOADER_FALSE,
+});
+
+
+const updateUserAvatar = (payload) => ({
+  type: USER_PROFILE.UPDATE_USER_AVATAR,
+  payload,
 });
 
 
@@ -114,7 +121,7 @@ export const putUserData = (body) => (
     const parseAddressToLocation = parseAddress.split(',');
 
     const requestBody = {
-      resourceId: null,
+      resourceId: body.image,
       ageBracketsId: null,
       location: {
         areaName: parseAddressToLocation[0],
@@ -168,6 +175,53 @@ export const putUserData = (body) => (
       });
   }
 );
+
+
+export const createResourceId = (file) => (
+  dispatch => {
+    dispatch(requestUserById());
+    const URL = `${REQUEST_ULR.CORS_BASE_URL}/${REQUEST_ULR.RESOURCES}`;
+    const tokenData = getFromLocalState('TOKEN_INFO');
+
+    return refreshTokenData(tokenData).then(tokenData => {
+      axios
+        .post(URL, {
+          contentType: 'image/png'
+        },
+      {
+        headers: {
+          Authorization: `Bearer ${tokenData.accessToken}`,
+        }
+      })
+        .then(res => {
+          const { data = {} } = res;
+          if (data && data.code === 'success') {
+            imageUrlToAmazon(data.data.url, file)
+              .then(() => dispatch(profileLoaderFalse()));
+            return data.data.id;
+          }
+        })
+        .then(resourceId => dispatch(updateUserAvatar(resourceId)))
+        .catch(error => console.log(error))
+    })
+  }
+);
+
+
+const imageUrlToAmazon = (url, file) => {
+  return axios
+    .put(url, file, {
+      headers: {
+        'Content-type': 'image/png'
+      }
+    })
+    .then(() => console.log('Successfully loaded'))
+    .catch(() => console.log('Load failed'))
+};
+
+
+
+
 
 // https://dev.tribus.org/api/v0.7/users/1e2d1cce-42a8-48fe-a59d-084f387b09ac
 // https://dev.tribus.org/api/v0.7/users/fefa53cb-faf0-4d6d-b0c2-84001c077efb/ideas

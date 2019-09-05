@@ -2,7 +2,7 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { putUserData } from '../../../../Store/Actions/users/actionUsers';
+import { createResourceId, putUserData } from '../../../../Store/Actions/users/actionUsers';
 import './style.sass';
 import LabelWrapper from '../../../LabelWrapper';
 import ReduxFormTextInput from '../ReduxFormTextInput';
@@ -13,12 +13,16 @@ import ReduxFormFileInput from '../ReduxFormFileInput';
 /* eslint-disable */
 let EditProfileForm = props => {
   const {
+    userProfileData = {},
     handleSubmit,
-    pristine,
     valid,
     error,
-    putUser
+    putUser,
+    resourceIdCreate,
+    loadedImage,
   } = props;
+  const { editInfo = {} } = userProfileData;
+  const { user = {} } = editInfo;
 
   return <form className="form-edit" onSubmit={handleSubmit(putUser)}>
     <div className="form-edit__header">
@@ -87,6 +91,10 @@ let EditProfileForm = props => {
           label="Profile image"
           component={ReduxFormFileInput}
           styleInput={{ fontWeight: 600 }}
+          image={''}
+          loadImage={resourceIdCreate}
+          loadedImage={loadedImage}
+          resourceId={user.resourceId}
         />
       </LabelWrapper>
     </div>
@@ -120,8 +128,11 @@ EditProfileForm = reduxForm({
   validate: validationEditForm,
 })(EditProfileForm);
 
+const mapStateToProps = ({ userProfileData }) => ({ userProfileData });
+
 const mapDispatchToProps = (dispatch) => ({
   putUser: bindActionCreators(putUserData, dispatch),
+  resourceIdCreate: bindActionCreators(createResourceId, dispatch),
 });
 
-export default connect(null, mapDispatchToProps)(EditProfileForm);
+export default connect(mapStateToProps, mapDispatchToProps)(EditProfileForm);

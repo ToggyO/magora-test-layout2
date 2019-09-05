@@ -4,28 +4,70 @@
   display: flex
   flex-direction: column
 
+
 .inputBlock_texInput
-  border: 1px solid #C8D1D6
-  border-radius: 4px
-  height: 70px
-  padding: 27px 27px 27px 17px
+  min-height: 60px
   position: relative
 
   input
     display: none
 
+
 .inputBlock_label
-  padding: 27px 27px 27px 17px
-  background: url('/img/placeholder-image.jpg')
-  background-size: 70%
-  //background-repeat: no-repeat
+  cursor: pointer
+
+
+.file_input__small
+  width: 150px
+  height: 150px
+
+
+.inputBlock_label__placeholderImage
+  border: 1px solid #C8D1D6
+  border-radius: 4px
+  background-size: 60%
   background-position: 50% 50%
-  position: absolute
-  top: 0
-  left: 0
   width: 100%
   height: 100%
+  min-height: 60px
+  z-index: 15
 
 
+.inputBlock_label__loadedImage
+  display: flex
+  justify-content: center
+  align-items: center
+  border: 1px solid #C8D1D6
+  border-radius: 4px
+  background-color: #fff
+  width: 150px
+  height: 150px
 
+
+.loadedImage
+  width: 140px
+  height: 140px
+  background-size: cover
+  position: relative
+
+  
+.cross
+  background-color: #fff
+  border-radius: 50%
+  box-shadow: 0 2px 6px 0 rgba(0,53,151,.31)
+  position: absolute
+  bottom: -10px
+  left: -10px
+  cursor: pointer
+  width: 25px
+  height: 25px
+  display: flex
+  justify-content: center
+  align-items: center
+  z-index: 15
+
+
+  span
+    font-size: 28px
+  
 

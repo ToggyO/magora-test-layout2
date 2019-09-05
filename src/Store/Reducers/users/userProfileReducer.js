@@ -45,6 +45,17 @@ const userProfileReducer = (state = InitialState, action) => {
         ...state,
         loading: false,
       };
+    case USER_PROFILE.UPDATE_USER_AVATAR:
+      return {
+        ...state,
+        editInfo: {
+          ...state.editInfo,
+          user: {
+            ...state.editInfo.user,
+            resourceId: action.payload,
+          },
+        },
+      };
     default:
       return state;
   }

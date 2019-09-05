@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import s from './style.module.sass';
 import '../../FormComponentsStyle.sass';
@@ -14,14 +14,41 @@ const ReduxFormFileInput = (props) => {
     styleWrapper,
     styleInput,
     isRequired,
+    loadImage,
+    loadedImage,
+    resourceId,
   } = props;
+
+  const [avatar, setAvatar] = useState(null);
+
+  useEffect(() => {
+    debugger;
+    if (loadedImage) {
+      setAvatar(loadedImage);
+      debugger;
+    }
+  }, [loadedImage]);
 
   const inputId = `input-${input.name}`;
 
   const fileInput = React.createRef();
 
   const fileChange = () => {
-    console.log(fileInput.current.files[0]);
+    const file = fileInput.current.files[0];
+    if (!file) {
+      return;
+    }
+    setAvatar(window.URL.createObjectURL(file));
+    const fr = new FileReader();
+    fr.readAsArrayBuffer(file);
+    fr.onload = () => {
+      loadImage(fr.result);
+    };
+  };
+
+  const clearInput = () => {
+    fileInput.current.value = '';
+    setAvatar(null);
   };
 
   return (
@@ -34,13 +61,36 @@ const ReduxFormFileInput = (props) => {
         isRequired={isRequired}
         style={styleWrapper}
       >
-        <div className={`${s.inputBlock_texInput} ${meta.error && meta.touched ? 'error' : null}`}>
-          <label className={s.inputBlock_label} htmlFor={inputId}></label>
+        <div className={`${s.inputBlock_texInput} ${meta.error && meta.touched ? 'error' : ''}${avatar && s.file_input__small}`}>
+          <label className={`${s.inputBlock_label} ${avatar && s.file_input__small}`} htmlFor={inputId}>
+            { avatar !== null
+              ? <div className={s.inputBlock_label__loadedImage}>
+                  <div
+                    style={{ backgroundImage: `url(${avatar})` }}
+                    className={s.loadedImage}
+                  >
+                  </div>
+                </div>
+              : <div
+                  className={s.inputBlock_label__placeholderImage}
+                  style={{ backgroundImage: "url('/img/placeholder-image.jpg')" }}
+                >
+                </div>
+            }
+          </label>
+
+          {avatar !== null && <div
+            className={s.cross}
+            onClick={clearInput}
+          >
+            <span>⮾</span>
+          </div>}
+
           <input
             id={inputId}
             type="file"
             placeholder={placeholder}
-            // value={input.value}
+            value={input.onChange(resourceId)}
             name={input.name}
             onChange={fileChange}
             onBlur={input.onBlur}
@@ -63,4 +113,6 @@ ReduxFormFileInput.propTypes = {
   style: PropTypes.object,
   meta: PropTypes.object,
   placeholder: PropTypes.string,
+  loadImage: PropTypes.func,
+  resourceId: PropTypes.string,
 };

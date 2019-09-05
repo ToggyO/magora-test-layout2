@@ -32,7 +32,7 @@ class MyProfileEdit extends React.Component {
   render() {
     const { userProfileData = {} } = this.props;
     const { editInfo = {} } = userProfileData;
-    const { user = {}, location = {} } = editInfo;
+    const { user = {}, location = {}, resource = {} } = editInfo;
     const {
       firstName,
       lastName,
@@ -44,6 +44,7 @@ class MyProfileEdit extends React.Component {
       stateName,
       stateAbbreviation,
     } = location;
+    const { formatUrls = {} } = resource;
 
     return (
       <>
@@ -65,7 +66,9 @@ class MyProfileEdit extends React.Component {
                 email: email || null,
                 phone: phone || null,
                 address: `${areaName}, ${stateAbbreviation}, ${stateName}` || null,
-              }}/>
+              }}
+               loadedImage={formatUrls.small || null}
+              />
             </div>
           </div>
         </div>

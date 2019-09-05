@@ -4,4 +4,5 @@ export const REQUEST_ULR = {
   AUTH_TOKEN: 'auth/token',
   USERS: 'users',
   PROFILES: 'profiles',
+  RESOURCES: 'resources',
 };
