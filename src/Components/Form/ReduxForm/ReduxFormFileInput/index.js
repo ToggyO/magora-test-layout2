@@ -46,8 +46,6 @@ const ReduxFormFileInput = (props) => {
 
   const clearInput = () => {
     fileInput.current.value = '';
-    // input.onChange(null);
-    // input.value = null;
     setAvatar(null);
   };
 
