@@ -7,13 +7,17 @@ const ImageCropper = (props) => {
     input,
     loadImage,
     loadedImage,
+    resourceId,
+    styleInput,
   } = props;
 
   return <>
           <MyDropZone
-            inputRedux={input}
+            input={input}
             loadImage={loadImage}
             loadedImage={loadedImage}
+            resourceId={resourceId}
+            styleInput={styleInput}
           />
         </>;
 };

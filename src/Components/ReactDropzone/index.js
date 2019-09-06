@@ -5,9 +5,11 @@ import s from './style.module.sass';
 
 const MyDropZone = (props) => {
   const {
-    inputRedux,
+    input,
     loadImage,
     loadedImage,
+    resourceId,
+    styleInput,
   } = props;
 
   const [avatar, setAvatar] = useState(null);
@@ -17,6 +19,9 @@ const MyDropZone = (props) => {
       setAvatar(loadedImage);
     }
   }, [loadedImage]);
+  // console.log(avatar);
+  // console.log(loadedImage);
+  // console.log(resourceId);
 
   const handleOnDrop = (acceptedFiles) => {
     if (acceptedFiles && acceptedFiles.length > 0) {
@@ -27,13 +32,11 @@ const MyDropZone = (props) => {
       fr.onload = () => {
         loadImage(fr.result);
       };
-      // console.log(inputRef.current.value);
     }
   };
 
   const clearInput = () => {
-    inputRedux.onChange('');
-    // inputRef.current.value = '';
+    input.onChange(null);
     setAvatar(null);
   };
 
@@ -61,11 +64,11 @@ const MyDropZone = (props) => {
             <section>
               <div className={s.dropzone_edit} {...getRootProps()}>
                 <input
-                  value={inputRedux.onChange(() => (avatar !== null ? resourceId : null))}
-                  name={inputRedux.name}
-                  // onChange={fileChange}
-                  onBlur={inputRedux.onBlur}
-                  // style={styleInput}
+                  // value={input.onChange(avatar !== null ? resourceId : null)}
+                  name={input.name}
+                  // onChange={handleOnDrop}
+                  onBlur={input.onBlur}
+                  style={styleInput}
                   {...getInputProps()}/>
                 <p>Drag 'n' drop some files here, or click to select files</p>
               </div>
