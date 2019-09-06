@@ -16,7 +16,6 @@ const ReduxFormFileInput = (props) => {
     isRequired,
     loadImage,
     loadedImage,
-    resourceId,
   } = props;
 
   const [avatar, setAvatar] = useState(null);
@@ -88,7 +87,6 @@ const ReduxFormFileInput = (props) => {
             id={inputId}
             type="file"
             placeholder={placeholder}
-            value={input.onChange(() => (avatar !== null ? resourceId : null))}
             name={input.name}
             onChange={fileChange}
             onBlur={input.onBlur}

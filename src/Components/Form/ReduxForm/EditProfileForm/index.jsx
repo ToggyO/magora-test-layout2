@@ -23,7 +23,7 @@ let EditProfileForm = props => {
     loadedImage,
   } = props;
   const { editInfo = {} } = userProfileData;
-  const { user = {} } = editInfo;
+  // const { user = {} } = editInfo;
 
   return <form className="form-edit" onSubmit={handleSubmit(putUser)}>
     <div className="form-edit__header">
@@ -96,7 +96,7 @@ let EditProfileForm = props => {
           image={''}
           loadImage={resourceIdCreate}
           loadedImage={loadedImage}
-          resourceId={user.resourceId}
+          // resourceId={user.resourceId}
         />
       </LabelWrapper>
 

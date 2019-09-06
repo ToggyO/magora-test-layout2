@@ -121,7 +121,7 @@ export const putUserData = (body) => (
     const parseAddressToLocation = parseAddress.split(',');
 
     const requestBody = {
-      resourceId: body.image || null,
+      resourceId: body.resourceId || null,
       ageBracketsId: null,
       location: {
         areaName: parseAddressToLocation[0],
@@ -147,6 +147,7 @@ export const putUserData = (body) => (
       about: body.about || null,
       organizationName: null,
     };
+    debugger;
 
     const URL = `${REQUEST_ULR.CORS_BASE_URL}/${REQUEST_ULR.USERS}`;
     // const tokenData = getFromLocalState('TOKEN_INFO');

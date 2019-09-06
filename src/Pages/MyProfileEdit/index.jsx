@@ -57,6 +57,7 @@ class MyProfileEdit extends React.Component {
       pinterestLink,
       twitterLink,
       youTubeLink,
+      resourceId,
     } = user;
     const {
       areaName,
@@ -93,6 +94,7 @@ class MyProfileEdit extends React.Component {
                 pinterestLink: pinterestLink || null,
                 twitterLink: twitterLink || null,
                 youTubeLink: youTubeLink || null,
+                resourceId: resourceId || null,
               }}
                loadedImage={!isEmpty(resource) && resource.formatUrls.small}
               />
