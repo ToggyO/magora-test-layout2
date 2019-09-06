@@ -92,6 +92,7 @@ let EditProfileForm = props => {
           styleInput={{ fontWeight: 600 }}
           loadImage={resourceIdCreate}
           loadedImage={loadedImage}
+          styleDiv={{ cursor: 'pointer'}}
         />
       </LabelWrapper>
 

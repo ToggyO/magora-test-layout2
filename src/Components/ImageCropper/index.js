@@ -9,6 +9,7 @@ const ImageCropper = (props) => {
     loadedImage,
     resourceId,
     styleInput,
+    styleDiv,
   } = props;
 
   return <>
@@ -18,6 +19,7 @@ const ImageCropper = (props) => {
             loadedImage={loadedImage}
             resourceId={resourceId}
             styleInput={styleInput}
+            styleDiv={styleDiv}
           />
         </>;
 };

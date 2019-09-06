@@ -9,6 +9,7 @@ const MyDropZone = (props) => {
     loadImage,
     loadedImage,
     styleInput,
+    styleDiv,
   } = props;
 
   const [avatar, setAvatar] = useState(null);
@@ -61,7 +62,7 @@ const MyDropZone = (props) => {
         >
           {({ getRootProps, getInputProps }) => (
             <section>
-              <div className={s.dropzone_edit} {...getRootProps()}>
+              <div className={s.dropzone_edit} style={styleDiv} {...getRootProps()}>
                 <input
                   // value={input.onChange(avatar !== null ? resourceId : null)}
                   name={input.name}
