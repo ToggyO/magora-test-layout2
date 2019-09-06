@@ -14,7 +14,6 @@ import ImageCropper from '../../../ImageCropper';
 /* eslint-disable */
 let EditProfileForm = props => {
   const {
-    userProfileData = {},
     handleSubmit,
     valid,
     error,
@@ -22,8 +21,6 @@ let EditProfileForm = props => {
     resourceIdCreate,
     loadedImage,
   } = props;
-  const { editInfo = {} } = userProfileData;
-  const { user = {} } = editInfo;
 
   return <form className="form-edit" onSubmit={handleSubmit(putUser)}>
     <div className="form-edit__header">
@@ -89,13 +86,12 @@ let EditProfileForm = props => {
         description="Stand out from the crowd and be recognised."
       >
         <Field
-          name="image"
+          name="resourceId"
           label="Profile image"
           component={ImageCropper}
           styleInput={{ fontWeight: 600 }}
           loadImage={resourceIdCreate}
           loadedImage={loadedImage}
-          resourceId={user.resourceId}
         />
       </LabelWrapper>
 

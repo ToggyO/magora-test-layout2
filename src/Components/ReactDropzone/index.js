@@ -8,7 +8,6 @@ const MyDropZone = (props) => {
     input,
     loadImage,
     loadedImage,
-    resourceId,
     styleInput,
   } = props;
 
