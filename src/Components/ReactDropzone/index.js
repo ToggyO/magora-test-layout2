@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Dropzone from 'react-dropzone';
 import s from './style.module.sass';
 
@@ -10,13 +10,16 @@ const MyDropZone = (props) => {
     loadedImage,
     styleInput,
     styleDiv,
+    setLoadedFile,
+    loadedFile,
+    // openModal,
   } = props;
 
-  const [avatar, setAvatar] = useState(null);
+  // const [avatar, setAvatar] = useState(null);
 
   useEffect(() => {
     if (loadedImage) {
-      setAvatar(loadedImage);
+      setLoadedFile(loadedImage);
     }
   }, [loadedImage]);
   // console.log(avatar);
@@ -26,10 +29,12 @@ const MyDropZone = (props) => {
   const handleOnDrop = (acceptedFiles) => {
     if (acceptedFiles && acceptedFiles.length > 0) {
       const currentAcceptedFile = acceptedFiles[0];
-      setAvatar(window.URL.createObjectURL(currentAcceptedFile));
+      setLoadedFile(window.URL.createObjectURL(currentAcceptedFile));
+      // setAvatar(window.URL.createObjectURL(currentAcceptedFile));
       const fr = new FileReader();
       fr.readAsArrayBuffer(currentAcceptedFile);
-      fr.onload = () => {
+      fr.onload = async () => {
+        // await openModal('cropper-preview');
         loadImage(fr.result);
       };
     }
@@ -37,15 +42,15 @@ const MyDropZone = (props) => {
 
   const clearInput = () => {
     input.onChange(null);
-    setAvatar(null);
+    setLoadedFile(null);
   };
 
   return (
     <>
-      {avatar !== null
+      {loadedFile !== null
         ? <div className={s.inputBlock_label__loadedImage}>
             <div
-              style={{ backgroundImage: `url(${avatar})` }}
+              style={{ backgroundImage: `url(${loadedFile})` }}
               className={s.loadedImage}
             >
             </div>

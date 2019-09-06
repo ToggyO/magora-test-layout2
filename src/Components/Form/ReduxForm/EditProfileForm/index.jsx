@@ -9,6 +9,7 @@ import ReduxFormTextInput from '../ReduxFormTextInput';
 import validationEditForm from './validationEditForm';
 import ReduxFormTextarea from '../ReduxFormTextarea';
 import ImageCropper from '../../../ImageCropper';
+import { modalOpen } from '../../../../Store/Actions/modal/actionModal';
 
 
 /* eslint-disable */
@@ -20,6 +21,7 @@ let EditProfileForm = props => {
     putUser,
     resourceIdCreate,
     loadedImage,
+    openModal,
   } = props;
 
   return <form className="form-edit" onSubmit={handleSubmit(putUser)}>
@@ -93,6 +95,7 @@ let EditProfileForm = props => {
           loadImage={resourceIdCreate}
           loadedImage={loadedImage}
           styleDiv={{ cursor: 'pointer'}}
+          openModal={openModal}
         />
       </LabelWrapper>
 
@@ -245,6 +248,7 @@ const mapStateToProps = ({ userProfileData }) => ({ userProfileData });
 const mapDispatchToProps = (dispatch) => ({
   putUser: bindActionCreators(putUserData, dispatch),
   resourceIdCreate: bindActionCreators(createResourceId, dispatch),
+  openModal: bindActionCreators(modalOpen, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditProfileForm);
