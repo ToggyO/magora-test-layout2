@@ -7,8 +7,8 @@ import './style.sass';
 import LabelWrapper from '../../../LabelWrapper';
 import ReduxFormTextInput from '../ReduxFormTextInput';
 import validationEditForm from './validationEditForm';
-import ReduxFormFileInput from '../ReduxFormFileInput';
 import ReduxFormTextarea from '../ReduxFormTextarea';
+import ImageCropper from '../../../ImageCropper';
 
 
 /* eslint-disable */
@@ -91,12 +91,11 @@ let EditProfileForm = props => {
         <Field
           name="image"
           label="Profile image"
-          component={ReduxFormFileInput}
+          component={ImageCropper}
           styleInput={{ fontWeight: 600 }}
-          image={''}
           loadImage={resourceIdCreate}
           loadedImage={loadedImage}
-          resourceId={user.resourceId}
+
         />
       </LabelWrapper>
 
