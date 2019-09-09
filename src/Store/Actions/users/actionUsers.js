@@ -209,6 +209,7 @@ export const createResourceId = (file) => (
 
 
 const imageUrlToAmazon = (url, file) => {
+  debugger;
   return axios
     .put(url, file, {
       headers: {

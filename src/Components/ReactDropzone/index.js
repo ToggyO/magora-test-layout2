@@ -6,36 +6,31 @@ import s from './style.module.sass';
 const MyDropZone = (props) => {
   const {
     input,
-    loadImage,
     loadedImage,
     styleInput,
     styleDiv,
     setLoadedFile,
     loadedFile,
-    // openModal,
+    openModal,
   } = props;
-
-  // const [avatar, setAvatar] = useState(null);
 
   useEffect(() => {
     if (loadedImage) {
+      debugger;
       setLoadedFile(loadedImage);
     }
   }, [loadedImage]);
-  // console.log(avatar);
-  // console.log(loadedImage);
-  // console.log(resourceId);
 
   const handleOnDrop = (acceptedFiles) => {
     if (acceptedFiles && acceptedFiles.length > 0) {
       const currentAcceptedFile = acceptedFiles[0];
-      setLoadedFile(window.URL.createObjectURL(currentAcceptedFile));
-      // setAvatar(window.URL.createObjectURL(currentAcceptedFile));
       const fr = new FileReader();
-      fr.readAsArrayBuffer(currentAcceptedFile);
-      fr.onload = async () => {
-        // await openModal('cropper-preview');
-        loadImage(fr.result);
+      fr.readAsDataURL(currentAcceptedFile);
+      fr.onload = () => {
+        setLoadedFile(fr.result);
+        // setLoadedFile(window.URL.createObjectURL(fr.result));
+        debugger;
+        openModal('cropper-preview', props);
       };
     }
   };
@@ -49,12 +44,14 @@ const MyDropZone = (props) => {
     <>
       {loadedFile !== null
         ? <div className={s.inputBlock_label__loadedImage}>
-            <div
-              style={{ backgroundImage: `url(${loadedFile})` }}
-              className={s.loadedImage}
-            >
-            </div>
-            <div
+            {/* <div */}
+            {/*  style={{ backgroundImage: `url(${loadedFile})` }} */}
+            {/*  className={s.loadedImage} */}
+            {/* > */}
+            {/* </div> */}
+          <div className={`${s.loadedImage} img-preview`} />
+
+          <div
               className={s.cross}
               onClick={clearInput}
             >
@@ -69,13 +66,11 @@ const MyDropZone = (props) => {
             <section>
               <div className={s.dropzone_edit} style={styleDiv} {...getRootProps()}>
                 <input
-                  // value={input.onChange(avatar !== null ? resourceId : null)}
                   name={input.name}
-                  // onChange={handleOnDrop}
                   onBlur={input.onBlur}
                   style={styleInput}
                   {...getInputProps()}/>
-                <p>Drag 'n' drop some files here, or click to select files</p>
+                <p>Drag 'n' drop some images here, or click to select image</p>
               </div>
             </section>
           )}

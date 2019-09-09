@@ -7,7 +7,7 @@ import { modalClose } from '../../Store/Actions/modal/actionModal';
 import RegistrationForm from '../Form/ReduxForm/RegistrationForm';
 import AuthForm from '../Form/ReduxForm/AuthForm';
 import { RegistrationSuccess } from './RegistrationSuccess';
-import CropperPreview from '../ReactCropper/Preview';
+import AvatarCropper from '../ReactCropper';
 
 
 /* eslint-disable */
@@ -34,6 +34,7 @@ class Modal extends React.Component {
 
   onRenderModalContent = () => {
     const { modalKey, options } = this.props.modalState;
+    debugger;
     switch (modalKey) {
       case 'signInModal':
         return <AuthForm />;
@@ -44,7 +45,12 @@ class Modal extends React.Component {
       case 'regSuccess':
         return <RegistrationSuccess />;
       case 'cropper-preview':
-        return <CropperPreview />;
+        return <AvatarCropper
+                  loadedFile={options.loadedImage}
+                  loadImage={options.loadImage}
+                  croppedImage={options.croppedImage}
+                  setCroppedImage={options.setCroppedImage}
+                />;
       default:
         return null;
     }

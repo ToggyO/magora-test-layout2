@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import MyDropZone from '../ReactDropzone';
-import AvatarCropper from '../ReactCropper';
+// import AvatarCropper from '../ReactCropper';
 
 
 const ImageCropper = (props) => {
@@ -15,11 +15,11 @@ const ImageCropper = (props) => {
   } = props;
 
   const [loadedFile, setLoadedFile] = useState(null);
+  const [croppedImage, setCroppedImage] = useState(null);
 
   return <>
           <MyDropZone
             input={input}
-            loadImage={loadImage}
             loadedImage={loadedImage}
             resourceId={resourceId}
             styleInput={styleInput}
@@ -27,8 +27,16 @@ const ImageCropper = (props) => {
             setLoadedFile={setLoadedFile}
             openModal={openModal}
             loadedFile={loadedFile}
+            loadImage={loadImage}
+            croppedImage={croppedImage}
+            setCroppedImage={setCroppedImage}
           />
-          <AvatarCropper loadedFile={loadedFile}/>
+          {/* <AvatarCropper */}
+          {/*  loadedFile={loadedFile} */}
+          {/*  loadImage={loadImage} */}
+          {/*  croppedImage={croppedImage} */}
+          {/*  setCroppedImage={setCroppedImage} */}
+          {/* /> */}
         </>;
 };
 
