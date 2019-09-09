@@ -34,7 +34,6 @@ class Modal extends React.Component {
 
   onRenderModalContent = () => {
     const { modalKey, options } = this.props.modalState;
-    debugger;
     switch (modalKey) {
       case 'signInModal':
         return <AuthForm />;
@@ -46,10 +45,11 @@ class Modal extends React.Component {
         return <RegistrationSuccess />;
       case 'cropper-preview':
         return <AvatarCropper
-                  loadedFile={options.loadedImage}
+                  loadedFile={options.currentAcceptedFile}
                   loadImage={options.loadImage}
                   croppedImage={options.croppedImage}
                   setCroppedImage={options.setCroppedImage}
+                  closeModal={options.closeModal}
                 />;
       default:
         return null;

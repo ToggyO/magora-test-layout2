@@ -11,6 +11,10 @@ class AvatarCropper extends React.Component {
     this.cropper = React.createRef();
   }
 
+  componentDidMount() {
+    console.log(this.props);
+  }
+
   crop() {
     console.log('cropped');
     if (typeof this.cropper.getCroppedCanvas() === 'undefined') {
@@ -22,15 +26,14 @@ class AvatarCropper extends React.Component {
         const reader = new FileReader();
         reader.readAsArrayBuffer(blob);
         reader.onload = () => {
-          debugger;
-          this.props.loadImage(reader.result);
+          this.props.loadImage(reader.result).then(() => console.log(this.props.closeModal()));
         };
       });
   }
 
   render() {
     const { loadedFile } = this.props;
-    debugger;
+
     return (
       <div className="react-cropper">
         <Cropper

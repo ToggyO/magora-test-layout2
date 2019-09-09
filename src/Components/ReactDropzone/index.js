@@ -6,32 +6,26 @@ import s from './style.module.sass';
 const MyDropZone = (props) => {
   const {
     input,
-    loadedImage,
+    resourceFromStore,
     styleInput,
     styleDiv,
     setLoadedFile,
     loadedFile,
     openModal,
+    closeModal,
   } = props;
 
   useEffect(() => {
-    if (loadedImage) {
-      debugger;
-      setLoadedFile(loadedImage);
+    if (resourceFromStore) {
+      setLoadedFile(resourceFromStore);
     }
-  }, [loadedImage]);
+  }, [resourceFromStore]);
 
   const handleOnDrop = (acceptedFiles) => {
     if (acceptedFiles && acceptedFiles.length > 0) {
-      const currentAcceptedFile = acceptedFiles[0];
-      const fr = new FileReader();
-      fr.readAsDataURL(currentAcceptedFile);
-      fr.onload = () => {
-        setLoadedFile(fr.result);
-        // setLoadedFile(window.URL.createObjectURL(fr.result));
-        debugger;
-        openModal('cropper-preview', props);
-      };
+      const currentAcceptedFile = window.URL.createObjectURL(acceptedFiles[0]);
+      setLoadedFile(currentAcceptedFile);
+      openModal('cropper-preview', { currentAcceptedFile, closeModal, ...props });
     }
   };
 
@@ -44,13 +38,12 @@ const MyDropZone = (props) => {
     <>
       {loadedFile !== null
         ? <div className={s.inputBlock_label__loadedImage}>
-            {/* <div */}
-            {/*  style={{ backgroundImage: `url(${loadedFile})` }} */}
-            {/*  className={s.loadedImage} */}
-            {/* > */}
-            {/* </div> */}
-          <div className={`${s.loadedImage} img-preview`} />
-
+           {<div className={`${s.loadedImage} img-preview`} />
+             || <div
+              style={{ backgroundImage: `url(${loadedFile})` }}
+              className={s.loadedImage}
+             >
+           </div>}
           <div
               className={s.cross}
               onClick={clearInput}

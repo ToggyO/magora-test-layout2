@@ -8,10 +8,10 @@ const ImageCropper = (props) => {
     input,
     loadImage,
     loadedImage,
-    resourceId,
     styleInput,
     styleDiv,
     openModal,
+    closeModal,
   } = props;
 
   const [loadedFile, setLoadedFile] = useState(null);
@@ -20,23 +20,17 @@ const ImageCropper = (props) => {
   return <>
           <MyDropZone
             input={input}
-            loadedImage={loadedImage}
-            resourceId={resourceId}
+            resourceFromStore={loadedImage}
             styleInput={styleInput}
             styleDiv={styleDiv}
             setLoadedFile={setLoadedFile}
             openModal={openModal}
+            closeModal={closeModal}
             loadedFile={loadedFile}
             loadImage={loadImage}
             croppedImage={croppedImage}
             setCroppedImage={setCroppedImage}
           />
-          {/* <AvatarCropper */}
-          {/*  loadedFile={loadedFile} */}
-          {/*  loadImage={loadImage} */}
-          {/*  croppedImage={croppedImage} */}
-          {/*  setCroppedImage={setCroppedImage} */}
-          {/* /> */}
         </>;
 };
 
