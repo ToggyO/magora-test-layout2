@@ -13,6 +13,7 @@ const MyDropZone = (props) => {
     loadedFile,
     openModal,
     closeModal,
+    croppedImage,
   } = props;
 
   useEffect(() => {
@@ -36,41 +37,82 @@ const MyDropZone = (props) => {
 
   return (
     <>
-      {loadedFile !== null
-        ? <div className={s.inputBlock_label__loadedImage}>
-           {<div className={`${s.loadedImage} img-preview`} />
-             || <div
-              style={{ backgroundImage: `url(${loadedFile})` }}
-              className={s.loadedImage}
-             >
-           </div>}
-          <div
-              className={s.cross}
-              onClick={clearInput}
-            >
-              <span>⮾</span>
-            </div>
-          </div>
-        : <Dropzone
+        <Dropzone
           onDrop={handleOnDrop}
           multiple={false}
         >
           {({ getRootProps, getInputProps }) => (
-            <section>
-              <div className={s.dropzone_edit} style={styleDiv} {...getRootProps()}>
-                <input
-                  name={input.name}
-                  onBlur={input.onBlur}
-                  style={styleInput}
-                  {...getInputProps()}/>
-                <p>Drag 'n' drop some images here, or click to select image</p>
-              </div>
-            </section>
+            <>
+              <label htmlFor={input.name}>
+              {loadedFile
+                && <div className={s.inputBlock_label__loadedImage}>
+                    <div
+                      style={{ backgroundImage: `url(${croppedImage || loadedFile})` }}
+                      className={`${s.loadedImage} img-preview`}
+                    >
+                    </div>
+                  </div>
+              }
+              </label>
+              {loadedFile
+                && <div
+                      className={s.cross}
+                      onClick={clearInput}
+                    >
+                      <span>⮾</span>
+                    </div>
+              }
+               <section style={loadedFile && { display: 'none' }}>
+                <div className={s.dropzone_edit} style={styleDiv} {...getRootProps()}>
+                  <input
+                    id={input.name}
+                    name={input.name}
+                    onBlur={input.onBlur}
+                    style={styleInput}
+                    {...getInputProps()}/>
+                  <p>Drag 'n' drop some images here, or click to select image</p>
+                </div>
+              </section>
+            </>
           )}
         </Dropzone>
-      }
     </>
   );
 };
 
 export default MyDropZone;
+
+
+// {loadedFile !== null
+//   ? <div className={s.inputBlock_label__loadedImage}>
+//     {<div className={`${s.loadedImage} img-preview`} />
+//     || <div
+//       style={{ backgroundImage: `url(${loadedFile})` }}
+//       className={s.loadedImage}
+//     >
+//     </div>}
+//     <div
+//       className={s.cross}
+//       onClick={clearInput}
+//     >
+//       <span>⮾</span>
+//     </div>
+//   </div>
+//   : <Dropzone
+//     onDrop={handleOnDrop}
+//     multiple={false}
+//   >
+//     {({ getRootProps, getInputProps }) => (
+//       <section>
+//         <div className={s.dropzone_edit} style={styleDiv} {...getRootProps()}>
+//           <input
+//             name={input.name}
+//             onBlur={input.onBlur}
+//             style={styleInput}
+//             {...getInputProps()}/>
+//           <p>Drag 'n' drop some images here, or click to select image</p>
+//         </div>
+//       </section>
+//     )}
+//   </Dropzone>
+// }
