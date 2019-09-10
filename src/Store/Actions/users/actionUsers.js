@@ -65,7 +65,7 @@ export const getUserDataProfile = (userId, path, projectType, pathname, queries)
         },
       })
       .then(res => {
-        const { data = {} } = res;
+        const {data = {}} = res;
         if (data && data.code === 'success') {
           dispatch(receiveUserById(data.data, projectType || KEYWORD.USER_INFO));
         }
@@ -88,27 +88,27 @@ export const getUserDataProfileForEdit = (key) => (
     const tokenData = getFromLocalState('TOKEN_INFO');
 
     return refreshTokenData(tokenData).then(tokenData => {
-        axios
-          .get(URL, {
-            headers: {
-              Authorization: `Bearer ${tokenData.accessToken}`,
-            },
-          })
-          .then(res => {
-            const {data = {}} = res;
-            if (data && data.code === 'success') {
-              dispatch(receiveUserById(data.data, key));
-              dispatch(updateUIWithUsersInfo(data.data));
-              writeToLocalState('USER_INFO', data.data);
-            }
-          })
-          .catch(error => {
-            if (!error) {
-              return null;
-            }
-            dispatch(errorWrapperTrue());
-          })
-      })
+      axios
+        .get(URL, {
+          headers: {
+            Authorization: `Bearer ${tokenData.accessToken}`,
+          },
+        })
+        .then(res => {
+          const {data = {}} = res;
+          if (data && data.code === 'success') {
+            dispatch(receiveUserById(data.data, key));
+            dispatch(updateUIWithUsersInfo(data.data));
+            writeToLocalState('USER_INFO', data.data);
+          }
+        })
+        .catch(error => {
+          if (!error) {
+            return null;
+          }
+          dispatch(errorWrapperTrue());
+        })
+    })
   }
 );
 
@@ -160,7 +160,7 @@ export const putUserData = (body) => (
         },
       })
       .then(res => {
-        const { data = {} } = res;
+        const {data = {}} = res;
         if (data && data.code === 'success') {
           console.log('Successfully updated');
           dispatch(getUserDataProfileForEdit(KEYWORD.EDIT_INFO));
@@ -184,26 +184,32 @@ export const createResourceId = (file) => (
     const URL = `${REQUEST_ULR.CORS_BASE_URL}/${REQUEST_ULR.RESOURCES}`;
     const tokenData = getFromLocalState('TOKEN_INFO');
 
-    return refreshTokenData(tokenData).then(tokenData => {
-      axios
-        .post(URL, {
-          contentType: 'image/png'
-        },
-      {
-        headers: {
-          Authorization: `Bearer ${tokenData.accessToken}`,
-        }
+    return new Promise((resolve) => {
+      refreshTokenData(tokenData).then(tokenData => {
+        axios
+          .post(URL, {
+              contentType: 'image/png'
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${tokenData.accessToken}`,
+              }
+            })
+          .then(async res => {
+            try {
+              const {data = {}} = res;
+              if (data && data.code === 'success') {
+                await imageUrlToAmazon(data.data.url, file);
+                await dispatch(updateUserAvatar(data.data.id));
+                await dispatch(profileLoaderFalse());
+                resolve();
+              }
+            } catch (e) {
+              console.log(e);
+              dispatch(errorWrapperTrue());
+            }
+          })
       })
-        .then(res => {
-          const { data = {} } = res;
-          if (data && data.code === 'success') {
-            imageUrlToAmazon(data.data.url, file)
-              .then(() => dispatch(profileLoaderFalse()));
-            return data.data.id;
-          }
-        })
-        .then(resourceId => dispatch(updateUserAvatar(resourceId)))
-        .catch(error => console.log(error))
     })
   }
 );
@@ -219,9 +225,6 @@ const imageUrlToAmazon = (url, file) => {
     .then(() => console.log('Successfully loaded'))
     .catch(() => console.log('Load failed'))
 };
-
-
-
 
 
 // https://dev.tribus.org/api/v0.7/users/1e2d1cce-42a8-48fe-a59d-084f387b09ac

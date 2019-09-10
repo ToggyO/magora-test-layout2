@@ -7,6 +7,7 @@ import { modalClose } from '../../Store/Actions/modal/actionModal';
 import RegistrationForm from '../Form/ReduxForm/RegistrationForm';
 import AuthForm from '../Form/ReduxForm/AuthForm';
 import { RegistrationSuccess } from './RegistrationSuccess';
+import AvatarCropper from '../ReactCropper';
 
 
 /* eslint-disable */
@@ -42,6 +43,14 @@ class Modal extends React.Component {
         return <CardModal card={options} />;
       case 'regSuccess':
         return <RegistrationSuccess />;
+      case 'cropper-preview':
+        return <AvatarCropper
+                  loadedFile={options.currentAcceptedFile}
+                  loadImage={options.loadImage}
+                  croppedImage={options.croppedImage}
+                  setCroppedImage={options.setCroppedImage}
+                  closeModal={options.closeModal}
+                />;
       default:
         return null;
     }

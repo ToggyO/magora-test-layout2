@@ -7,23 +7,23 @@ import './style.sass';
 import LabelWrapper from '../../../LabelWrapper';
 import ReduxFormTextInput from '../ReduxFormTextInput';
 import validationEditForm from './validationEditForm';
-import ReduxFormFileInput from '../ReduxFormFileInput';
 import ReduxFormTextarea from '../ReduxFormTextarea';
+import ImageCropper from '../../../ImageCropper';
+import { modalClose, modalOpen } from '../../../../Store/Actions/modal/actionModal';
 
 
 /* eslint-disable */
 let EditProfileForm = props => {
   const {
-    userProfileData = {},
     handleSubmit,
     valid,
     error,
     putUser,
     resourceIdCreate,
     loadedImage,
+    openModal,
+    closeModal,
   } = props;
-  const { editInfo = {} } = userProfileData;
-  // const { user = {} } = editInfo;
 
   return <form className="form-edit" onSubmit={handleSubmit(putUser)}>
     <div className="form-edit__header">
@@ -89,14 +89,15 @@ let EditProfileForm = props => {
         description="Stand out from the crowd and be recognised."
       >
         <Field
-          name="image"
+          name="resourceId"
           label="Profile image"
-          component={ReduxFormFileInput}
+          component={ImageCropper}
           styleInput={{ fontWeight: 600 }}
-          image={''}
           loadImage={resourceIdCreate}
           loadedImage={loadedImage}
-          // resourceId={user.resourceId}
+          styleDiv={{ cursor: 'pointer'}}
+          openModal={openModal}
+          closeModal={closeModal}
         />
       </LabelWrapper>
 
@@ -249,6 +250,8 @@ const mapStateToProps = ({ userProfileData }) => ({ userProfileData });
 const mapDispatchToProps = (dispatch) => ({
   putUser: bindActionCreators(putUserData, dispatch),
   resourceIdCreate: bindActionCreators(createResourceId, dispatch),
+  openModal: bindActionCreators(modalOpen, dispatch),
+  closeModal: bindActionCreators(modalClose, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditProfileForm);
