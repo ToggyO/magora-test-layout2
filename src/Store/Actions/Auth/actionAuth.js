@@ -70,8 +70,6 @@ export const updateUIWithUsersInfo = (payload) => ({
 
 
 /* eslint-disable */
-
-
 export const authRequest = (values) => (
   (dispatch) => {
     dispatch(loginRequest());
@@ -150,6 +148,24 @@ export const regRequest = (values) => (
 );
 
 
+//  if(item.field === null) {
+//    return errorObj._error = errorCodes.INVALID_AUTH_DATA;
+//  } else {
+//  debugger;
+//    let firstLetterToLowerCase = `${item.field[0].toLowerCase()}${item.field.slice(1)}`;
+//    return errorObj[firstLetterToLowerCase]= `${item.field} invalid`;
+//  }
+// });
+// console.log(errorObj);
+
+
+// throw new SubmissionError({
+//   _error: error.response.data.message ,
+//   email: 'User doesn't exist or password is wrong',
+//   password: 'User doesn't exist or password is wrong'
+// });
+
+
 // export const authRequest = (values) => (
 //   (dispatch) => {
 //     dispatch(loginRequest());
@@ -164,12 +180,12 @@ export const regRequest = (values) => (
 //       },
 //     };
 //
-//     return axios.post(`${REQUEST_ULR.CORS_BASE_URL}/${REQUEST_ULR.AUTH_TOKEN}`, requestBody)
+//     return instance.post(`/${REQUEST_ULR.AUTH_TOKEN}`, requestBody)
 //       .then(res => {
-//         if (res.data.code === 'success') {
+//         if (res.code === 'success') {
 //           dispatch(modalClose());
 //
-//           const { data = {} } = res.data;
+//           const { data = {} } = res;
 //           const { authInfo = {}, ...tokensInfo } = data;
 //
 //           writeToLocalState('TOKEN_INFO', tokensInfo);
@@ -179,7 +195,7 @@ export const regRequest = (values) => (
 //       })
 //       .catch(error => {
 //         dispatch(loginFailure());
-//         dispatch(responseError(error.response, ERROR_CODES));
+//         dispatch(responseError(error, ERROR_CODES));
 //       });
 //   }
 // );
@@ -208,9 +224,9 @@ export const regRequest = (values) => (
 //       role: values.role,
 //     };
 //
-//     return axios.post(`${REQUEST_ULR.CORS_BASE_URL}/${REQUEST_ULR.USERS}`, requestBody)
+//     return instance.post(`/${REQUEST_ULR.USERS}`, requestBody)
 //       .then(res => {
-//         if (res.data.code === 'success') {
+//         if (res.code === 'success') {
 //           dispatch(reset('registration'));
 //           dispatch(regLoaderFalse());
 //           dispatch(modalOpen('regSuccess'));
@@ -222,25 +238,7 @@ export const regRequest = (values) => (
 //         }
 //
 //         dispatch(regLoaderFalse());
-//         dispatch(responseError(error.response, ERROR_CODES));
+//         dispatch(responseError(error, ERROR_CODES));
 //       });
 //   }
 // );
-
-
-//  if(item.field === null) {
-//    return errorObj._error = errorCodes.INVALID_AUTH_DATA;
-//  } else {
-//  debugger;
-//    let firstLetterToLowerCase = `${item.field[0].toLowerCase()}${item.field.slice(1)}`;
-//    return errorObj[firstLetterToLowerCase]= `${item.field} invalid`;
-//  }
-// });
-// console.log(errorObj);
-
-
-// throw new SubmissionError({
-//   _error: error.response.data.message ,
-//   email: 'User doesn't exist or password is wrong',
-//   password: 'User doesn't exist or password is wrong'
-// });

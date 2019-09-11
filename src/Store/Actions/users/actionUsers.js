@@ -5,6 +5,7 @@ import { writeToLocalState } from '../../../Libs/localStorage';
 import { errorWrapperTrue } from '../error/actionError';
 import { updateUIWithUsersInfo } from '../Auth/actionAuth';
 import { responseError } from '../../../Libs/HelperFunctions';
+import { modalClose } from '../modal/actionModal';
 
 
 /* eslint-disable */
@@ -74,28 +75,57 @@ export const getUserDataProfileForEdit = (key) => (
     const URL = `/${REQUEST_ULR.PROFILES}/me`;
 
     return instance
-        .get(URL, {
-          headers: {
-            isAuth: true
-          }
-        })
-        .then(res => {
-          const { data = {} } = res;
+      .get(URL, {
+        headers: {
+          isAuth: true
+        }
+      })
+      .then(res => {
+        const { data = {} } = res;
 
-          if (data && res.code === 'success') {
-            dispatch(receiveUserById(data, key));
-            dispatch(updateUIWithUsersInfo(data));
-            writeToLocalState('USER_INFO', data);
-          }
-        })
-        .catch(error => {
-          if (!error) {
-            return null;
-          }
-          dispatch(errorWrapperTrue());
-        })
+        if (data && res.code === 'success') {
+          dispatch(receiveUserById(data, key));
+          dispatch(updateUIWithUsersInfo(data));
+          writeToLocalState('USER_INFO', data);
+        }
+      })
+      .catch(error => {
+        if (!error) {
+          return null;
+        }
+        dispatch(errorWrapperTrue());
+      })
   }
 );
+
+
+// export const getUserDataProfileForEdit = (key) => (
+//   dispatch => {
+//     const URL = `/${REQUEST_ULR.PROFILES}/me`;
+//
+//     return instance
+//         .get(URL, {
+//           headers: {
+//             isAuth: true
+//           }
+//         })
+//         .then(res => {
+//           const { data = {} } = res;
+//
+//           if (data && res.code === 'success') {
+//             dispatch(receiveUserById(data, key));
+//             dispatch(updateUIWithUsersInfo(data));
+//             writeToLocalState('USER_INFO', data);
+//           }
+//         })
+//         .catch(error => {
+//           if (!error) {
+//             return null;
+//           }
+//           dispatch(errorWrapperTrue());
+//         })
+//   }
+// );
 
 
 export const putUserData = (body) => (
@@ -178,17 +208,18 @@ export const createResourceId = (file) => (
         .then(async res => {
           try {
             const {data = {}} = res;
-            if (data && res.code === 'success') {
-              await imageUrlToAmazon(data.url, file);
-              await dispatch(updateUserAvatar(data.id));
-              await dispatch(profileLoaderFalse());
-              resolve();
-            }
+            await imageUrlToAmazon(data.url, file);
+            await dispatch(updateUserAvatar(data.id));
+            await dispatch(profileLoaderFalse());
+            resolve();
           } catch (e) {
-            console.log(e);
             dispatch(errorWrapperTrue());
           }
         })
+        .catch(() => {
+          dispatch(errorWrapperTrue());
+          dispatch(modalClose());
+        });
     })
   }
 );
@@ -201,8 +232,8 @@ const imageUrlToAmazon = (url, file) => {
         'Content-type': 'image/png'
       }
     })
-    .then(() => console.log('Successfully loaded'))
-    .catch(() => console.log('Load failed'))
+    // .then(() => console.log('Successfully loaded'))
+    // .catch(() => console.log('Load failed'))
 };
 
 

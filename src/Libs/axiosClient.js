@@ -1,7 +1,9 @@
 import axios from 'axios';
 import { REQUEST_ULR } from '../Constants';
 import { getFromLocalState } from './localStorage';
+/* eslint-disable import/no-cycle */
 import { refreshTokenData } from './HelperFunctions';
+/* eslint-enable import/no-cycle */
 
 
 export const instance = axios.create({
@@ -11,7 +13,7 @@ export const instance = axios.create({
 
 /* eslint-disable consistent-return */
 instance.interceptors.request.use((config) => (
-  new Promise(resolve => {
+  new Promise((resolve, reject) => {
     const headers = {
       ...config.headers,
       Accept: 'application/json',
@@ -21,13 +23,15 @@ instance.interceptors.request.use((config) => (
     if (config.headers.isAuth) {
       const tokenData = getFromLocalState('TOKEN_INFO');
 
-      refreshTokenData(tokenData).then(refreshedTokenData => {
-        headers.Authorization = `Bearer ${refreshedTokenData.accessToken}`;
-        return resolve({
-          ...config,
-          headers,
-        });
-      });
+      refreshTokenData(tokenData)
+        .then(refreshedTokenData => {
+          headers.Authorization = `Bearer ${refreshedTokenData.accessToken}`;
+          return resolve({
+            ...config,
+            headers,
+          });
+        })
+        .catch(error => reject(error));
     } else {
       return resolve({
         ...config,
@@ -39,7 +43,7 @@ instance.interceptors.request.use((config) => (
 
 instance.interceptors.response.use(
   response => Promise.resolve((response && response.data) ? response.data : null),
-  error => Promise.reject(error.response),
+  error => Promise.reject(error.response.data),
 );
 
 
