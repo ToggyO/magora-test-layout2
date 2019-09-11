@@ -5,10 +5,19 @@
   flex-direction: column
 
 .inputBlock_texInput
+  width: 100%
 
   input
     border: 1px solid #C8D1D6
     border-radius: 4px
+    text-overflow: ellipsis
+    display: -webkit-box
+    -webkit-box-orient: vertical
+    -moz-box-orient: vertical
+    -o-box-orient: vertical
+    -webkit-line-clamp: 1
+    -moz-line-clamp: 1
+    -o-line-clamp: 1
 
   input:focus
     border-color: #3c3f41

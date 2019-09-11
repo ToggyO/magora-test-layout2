@@ -26,6 +26,7 @@ instance.interceptors.request.use((config) => (
       refreshTokenData(tokenData)
         .then(refreshedTokenData => {
           headers.Authorization = `Bearer ${refreshedTokenData.accessToken}`;
+
           return resolve({
             ...config,
             headers,

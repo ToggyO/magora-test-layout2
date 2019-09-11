@@ -82,12 +82,9 @@ export const getUserDataProfileForEdit = (key) => (
       })
       .then(res => {
         const { data = {} } = res;
-
-        if (data && res.code === 'success') {
-          dispatch(receiveUserById(data, key));
-          dispatch(updateUIWithUsersInfo(data));
-          writeToLocalState('USER_INFO', data);
-        }
+        dispatch(receiveUserById(data, key));
+        dispatch(updateUIWithUsersInfo(data));
+        writeToLocalState('USER_INFO', data);
       })
       .catch(error => {
         if (!error) {
@@ -97,35 +94,6 @@ export const getUserDataProfileForEdit = (key) => (
       })
   }
 );
-
-
-// export const getUserDataProfileForEdit = (key) => (
-//   dispatch => {
-//     const URL = `/${REQUEST_ULR.PROFILES}/me`;
-//
-//     return instance
-//         .get(URL, {
-//           headers: {
-//             isAuth: true
-//           }
-//         })
-//         .then(res => {
-//           const { data = {} } = res;
-//
-//           if (data && res.code === 'success') {
-//             dispatch(receiveUserById(data, key));
-//             dispatch(updateUIWithUsersInfo(data));
-//             writeToLocalState('USER_INFO', data);
-//           }
-//         })
-//         .catch(error => {
-//           if (!error) {
-//             return null;
-//           }
-//           dispatch(errorWrapperTrue());
-//         })
-//   }
-// );
 
 
 export const putUserData = (body) => (
@@ -191,36 +159,27 @@ export const putUserData = (body) => (
 
 
 export const createResourceId = (file) => (
-  dispatch => {
+  async dispatch => {
     dispatch(requestUserById());
     const URL = `/${REQUEST_ULR.RESOURCES}`;
 
-    return new Promise((resolve) => {
-      instance
-        .post(URL, {
-            contentType: 'image/png'
+    try {
+      const res = await instance.post(URL, {
+          contentType: 'image/png'
         },
         {
           headers: {
             isAuth: true
           }
-        })
-        .then(async res => {
-          try {
-            const {data = {}} = res;
-            await imageUrlToAmazon(data.url, file);
-            await dispatch(updateUserAvatar(data.id));
-            await dispatch(profileLoaderFalse());
-            resolve();
-          } catch (e) {
-            dispatch(errorWrapperTrue());
-          }
-        })
-        .catch(() => {
-          dispatch(errorWrapperTrue());
-          dispatch(modalClose());
         });
-    })
+      const { data = {} } = res;
+      await imageUrlToAmazon(data.url, file);
+      await dispatch(updateUserAvatar(data.id));
+      await dispatch(profileLoaderFalse());
+    } catch (e) {
+      dispatch(errorWrapperTrue());
+      dispatch(modalClose());
+    }
   }
 );
 

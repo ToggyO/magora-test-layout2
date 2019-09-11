@@ -113,10 +113,9 @@ export const isEmpty = (obj) => {
 
 
 export const responseError = (res, errorCodes) => {
-    const { data = {} } = res;
-    const { errors = {} } = data;
-
+    const { errors = {} } = res;
     const errorObj = {};
+
     errors.forEach(item => {
       if (item.field) {
         let firstLetterToLowerCase = `${item.field[0].toLowerCase()}${item.field.slice(1)}`;
@@ -145,7 +144,7 @@ export const isAuthFalse = () => (
 );
 
 
-export const refreshTokenData = (tokenData) => {
+export const refreshTokenData = async (tokenData) => {
   const URL = `${REQUEST_ULR.CORS_BASE_URL}/${REQUEST_ULR.AUTH_TOKEN}`;
   const dateNow = new Date().toISOString();
 
@@ -155,22 +154,20 @@ export const refreshTokenData = (tokenData) => {
   //   refreshToken: "eyJhbGciOiJSUzI1NiIsImtpZCI6IjI4ODM5Qjc0Nzg5QURFNEYzNEQ4NjU0MjZCNzRCMzQ3OUU0N0EyREMiLCJ0eXAiOiJKV1QifQ.eyJ0b2tlbl9pZCI6ImM0YWUwNWQ2OWE5MjQwOTNiMDk5Yjk2YWY2NTVjNjE3IiwidXNlcl9pZCI6IjllMzQ2NTgxOGRiNTQ2NTJhNmE5MGNhYzE3Y2ZmOTFjIiwiZXhwIjoxNTY5OTg2MzYyLCJpc3MiOiJodHRwOi8vZGV2LnRyaWJ1cy5vcmcvYXBpIiwiYXVkIjoiaHR0cDovL2Rldi50cmlidXMub3JnIn0.L5XwBUq-ycAnarmsu3nK6byoBC_M0ruUJtp4xX1R4Jcn-L-IE8MX8vPEg-ePqS1jz_2jEPTYbXLzIngkFuq0d1lGDmk66AWVXPsPiGJ7v6s7FZM-Zcq0_kByrAT54UWuiUJpiDCF8Lz8IbfoHndtzFBlO-9XdNV-2wHGnC_FvvBja_wxh2YxXUNscRRJGLFpUcRaRSomjUIcuSdd99ul2Rr6Ci-TRmX5P_YIf9RDv9Q_hFRdTEVePlBlP1YdAFw2fzY38k-6j38_cYWnmwXZyPwd47uyIqv6c3ixQ-Wv1ruR44VhUQZ5IG9voPWqV0mvxd8FvfNrJ-smE4r_-M-uQQ"
   // }
 
-  return new Promise(async (resolve, reject) => {
-    if (tokenData && tokenData.accessTokenExpire <= dateNow) {
-      try {
-        const res = await axios.put(URL, {refreshToken: tokenData.refreshToken});
-        const { data = {} } = res;
-        if (data && data.code === 'success') {
-          writeToLocalState('TOKEN_INFO', data.data);
-          resolve(data.data);
-        }
-      } catch (error) {
-        reject(error);
-      }
-    } else {
-      return resolve(tokenData);
+  if (tokenData && tokenData.accessTokenExpire <= dateNow) {
+    try {
+      const res = await axios.put(URL, {refreshToken: tokenData.refreshToken});
+      const { data = {} } = res;
+      writeToLocalState('TOKEN_INFO', data.data);
+
+      return data.data;
+
+    } catch (error) {
+      throw error;
     }
-  });
+  } else {
+    return tokenData;
+  }
 };
 
 

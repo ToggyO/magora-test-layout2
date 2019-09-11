@@ -117,12 +117,14 @@ let EditProfileForm = props => {
           name="website"
           label="Website"
           component={ReduxFormTextInput}
-          styleInput={{fontWeight: 600, minWidth: 400}}
-          styleWrapper={{display: 'flex', maxHeight: 50}}
+          styleInput={{fontWeight: 600, width: '100%'}}
+          styleWrapper={{display: 'flex'}}
           styleLabel={{
-            lineHeight: '60px',
+            padding: '20px 20px 20px 0',
             fontSize: '18px',
             fontWeight: 600,
+            minWidth: 100,
+            maxWidth: 150,
           }}
         />
 
@@ -131,84 +133,98 @@ let EditProfileForm = props => {
           name="facebookLink"
           label="Facebook"
           component={ReduxFormTextInput}
-          styleInput={{fontWeight: 600, minWidth: 400}}
-          styleWrapper={{display: 'flex', maxHeight: 50}}
+          styleInput={{fontWeight: 600, width: '100%'}}
+          styleWrapper={{display: 'flex'}}
           styleLabel={{
-            lineHeight: '60px',
+            padding: '20px 20px 20px 0',
             fontSize: '18px',
             fontWeight: 600,
+            minWidth: 100,
+            maxWidth: 150,
           }}
         />
         <Field
           name="googlePlusLink"
           label="Google+"
           component={ReduxFormTextInput}
-          styleInput={{fontWeight: 600, minWidth: 400}}
-          styleWrapper={{display: 'flex', maxHeight: 50}}
+          styleInput={{fontWeight: 600, width: '100%'}}
+          styleWrapper={{display: 'flex'}}
           styleLabel={{
-            lineHeight: '60px',
+            padding: '20px 20px 20px 0',
             fontSize: '18px',
             fontWeight: 600,
+            minWidth: 100,
+            maxWidth: 150,
           }}
         />
         <Field
           name="instagramLink"
           label="Instagram"
           component={ReduxFormTextInput}
-          styleInput={{fontWeight: 600, minWidth: 400}}
-          styleWrapper={{display: 'flex', maxHeight: 50}}
+          styleInput={{fontWeight: 600, width: '100%'}}
+          styleWrapper={{display: 'flex'}}
           styleLabel={{
-            lineHeight: '60px',
+            padding: '20px 20px 20px 0',
             fontSize: '18px',
             fontWeight: 600,
+            minWidth: 100,
+            maxWidth: 150,
           }}
         />
         <Field
           name="linkedInLink"
           label="LinkedIn"
           component={ReduxFormTextInput}
-          styleInput={{fontWeight: 600, minWidth: 400}}
-          styleWrapper={{display: 'flex', maxHeight: 50}}
+          styleInput={{fontWeight: 600, width: '100%'}}
+          styleWrapper={{display: 'flex'}}
           styleLabel={{
-            lineHeight: '60px',
+            padding: '20px 20px 20px 0',
             fontSize: '18px',
             fontWeight: 600,
+            minWidth: 100,
+            maxWidth: 150,
           }}
         />
         <Field
           name="pinterestLink"
           label="Pinterest"
           component={ReduxFormTextInput}
-          styleInput={{fontWeight: 600, minWidth: 400}}
-          styleWrapper={{display: 'flex', maxHeight: 50}}
+          styleInput={{fontWeight: 600, width: '100%'}}
+          styleWrapper={{display: 'flex'}}
           styleLabel={{
-            lineHeight: '60px',
+            padding: '20px 20px 20px 0',
             fontSize: '18px',
             fontWeight: 600,
+            minWidth: 100,
+            maxWidth: 150,
           }}
         />
         <Field
           name="twitterLink"
           label="Twitter"
           component={ReduxFormTextInput}
-          styleInput={{fontWeight: 600, minWidth: 400}}
-          styleWrapper={{display: 'flex', maxHeight: 50}}
+          styleInput={{fontWeight: 600, width: '100%'}}
+          styleWrapper={{display: 'flex'}}
           styleLabel={{
-            lineHeight: '60px',
+            padding: '20px 20px 20px 0',
             fontSize: '18px',
             fontWeight: 600,
+            minWidth: 100,
+            maxWidth: 150,
           }}
         />
         <Field
           name="youTubeLink"
           label="YouTube"
           component={ReduxFormTextInput}
-          styleInput={{fontWeight: 600, minWidth: 400}}
-          styleWrapper={{display: 'flex', maxHeight: 50}}
+          styleInput={{fontWeight: 600, width: '100%'}}
+          styleWrapper={{display: 'flex'}}
           styleLabel={{
-            lineHeight: '60px',
+            padding: '20px 20px 20px 0',
             fontSize: '18px',
             fontWeight: 600,
+            minWidth: 100,
+            maxWidth: 150,
           }}
         />
 
