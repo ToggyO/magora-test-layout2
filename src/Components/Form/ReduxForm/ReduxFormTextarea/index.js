@@ -31,8 +31,9 @@ const ReduxFormTextarea = (props) => {
         style={styleWrapper}
         styleLabel={styleLabel}
       >
-        <div className={`${s.textAreaBlock_texArea} ${meta.error && meta.touched ? 'error' : null}`}>
+        <div className={s.textAreaBlock_texArea}>
           <textarea
+            className={meta.error && meta.touched ? 'error' : null}
             id={inputId}
             placeholder={placeholder}
             value={input.value}

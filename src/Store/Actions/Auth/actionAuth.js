@@ -1,10 +1,10 @@
 import { reset } from 'redux-form';
-import * as axios from 'axios';
 import { modalClose, modalOpen } from '../modal/actionModal';
 import { ERROR_CODES, REQUEST_ULR } from '../../../Constants';
 import { writeToLocalState } from '../../../Libs/localStorage';
 /* eslint-disable import/no-cycle */
 import { responseError } from '../../../Libs/HelperFunctions';
+import { instance } from '../../../Libs/axiosClient';
 /* eslint-enable import/no-cycle */
 
 
@@ -70,6 +70,8 @@ export const updateUIWithUsersInfo = (payload) => ({
 
 
 /* eslint-disable */
+
+
 export const authRequest = (values) => (
   (dispatch) => {
     dispatch(loginRequest());
@@ -84,12 +86,12 @@ export const authRequest = (values) => (
       },
     };
 
-    return axios.post(`${REQUEST_ULR.CORS_BASE_URL}/${REQUEST_ULR.AUTH_TOKEN}`, requestBody)
+    return instance.post(`/${REQUEST_ULR.AUTH_TOKEN}`, requestBody)
       .then(res => {
-        if (res.data.code === 'success') {
+        if (res.code === 'success') {
           dispatch(modalClose());
 
-          const { data = {} } = res.data;
+          const { data = {} } = res;
           const { authInfo = {}, ...tokensInfo } = data;
 
           writeToLocalState('TOKEN_INFO', tokensInfo);
@@ -99,7 +101,7 @@ export const authRequest = (values) => (
       })
       .catch(error => {
         dispatch(loginFailure());
-        dispatch(responseError(error.response, ERROR_CODES));
+        dispatch(responseError(error, ERROR_CODES));
       });
   }
 );
@@ -128,9 +130,9 @@ export const regRequest = (values) => (
       role: values.role,
     };
 
-    return axios.post(`${REQUEST_ULR.CORS_BASE_URL}/${REQUEST_ULR.USERS}`, requestBody)
+    return instance.post(`/${REQUEST_ULR.USERS}`, requestBody)
       .then(res => {
-        if (res.data.code === 'success') {
+        if (res.code === 'success') {
           dispatch(reset('registration'));
           dispatch(regLoaderFalse());
           dispatch(modalOpen('regSuccess'));
@@ -142,10 +144,88 @@ export const regRequest = (values) => (
         }
 
         dispatch(regLoaderFalse());
-        dispatch(responseError(error.response, ERROR_CODES));
+        dispatch(responseError(error, ERROR_CODES));
       });
   }
 );
+
+
+// export const authRequest = (values) => (
+//   (dispatch) => {
+//     dispatch(loginRequest());
+//
+//     const requestBody = {
+//       login: values.email,
+//       password: values.password,
+//       meta: {
+//         deviceId: 'string',
+//         versionApp: 'string',
+//         platform: 'string',
+//       },
+//     };
+//
+//     return axios.post(`${REQUEST_ULR.CORS_BASE_URL}/${REQUEST_ULR.AUTH_TOKEN}`, requestBody)
+//       .then(res => {
+//         if (res.data.code === 'success') {
+//           dispatch(modalClose());
+//
+//           const { data = {} } = res.data;
+//           const { authInfo = {}, ...tokensInfo } = data;
+//
+//           writeToLocalState('TOKEN_INFO', tokensInfo);
+//           writeToLocalState('USER_INFO', authInfo.profile);
+//           dispatch(loginSuccess(tokensInfo, authInfo.profile));
+//         }
+//       })
+//       .catch(error => {
+//         dispatch(loginFailure());
+//         dispatch(responseError(error.response, ERROR_CODES));
+//       });
+//   }
+// );
+//
+//
+// export const regRequest = (values) => (
+//   (dispatch) => {
+//     dispatch(regLoaderTrue());
+//
+//     const requestBody = {
+//       firstName: values.firstName,
+//       lastName: values.lastName,
+//       address: values.address,
+//       email: values.email,
+//       password: values.password,
+//       // phone: '001174951234567',
+//       organizationName: values.communityName ? values.communityName : '',
+//       location: {
+//         areaName: '7-9 Fullerton Street',
+//         stateName: 'Woollahra',
+//         stateAbbreviation: 'NSW',
+//       },
+//       verifyInfo: {
+//         returnUrl: '/',
+//       },
+//       role: values.role,
+//     };
+//
+//     return axios.post(`${REQUEST_ULR.CORS_BASE_URL}/${REQUEST_ULR.USERS}`, requestBody)
+//       .then(res => {
+//         if (res.data.code === 'success') {
+//           dispatch(reset('registration'));
+//           dispatch(regLoaderFalse());
+//           dispatch(modalOpen('regSuccess'));
+//         }
+//       })
+//       .catch(error => {
+//         if (!error) {
+//           return null;
+//         }
+//
+//         dispatch(regLoaderFalse());
+//         dispatch(responseError(error.response, ERROR_CODES));
+//       });
+//   }
+// );
 
 
 //  if(item.field === null) {

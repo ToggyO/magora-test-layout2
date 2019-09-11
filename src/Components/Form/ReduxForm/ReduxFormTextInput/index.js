@@ -31,8 +31,9 @@ const ReduxFormTextInput = (props) => {
         style={styleWrapper}
         styleLabel={styleLabel}
       >
-        <div className={`${s.inputBlock_texInput} ${meta.error && meta.touched ? 'error' : null}`}>
+        <div className={s.inputBlock_texInput}>
           <input
+            className={meta.error && meta.touched ? 'error' : null}
             id={inputId}
             type={type}
             placeholder={placeholder}

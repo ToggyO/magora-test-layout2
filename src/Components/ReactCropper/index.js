@@ -12,7 +12,6 @@ class AvatarCropper extends React.Component {
   }
 
   crop() {
-    console.log('cropped');
     if (typeof this.cropper.getCroppedCanvas() === 'undefined') {
       return;
     }
@@ -23,7 +22,7 @@ class AvatarCropper extends React.Component {
         this.props.setCroppedImage(window.URL.createObjectURL(blob));
         reader.readAsArrayBuffer(blob);
         reader.onload = () => {
-          this.props.loadImage(reader.result).then(() => console.log(this.props.closeModal()));
+          this.props.loadImage(reader.result).then(() => this.props.closeModal());
         };
       });
   }

@@ -36,8 +36,9 @@ class ReduxFormPassword extends React.Component {
           error={meta.error}
           touched={meta.touched}
           inputId={inputId}>
-          <div className={`${s.container} ${meta.error && meta.touched ? 'error' : null}`}>
+          <div className={s.container}>
             <input
+              className={meta.error && meta.touched ? 'error' : null}
               id={this.inputId}
               type={isPwShown ? 'text' : 'password'}
               placeholder={placeholder}

@@ -11,18 +11,22 @@
 
   .container
     display: flex
-    border: 1px solid #C8D1D6
-    border-radius: 4px
     width: 100%
+    position: relative
     +r(lg)
       margin-bottom: 20px
 
     input
-      border: none
+      border: 1px solid #C8D1D6
+      border-radius: 4px
+
+    input:focus
+      border: 1px solid #3c3f41
 
     button
       background: none
-      position: relative
+      position: absolute
+      right: 0
       cursor: pointer
       padding: 19px 10px 18px
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { SubmissionError } from 'redux-form';
 import { parse } from 'qs';
-import * as axios from 'axios';
+import axios from 'axios';
 import ProjectCard from '../Components/ProjectCard/ProjectCard';
 import GrantCard from '../Components/GrantCard/GrantCard';
 import EventCard from '../Components/EventCard/EventCard';
@@ -9,9 +9,9 @@ import { KEYWORD, REQUEST_ULR } from '../Constants';
 import { clearLocalState, writeToLocalState } from './localStorage';
 /* eslint-disable import/no-cycle */
 import { logOut } from '../Store/Actions/Auth/actionAuth';
-import { errorWrapperTrue } from '../Store/Actions/error/actionError';
-import history from '../history';
-import { modalOpen } from '../Store/Actions/modal/actionModal';
+// import { errorWrapperTrue } from '../Store/Actions/error/actionError';
+// import history from '../history';
+// import { modalOpen } from '../Store/Actions/modal/actionModal';
 /* eslint-enable import/no-cycle */
 
 
@@ -151,34 +151,19 @@ export const refreshTokenData = (tokenData) => {
 
   return new Promise((resolve) => {
     if (tokenData && tokenData.accessTokenExpire <= dateNow) {
-      axios
-        .put(URL, {refreshToken: tokenData.refreshToken})
-        .then(res => {
-          const { data = {} } = res;
-          if (data && data.code === 'success') {
-            writeToLocalState('TOKEN_INFO', data.data);
-            resolve(data.data);
-          }
-        })
-        .catch((error) => {
-          if (!error) {
-            return null;
-          }
-          const { data = {} } = error.response;
-          const { errors = {} } = data;
+      return  axios
+          .put(URL, {refreshToken: tokenData.refreshToken})
+          .then(res => {
+            const { data = {} } = res;
 
-          errors.forEach(item => {
-            if (item.code === 'sec.access_token_invalid') {
-              dispatch(isAuthFalse());
-              history.push('/');
-              dispatch(modalOpen('signInModal'));
-            } else {
-              dispatch(errorWrapperTrue());
+            if (data && data.code === 'success') {
+              writeToLocalState('TOKEN_INFO', data.data);
+              resolve(data.data);
             }
-          });
-        });
+          })
+          .catch(error => console.log(error));
     } else {
-      resolve(tokenData);
+      return resolve(tokenData);
     }
   });
 };
@@ -274,4 +259,44 @@ const style = {
 //       {page}
 //     </span>
 //   )
+// };
+
+// export const refreshTokenData = (tokenData) => {
+//   const URL = `${REQUEST_ULR.CORS_BASE_URL}/${REQUEST_ULR.AUTH_TOKEN}`;
+//   const dateNow = new Date().toISOString();
+//
+//   return new Promise((resolve) => {
+//     if (tokenData && tokenData.accessTokenExpire <= dateNow) {
+//       debugger;
+//       axios
+//         .put(URL, {refreshToken: tokenData.refreshToken})
+//         .then(res => {
+//           const { data = {} } = res;
+//           debugger;
+//           if (data && data.code === 'success') {
+//             writeToLocalState('TOKEN_INFO', data.data);
+//             resolve(data.data);
+//           }
+//         })
+//         .catch((error) => {
+//           if (!error) {
+//             return null;
+//           }
+//           const { data = {} } = error.response;
+//           const { errors = {} } = data;
+//           debugger;
+//           errors.forEach(item => {
+//             if (item.code === 'sec.access_token_invalid') {
+//               dispatch(isAuthFalse());
+//               history.push('/');
+//               dispatch(modalOpen('signInModal'));
+//             } else {
+//               dispatch(errorWrapperTrue());
+//             }
+//           });
+//         });
+//     } else {
+//       resolve(tokenData);
+//     }
+//   });
 // };
