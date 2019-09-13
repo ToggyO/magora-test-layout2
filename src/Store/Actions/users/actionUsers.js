@@ -92,6 +92,7 @@ export const getUserDataProfileForEdit = (key) => (
         if (!error) {
           return null;
         }
+        debugger;
         dispatch(errorWrapperTrue());
       })
   }

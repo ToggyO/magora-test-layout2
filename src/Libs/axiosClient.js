@@ -20,7 +20,7 @@ instance.interceptors.request.use((config) => (
       'Content-Type': 'application/json',
       'Cache-Control': 'no-store, no-cache, must-revalidate',
       Pragma: 'no-cache',
-      Expires: new Date('01.01.2000'),
+      // Expires: new Date('01.01.2000'),
     };
 
     if (config.headers.isAuth) {

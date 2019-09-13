@@ -147,12 +147,11 @@ export const isAuthFalse = () => (
 export const refreshTokenData = async (tokenData) => {
   const URL = `${REQUEST_ULR.CORS_BASE_URL}/${REQUEST_ULR.AUTH_TOKEN}`;
   const dateNow = new Date().toISOString();
-  debugger;
+
   if (tokenData && tokenData.accessTokenExpire <= dateNow) {
     try {
       const res = await axios.put(URL, {refreshToken: tokenData.refreshToken});
       const { data = {} } = res;
-      debugger;
       writeToLocalState('TOKEN_INFO', data.data);
 
       return data.data;
