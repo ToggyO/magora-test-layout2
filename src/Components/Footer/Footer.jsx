@@ -1,6 +1,5 @@
 import React from 'react';
 import './Footer.sass';
-import logo from '../../img/footer/logo-green.svg';
 
 
 /* eslint-disable class-methods-use-this */
@@ -39,7 +38,8 @@ class Footer extends React.Component {
                 <a href='./#' className='btn btnHref'>Privacy and Policy</a>
               </div>
               <div className="footer-contacts__item d-f jc-fs">
-                <img src={logo} alt="logo"/>
+                <div>
+                </div>
               </div>
             </div>
 

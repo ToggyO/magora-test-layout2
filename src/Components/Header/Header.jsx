@@ -16,8 +16,9 @@ class Header extends React.Component {
           <div className="header-container-content wrapper-container-content d-f pl-7 pr-6">
             <div className="header__logo als-c">
               <NavLink to="/">
-                <div>
-                </div>
+                {/* <Icon iconName="tribus-logo" className="logo_header"/> */}
+                 <div>
+                 </div>
               </NavLink>
             </div>
             <div className="header__nav d-f ai-c jc-fe">
