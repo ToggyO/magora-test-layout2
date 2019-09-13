@@ -21,6 +21,7 @@ import Preloader from '../../Components/Preloader/Preloader';
 import { KEYWORD, ROUTES, REQUEST_ULR } from '../../Constants';
 import ProfileCardsContainer from './ProfileCardsContainer';
 import AboutProfile from './AboutProfile';
+import ReactScrollbar from '../../Components/ReactScrollbar';
 
 
 const UserProfile = (props) => {
@@ -167,7 +168,9 @@ const UserProfile = (props) => {
               />
             </Switch>
           </div>
-         </>;
+    <ReactScrollbar />
+
+  </>;
 };
 
 
