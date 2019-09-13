@@ -19,7 +19,7 @@ input::placeholder {
   font-size: 18px;
   line-height: 18px;
   font-weight: 600;
-  color: #99B0BE;
+  color: #99B0BE !important;
 }
 
 .react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle, .react-datepicker-popper[data-placement^="top"] .react-datepicker__triangle, .react-datepicker__year-read-view--down-arrow,

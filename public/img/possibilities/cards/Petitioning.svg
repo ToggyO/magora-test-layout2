@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="154px" height="154px" viewBox="0 0 154 154" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 53.2 (72643) - https://sketchapp.com -->
+    <title>7DB8443D-49A4-44AF-AFAF-0145655905C8@1,5x</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <path d="M3,0 L50.2443042,-7.10542736e-15 C51.6036605,-7.35513706e-15 52.9044235,0.553471594 53.847016,1.53294541 L64.6027118,12.7094849 C65.4992034,13.6410539 66,14.8836675 66,16.1765395 L66,83 C66,84.6568542 64.6568542,86 63,86 L3,86 C1.34314575,86 2.02906125e-16,84.6568542 0,83 L0,3 C-2.02906125e-16,1.34314575 1.34314575,3.04359188e-16 3,0 Z" id="path-1"></path>
+        <path d="M0.0465116279,33 L0,42.0506329 C0,42.5611814 0.186046512,43.07173 0.558139535,43.443038 C0.930232558,43.814346 1.39534884,44 1.90697674,44 L10.9302326,43.9535865 C11.4418605,43.9535865 11.9069767,43.7679325 12.2790698,43.3966245 L43.4418605,12.2995781 C44.1860465,11.556962 44.1860465,10.350211 43.4418605,9.56118143 L34.5116279,0.556962025 C33.7674419,-0.185654008 32.5581395,-0.185654008 31.7674419,0.556962025 L25.5348837,6.82278481 L0.604651163,31.6540084 C0.279069767,32.0253165 0.0465116279,32.4894515 0.0465116279,33 Z" id="path-3"></path>
+    </defs>
+    <g id="Home" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1440-copy-11" transform="translate(-653.000000, -2237.000000)">
+            <g id="Group-17" transform="translate(653.000000, 2237.000000)">
+                <circle id="Oval-3-Copy-2" fill="#C0F5FA" cx="77" cy="77" r="77"></circle>
+                <g id="Group-12" transform="translate(44.000000, 34.000000)">
+                    <g id="Rectangle-6-Copy">
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <use id="Mask" fill="#41AAED" xlink:href="#path-1"></use>
+                        <path d="M50.7692308,0 L66,0 L66,15 L53.7692308,15 C52.1123765,15 50.7692308,13.6568542 50.7692308,12 L50.7692308,0 Z" fill="#A5DCFF" mask="url(#mask-2)"></path>
+                    </g>
+                    <rect id="Rectangle-6" fill="#FFFFFF" x="14" y="29" width="39" height="3" rx="1.5"></rect>
+                    <rect id="Rectangle-6-Copy-2" fill="#FFFFFF" x="14" y="38" width="23" height="3" rx="1.5"></rect>
+                    <rect id="Rectangle-6-Copy-3" fill="#FFFFFF" x="14" y="47" width="39" height="3" rx="1.5"></rect>
+                    <rect id="Rectangle-6-Copy-4" fill="#FFFFFF" x="14" y="56" width="29" height="3" rx="1.5"></rect>
+                </g>
+                <g id="Path-4" transform="translate(88.000000, 70.000000)">
+                    <mask id="mask-4" fill="white">
+                        <use xlink:href="#path-3"></use>
+                    </mask>
+                    <use id="Mask" fill="#72C8FF" fill-rule="nonzero" xlink:href="#path-3"></use>
+                    <polygon id="Path-5" fill="#B1E1FF" mask="url(#mask-4)" points="25.9661808 6.03612959 38.1347506 18.2046994 45.8053673 10.8529312 33.5049581 -3.33541757"></polygon>
+                    <polygon fill="#B1E1FF" mask="url(#mask-4)" points="-0.546312354 30.5363819 15.4632917 46.545986 -3.36326195 46.545986"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -4,36 +4,34 @@ import './pos-tools.sass';
 import Card from './Card/Card';
 import { modalOpen } from '../../../../Store/Actions/modal/actionModal';
 
-const path = 'img/possibilities/cards';
-
 const cards = [
   {
-    url: `${path}/Group14.svg`,
+    url: 'modal-engagement',
     label: 'Engagement',
     name: 'engagement',
   },
   {
-    url: `${path}/Group15.svg`,
+    url: 'modal-crowdfunding',
     label: 'Crowdfunding',
     name: 'crowdfunding',
   },
   {
-    url: `${path}/Grants.svg`,
+    url: 'modal-grants',
     label: 'Grants',
     name: 'grants',
   },
   {
-    url: `${path}/Group16.svg`,
+    url: 'modal-volunteering',
     label: 'Volunteering',
     name: 'volunteering',
   },
   {
-    url: `${path}/Group17.svg`,
+    url: 'modal-petitioning',
     label: 'Petitioning',
     name: 'petitioning',
   },
   {
-    url: `${path}/Group18.svg`,
+    url: 'modal-events',
     label: 'Event management',
     name: 'event_management',
   },
@@ -44,7 +42,7 @@ const PosTools = () => (
      <h2 className="pos-tools__label h2-black fs-36 lh-41 ls-6 fw-700 t-align-l">
        The tools you need to get things done!
      </h2>
-     <div className="pos-tools__cards d-f fw-w jc-c">
+     <div className="pos-tools__cards">
        {cards.map((card, i) => <Card key={i} card={card}/>)}
      </div>
    </div>

@@ -18,11 +18,13 @@ const ProjectCard = (props) => {
   return (
     <div className="projectCard pCard-adapt pl-10 pr-10 pt-5 pb-5 d-f fd-c">
       <div className="projectCard-container pCard-adapt__container">
-        <img className="projectCard-image"
-             onError={(e) => e.target.src = PATH.PLACEHOLDER_IMAGE}
-             src={resource !== null ? resource.formatUrls.small : PATH.PLACEHOLDER_IMAGE }
-             alt="loc"
-        />
+        <div className="projectCard-image">
+          <img
+               onError={(e) => e.target.src = PATH.PLACEHOLDER_IMAGE}
+               src={resource !== null ? resource.formatUrls.small : PATH.PLACEHOLDER_IMAGE }
+               alt="loc"
+          />
+        </div>
         <div className="projectCard-avatar pCard-adapt__avatar d-f jc-c">
           <span className="projectCard-avatar__container">
             <img

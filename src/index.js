@@ -1,5 +1,6 @@
 import 'react-app-polyfill/ie11';
 import 'react-app-polyfill/stable';
+import '@babel/polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router } from 'react-router-dom';
@@ -8,6 +9,8 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import store from './Store';
 import history from './history';
+import './Libs/scripts';
+
 
 ReactDOM.render(
   <Router history={history}>

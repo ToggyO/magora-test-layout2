@@ -60,7 +60,9 @@ export const styles = {
     fontWeight: '600',
     letterSpacing: 'normal',
     lineHeight: '18px',
-    color: '#99B0BE'
+    color: '#99B0BE',
+    whiteSpace: 'nowrap',
+
   }),
   indicatorSeparator: (provided, state) => ({
     ...provided,

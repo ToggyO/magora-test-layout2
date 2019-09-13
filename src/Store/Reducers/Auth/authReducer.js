@@ -53,6 +53,7 @@ const authReducer = (state = InitialState, action) => {
         regLoader: false,
       };
     case AUTH.UPDATE_USERS_INFO:
+      debugger;
       return {
         ...state,
         me: action.payload,

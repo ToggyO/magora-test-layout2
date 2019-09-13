@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import './Card.sass';
 import { modalOpen } from '../../../../../Store/Actions/modal/actionModal';
+import Icon from '../../../../../Icons/Icons';
 
 
 const Card = (props) => {
@@ -13,7 +14,10 @@ const Card = (props) => {
   return (
     <div className="card mb-16" onClick={() => onCardOpenModal('pos-card')}>
       <div className="card-container d-f fd-c">
-        <img className="card-container__image mb-9" src={props.card.url} alt=""/>
+        <div className="card-icon d-f jc-c mb-9">
+          <Icon iconName={props.card.url} />
+        </div>
+        {/* <img className="card-container__image mb-9" src={props.card.url} alt=""/> */}
         <h3
           className="card-container__headline fs-30 lh-41 ls-5 fw-700 h3-seaWave t-align-c"
         >

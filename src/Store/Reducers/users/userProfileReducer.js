@@ -19,6 +19,7 @@ const userProfileReducer = (state = InitialState, action) => {
         error: false,
       };
     case USER_PROFILE.RECEIVE_USER:
+      debugger;
       return {
         ...state,
         loading: false,
@@ -46,6 +47,7 @@ const userProfileReducer = (state = InitialState, action) => {
         loading: false,
       };
     case USER_PROFILE.UPDATE_USER_AVATAR:
+      debugger;
       return {
         ...state,
         editInfo: {
