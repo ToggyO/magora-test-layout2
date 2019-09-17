@@ -23,12 +23,10 @@ const Tab = (props) => {
     pushTabQuery(tabQuery => ({ ...tabQuery, [key]: location }));
   };
 
-
   const onTabChange = (value) => {
     toggleActive(value);
     setLocationSearchToState(location.search, parseRouteString(location.pathname));
   };
-
 
   return <NavLink
       to={`/${ROUTES.USER_PROFILE}/${userId}/${value}${tabQuery && tabQuery[value]}`}

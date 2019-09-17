@@ -2,6 +2,10 @@
 @import '../../Styles/bin/mixins'
 @import "../../../node_modules/rfs/sass"
 
+.horizontal-menu
+  max-width: 640px
+  margin: 0 auto
+  position: relative
 
 .menu-item
   user-select: none
@@ -10,30 +14,35 @@
 .menu-wrapper
   overflow: hidden
   user-select: none
+  width: 100%
+  margin: 0 auto
+
+.menu-wrapper--inner
+  width: 100% !important
 
 .menu-item-wrapper
   cursor: pointer
-  position: relative
-
-
-//  &:hover
-//    background-color: lighten($seaWaveFont, 40%)
-//    border-bottom: 5px solid $seaWaveFont
-//
-//.menu-item-wrapper.active
-//  background-color: lighten($seaWaveFont, 40%)
-//  border-bottom: 5px solid $seaWaveFont
-
-//.menu-item.active
-//  border: 1px green solid
 
 .scroll-menu-arrow
   padding: 20px
   cursor: pointer
-
+  +r(lg)
+    padding: 15px
+  +r(xs)
+    padding: 10px
 
 .scroll-menu-arrow--disabled
   visibility: hidden
+
+.arrow-next
+  color: $seaWaveFont
+  font-size: 25px
+  font-weight: 700
+
+.arrow-prev
+  color: $seaWaveFont
+  font-size: 25px
+  font-weight: 700
 
 
 

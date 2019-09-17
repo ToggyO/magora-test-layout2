@@ -10,6 +10,10 @@
     padding: 30px
     display: flex
     z-index: 15
+    +r(lg)
+      padding: 20px
+    //+r(xs)
+    //  padding: 20px
 
   &__item:hover
     background-color: lighten($seaWaveFont, 40%)
@@ -21,6 +25,11 @@
   &__article
     display: flex
     position: relative
+    span
+      +r(lg)
+        font-size: 15px
+      +r(xs)
+        font-size: 14px
 
   &__count
     display: flex
@@ -33,12 +42,47 @@
     position: relative
     margin-top: -10px
 
-
-.navigation-list .active
+.activeTab
   background-color: lighten($seaWaveFont, 40%)
   border-bottom: 5px solid $seaWaveFont
 
-.activeTab
-  //background-color: lighten($seaWaveFont, 40%)
-  //border-bottom: 5px solid $seaWaveFont
 
+
+//.navigation-list
+//  margin: 0 auto
+//
+//  &__item
+//    padding: 30px
+//    display: flex
+//    z-index: 15
+//
+//  &__item:hover
+//    background-color: lighten($seaWaveFont, 40%)
+//    border-bottom: 5px solid $seaWaveFont
+//
+//  &__link
+//    display: flex
+//
+//  &__article
+//    display: flex
+//    position: relative
+//
+//  &__count
+//    display: flex
+//    justify-content: center
+//    align-items: center
+//    width: 25px
+//    height: 20px
+//    background-color: lighten($seaWaveFont, 30%)
+//    border-radius: 50%
+//    position: relative
+//    margin-top: -10px
+
+
+//.navigation-list .active
+//  background-color: lighten($seaWaveFont, 40%)
+//  border-bottom: 5px solid $seaWaveFont
+
+//.activeTab
+//  background-color: lighten($seaWaveFont, 40%)
+//  border-bottom: 5px solid $seaWaveFont

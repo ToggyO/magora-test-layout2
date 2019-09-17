@@ -28,17 +28,17 @@ export const ArrowRight = Arrow({text: '>', className: 'arrow-next'});
 
 class ReactScrollbar extends React.Component {
   state = {
-    alignCenter: true,
+    alignCenter: false,
     clickWhenDrag: false,
-    dragging: true,
+    dragging: false,
     hideArrows: true,
     hideSingleArrow: true,
     itemsCount: list.length,
     selected: 'about',
     scrollToSelected: true,
-    translate: undefined,
+    translate: false,
     transition: 0.4,
-    wheel: true,
+    wheel: false,
     showList: true,
     inertiascrolling: false,
     slowdownFactor: 0.25,
@@ -61,15 +61,15 @@ class ReactScrollbar extends React.Component {
   }
 
   onUpdate = ({translate}) => {
-    console.log(
+    // console.log(
       // `onUpdate: translate: ${translate} firstItemVisible: ${firstItemVisible}, lastItemVisible: ${lastItemVisible}`
-      `onUpdate: translate: ${translate}`
-    );
+    //   `onUpdate: translate: ${translate}`
+    // );
     this.setState({translate});
   };
 
   onSelect = key => {
-    console.log(`onSelect: ${key}`);
+    // console.log(`onSelect: ${key}`);
     this.setState({selected: key});
   };
 
@@ -138,5 +138,23 @@ class ReactScrollbar extends React.Component {
   }
 }
 
-export default ReactScrollbar;
+// state = {
+//   alignCenter: true,
+//   clickWhenDrag: false,
+//   dragging: true,
+//   hideArrows: true,
+//   hideSingleArrow: true,
+//   itemsCount: list.length,
+//   selected: 'about',
+//   scrollToSelected: true,
+//   translate: undefined,
+//   transition: 0.4,
+//   wheel: true,
+//   showList: true,
+//   inertiascrolling: false,
+//   slowdownFactor: 0.25,
+// };
 
+
+
+export default ReactScrollbar;
