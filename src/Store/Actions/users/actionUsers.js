@@ -53,6 +53,7 @@ const updateUserAvatar = (payload) => ({
 
 export const getUserDataProfile = (userId, path, projectType, pathname, queries) => (
   dispatch => {
+    dispatch(requestUserById());
     const URL = `/${path}/${userId}${projectType && projectType !== KEYWORD.ABOUT ? `/${projectType}?PageSize=9&Page=${pathname === projectType ? queries.page || 1 : 1}` : ''}`;
 
     return instance

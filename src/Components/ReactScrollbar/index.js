@@ -92,10 +92,6 @@ class ReactScrollbar extends React.Component {
       />;
     });
 
-  toggle = () => {
-    this.setState({ showList: !this.state.showList });
-  };
-
   render() {
     const {
       alignCenter,
@@ -103,12 +99,10 @@ class ReactScrollbar extends React.Component {
       hideArrows,
       dragging,
       hideSingleArrow,
-      itemsCount,
       selected,
       translate,
       transition,
       wheel,
-      showList,
       scrollToSelected,
       inertiascrolling,
       slowdownFactor,
