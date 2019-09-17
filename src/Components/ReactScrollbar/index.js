@@ -2,50 +2,18 @@ import React from 'react';
 import ScrollMenu from 'react-horizontal-scrolling-menu';
 import PropTypes from 'prop-types';
 import './style.sass';
+import MenuItem from './MenuItem';
 
 
 /* eslint-disable */
 const list = [
-  { name: 'item1', value: 'fff' },
-  { name: 'item2______________' },
-  { name: 'item3' },
-  { name: 'item4' },
-  { name: 'item5' },
-  { name: 'item6' },
-  { name: 'item7______________' },
-  { name: 'item8' },
-  { name: 'item9' },
-  { name: 'item10' },
-  { name: 'item11' },
-  { name: 'item12' },
-  { name: 'item13' },
-  { name: 'item14______________' },
-  { name: 'item15' },
-  { name: 'item16' },
-  { name: 'item17' },
-  { name: 'item18' },
-  { name: 'item19' },
-  { name: 'item20' },
-  { name: 'item21' },
-  { name: 'item22______________' },
-  { name: 'item23' },
-  { name: 'item24' },
-  { name: 'item25' },
+  { title: 'About', value: 'about' },
+  { title: 'Projects', value: 'ideas' },
+  { title: 'Engagement', value: 'engagements' },
+  { title: 'Events', value: 'events' },
 ];
 
 // eslint-disable-next-line react/prop-types
-const MenuItem = ({text, value, selected}) => {
-  debugger;
-  return <div className={`menu-item ${selected ? 'active' : ''}`}>{text}</div>;
-};
-
-export const Menu = (list, selected) =>
-  list.map(el => {
-    const {name, value} = el;
-    const onClick = () => console.log('original onClick ', name);
-    return <MenuItem text={name} value={value} key={name} selected={selected} onClick={onClick} />;
-  });
-
 const Arrow = ({text, className}) => {
   return <div className={className}>{text}</div>;
 };
@@ -57,6 +25,7 @@ Arrow.propTypes = {
 export const ArrowLeft = Arrow({text: '<', className: 'arrow-prev'});
 export const ArrowRight = Arrow({text: '>', className: 'arrow-next'});
 
+
 class ReactScrollbar extends React.Component {
   state = {
     alignCenter: true,
@@ -65,7 +34,7 @@ class ReactScrollbar extends React.Component {
     hideArrows: true,
     hideSingleArrow: true,
     itemsCount: list.length,
-    selected: 'item1',
+    selected: 'about',
     scrollToSelected: true,
     translate: undefined,
     transition: 0.4,
@@ -78,7 +47,7 @@ class ReactScrollbar extends React.Component {
   constructor(props) {
     super(props);
     this.menu = null;
-    this.menuItems = Menu(list.slice(0, list.length), this.state.selected);
+    // this.menuItems = this.Menu(list.slice(0, list.length), this.state.selected);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -104,31 +73,24 @@ class ReactScrollbar extends React.Component {
     this.setState({selected: key});
   };
 
-  setItemsCount = ev => {
-    const {itemsCount = list.length, selected} = this.state;
-    const val = +ev.target.value;
-    const itemsCountNew =
-      !isNaN(val) && val <= list.length && val >= 0
-        ? +ev.target.value
-        : list.length;
-    const itemsCountChanged = itemsCount !== itemsCountNew;
+  Menu = (list, selected) =>
+    list.map((el, i) => {
+      const {title, value} = el;
 
-    if (itemsCountChanged) {
-      this.menuItems = Menu(list.slice(0, itemsCountNew), selected);
-      this.setState({
-        itemsCount: itemsCountNew,
-      });
-    }
-  };
-
-  setSlowdownFactor = ev => {
-    this.setState({slowdownFactor: ev.target.value});
-  };
-
-  setSelected = ev => {
-    const {value} = ev.target;
-    this.setState({selected: String(value)});
-  };
+      return <MenuItem
+        keyNumber={i}
+        title={title}
+        value={value}
+        key={title}
+        userId={this.props.userId}
+        tabQuery={this.props.tabQuery}
+        pushTabQuery={this.props.pushTabQuery}
+        toggleActiveTab={this.props.toggleActiveTab}
+        location={this.props.location}
+        activeTab={this.props.activeTab}
+        selected={selected}
+      />;
+    });
 
   toggle = () => {
     this.setState({ showList: !this.state.showList });
@@ -152,45 +114,32 @@ class ReactScrollbar extends React.Component {
       slowdownFactor,
     } = this.state;
 
-    const menu = this.menuItems;
-
-    const checkboxStyle = {
-      margin: '5px 10px',
-    };
-    const valueStyle = {
-      margin: '5px 10px',
-      display: 'inline-block',
-    };
+    // const menu = this.menuItems;
+    const menu = this.Menu(list.slice(0, list.length), this.state.selected);
 
     return (
-        <div>
-          <button onClick={this.toggle}>Toggle Show/hide</button>
-          { showList && (
-            <ScrollMenu
-              ref={el => (this.menu = el)}
-              data={menu}
-              arrowLeft={ArrowLeft}
-              arrowRight={ArrowRight}
-              hideArrows={hideArrows}
-              hideSingleArrow={hideSingleArrow}
-              transition={+transition}
-              onUpdate={this.onUpdate}
-              onSelect={this.onSelect}
-              scrollToSelected={scrollToSelected}
-              selected={selected}
-              scrollBy={0}
-              translate={translate}
-              alignCenter={alignCenter}
-              dragging={dragging}
-              clickWhenDrag={clickWhenDrag}
-              wheel={wheel}
-              inertiaScrolling={inertiascrolling}
-              inertiaScrollingSlowdown={slowdownFactor}
-              rtl={false}
-            />
-          )}
-        </div>
-
+      <ScrollMenu
+        ref={el => (this.menu = el)}
+        data={menu}
+        arrowLeft={ArrowLeft}
+        arrowRight={ArrowRight}
+        hideArrows={hideArrows}
+        hideSingleArrow={hideSingleArrow}
+        transition={+transition}
+        onUpdate={this.onUpdate}
+        onSelect={this.onSelect}
+        scrollToSelected={scrollToSelected}
+        selected={selected}
+        scrollBy={0}
+        translate={translate}
+        alignCenter={alignCenter}
+        dragging={dragging}
+        clickWhenDrag={clickWhenDrag}
+        wheel={wheel}
+        inertiaScrolling={inertiascrolling}
+        inertiaScrollingSlowdown={slowdownFactor}
+        rtl={false}
+      />
     );
   }
 }
