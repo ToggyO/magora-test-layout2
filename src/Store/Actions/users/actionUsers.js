@@ -74,7 +74,7 @@ export const getUserDataProfile = (userId, path, projectType, pathname, queries)
 export const getUserDataProfileForEdit = (key) => (
   dispatch => {
     const URL = `/${REQUEST_ULR.PROFILES}/me`;
-    debugger;
+
     return instance
       .get(URL, {
         headers: {
@@ -83,17 +83,17 @@ export const getUserDataProfileForEdit = (key) => (
       })
       .then(res => {
         const { data = {} } = res;
-        debugger;
+
         dispatch(receiveUserById(data, key));
         dispatch(updateUIWithUsersInfo(data));
-        debugger;
+
         writeToLocalState('USER_INFO', data);
       })
       .catch(error => {
         if (!error) {
           return null;
         }
-        debugger;
+
         dispatch(errorWrapperTrue());
       })
   }

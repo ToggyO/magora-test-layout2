@@ -25,7 +25,6 @@ instance.interceptors.request.use((config) => (
 
     if (config.headers.isAuth) {
       const tokenData = getFromLocalState('TOKEN_INFO');
-      debugger;
       refreshTokenData(tokenData)
         .then(refreshedTokenData => {
           headers.Authorization = `Bearer ${refreshedTokenData.accessToken}`;
